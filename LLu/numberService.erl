@@ -1,17 +1,14 @@
 -module(numberService).
 -export([start/1]).
 
-start(Name) ->
-	ServerPid = spawn(fun() -> loop(1) end),
-    register(Name,ServerPid),
-	ServerPid.
-	
-loop(MsgID) ->
+start(LogFile) ->
+	spawn(fun() -> loop(LogFile,1) end).
+    
+loop(LogFile,MsgID) ->
 	receive 
+		{request,kill} -> ok;
 		{PID} -> 
 			PID ! {nid,MsgID},
-			loop(MsgID+1);
-		Any -> 
-			io:format("Received Something unexpacted :~p\n", [Any]),
-			loop(MsgID)
+			log:w(LogFile,'SERVER',"Nachrichtennummer ~p an ~p gesendet",[MsgID,PID]),
+			loop(LogFile,MsgID+1)
 	end.

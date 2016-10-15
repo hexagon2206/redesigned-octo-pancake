@@ -6,17 +6,20 @@
 -export([deliverMSG/4]).
 
 
+% DLQ als eigener Prozess
+
+
 %/* Initialisieren der DLQ */
 initDLQ(Size,Datei) -> 
 	{Size,[]}.
 
 %/* Löschen der DLQ */
-delDLQ(Queue) -> Queue.
+delDLQ(_Queue) -> ok.
 	
 
 %/* Abfrage welche Nachrichtennummer in der DLQ gespeichert werden kann */
 expectedNr({_,[{NR,_}|_]}) -> NR+1;
-expectedNr(_) -> 1.
+expectedNr({_,[]}) -> 1.
 	
 
 cutToSize(_,[]) -> [];
@@ -25,26 +28,32 @@ cutToSize(N,[E|X]) -> [E|cutToSize(N-1,X)].
 
 %/* Speichern einer Nachricht in der DLQ */
 push2DLQ([NNr,Msg,TSclientout,TShbqin],{S,Queue},Datei) ->
-	NewQueue = [{NNr,[NNr,Msg,TSclientout,TShbqin]}|Queue],
+	NewQueue = [{NNr,[NNr,Msg,TSclientout,TShbqin,erlang:now()]}|Queue],
 	{S,cutToSize(S,NewQueue)}.
 
 	
 
-deliver(ClientPID,Msg,Datei)->
-	ClientPID ! Msg.
+deliver(ClientPID,[NNr,Msg,TSclientout,TShbqin,TSdlqin],Terminiert,Datei)->
+	ClientPID ! {replay,[NNr,Msg,TSclientout,TShbqin,TSdlqin,erlang:now()],Terminiert}.
 
 
-deliverMSG(MSGNr,ClientPID,{_,Queue},Datei) -> 
-	deliverMSG(MSGNr,ClientPID,Queue,Datei);
+deliverMSG(MSGNr,ClientPID,{_Size,Queue},Datei) -> 
+	deliverMSG(true,MSGNr,ClientPID,Queue,Datei).
+
 
 %/* Ausliefern einer Nachricht an einen Leser-Client */
-deliverMSG(_,_,[],Datei) -> 
-	-1;
-deliverMSG(_	,ClientPID,[{N,X}|[]],Datei)->
-	deliver(ClientPID,X,Datei),
-	N;
-deliverMSG(MSGNr,ClientPID,[{MSGNr,X}|_],Datei)->
-	deliver(ClientPID,X,Datei),
+deliverMSG(Newest,_NNr,ClientPID,[],Datei) -> 
+	ClientPID ! {replay,[],Newest},
+	0;
+
+%deliverMSG(_Newest,_	,ClientPID,[{N,X}|[]],Datei)->
+%	deliver(ClientPID,X,false,Datei),
+%	N;
+
+deliverMSG(Newest,MSGNr,ClientPID,[{MSGNr,X}|_],Datei)->
+	deliver(ClientPID,X,Newest,Datei),
 	MSGNr;
-deliverMSG(MSGNr,ClientPID,[_|X],Datei) ->
-	deliverMSG(MSGNr,ClientPID,X,Datei).
+
+deliverMSG(_Newest,MSGNr,ClientPID,[_|X],Datei) ->
+	deliverMSG(false,MSGNr,ClientPID,X,Datei).
+
