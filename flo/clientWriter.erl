@@ -8,7 +8,6 @@
 % Logic
 
 init(Server, LogFile) ->
-%  spawn(fun() -> keepAlive(Server) end),
 
   werkzeug:logging(LogFile, node() ++ "Startzeit: " ++ erlang:localtime()),
   getMessageID(Server, 0, 2000, LogFile).
@@ -21,12 +20,11 @@ getMessageID(Server, MessageCounter, SleepTime, LogFile) ->
     % Neue Zufallszahl generieren und die Antwort des Servers ausfiltern
     true ->
         getMessageID(Server, 0, (randdom:uniform(5) * 2000), LogFile),
-
+		    werkzeug:logging(LogFile, node() ++ "Nachricht: " ++ MessageCounter ++ " nicht gesendet" ++ werkzeug:timeMilliSecond()),
+        
         receive
           {"MessageID", ID} -> io:format("~p \n", ID)
         end;
-
-        %TODO: Loggen
 
     % Antwort vom Server verarbeiten und Nachricht an Server vorbereiten
     false ->
@@ -35,7 +33,7 @@ getMessageID(Server, MessageCounter, SleepTime, LogFile) ->
       end
   end.
 
-% Eine Zufallszeit "schlafen" und anschließend eine neue Nachricht an den Server schicken
+% Eine Zufallszeit "schlafen" und anschlieߟend eine neue Nachricht an den Server schicken
 dropMessage(Server, MessageID, MessageCounter, SleepTime, LogFile) ->
 
   timer:sleep(SleepTime),
@@ -44,9 +42,3 @@ dropMessage(Server, MessageID, MessageCounter, SleepTime, LogFile) ->
 
   Server ! {dropMessage, [MessageID, "Hallo Welt", erlang:system_time()]}, % alternative : erlang:system_time(). -> aktuelle Zeit in Milisekunden
   getMessageID(Server, MessageCounter, SleepTime, LogFile).
-
-keepAlive(Server) ->
-  % hostname + group + team
-  M = node() ++ "1" ++ "02",
-  Server ! {[M, erlang:localtime()]},
-  timer:sleep(2000).
