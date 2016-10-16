@@ -15,7 +15,7 @@
 %%
 %% -------------------------------------------
 %%
-% Sucht aus einer Config-Liste die gewÃ¼nschten EintrÃ¤ge
+% Sucht aus einer Config-Liste die gewünschten Einträge
 % Beispielaufruf: 	{ok, ConfigListe} = file:consult("server.cfg"),
 %                  	{ok, Lifetime} = get_config_value(lifetime, ConfigListe),
 %
@@ -28,12 +28,12 @@ get_config_value(Key, [{_OKey, _Value} | ConfigT]) ->
 
 %% -------------------------------------------
 % Schreibt auf den Bildschirm und in eine Datei
-% nebenlÃ¤ufig zur Beschleunigung
+% nebenläufig zur Beschleunigung
 % Beispielaufruf: logging('FileName.log',"Textinhalt"),
 %
 logging(Datei,Inhalt) -> Known = erlang:whereis(logklc),
 						case Known of
-						undefined -> 
+						undefined ->
 								PIDlogklc = spawn(fun() -> logloop(0) end),
 								% catch fuer nebenlaeufigen Zugriff
 								_Error = (catch erlang:register(logklc,PIDlogklc));
@@ -47,7 +47,7 @@ logstop( ) -> 	Known = erlang:whereis(logklc),
 					undefined -> false;
 					_NotUndef -> logklc ! kill, true
 				end.
-					
+
 logloop(Y) -> 	receive
 					{Datei,Inhalt} -> io:format(Inhalt),
 									  file:write_file(Datei,Inhalt,[append]),
@@ -58,7 +58,7 @@ logloop(Y) -> 	receive
 %% -------------------------------------------
 %%
 % Unterbricht den aktuellen Timer
-% und erstellt einen neuen und gibt ihn zurÃ¼ck
+% und erstellt einen neuen und gibt ihn zurück
 %%
 reset_timer(Timer,Sekunden,Message) ->
 	case timer:cancel(Timer) of
@@ -69,7 +69,7 @@ reset_timer(Timer,Sekunden,Message) ->
  	end,
 	{ok,TimerNeu} = timer:send_after(Sekunden*1000,Message),
 	TimerNeu.
-	
+
 %% Zeitstempel: 'MM.DD HH:MM:SS,SSS'
 % Beispielaufruf: Text = lists:concat([Clientname," Startzeit: ",timeMilliSecond()]),
 %
@@ -107,20 +107,20 @@ compareUTC(UTC1,UTC2) ->
 		X when X == 0 -> concurrent
 	end.
 
-now2UTC({MegaSecs, Secs, MicroSecs}) -> 	
+now2UTC({MegaSecs, Secs, MicroSecs}) ->
 	((((MegaSecs * ?MILL) + Secs) * ?TAUS) + (MicroSecs div ?TAUS));
 now2UTC(UTCtimestamp) ->
 	UTCtimestamp.
-	
+
 compareNow({MegaSecs1,Secs1,MicroSecs1},{MegaSecs2,Secs2,MicroSecs2}) ->
 	Val1 = MegaSecs1 - MegaSecs2,
 	if Val1 > 0 -> afterw;
 	   Val1 < 0 -> before;
-	   Val1 == 0 -> 
+	   Val1 == 0 ->
 			Val2 = Secs1 - Secs2,
 			if Val2 > 0	-> afterw;
 			   Val2 < 0 -> before;
-			   Val2 == 0 -> 
+			   Val2 == 0 ->
 					Val3 = MicroSecs1 - MicroSecs2,
 					if Val3 > 0 -> afterw;
 					   Val3 < 0 -> before;
@@ -128,16 +128,16 @@ compareNow({MegaSecs1,Secs1,MicroSecs1},{MegaSecs2,Secs2,MicroSecs2}) ->
 					end
 			end
 	end.
-	
+
 concat(List, Between) -> concat(List, Between, "").
 concat([], _, Text) -> Text;
 concat([First|[]], _, Text) ->
 	concat([],"",klebe(First,Text));
 concat([First|List], Between, Text) ->
 	concat(List, Between, string:concat(klebe(First,Text), Between)).
-klebe(First,Text) -> 	
+klebe(First,Text) ->
 	NumberList = integer_to_list(First),
-	string:concat(Text,minTwo(NumberList)).	
+	string:concat(Text,minTwo(NumberList)).
 minTwo(List) ->
 	case {length(List)} of
 		{0} -> ?ZERO ++ ?ZERO;
@@ -164,14 +164,14 @@ type_is(Something) ->
 	   is_reference(Something) -> reference;
 	   is_tuple(Something) -> tuple
 	end.
-	
+
 % Wandelt in eine Zeichenkette um
 % Beispielaufruf: to_String(Something),
 %
 to_String(Etwas) ->
-	lists:flatten(io_lib:format("~p", [Etwas])).	
+	lists:flatten(io_lib:format("~p", [Etwas])).
 
-% Oeffnen von UDP Sockets, zum Senden und Empfangen 
+% Oeffnen von UDP Sockets, zum Senden und Empfangen
 % Schliessen nicht vergessen: timer:apply_after(?LIFETIME, gen_udp, close, [Socket]),
 
 % openSe(IP,Port) -> Socket
@@ -180,7 +180,7 @@ to_String(Etwas) ->
 % senden  mit gen_udp:send(Socket, Addr, Port, <MESSAGE>)
 openSe(Addr, Port) ->
   io:format("~nAddr: ~p~nPort: ~p~n", [Addr, Port]),
-  {ok, Socket} = gen_udp:open(Port, [binary, 	{active, false}, {reuseaddr, true}, {ip, Addr}, {multicast_ttl, ?TTL}, inet, 
+  {ok, Socket} = gen_udp:open(Port, [binary, 	{active, false}, {reuseaddr, true}, {ip, Addr}, {multicast_ttl, ?TTL}, inet,
 												{multicast_loop, true}, {multicast_if, Addr}]),
   Socket.
 
@@ -190,7 +190,7 @@ openSe(Addr, Port) ->
 % aktives Abholen mit   {ok, {Address, Port, Packet}} = gen_udp:recv(Socket, 0),
 openRec(MultiCast, Addr, Port) ->
   io:format("~nMultiCast: ~p~nAddr: ~p~nPort: ~p~n", [MultiCast, Addr, Port]),
-  {ok, Socket} = gen_udp:open(Port, [binary, 	{active, false}, {reuseaddr, true}, {multicast_if, Addr}, inet, 
+  {ok, Socket} = gen_udp:open(Port, [binary, 	{active, false}, {reuseaddr, true}, {multicast_if, Addr}, inet,
 												{multicast_ttl, ?TTL}, {multicast_loop, true}, {add_membership, {MultiCast, Addr}}]),
   Socket.
 
@@ -201,38 +201,38 @@ openRec(MultiCast, Addr, Port) ->
 % senden  mit gen_udp:send(Socket, Addr, Port, <MESSAGE>)
 openSeA(Addr, Port) ->
   io:format("~nAddr: ~p~nPort: ~p~n", [Addr, Port]),
-  {ok, Socket} = gen_udp:open(Port, [binary, 	{active, true}, {ip, Addr}, inet, 
+  {ok, Socket} = gen_udp:open(Port, [binary, 	{active, true}, {ip, Addr}, inet,
 												{multicast_loop, false}, {multicast_if, Addr}]),
   Socket.
- 
+
 % openRec(IP,Port) -> Socket
 % diesen Prozess PidRec (als NebenlÃ¤ufigenprozess gestartet) bekannt geben mit
 %  gen_udp:controlling_process(Socket, PidRec),
 % passives Empfangen mit   receive	{udp, ReceiveSocket, IP, InPortNo, Packet} -> ... end
 openRecA(MultiCast, Addr, Port) ->
   io:format("~nMultiCast: ~p~nAddr: ~p~nPort: ~p~n", [MultiCast, Addr, Port]),
-  {ok, Socket} = gen_udp:open(Port, [binary, 	{active, true}, {reuseaddr, true}, {multicast_if, Addr}, inet, 
+  {ok, Socket} = gen_udp:open(Port, [binary, 	{active, true}, {reuseaddr, true}, {multicast_if, Addr}, inet,
 												{multicast_ttl, ?TTL}, {multicast_loop, false}, {add_membership, {MultiCast, Addr}}]),
   Socket.
 
 % Nachrichtenpaket fertig stellen
 createBinaryS(Station) ->
-    % 1 Byte for Stationtype  
+    % 1 Byte for Stationtype
 %	<<(list_to_binary(Station)):8/binary>>.
 	<<(list_to_binary(Station))/binary>>.
 createBinaryD(Data) ->
-    % 24 Byte for Payload  
+    % 24 Byte for Payload
 %	<<(list_to_binary(Data)):192/binary>>.
 	<<(list_to_binary(Data))/binary>>.
 createBinaryNS(NextSlot) ->
     % 1 Byte for NextSlot
 %    <<NextSlot:8/integer>>.
     <<NextSlot>>.
-createBinaryT(Timestamp) ->    
-    % 8 Byte for Time  
-    <<(Timestamp):64/big-unsigned-integer>>.	
-concatBinary(BinStation,BinData,BinNextSlot,BinTime) ->         
-    % Konkatenieren der Binaries: Nachrichtenformat pruefen!             
+createBinaryT(Timestamp) ->
+    % 8 Byte for Time
+    <<(Timestamp):64/big-unsigned-integer>>.
+concatBinary(BinStation,BinData,BinNextSlot,BinTime) ->
+    % Konkatenieren der Binaries: Nachrichtenformat pruefen!
     <<BinStation/binary, BinData/binary,BinNextSlot/binary,BinTime/binary>>.
 
 message_to_string(Packet)	->
@@ -242,9 +242,9 @@ message_to_string(Packet)	->
 	Slot = erlang:binary_to_list(Packet,25,25),
 	Timestamp = erlang:binary_to_list(Packet,26,33),
     {StationTyp,Nutzdaten,Slot,Timestamp}.
-	
-	
-	
+
+
+
 %% -------------------------------------------
 %% Mischt eine Liste
 % Beispielaufruf: NeueListe = shuffle([a,b,c]),
@@ -255,7 +255,7 @@ shuffle(List, Acc) ->
     {Leading, [H | T]} = lists:split(random:uniform(length(List)) - 1, List),
     shuffle(Leading ++ T, [H | Acc]).
 
-	
+
 %% -------------------------------------------
 %
 % initialisiert die Mi der ggT-Prozesse, um den
@@ -263,22 +263,22 @@ shuffle(List, Acc) ->
 % Beispielaufruf: bestimme_mis(42,88),
 % 42: gewÃ¼nschter ggT
 % 88: Anzahl benÃ¶tigter Zahlen
-% 
+%
 %%
 bestimme_mis(WggT,GGTsCount) -> bestimme_mis(WggT,GGTsCount,[]).
 bestimme_mis(_WggT,0,Mis) -> Mis;
-bestimme_mis(WggT,GGTs,Mis) -> 
+bestimme_mis(WggT,GGTs,Mis) ->
 	Mi = einmi([2,3,5,7,11,13,17],WggT),
-	Enthalten = lists:member(Mi,Mis), 
+	Enthalten = lists:member(Mi,Mis),
 	if 	Enthalten -> bestimme_mis(WggT,GGTs,Mis);
 		true ->	bestimme_mis(WggT,GGTs-1,[Mi|Mis])
-	end.	
+	end.
 % berechnet ein Mi
-einmi([],Akku) -> Akku;	
+einmi([],Akku) -> Akku;
 einmi([Prim|Prims],Akku) ->
 	Expo = random:uniform(3)-1, % 0 soll mÃ¶glich sein!
 	AkkuNeu = trunc(Akku * math:pow(Prim,Expo)), % trunc erzeugt integer, was fÃ¼r rem wichtig ist
-	einmi(Prims,AkkuNeu).	
+	einmi(Prims,AkkuNeu).
 
 testeMI(WggT,GGTsCount) ->
 		testeMis(bestimme_mis(WggT,GGTsCount),WggT).
@@ -290,7 +290,7 @@ testeMis([Num1|Rest],WggT) ->
 		0 -> testeMis(Rest,WggT);
 		_X -> io:format("Zahl ~p Rest ~p\n",[Num1,Val]),testeMis(Rest,WggT)
 	end.
-		
+
 %% -------------------------------------------
 %
 % Vergleich der Zeitstempel erlang:now()
@@ -298,37 +298,37 @@ testeMis([Num1|Rest],WggT) ->
 % {MegaSecs, Secs, MicroSecs}
 % {10^6,10^0,10^(-6)}
 % {1000000, 1, 0.000001}
-% 
+%
 %%
 validTS({X,Y,Z}) -> is_integer(X) and
                     is_integer(Y) and
 					is_integer(Z);
 validTS(_SomethingElse) -> %io:format("***>>>>****>>>>~p<<<<<*****<<<<<\n\n",[SomethingElse]),
                           false.
-lessTS({X1,Y1,Z1},{X2,Y2,Z2}) -> 
+lessTS({X1,Y1,Z1},{X2,Y2,Z2}) ->
                     (X2 > X1) or
 					((X2 == X1) and (Y2 > Y1)) or
 					((X2 == X1) and (Y2 == Y1) and (Z2 > Z1));
-lessTS(_Something,_Else) -> false.					
-lessoeqTS({X1,Y1,Z1},{X2,Y2,Z2}) -> 
+lessTS(_Something,_Else) -> false.
+lessoeqTS({X1,Y1,Z1},{X2,Y2,Z2}) ->
                     (X2 > X1) or
 					((X2 == X1) and (Y2 > Y1)) or
 					((X2 == X1) and (Y2 == Y1) and (Z2 >= Z1));
-lessoeqTS(_Something,_Else) -> false.					
-equalTS({X1,Y1,Z1},{X2,Y2,Z2}) -> 
+lessoeqTS(_Something,_Else) -> false.
+equalTS({X1,Y1,Z1},{X2,Y2,Z2}) ->
 					((X2 == X1) and (Y2 == Y1) and (Z2 == Z1));
-equalTS(_Something,_Else) -> false.					
+equalTS(_Something,_Else) -> false.
 diffTS({X1,Y1,Z1},{X2,Y2,Z2}) ->
-                    {X1-X2,Y1-Y2,Z1-Z2};					
+                    {X1-X2,Y1-Y2,Z1-Z2};
 diffTS(_Something,_Else) -> {-42,-42,-42}.
 now2string({Me,Mo,Mi}) ->
-                    {{_Year, Month, Day},{Hour, Minute, Second}} = calendar:now_to_local_time({Me,Mo,Mi}),	
+                    {{_Year, Month, Day},{Hour, Minute, Second}} = calendar:now_to_local_time({Me,Mo,Mi}),
 	                Tag = lists:concat([klebe(Day,""),".",klebe(Month,"")," ",klebe(Hour,""),":"]),
 	                Tag ++ concat([Minute,Second],":") ++ "," ++ toMilliSeconds(Mi)++"|";
 now2string(_SomethingElse) -> "00.00 00:00:00,000|".
 
 now2stringD({Me,Mo,Mi}) ->
-                    {{_Year, _Month, _Day},{_Hour, Minute, Second}} = calendar:now_to_local_time({Me,Mo,Mi}),	
+                    {{_Year, _Month, _Day},{_Hour, Minute, Second}} = calendar:now_to_local_time({Me,Mo,Mi}),
 	                Tag = lists:concat([klebe(0,""),".",klebe(0,"")," ",klebe(0,""),":"]),
 	                Tag ++ concat([Minute,Second],":") ++ "," ++ toMicroSeconds(Mi)++"|";
 now2stringD(_SomethingElse) -> "00.00 00:00:00,000|"
