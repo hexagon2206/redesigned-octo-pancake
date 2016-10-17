@@ -41,5 +41,5 @@ dropMessage(Server, MessageID, MessageCounter, SleepTime, LogFile) ->
 
   %werkzeug:logging(LogFile, node() ++ "Nachrichtnummer: " ++ MessageCounter ++ " gesendet | Out" ++ werkzeug:timeMilliSecond()),
 
-  Server ! {dropmessage, [MessageID, "Hallo Welt", erlang:system_time()]}, % alternative : erlang:system_time(). -> aktuelle Zeit in Milisekunden
+  Server ! {dropmessage, [MessageID, "Hallo Welt", werkzeug:timeMilliSecond()]}, % alternative : erlang:system_time(). -> aktuelle Zeit in Milisekunden
   getMessageID(Server, MessageCounter, SleepTime, LogFile).
