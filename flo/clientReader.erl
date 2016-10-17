@@ -6,7 +6,7 @@
 
 init(Server, LogFile, ConfigFile) ->
   getMessages(Server, LogFile),
-  
+
   % Liest aus der Config - Datei die Parameter
   {ok, Config} = file:consult(ConfigFile),
   {ok, Lifetime} = werkzeug:get_config_value(lifetime, Config),
@@ -36,6 +36,6 @@ receiveReply(Server, LogFile) ->
 handleReply(Message, Server, LogFile) ->
   [MsgNumber, Message, ClientOut, HBQin, DLQin, DLQout] = Message,
 
-  werkzeug:logging(LogFile, node() ++ ": Nachrichtnummer: " ++  [MsgNumber] ++ " empfangen. Text: " ++ [Message] ++ " ClientOut: " ++ [ClientOut]),
+  %werkzeug:logging(LogFile, node() ++ ": Nachrichtnummer: " ++  [MsgNumber] ++ " empfangen. Text: " ++ [Message] ++ " ClientOut: " ++ [ClientOut]),
 
   receiveReply(Server, LogFile).
