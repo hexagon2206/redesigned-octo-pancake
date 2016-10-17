@@ -22,7 +22,7 @@ getMessageID(Server, MessageCounter, SleepTime, LogFile) ->
     true ->
 
       receive
-        {nid, ID} -> io:format("~p ~n", ID)
+        {nid, ID} -> io:format("~p ~n", [ID])
       end,
 
       getMessageID(Server, 0, (random:uniform(5) * 2000), LogFile);
