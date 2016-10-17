@@ -53,7 +53,7 @@ dropMessage(Server, MessageID, MessageCounter, SleepTime, LogFile) ->
 
   timer:sleep(SleepTime),
 
-  werkzeug:logging(LogFile, io:format("Nachrichtnummer: ~p gesendet | Zeitstempel:  ~p ~n", [MessageCounter, werkzeug:timeMilliSecond()])),
+  werkzeug:logging(LogFile, io:format("Nachrichtnummer: ~p gesendet | Zeitstempel:  ~p ~n", [MessageID, werkzeug:timeMilliSecond()])),
 
   Server ! {dropmessage, [MessageID, "Hallo Welt", werkzeug:timeMilliSecond()]}, % alternative : erlang:system_time(). -> aktuelle Zeit in Milisekunden
   getMessageID(Server, MessageCounter, SleepTime, LogFile).
@@ -69,14 +69,14 @@ getMessages(Server, LogFile, MessageCounter, SleepTime) ->
 receiveReply(Server, LogFile, MessageCounter, SleepTime) ->
 
   receive
-    {reply, Message, Termi} ->
-      case Termi of
-        true ->
-          getMessages(Server, LogFile, MessageCounter, SleepTime);
-        false ->
-          handleReply(Message, Server, LogFile, MessageCounter, SleepTime),
-          getMessages(Server, LogFile, MessageCounter, SleepTime)
-      end
+    {reply, Message, false} ->
+
+      handleReply(Message, Server, LogFile, MessageCounter, SleepTime),
+      getMessages(Server, LogFile, MessageCounter, SleepTime).
+      
+    {reply, Message, true} ->
+      getMessages(Server, LogFile, MessageCounter, SleepTime).
+
   end.
 
 
