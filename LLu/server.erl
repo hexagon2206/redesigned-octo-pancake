@@ -4,7 +4,7 @@
 %Autokill muss noch eingebaut werden
 start() ->
 
-	ServerLogFile = 'serverLog.log',
+	ServerLogFile = atom_to_list(node())++".log",
 
 	log:w(ServerLogFile,'SERVER',"server.cfg geöffnet..."),
 	{ok, ConfigListe} = file:consult("server.cfg"),
@@ -24,7 +24,7 @@ start() ->
     ServerPid = spawn(fun() -> init(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan) end),
 	
 	register(Servername,ServerPid),
-	log:w(ServerLogFile,'SERVER',"Started mit PID ~p registerd as '~p' ",[werkzeug:timeMilliSecond(),ServerPid,Servername]),
+	log:w(ServerLogFile,'SERVER',"Started mit PID ~p registerd as '~p' ",[ServerPid,Servername]),
     ServerPid.
 
 trashCan() ->
@@ -38,32 +38,49 @@ init(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan) ->
 	receive 
 		{reply, ok}	-> 
 			log:w(ServerLogFile,'SERVER',"HBQ erfolgreich initialisiert"),
-			loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan),
+			loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan,0),
 
 			log:w(ServerLogFile,'SERVER',"shutting Down"),
+			CTRL          ! {request,kill},
 			NumberService ! {request,kill},
 			TrashCan      ! {request,kill},
-			CTRL          ! {request,kill},
-			HBQ_PID       ! {self(),{request,dellHBQ}},
 			log:w(ServerLogFile,'SERVER',"Shutting Down Server with PID ~p.",[self()])
 	end.
 
 
-loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan) ->
+loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan,0) ->
 	receive 
 		{CID, getmsgid} -> 
 			NumberService ! {CID},
-			loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan);
+			loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan,1);
 		{dropmessage,[NNR,MSG,TSclientout]} ->
 			HBQ_PID ! { TrashCan ,{request,pushHBQ,[NNR,MSG,TSclientout]}},
 			log:w(ServerLogFile,'SERVER',"Nachricht: ~p an HBQ gesendet",[NNR]),
-			loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan);
+			loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan,1);
         {CID, getmessages} -> 
         	CTRL ! { CID , getmessages},
-        	loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan);
+        	loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan,1);
 		Any -> 
 			log:w(ServerLogFile,'SERVER',"Received Something unexpacted :~p", [Any]),
-			loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan)
+			loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan,1)
+	end;	
+
+loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan,1) ->
+	%reset_timer(killTimer,Latency,{kill}),
+	receive 
+		{CID, getmsgid} -> 
+			NumberService ! {CID},
+			loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan,1);
+		{dropmessage,[NNR,MSG,TSclientout]} ->
+			HBQ_PID ! { TrashCan ,{request,pushHBQ,[NNR,MSG,TSclientout]}},
+			log:w(ServerLogFile,'SERVER',"Nachricht: ~p an HBQ gesendet",[NNR]),
+			loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan,1);
+        {CID, getmessages} -> 
+        	CTRL ! { CID , getmessages},
+        	loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan,1);
+		Any -> 
+			log:w(ServerLogFile,'SERVER',"Received Something unexpacted :~p", [Any]),
+			loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan,1)
 	end.	
 
 

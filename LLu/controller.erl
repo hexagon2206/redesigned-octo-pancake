@@ -19,5 +19,10 @@ loop(ServerLogFile,CMEM,HBQ) ->
 					loop(ServerLogFile,NCMEM,HBQ)
 			end;
 		{request,kill} ->
+			cmem:delCMEM(CMEM),
+			HBQ_PID       ! {self(),{request,dellHBQ}},
+			receive
+				{ok} ->
+				
 			ok
 	end. 

@@ -11,6 +11,7 @@
 
 %/* Initialisieren der DLQ */
 initDLQ(Size,Datei) -> 
+	log:w(Datei,'DLQ',"Initialisiert mit größe von ~p",[Size]),
 	{Size,[]}.
 
 %/* Löschen der DLQ */
@@ -28,27 +29,27 @@ cutToSize(N,[E|X]) -> [E|cutToSize(N-1,X)].
 
 %/* Speichern einer Nachricht in der DLQ */
 push2DLQ([NNr,Msg,TSclientout,TShbqin],{S,Queue},Datei) ->
+	log:w(Datei,'DLQ',"Nachricht  ~p ind DLQ eingetragen",[NNr]),
 	NewQueue = [{NNr,[NNr,Msg,TSclientout,TShbqin,erlang:now()]}|Queue],
 	{S,cutToSize(S,NewQueue)}.
 
 	
 
 deliver(ClientPID,[NNr,Msg,TSclientout,TShbqin,TSdlqin],Terminiert,Datei)->
-	ClientPID ! {replay,[NNr,Msg,TSclientout,TShbqin,TSdlqin,erlang:now()],Terminiert}.
+	log:w(Datei,'DLQ',"Nachricht  ~p an ~p ausgeliefert",[NNr,ClientPID]),
+	ClientPID ! {reply,[NNr,Msg,TSclientout,TShbqin,TSdlqin,erlang:now()],Terminiert}.
 
 
 deliverMSG(MSGNr,ClientPID,{_Size,Queue},Datei) -> 
 	deliverMSG(true,MSGNr,ClientPID,Queue,Datei).
 
 
-%/* Ausliefern einer Nachricht an einen Leser-Client */
+%/* Ausliefern einer Nachricht an einen Leser-Client, es wird eine Dummy nachricht gesendet */
 deliverMSG(Newest,_NNr,ClientPID,[],Datei) -> 
-	ClientPID ! {replay,[],Newest},
+	log:w(Datei,'DLQ',"Dummy Nachricht an ~p ausgeliefert",[ClientPID]),
+	Now = erlang:now(),
+	ClientPID ! {reply,[0,"Dummy Nachricht",Now,Now,Now],true},
 	0;
-
-%deliverMSG(_Newest,_	,ClientPID,[{N,X}|[]],Datei)->
-%	deliver(ClientPID,X,false,Datei),
-%	N;
 
 deliverMSG(Newest,MSGNr,ClientPID,[{MSGNr,X}|_],Datei)->
 	deliver(ClientPID,X,Newest,Datei),
