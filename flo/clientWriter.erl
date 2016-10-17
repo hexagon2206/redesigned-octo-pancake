@@ -24,13 +24,13 @@ getMessageID(Server, MessageCounter, SleepTime, LogFile) ->
 		    %werkzeug:logging(LogFile, node() ++ "Nachricht: " ++ MessageCounter ++ " nicht gesendet" ++ werkzeug:timeMilliSecond()),
 
         receive
-          {"nid", ID} -> io:format("~p ~n", ID)
+          {nid, ID} -> io:format("~p ~n", ID)
         end;
 
     % Antwort vom Server verarbeiten und Nachricht an Server vorbereiten
     false ->
       receive
-        {"nid", ID} -> dropMessage(Server, ID, MessageCounter + 1, SleepTime, LogFile)
+        {nid, ID} -> dropMessage(Server, ID, MessageCounter + 1, SleepTime, LogFile)
       end
   end.
 
