@@ -81,7 +81,7 @@ receiveReply(Server, LogFile, MessageCounter, SleepTime) ->
       getMessages(Server, LogFile, MessageCounter, SleepTime);
 
     {reply, Message, true} ->
-      getMessages(Server, LogFile, MessageCounter, SleepTime);
+      getMessageID(Server, MessageCounter, SleepTime, LogFile);
     Any ->
       werkzeug:logging(LogFile, io:format("Nachricht: ~p  | Zeitstempel:  ~p ~n", [Any, werkzeug:timeMilliSecond()]))
 
