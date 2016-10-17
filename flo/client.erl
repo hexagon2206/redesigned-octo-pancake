@@ -63,7 +63,9 @@ dropMessage(Server, MessageID, MessageCounter, SleepTime, LogFile) ->
 % ############################################### ClientReader - Logic ################################################################ %
 
 getMessages(Server, LogFile, MessageCounter, SleepTime) ->
+
   Server ! {self(), getmessages},
+  io:format("Anfrage gestellt ~n "),
   receiveReply(Server, LogFile, MessageCounter, SleepTime).
 
 receiveReply(Server, LogFile, MessageCounter, SleepTime) ->
@@ -71,7 +73,11 @@ receiveReply(Server, LogFile, MessageCounter, SleepTime) ->
   receive
     {reply, Message, false} ->
 
-      handleReply(Message, Server, LogFile, MessageCounter, SleepTime),
+      %handleReply(Message, Server, LogFile, MessageCounter, SleepTime),
+
+      [MsgNumber, Msg, ClientOut, HBQin, DLQin, DLQout] = Message,
+      werkzeug:logging(LogFile, io:format("Nachrichtnummer: ~p empfangen | Zeitstempel:  ~p ~n", [MsgNumber, werkzeug:timeMilliSecond()])),
+
       getMessages(Server, LogFile, MessageCounter, SleepTime);
 
     {reply, Message, true} ->
@@ -86,6 +92,6 @@ handleReply(Message, Server, LogFile, MessageCounter, SleepTime) ->
   [MsgNumber, Msg, ClientOut, HBQin, DLQin, DLQout] = Message,
   %werkzeug:logging(LogFile, node() ++ ": Nachrichtnummer: " ++  [MsgNumber] ++ " empfangen. Text: " ++ [Message] ++ " ClientOut: " ++ [ClientOut]),
 
-  werkzeug:logging(LogFile, io:format("Nachrichtnummer: ~p empfangen | Zeitstempel:  ~p ~n", [MessageCounter, werkzeug:timeMilliSecond()])),
+  werkzeug:logging(LogFile, io:format("Nachrichtnummer: ~p empfangen | Zeitstempel:  ~p ~n", [MsgNumber, werkzeug:timeMilliSecond()])),
 
   receiveReply(Server, LogFile, MessageCounter, SleepTime).
