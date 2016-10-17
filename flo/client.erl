@@ -53,7 +53,7 @@ dropMessage(Server, MessageID, MessageCounter, SleepTime, LogFile) ->
 
   timer:sleep(SleepTime),
 
-  werkzeug:logging(LogFile, io:format("Nachrichtnummer: ~p gesendet | Zeitstempel:  ~p ~n", [MessageID, werkzeug:timeMilliSecond()])),
+  werkzeug:logging(LogFile, io:format("Nachrichtnummer: ~p gesendet | Zeitstempel:  ~p ~n", [MessageID, erlang:now()])),
 
   Server ! {dropmessage, [MessageID, "Hallo Welt", werkzeug:timeMilliSecond()]}, % alternative : erlang:system_time(). -> aktuelle Zeit in Milisekunden
   getMessageID(Server, MessageCounter, SleepTime, LogFile).
@@ -75,13 +75,15 @@ receiveReply(Server, LogFile, MessageCounter, SleepTime) ->
       getMessages(Server, LogFile, MessageCounter, SleepTime);
 
     {reply, Message, true} ->
-      getMessages(Server, LogFile, MessageCounter, SleepTime)
+      getMessages(Server, LogFile, MessageCounter, SleepTime);
+    Any ->
+      werkzeug:logging(LogFile, io:format("Nachricht: ~p  | Zeitstempel:  ~p ~n", [Any, werkzeug:timeMilliSecond()]))
 
   end.
 
 
 handleReply(Message, Server, LogFile, MessageCounter, SleepTime) ->
-  [MsgNumber, Message, ClientOut, HBQin, DLQin, DLQout] = Message,
+  [MsgNumber, Msg, ClientOut, HBQin, DLQin, DLQout] = Message,
   %werkzeug:logging(LogFile, node() ++ ": Nachrichtnummer: " ++  [MsgNumber] ++ " empfangen. Text: " ++ [Message] ++ " ClientOut: " ++ [ClientOut]),
 
   werkzeug:logging(LogFile, io:format("Nachrichtnummer: ~p empfangen | Zeitstempel:  ~p ~n", [MessageCounter, werkzeug:timeMilliSecond()])),
