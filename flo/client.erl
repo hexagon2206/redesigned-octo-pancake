@@ -2,7 +2,7 @@
 
 
 % API
-
+-export([init/1]).
 
 
 % Funtions
