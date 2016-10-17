@@ -72,10 +72,10 @@ receiveReply(Server, LogFile, MessageCounter, SleepTime) ->
     {reply, Message, false} ->
 
       handleReply(Message, Server, LogFile, MessageCounter, SleepTime),
-      getMessages(Server, LogFile, MessageCounter, SleepTime).
-      
+      getMessages(Server, LogFile, MessageCounter, SleepTime);
+
     {reply, Message, true} ->
-      getMessages(Server, LogFile, MessageCounter, SleepTime).
+      getMessages(Server, LogFile, MessageCounter, SleepTime)
 
   end.
 
