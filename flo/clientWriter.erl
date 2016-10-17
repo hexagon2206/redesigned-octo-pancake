@@ -20,7 +20,7 @@ getMessageID(Server, MessageCounter, SleepTime, LogFile) ->
   case MessageCounter == 5 of
     % Neue Zufallszahl generieren und die Antwort des Servers ausfiltern
     true ->
-        getMessageID(Server, 0, (randdom:uniform(5) * 2000), LogFile),
+        getMessageID(Server, 0, (random:uniform(5) * 2000), LogFile),
 		    %werkzeug:logging(LogFile, node() ++ "Nachricht: " ++ MessageCounter ++ " nicht gesendet" ++ werkzeug:timeMilliSecond()),
 
         receive
@@ -41,5 +41,5 @@ dropMessage(Server, MessageID, MessageCounter, SleepTime, LogFile) ->
 
   %werkzeug:logging(LogFile, node() ++ "Nachrichtnummer: " ++ MessageCounter ++ " gesendet | Out" ++ werkzeug:timeMilliSecond()),
 
-  Server ! {dropMessage, [MessageID, "Hallo Welt", erlang:system_time()]}, % alternative : erlang:system_time(). -> aktuelle Zeit in Milisekunden
+  Server ! {dropmessage, [MessageID, "Hallo Welt", erlang:system_time()]}, % alternative : erlang:system_time(). -> aktuelle Zeit in Milisekunden
   getMessageID(Server, MessageCounter, SleepTime, LogFile).
