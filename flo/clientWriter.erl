@@ -20,12 +20,15 @@ getMessageID(Server, MessageCounter, SleepTime, LogFile) ->
   case MessageCounter == 5 of
     % Neue Zufallszahl generieren und die Antwort des Servers ausfiltern
     true ->
-        getMessageID(Server, 0, (random:uniform(5) * 2000), LogFile),
+
+      receive
+        {nid, ID} -> io:format("~p ~n", ID)
+      end,
+
+      getMessageID(Server, 0, (random:uniform(5) * 2000), LogFile);
 		    %werkzeug:logging(LogFile, node() ++ "Nachricht: " ++ MessageCounter ++ " nicht gesendet" ++ werkzeug:timeMilliSecond()),
 
-        receive
-          {nid, ID} -> io:format("~p ~n", ID)
-        end;
+
 
     % Antwort vom Server verarbeiten und Nachricht an Server vorbereiten
     false ->
