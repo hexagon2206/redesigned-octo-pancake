@@ -9,7 +9,8 @@
 
 init(Server, LogFile) ->
 
-  werkzeug:logging(LogFile, node() ++ "Startzeit: " ++ erlang:localtime()),
+%  werkzeug:logging(LogFile, node() ++ "Startzeit: " ++ erlang:localtime()),
+  werkzeug:logging(LogFile, io:format("~p Startzeit: ~p ~n", [node(), erlang:localtime()]),
   getMessageID(Server, 0, 2000, LogFile).
 
 getMessageID(Server, MessageCounter, SleepTime, LogFile) ->
@@ -21,7 +22,7 @@ getMessageID(Server, MessageCounter, SleepTime, LogFile) ->
     true ->
         getMessageID(Server, 0, (randdom:uniform(5) * 2000), LogFile),
 		    werkzeug:logging(LogFile, node() ++ "Nachricht: " ++ MessageCounter ++ " nicht gesendet" ++ werkzeug:timeMilliSecond()),
-        
+
         receive
           {"MessageID", ID} -> io:format("~p \n", ID)
         end;
