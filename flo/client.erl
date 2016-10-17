@@ -19,7 +19,7 @@ init(ConfigFile) ->
 
   Server = {ServerName, ServerNode},
   LogFile = atom_to_list(node()) ++ ".log",
-  getMessageID(Server, 1, Interval * 1000, LogFile).
+  getMessageID(Server, 0, Interval * 1000, LogFile).
 
 
 
@@ -39,7 +39,7 @@ getMessageID(Server, MessageCounter, SleepTime, LogFile) ->
     werkzeug:logging(LogFile, io:format("Nachrichtnummer: ~p nicht | Zeitstempel:  ~p ~n", [MessageCounter, werkzeug:timeMilliSecond()])),
 
     % Reader starten
-    getMessages(Server, LogFile, MessageCounter, SleepTime);
+    getMessages(Server, LogFile, 0, SleepTime);
 
     % Antwort vom Server verarbeiten und Nachricht an Server vorbereiten
     false ->
@@ -74,7 +74,7 @@ receiveReply(Server, LogFile, MessageCounter, SleepTime) ->
         true ->
           getMessages(Server, LogFile, MessageCounter, SleepTime);
         false ->
-          handleReply(Message, Server ,LogFile, MessageCounter, SleepTime),
+          handleReply(Message, Server, LogFile, MessageCounter, SleepTime),
           getMessages(Server, LogFile, MessageCounter, SleepTime)
       end
   end.
