@@ -1,21 +1,10 @@
 -module(client).
-
-
-% API
--export([init/1, init/3]).
-
-
-% Functions
-
-init(Server, Lifetime, Interval) ->
-  LogFile = atom_to_list(node()) ++ ".log",
-  getMessageID(Server, 0, Interval, LogFile).
+-export([init/1]).
 
 init(ConfigFile) ->
-
   % Liest aus der Config - Datei die Parameter
   {ok, Config} = file:consult(ConfigFile),
-  {ok, Lifetime} = werkzeug:get_config_value(lifetime, Config),
+  {ok, LifeTime} = werkzeug:get_config_value(lifetime, Config),
   {ok, ServerName} = werkzeug:get_config_value(servername, Config),
   {ok, ServerNode} = werkzeug:get_config_value(servernode, Config),
   {ok, ClientCount} = werkzeug:get_config_value(clients, Config),
@@ -23,65 +12,104 @@ init(ConfigFile) ->
 
   Server = {ServerName, ServerNode},
   LogFile = atom_to_list(node()) ++ ".log",
-  getMessageID(Server, 0, Interval * 1000, LogFile).
+
+
+  startClients(LogFile,LifeTime*1000, Server, ClientCount, Interval*1000).
+
+startClients(_LogFile,_LifeTime, _Server, 0, _Interval) ->
+  io:format("Alle Clients wurden gestartet ~n");
+
+startClients(LogFile,LifeTime, Server, ClientCount, Interval) ->
+  io:format("Starte Clientnummer: ~p ~n ", [ClientCount]),
+  spawn(fun () -> init(ClientCount,LogFile,Server, LifeTime, Interval) end),
+  startClients(LogFile,LifeTime, Server, ClientCount - 1, Interval).
+
+
+
+
+% Functions
+init(ClientNR,LogFile,Server, Lifetime, Interval) ->
+  ClientBez=io:format("CLIENT~p",[ClientNR]),
+  timer:send_after(Lifetime,{kill}),
+  tool:l(LogFile,ClientBez," UP "),
+  writeCycle(ClientBez,Server, 0, Interval, LogFile).
 
 % ############################################### ClientWriter - Logic ################################################################ %
-getMessageID(Server, MessageCounter, SleepTime, LogFile) ->
 
-  Server ! {self(), getmsgid},
+newSleepTime(SleepTime) ->
+  newSleepTime(SleepTime,random:uniform(2)).
 
-  case MessageCounter == 5 of
-    % Neue Zufallszahl generieren und die Antwort des Servers ausfiltern
+newSleepTime(SleepTime,1) ->
+  TMP = SleepTime / 2 ,
+  if
+    TMP < 2000 ->
+      2000;
     true ->
-      receive
-        {nid, ID} -> io:format("~p ~n", [ID])
-      end,
+      TMP
+  end;
 
-    werkzeug:logging(LogFile, io:format("Nachrichtnummer: ~p nicht | Zeitstempel:  ~p ~n", [MessageCounter, werkzeug:timeMilliSecond()])),
+newSleepTime(SleepTime,2) ->
+  SleepTime * 2 .
 
-    % Reader starten
-    getMessages(Server, LogFile, 0, SleepTime);
+quit() ->  ok.
 
-    % Antwort vom Server verarbeiten und Nachricht an Server vorbereiten
-    false ->
-      receive
-        {nid, ID} -> dropMessage(Server, ID, MessageCounter + 1, SleepTime, LogFile)
-      end
+% 6. Nummer Wird ignoriert
+writeCycle(ClientBez,Server, MessageCounter, SleepTime, LogFile) when MessageCounter > 4 ->
+  Server ! {self(), getmsgid},
+  receive
+    {kill} ->
+      quit();
+    {nid, ID} -> 
+        tool:l(LogFile,ClientBez,"Nachrichtnummer: ~p wird verworfen | Zeitstempel:  ~p ", [ID, werkzeug:timeMilliSecond()]),
+        tool:l(LogFile,ClientBez,"Starting ReadCycle"),  
+        readCycle(ClientBez,Server, newSleepTime(SleepTime), LogFile)
+  end;
+  % Reader starten
+
+% Normaler Ablauf
+writeCycle(ClientBez,Server, MessageCounter, SleepTime, LogFile) ->
+  Server ! {self(), getmsgid},
+  receive
+    {kill} ->
+      quit();
+    {nid, ID} -> 
+      timer:sleep(SleepTime),
+      dropMessage(ClientBez,Server, ID , LogFile),
+      writeCycle(ClientBez,Server, MessageCounter+1, SleepTime, LogFile)
   end.
-
+  
 % Eine Zufallszeit "schlafen" und anschließend eine neue Nachricht an den Server schicken
-dropMessage(Server, MessageID, MessageCounter, SleepTime, LogFile) ->
-
-  timer:sleep(SleepTime),
-
-  werkzeug:logging(LogFile, io:format("Nachrichtnummer: ~p gesendet | Zeitstempel:  ~p ~n", [MessageID, erlang:now()])),
-
-  Server ! {dropmessage, [MessageID, "Hallo Welt", werkzeug:timeMilliSecond()]}, % alternative : erlang:system_time(). -> aktuelle Zeit in Milisekunden
-  getMessageID(Server, MessageCounter, SleepTime, LogFile).
+dropMessage(ClientBez,Server, MessageID , LogFile) ->
+  MSGText = io:format("~p - ~p",[ClientBez,node()]),
+  Server ! {dropmessage, [MessageID, MSGText, tool:t()]},
+  tool:l(LogFile,ClientBez,"Nachrichtnummer: ~p gesendet ", [MessageID]).
 
 
 % ############################################### ClientReader - Logic ################################################################ %
 
-getMessages(Server, LogFile, MessageCounter, SleepTime) ->
-
+readCycle(ClientBez,Server, SleepTime, LogFile) ->
   Server ! {self(), getmessages},
-  io:format("Anfrage gestellt ~n "),
-  receiveReply(Server, LogFile, MessageCounter, SleepTime).
-
-receiveReply(Server, LogFile, MessageCounter, SleepTime) ->
-
   receive
+    {kill} ->
+      quit();
     {reply, Message, false} ->
-      [MsgNumber, Msg, ClientOut, HBQin, DLQin, DLQout] = Message,
-      if
-        werkzeug:lessoeqTS(DLQin, DLQout) ->
-          werkzeug:logging(LogFile, io:format("Nachrichtnummer: ~p empfangen | Nachricht: ~p | Nachricht aus der Zukunft:  ~p ~n", [MsgNumber, [Msg] , werkzeug:diffTS(DLQin, DLQout)])),
-      end
-
-      werkzeug:logging(LogFile, io:format("Nachrichtnummer: ~p empfangen | Nachricht: ~p |Zeitstempel:  ~p ~n", [MsgNumber, [Msg] ,werkzeug:timeMilliSecond()])),
-
-      getMessages(Server, LogFile, MessageCounter, SleepTime);
-
+      printMSG(LogFile,ClientBez,Message,tool:t()),
+      readCycle(ClientBez,Server, SleepTime, LogFile);
     {reply, Message, true} ->
-      getMessageID(Server, MessageCounter, (rand:uniform(5) * 2000), LogFile)
+      printMSG(LogFile,ClientBez,Message,tool:t()),
+      tool:l(LogFile,ClientBez,"Alle Nachrichten Gelesen"),
+      writeCycle(ClientBez,Server, 0, SleepTime, LogFile)
+
   end.
+
+
+printMSG(LogFile,ClientBez,Message,Now) ->
+      [MsgNumber, _Msg, _ClientOut, _HBQin, _DLQin, DLQout] = Message,
+
+      LOE = werkzeug:lessoeqTS(DLQout,Now),
+      if
+        LOE ->
+          tool:l(LogFile,ClientBez,"Nachrichtnummer: ~p empfangen | Nachricht: ~p | Nachricht aus der Zukunft:  ~p ~n", [MsgNumber, Message , werkzeug:diffTS(DLQout,Now)]);
+        true ->
+          tool:l(LogFile,ClientBez,"Nachrichtnummer: ~p empfangen | Nachricht: ~p ", [MsgNumber, Message])          
+      end.

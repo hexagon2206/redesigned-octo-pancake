@@ -14,7 +14,7 @@ initCMEM(RemTime,Datei) ->
 delCMEM(CMEM) -> 
 	CMEM ! {request,kill,self()},
 	receive
-		{ok} -> ok
+		{cmem,ok} -> ok
 	end.
 
 %speichert bzw. aktualisiert im CMEM den Client ClientID und die an ihn gesendete Nachrichtenummer NNr. Datei kann für ein logging genutzt werden.
@@ -22,15 +22,15 @@ delCMEM(CMEM) ->
 updateClient(CMEM,ClientID,NNr,Datei) ->
 	CMEM ! {request,update,ClientID,NNr,self(),Datei},
 	receive
-		_    -> CMEM
-	end,CMEM.
+		{cmem,ok}    -> CMEM
+	end.
 
 
 %gibt die als nächstes vom Client erwartete Nachrichtennummer des Clients ClientID aus CMEM zurück. Ist der Client unbekannt wird 1 zurück gegeben.
 getClientNNr(CMEM,ClientID) ->
 	CMEM ! {request,get,ClientID,self()},
 	receive
-		{N} -> N
+		{cmem,N} -> N
 	end.
 
 findCNum(_,_,_,[]) -> 
@@ -67,14 +67,14 @@ init(RemTime,Datei) ->
 loop(RemTime,Datei,CMEM) ->
 	receive
 		{request,get,ClientID,PID} ->
-			PID ! {findCNum(werkzeug:getUTC(),RemTime,ClientID,CMEM)},
+			PID ! {cmem,findCNum(werkzeug:getUTC(),RemTime,ClientID,CMEM)},
 			loop(RemTime,Datei,CMEM);
 		{request,update,ClientID,NewNum,PID,_File} ->
 			NewCmem=updateCNum(Datei,werkzeug:getUTC(),ClientID,NewNum,CMEM,[]),
-			PID ! {ok},
+			PID ! {cmem,ok},
 			loop(RemTime,Datei,NewCmem);
 		{request,kill,PID} ->
-			PID ! {ok},
+			PID ! {cmem,ok},
 			tool:l(Datei,'CMEM',"CMEM DOWN PID ~p.",[self()]);
 		X ->
 			tool:l(Datei,'CMEM',"Unknown Request ~p",[X]),

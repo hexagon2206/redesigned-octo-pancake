@@ -56,7 +56,7 @@ deliverMSG(MSGNr,ClientPID,DLQ,Datei) ->
 deliverMSG(_Newest,_NNr,ClientPID,[],Datei) -> 
 	tool:l(Datei,'DLQ',"Dummy Nachricht an ~p ausgeliefert",[ClientPID]),
 	Now = tool:t(),
-	ClientPID ! {reply,[0,"Dummy Nachricht",Now,Now,Now],true},
+	ClientPID ! {reply,[0,"Dummy Nachricht",Now,Now,Now,Now],true},
 	0;
 
 

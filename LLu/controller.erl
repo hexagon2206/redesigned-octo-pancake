@@ -9,6 +9,7 @@ loop(ServerLogFile,CMEM,HBQ) ->
 	receive 
 		{CID, getmessages} -> 
 			NNr = cmem:getClientNNr(CMEM,CID),
+			
 			HBQ ! {self(),{request,deliverMSG,NNr,CID}},
 			receive 
 				{reply,0} -> 

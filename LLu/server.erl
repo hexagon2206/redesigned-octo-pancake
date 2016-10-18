@@ -10,11 +10,13 @@ start() ->
 
 	tool:l(ServerLogFile,'SERVER',"server.cfg geöffnet..."),
 	{ok, ConfigListe} = file:consult("server.cfg"),
-    {ok, Clientlifetime} = 1000 * werkzeug:get_config_value(clientlifetime, ConfigListe),
+    {ok, ClientlifetimeT} = werkzeug:get_config_value(clientlifetime, ConfigListe),
+	Clientlifetime = ClientlifetimeT * 1000,
 	{ok, Servername} = werkzeug:get_config_value(servername, ConfigListe),
 	{ok, Hbqname} = werkzeug:get_config_value(hbqname, ConfigListe),
 	{ok, Hbqnode} = werkzeug:get_config_value(hbqnode, ConfigListe),
-	{ok, Latency} = 1000 * werkzeug:get_config_value(latency, ConfigListe),
+	{ok, LatencyT} = werkzeug:get_config_value(latency, ConfigListe),
+	Latency = LatencyT * 1000,
 
 	HBQ_PID = {Hbqname,Hbqnode},
 	NumberService = numberService:start(ServerLogFile),
