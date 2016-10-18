@@ -49,7 +49,7 @@ getMessageID(Server, MessageCounter, SleepTime, LogFile) ->
       end
   end.
 
-% Eine Zufallszeit "schlafen" und anschlieߟend eine neue Nachricht an den Server schicken
+% Eine Zufallszeit "schlafen" und anschließend eine neue Nachricht an den Server schicken
 dropMessage(Server, MessageID, MessageCounter, SleepTime, LogFile) ->
 
   timer:sleep(SleepTime),
@@ -72,8 +72,12 @@ receiveReply(Server, LogFile, MessageCounter, SleepTime) ->
 
   receive
     {reply, Message, false} ->
-
       [MsgNumber, Msg, ClientOut, HBQin, DLQin, DLQout] = Message,
+      if
+        werkzeug:lessoeqTS(DLQin, DLQout) ->
+          werkzeug:logging(LogFile, io:format("Nachrichtnummer: ~p empfangen | Nachricht: ~p | Nachricht aus der Zukunft:  ~p ~n", [MsgNumber, [Msg] , werkzeug:diffTS(DLQin, DLQout)])),
+      end
+
       werkzeug:logging(LogFile, io:format("Nachrichtnummer: ~p empfangen | Nachricht: ~p |Zeitstempel:  ~p ~n", [MsgNumber, [Msg] ,werkzeug:timeMilliSecond()])),
 
       getMessages(Server, LogFile, MessageCounter, SleepTime);
