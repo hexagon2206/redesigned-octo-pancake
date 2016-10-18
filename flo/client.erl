@@ -29,7 +29,7 @@ startClients(LogFile,LifeTime, Server, ClientCount, Interval) ->
 
 % Functions
 init(ClientNR,LogFile,Server, Lifetime, Interval) ->
-  ClientBez=io:format("CLIENT~p",[ClientNR]),
+  ClientBez=lists:flatten(io_lib:format("Client[~p]", [ClientNR])),
   timer:send_after(Lifetime,{kill}),
   tool:l(LogFile,ClientBez," UP "),
   writeCycle(ClientBez,Server, 0, Interval, LogFile).
