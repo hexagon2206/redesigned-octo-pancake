@@ -2,10 +2,14 @@
 
 
 % API
--export([init/1]).
+-export([init/1, init/3]).
 
 
-% Funtions
+% Functions
+
+init(Server, Lifetime, Interval) ->
+  LogFile = atom_to_list(node()) ++ ".log",
+  getMessageID(Server, 0, Interval, LogFile).
 
 init(ConfigFile) ->
 
@@ -21,8 +25,6 @@ init(ConfigFile) ->
   LogFile = atom_to_list(node()) ++ ".log",
   getMessageID(Server, 0, Interval * 1000, LogFile).
 
-
-
 % ############################################### ClientWriter - Logic ################################################################ %
 getMessageID(Server, MessageCounter, SleepTime, LogFile) ->
 
@@ -34,7 +36,6 @@ getMessageID(Server, MessageCounter, SleepTime, LogFile) ->
       receive
         {nid, ID} -> io:format("~p ~n", [ID])
       end,
-    %  getMessageID(Server, 0, (random:uniform(5) * 2000), LogFile);
 
     werkzeug:logging(LogFile, io:format("Nachrichtnummer: ~p nicht | Zeitstempel:  ~p ~n", [MessageCounter, werkzeug:timeMilliSecond()])),
 
@@ -59,7 +60,6 @@ dropMessage(Server, MessageID, MessageCounter, SleepTime, LogFile) ->
   getMessageID(Server, MessageCounter, SleepTime, LogFile).
 
 
-
 % ############################################### ClientReader - Logic ################################################################ %
 
 getMessages(Server, LogFile, MessageCounter, SleepTime) ->
@@ -73,25 +73,11 @@ receiveReply(Server, LogFile, MessageCounter, SleepTime) ->
   receive
     {reply, Message, false} ->
 
-      %handleReply(Message, Server, LogFile, MessageCounter, SleepTime),
-
       [MsgNumber, Msg, ClientOut, HBQin, DLQin, DLQout] = Message,
-      werkzeug:logging(LogFile, io:format("Nachrichtnummer: ~p empfangen | Zeitstempel:  ~p ~n", [MsgNumber, werkzeug:timeMilliSecond()])),
+      werkzeug:logging(LogFile, io:format("Nachrichtnummer: ~p empfangen | Nachricht: ~p |Zeitstempel:  ~p ~n", [MsgNumber, [Msg] ,werkzeug:timeMilliSecond()])),
 
       getMessages(Server, LogFile, MessageCounter, SleepTime);
 
     {reply, Message, true} ->
-      getMessageID(Server, MessageCounter, SleepTime, LogFile);
-    Any ->
-      werkzeug:logging(LogFile, io:format("Nachricht: ~p  | Zeitstempel:  ~p ~n", [Any, werkzeug:timeMilliSecond()]))
-
+      getMessageID(Server, MessageCounter, (rand:uniform(5) * 2000), LogFile)
   end.
-
-
-handleReply(Message, Server, LogFile, MessageCounter, SleepTime) ->
-  [MsgNumber, Msg, ClientOut, HBQin, DLQin, DLQout] = Message,
-  %werkzeug:logging(LogFile, node() ++ ": Nachrichtnummer: " ++  [MsgNumber] ++ " empfangen. Text: " ++ [Message] ++ " ClientOut: " ++ [ClientOut]),
-
-  werkzeug:logging(LogFile, io:format("Nachrichtnummer: ~p empfangen | Zeitstempel:  ~p ~n", [MsgNumber, werkzeug:timeMilliSecond()])),
-
-  receiveReply(Server, LogFile, MessageCounter, SleepTime).
