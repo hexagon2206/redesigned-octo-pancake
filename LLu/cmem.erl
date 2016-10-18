@@ -14,8 +14,7 @@ initCMEM(RemTime,Datei) ->
 delCMEM(CMEM) -> 
 	CMEM ! {request,kill,self()},
 	receive
-		{ok} -> ok;
-		_    -> nok
+		{ok} -> ok
 	end.
 
 %speichert bzw. aktualisiert im CMEM den Client ClientID und die an ihn gesendete Nachrichtenummer NNr. Datei kann für ein logging genutzt werden.
@@ -48,12 +47,12 @@ findCNum(Now,RemTime,Client,[_|Rest]) ->
 
 %es war noch nicht eingetragen, daher wird es jetzt eingetragen
 updateCNum(Datei,Time,ClientID,NewNum,[],NewCmem) ->
-	log:w(Datei,'CMEM',"Client ~p neu angelegt mit ~p",[ClientID,NewNum]),
+	tool:l(Datei,'CMEM',"Client ~p neu angelegt mit ~p",[ClientID,NewNum]),
 	[{ClientID,Time,NewNum}|NewCmem];
 
 %gefunden
 updateCNum(Datei,Time,ClientID,NewNum,[{ClientID,_,_}|Rest],NewChnem) -> 
-	log:w(Datei,'CMEM',"Client ~p aktualisiert mit ~p",[ClientID,NewNum]),
+	tool:l(Datei,'CMEM',"Client ~p aktualisiert mit ~p",[ClientID,NewNum]),
 	lists:append([{ClientID,Time,NewNum}|Rest],NewChnem);
 
 %nicht gefunden
@@ -62,7 +61,7 @@ updateCNum(Datei,Time,ClientID,NewNum,[X|Rest],NewChnem) ->
 
 
 init(RemTime,Datei) ->
-	log:w(Datei,'CMEM',"initialisierung mit Lebenszeit ~p",[RemTime]),
+	tool:l(Datei,'CMEM',"initialisierung mit Lebenszeit ~p",[RemTime]),
 	loop(RemTime,Datei,[]).
 
 loop(RemTime,Datei,CMEM) ->
@@ -75,9 +74,9 @@ loop(RemTime,Datei,CMEM) ->
 			PID ! {ok},
 			loop(RemTime,Datei,NewCmem);
 		{request,kill,PID} ->
-			log:w(Datei,'CMEM',"wird beendet"),
-			PID ! {ok};
+			PID ! {ok},
+			tool:l(Datei,'CMEM',"CMEM DOWN PID ~p.",[self()]);
 		X ->
-			log:w(Datei,'CMEM',"Unknown Request ~p",[X]),
+			tool:l(Datei,'CMEM',"Unknown Request ~p",[X]),
 			loop(RemTime,Datei,CMEM)
 	end.

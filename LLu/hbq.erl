@@ -13,13 +13,14 @@ start() ->
 	HbqLogFile = atom_to_list(node())++".log",
 
 	{ok, ConfigListe} = file:consult("server.cfg"),
-	log:w(HbqLogFile,'HBQ',"server.cfg datei geöfnet . . ."),
+	tool:l(HbqLogFile,'HBQ',"server.cfg datei geöfnet . . ."),
     
     {ok, DLQSize} = werkzeug:get_config_value(dlqlimit, ConfigListe),
 	{ok, Hbqname} = werkzeug:get_config_value(hbqname, ConfigListe),
 
 	HBQPid = spawn(fun() -> startup(DLQSize,HbqLogFile) end),
-	register(Hbqname,HBQPid).
+	register(Hbqname,HBQPid),
+	ok.
 
 startup(DLQSize,HbqLogFile) -> 
 	receive 
@@ -34,7 +35,7 @@ startup(DLQSize,HbqLogFile) ->
 init(PID,DLQSize,HbqLogFile) -> 
 	
 	DLQ= dlq:initDLQ(DLQSize,HbqLogFile),
-	log:w(HbqLogFile,'HBQ',"initialisiert durch : ~p",[PID]),
+	tool:l(HbqLogFile,'HBQ',"initialisiert durch : ~p",[PID]),
 	PID ! {reply, ok},
 	loop({0,[]},DLQ,DLQSize,HbqLogFile,dlq:expectedNr(DLQ)).
 
@@ -65,8 +66,8 @@ tryToCloseGap(E,DLQ,{S,List}, DLQSize,_Datei)  when S < DLQSize/3 ->
 
 tryToCloseGap(_E,DLQ,HBQ,_DLQSize,Datei)  -> 
 	{_,[{Next,_}|_]} = HBQ,
-	Now = erlang:now(),
-	log:w(Datei,'HBQ',"Lücke geschlossen : ~p ",[Next-1]),
+	Now = tool:t(),
+	tool:l(Datei,'HBQ',"Lücke geschlossen : ~p ",[Next-1]),
 	NDLQ = dlq:push2DLQ( [Next-1, lueckeGeschlossen , Now,Now],DLQ,Datei),
 	tryToAppend(Next,NDLQ,HBQ,Datei).
 
@@ -88,19 +89,19 @@ loop(HBQ,DLQ,DLQSize,Datei,Expected) ->
 		%receive {reply, ok} 
 		{PID,{request,pushHBQ,[NNr,_Msg,_TSclientout]}} when NNr < Expected  ->	% Nachrichten nummer kleiner als die erwartete, nachricht verwerfen
 			PID ! {reply, nok},
-			log:w(Datei,'HBQ',"Nachricht verworfen : ~p",[NNr]),
+			tool:l(Datei,'HBQ',"Nachricht verworfen : ~p",[NNr]),
 			loop(HBQ,DLQ,DLQSize,Datei,Expected);							
 
 		{PID,{request,pushHBQ,[Expected,Msg,TSclientout]}} ->					% die erwartete nachricht wurde erhalten
-			log:w(Datei,'HBQ',"Nachricht direkt in DLQ : ~p",[Expected]),
-			TDLQ = dlq:push2DLQ([Expected,Msg,TSclientout,erlang:now()],DLQ,Datei),
+			tool:l(Datei,'HBQ',"Nachricht direkt in DLQ : ~p",[Expected]),
+			TDLQ = dlq:push2DLQ([Expected,Msg,TSclientout,tool:t()],DLQ,Datei),
 			PID ! {reply, ok},
 			{NE,NDLQ,NHBQ} = tryToAppend(Expected+1,TDLQ,HBQ,Datei),
 			loop(NHBQ,NDLQ,DLQSize,Datei,NE);
 
 		{PID,{request,pushHBQ,[Num,Msg,TSclientout]}} ->						% und ab in die sortierte HBQ
-			log:w(Datei,'HBQ',"Nachricht in HBQ einsortiert : ~p",[Num]),
-			{NE,NDLQ,NHBQ} = tryToCloseGap(Expected,DLQ, pushToHBQ(HBQ,[Num,Msg,TSclientout,erlang:now()]) ,DLQSize,Datei),
+			tool:l(Datei,'HBQ',"Nachricht in HBQ einsortiert : ~p",[Num]),
+			{NE,NDLQ,NHBQ} = tryToCloseGap(Expected,DLQ, pushToHBQ(HBQ,[Num,Msg,TSclientout,tool:t()]) ,DLQSize,Datei),
 			PID ! {reply, ok},
 			loop(NHBQ,NDLQ,DLQSize,Datei,NE);
 
@@ -116,7 +117,7 @@ loop(HBQ,DLQ,DLQSize,Datei,Expected) ->
 		%HBQ ! {self(), {request,dellHBQ}}
 		%receive {reply, ok} 
 		{PID,{request,dellHBQ}} ->
-
+			dlq:delDLQ(DLQ),
 			PID ! {reply, ok},
-			true
+			tool:l(Datei,'HBQ',"HBQ DOWN PID ~p.",[self()])
 	end.

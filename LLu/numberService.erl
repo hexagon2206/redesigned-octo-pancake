@@ -6,9 +6,10 @@ start(LogFile) ->
     
 loop(LogFile,MsgID) ->
 	receive 
-		{request,kill} -> ok;
+		{request,kill} -> 
+				tool:l(LogFile,'SERVER',"NumberService DOWN PID ~p.",[self()]);
 		{PID} -> 
 			PID ! {nid,MsgID},
-			log:w(LogFile,'SERVER',"Nachrichtennummer ~p an ~p gesendet",[MsgID,PID]),
+			tool:l(LogFile,'SERVER',"Nachrichtennummer ~p an ~p gesendet",[MsgID,PID]),
 			loop(LogFile,MsgID+1)
 	end.
