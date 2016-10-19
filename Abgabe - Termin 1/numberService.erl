@@ -1,3 +1,5 @@
+%numberService.erl
+%siehe diagramm(NumberService)
 -module(numberService).
 -export([start/1]).
 

@@ -1,12 +1,17 @@
+% server.erl
+% Die Haubt server Komponente,
+% siehe Diagramm(MagHandler)
+%
+
 -module(server).
--export([start/0]).
+-export([start/0]).	% Liest das Config file ein und startet den server
 
 %Autokill muss noch eingebaut werden
 
 start() ->
 
 %logfile Namen erstellen und logfile Lesen
-	ServerLogFile = atom_to_list(node())++".log",	
+	ServerLogFile = atom_to_list(node())++".log",
 
 	tool:l(ServerLogFile,'SERVER',"server.cfg geöffnet..."),
 	{ok, ConfigListe} = file:consult("server.cfg"),
@@ -16,7 +21,7 @@ start() ->
 	{ok, Hbqname} = werkzeug:get_config_value(hbqname, ConfigListe),
 	{ok, Hbqnode} = werkzeug:get_config_value(hbqnode, ConfigListe),
 	{ok, LatencyT} = werkzeug:get_config_value(latency, ConfigListe),
-	Latency = LatencyT * 1000,
+	Latency = LatencyT ,
 
 	HBQ_PID = {Hbqname,Hbqnode},
 	NumberService = numberService:start(ServerLogFile),
@@ -24,25 +29,25 @@ start() ->
     CTRL      = controller:start(ServerLogFile,Clientlifetime,HBQ_PID),
 
     ServerPid = spawn(fun() -> init(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan,Latency) end),
-	
+
 	register(Servername,ServerPid),
 	tool:l(ServerLogFile,'SERVER',"Started mit PID ~p registerd as '~p' ",[ServerPid,Servername]),
     ok.
 
 % kann verwendet werden um antworten andere SErvices zu entsoren, damit Aufrufe nicht Blokierend sind, fals die antwort irelevant ist.
 trashCan(ServerLogFile) ->
-	receive 
-		{request,kill} -> 
+	receive
+		{request,kill} ->
 			tool:l(ServerLogFile,'SERVER',"TrashCan DOWN PID ~p.",[self()]);
 		_ -> trashCan(ServerLogFile)
 	end.
-	
+
 
 % initalisiert die HBQ und startet die Haupt schleife, nach verlassen dieser wird die shutdown rotine aufgerufen.
 init(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan,Latency) ->
 	HBQ_PID ! {self(),{request,initHBQ}},
-	receive 
-		{reply, ok}	-> 
+	receive
+		{reply, ok}	->
 			tool:l(ServerLogFile,'SERVER',"HBQ erfolgreich initialisiert"),
 			loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan,Latency,0,0)
 	end.
@@ -60,41 +65,34 @@ shutdown(ServerLogFile,CTRL,NumberService,TrashCan) ->
 
 
 loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan,Latency,0,KillKey) ->
-	receive 
+	receive
 
-		% Eine Nachrichten Nummern Anfrage wird nicht direkt bearbeitet sondern einfach an den Nummern SErvice Weiter gereicht.
-		{CID, getmsgid} -> 
-			NumberService ! {CID},
-			loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan,Latency,1,KillKey);
+	% Eine Nachrichten Nummern Anfrage wird nicht direkt bearbeitet sondern einfach an den Nummern SErvice Weiter gereicht.
+	{CID, getmsgid} ->
+		NumberService ! {CID},
+		loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan,Latency,1,KillKey);
 
-		% Für das verarbeiten von nachrichten ist die HBQ zuständig
-		{dropmessage,[NNR,MSG,TSclientout]} ->
-			HBQ_PID ! { TrashCan ,{request,pushHBQ,[NNR,MSG,TSclientout]}},
-			tool:l(ServerLogFile,'SERVER',"Nachricht: ~p an HBQ gesendet",[NNR]),
-			loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan,Latency,1,KillKey);
+	% Für das verarbeiten von nachrichten ist die HBQ zuständig
+	{dropmessage,[NNR,MSG,TSclientout]} ->
+		HBQ_PID ! { TrashCan ,{request,pushHBQ,[NNR,MSG,TSclientout]}},
+		tool:l(ServerLogFile,'SERVER',"Nachricht: ~p an HBQ gesendet",[NNR]),
+		loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan,Latency,1,KillKey);
 
-		% Die auslieferung von nachrichten wird von dem Controller übernommen
-        {CID, getmessages} -> 
+	% Die auslieferung von nachrichten wird von dem Controller übernommen
+        {CID, getmessages} ->
         	CTRL ! { CID , getmessages},
         	loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan,Latency,1,KillKey);
 
         %ein Kill request sorgt dafür das das gesamte system beendet wird.
-        {request,kill,KillKey} ->
+        {request,kill} ->
         	shutdown(ServerLogFile,CTRL,NumberService,TrashCan);
-		{request,kill,WrongKey} ->
-        	tool:l(ServerLogFile,'SERVER',"Kill Request with Wrong Key :~p , curentKeyIs ~p", [WrongKey,KillKey]),
-			loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan,Latency,0,KillKey);
-		Any -> 
-			tool:l(ServerLogFile,'SERVER',"Received Something unexpacted :~p", [Any]),
-			loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan,Latency,1,KillKey)
-	end;	
+
+	Any ->
+		tool:l(ServerLogFile,'SERVER',"Received Something unexpacted :~p", [Any]),
+		loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan,Latency,1,KillKey)
+	end;
 
 %hilfs funktion um nach der latency eine Kill Nachricht an den Server zu senden, falls in der Zeit keine Neue anfrage eintraf.
-loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan,Latency,1,OldKillKey) ->
-	KillKey = OldKillKey+1,
-	timer:send_after(Latency,{request,kill,KillKey}),
-	loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan,Latency,0,KillKey).
-
-
-
-
+loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan,Latency,1,OldKiller) ->
+	Killer = werkzeug:reset_timer(OldKiller,Latency,{request,kill}),
+	loop(ServerLogFile,HBQ_PID,NumberService,CTRL,TrashCan,Latency,0,Killer).

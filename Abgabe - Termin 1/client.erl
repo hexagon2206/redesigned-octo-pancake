@@ -1,5 +1,7 @@
+%client.erl
+%siehe diagramm(client).
 -module(client).
--export([init/1]).
+-export([init/1]).	% Liest die Config Datei ein und erstellt entsprechend clients
 
 init(ConfigFile) ->
   % Liest aus der Config - Datei die Parameter
@@ -80,7 +82,7 @@ writeCycle(ClientBez,Server, MessageCounter, SleepTime, LogFile) ->
   
 % Eine Zufallszeit "schlafen" und anschließend eine neue Nachricht an den Server schicken
 dropMessage(ClientBez,Server, MessageID , LogFile) ->
-  MSGText = io:format("~p - ~p",[ClientBez,node()]),
+  MSGText = io_lib:format("Team 02 : ~p - ~p",[ClientBez,node()]),
   Server ! {dropmessage, [MessageID, MSGText, tool:t()]},
   tool:l(LogFile,ClientBez,"Nachrichtnummer: ~p gesendet ", [MessageID]).
 
@@ -106,10 +108,10 @@ readCycle(ClientBez,Server, SleepTime, LogFile) ->
 printMSG(LogFile,ClientBez,Message,Now) ->
       [MsgNumber, _Msg, _ClientOut, _HBQin, _DLQin, DLQout] = Message,
 
-      LOE = werkzeug:lessoeqTS(DLQout,Now),
+      LOE = werkzeug:lessoeqTS(Now,DLQout),
       if
         LOE ->
-          tool:l(LogFile,ClientBez,"Nachrichtnummer: ~p empfangen | Nachricht: ~p | Nachricht aus der Zukunft:  ~p ~n", [MsgNumber, Message , werkzeug:diffTS(DLQout,Now)]);
+          tool:l(LogFile,ClientBez,"Nachrichtnummer: ~p empfangen | Nachricht: ~p | Nachricht aus der Zukunft:  ~p ~n", [MsgNumber, Message , werkzeug:diffTS(Now,DLQout)]);
         true ->
           tool:l(LogFile,ClientBez,"Nachrichtnummer: ~p empfangen | Nachricht: ~p ", [MsgNumber, Message])          
       end.

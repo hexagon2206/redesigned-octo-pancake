@@ -1,7 +1,9 @@
+%hbq.erl
+%Siehe diagramm (HBQ)
 -module(hbq).
--export([start/0]).
--export([pushMSG/1]).
--export([deliverMSG/2]).
+-export([start/0]).	% startet den HBQ service
+-export([pushMSG/1]).	% Legt eine Nachricht in der HBQ ab
+-export([deliverMSG/2]).% Liefert eine Nachricht an den CLient aus und Giebt die Nummer Zurück
 
 -export([nmsg/1]).
 

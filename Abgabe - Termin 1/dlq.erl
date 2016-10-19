@@ -1,9 +1,12 @@
+%dlq.erl
+% rein Pasiv, wie im entwurf spezifiziert
+% siehe diagramm(DLQ)
 -module(dlq).
--export([initDLQ/2]).
--export([delDLQ/1]).
--export([expectedNr/1]).
--export([push2DLQ/3]).
--export([deliverMSG/4]).
+-export([initDLQ/2]).	% initialisert die DLQ mit einer Größe und einer Logging Datei
+-export([delDLQ/1]).	% Löscht die DLQ
+-export([expectedNr/1]).% Diebt die Erwartete Nummer der DLQ Zurück	
+-export([push2DLQ/3]).	% Schreibt eine Nachricht in die DLQ, die Logging Datei wird ignoriert
+-export([deliverMSG/4]).% Liefert eine Nachricht an den Client aus, die Logging Datei wird ignoriert
 
 
 % DLQ als eigener Prozess

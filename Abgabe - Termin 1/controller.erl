@@ -1,5 +1,8 @@
+% controller.erl
+% siehe diagramm(Controller)
+
 -module(controller).
--export([start/3]).
+-export([start/3]). % Startet den Controller und initialisert die CMEM
 
 start(ServerLogFile,Clientlifetime,HBQ) ->
 	CMEM = cmem:initCMEM(Clientlifetime,ServerLogFile), 

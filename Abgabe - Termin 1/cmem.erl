@@ -1,8 +1,10 @@
+%cmem.erl
+%sehe diagramm(cmem)
 -module(cmem).
--export([initCMEM/2]).
--export([delCMEM/1]).
--export([updateClient/4]).
--export([getClientNNr/2]).
+-export([initCMEM/2]).		% initialiserung der CMEM Mit der Reminding time als ersten und der Logging Datei als zweiten Parameter
+-export([delCMEM/1]).		% Löscht die CMEM und beendet den Prozess
+-export([updateClient/4]).	% Aktualisiert einen Client bzw. legt diesen an
+-export([getClientNNr/2]).	% Liefert zu einem Client die Gespeicherte Nummer 
 
 %initialisiert den CMEM. RemTime gibt dabei die Zeit an, nach der die Clients vergessen werden Bei Erfolg wird ein leeres CMEM zurück geliefert. Datei kann für ein logging genutzt werden.
 % Die übergebene Datei wird ignoriert, die mit welche die Cmem inmitialisiert wurde wird verwendet
