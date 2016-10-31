@@ -16,13 +16,13 @@ init(Delay, TerminationTime, ClientName, NameService, CoordinatorName, Quota, Pr
     NameService ! {self(), {lookup, CoordinatorName}},
 
     ProcessCountNeeded = round((ProcessCount / 100 * Quota)),
+    spawn(fun() -> handleVoteYes([]) end),
 
     receive
         ok ->
           register(ClientName, self());
 
         {pin, {Coordinator, Node}} ->
-
           % Beim Koordinator melden und anschließend auf die Nachabarn warten
           {Coordinator, Node} ! {hello, ClientName},
           waitForNeighbors(TerminationTime, {Coordinator, Node}, Quota, Delay, NameService, ClientName)
@@ -96,8 +96,10 @@ handleVoteYes(VoteList) ->
   Length = length(VoteList),
 
   if
-     guard Length == ProcessCountNeeded ->
-      Coordinator ! {briefmi, {ClientName, NewMi, erlang:system_time()}};
+     %guard Length == ProcessCountNeeded ->
+     guard length(VoteList) == ProcessCountNeeded ->
+      Coordinator ! {briefmi, {ClientName, NewMi, erlang:system_time()}},
+      handleVoteYes([]);
     true ->
       receive
         {voteYes, Name} ->
