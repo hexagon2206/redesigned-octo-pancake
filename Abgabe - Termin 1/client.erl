@@ -15,7 +15,6 @@ init(ConfigFile) ->
   Server = {ServerName, ServerNode},
   LogFile = atom_to_list(node()) ++ ".log",
 
-
   startClients(LogFile,LifeTime*1000, Server, ClientCount, Interval*1000).
 
 startClients(_LogFile,_LifeTime, _Server, 0, _Interval) ->
