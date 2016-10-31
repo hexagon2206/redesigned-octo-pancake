@@ -22,15 +22,15 @@ getParameters(Coordinator, Group, Team ,StarterNumber, NameService) ->
     Coordinator ! {self(), getsteeringval},
     receive
         {steeringval, WorkTime, TerminationTime, Quota, ProcessCount} ->
-            startGGTprocesses(ProcessCount, WorkTime, TerminationTime, Group, Team, StarterNumber, NameService, Coordinator, Quota)
+            startGGTprocesses(ProcessCount, WorkTime, TerminationTime, Group, Team, StarterNumber, NameService, Coordinator, Quota, ProcessCount)
     end.
 
 % Startet die ggt - Prozesse
-startGGTprocesses(0, Delay, TerminationTime, Group, Team, StarterNumber, NameService, Coordinator, Quota) ->
+startGGTprocesses(0, Delay, TerminationTime, Group, Team, StarterNumber, NameService, Coordinator, Quota, ProcessCount) ->
   ClientName = Group ++ Team ++ 0 ++ StarterNumber,
-    spawn(fun() -> ggt_process:init(Delay, TerminationTime, ClientName, NameService, Coordinator, Quota) end);
+    spawn(fun() -> ggt_process:init(Delay, TerminationTime, ClientName, NameService, Coordinator, Quota, ProcessCount) end);
 
-startGGTprocesses(ProcessCount, Delay, TerminationTime, Group, Team, StarterNumber, NameService, Coordinator, Quota) ->
+startGGTprocesses(ProcessCount, Delay, TerminationTime, Group, Team, StarterNumber, NameService, Coordinator, Quota ProcessCount) ->
     ClientName = Group ++ Team ++ ProcessCount ++ StarterNumber,
-    spawn(fun() -> ggt_process:init(Delay, TerminationTime, ClientName, NameService, Coordinator, Quota) end),
-    startGGTprocesses(ProcessCount - 1, Delay, TerminationTime, Group, Team, StarterNumber, NameService, Coordinator, Quota).
+    spawn(fun() -> ggt_process:init(Delay, TerminationTime, ClientName, NameService, Coordinator, Quota, ProcessCount) end),
+    startGGTprocesses(ProcessCount - 1, Delay, TerminationTime, Group, Team, StarterNumber, NameService, Coordinator, Quota, ProcessCount).
