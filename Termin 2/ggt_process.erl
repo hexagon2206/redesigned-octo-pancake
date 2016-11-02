@@ -16,14 +16,15 @@ init(Delay, TerminationTime, ClientName, NameService, CoordinatorName, Quota, Pr
     NameService ! {self(), {lookup, CoordinatorName}},
 
     ProcessCountNeeded = round((ProcessCount / 100 * Quota)),
-    spawn(fun() -> handleVoteYes([]) end),
+    spawn(fun() -> handleKillCommand() end),
+    spawn(fun() -> handlePing(ClientName) end),
 
     receive
         ok ->
           register(ClientName, self());
 
         {pin, {Coordinator, Node}} ->
-          % Beim Koordinator melden und anschließend auf die Nachabarn warten
+          % Beim Koordinator melden und anschließend auf die Namen der Nachbarn warten
           {Coordinator, Node} ! {hello, ClientName},
           waitForNeighbors(TerminationTime, {Coordinator, Node}, Quota, Delay, NameService, ClientName)
     end.
@@ -74,7 +75,7 @@ calc(Mi, Y, NeighborLeft, NeighborRight, Coordinator, Quota, TerminationTime, De
             waitForY(Mi, Y, NeighborLeft, NeighborRight, Coordinator, Quota, TerminationTime, ClientName)
     end.
 
-% ################################################ Abbruch ##################################################### %
+% ######################################################## Abbruch ########################################################## %
 
 % Startet einen Abbruch der aktuellen Berechnung
 initAbort(ClientName, LeftNeighbor, RightNeighbor, Coordinator, Quota, TerminationTime, Delay, ClientName, NameService, Mi) ->
@@ -82,27 +83,45 @@ initAbort(ClientName, LeftNeighbor, RightNeighbor, Coordinator, Quota, Terminati
   waitForY(Mi, LeftNeighbor, RightNeighbor, Coordinator, Quota, TerminationTime, Delay, ClientName).
 
 % Verarbeitet die Vote - Nachrichten
-handleVotes(Coordinator, VoteList, ProcessCountNeeded, ClientName) ->
+handleVotes(ClientName) ->
   receive
-    {From, {vote, Name}} ->
-      if
-        true ->
-          From ! {voteYes, ClientName}
-      end
+    {From, {vote, _}} ->
+      From ! {voteYes, ClientName}
   end.
 
 % Verarbeitet die voteYes - Nachrichten von den anderen ggt_Prozessen
-handleVoteYes(VoteList) ->
+handleVoteYes(VoteList, ProcessCountNeeded, Coordinator, NewMi, ClientName) ->
   Length = length(VoteList),
 
   if
-     %guard Length == ProcessCountNeeded ->
-     guard length(VoteList) == ProcessCountNeeded ->
+      Length == ProcessCountNeeded ->
       Coordinator ! {briefmi, {ClientName, NewMi, erlang:system_time()}},
-      handleVoteYes([]);
+      %handleVoteYes([], ProcessCountNeeded, Coordinator, NewMi, ClientName);
+      handleTellMi(NewMi);
     true ->
       receive
         {voteYes, Name} ->
-          handleVoteYes(lists:append(VoteList, [{voteYes, Name}]))
+          handleVoteYes(lists:append(VoteList, [{voteYes, Name}]), ProcessCountNeeded, Coordinator, NewMi, ClientName)
       end
+  end.
+
+
+%######################################################## Other ############################################################## %
+
+handleTellMi(Mi) ->
+  receive
+    {From, tellmi} ->
+      From ! {mi, Mi}
+  end.
+
+handlePing(ClientName) ->
+  receive
+    {From, pingGGT} ->
+      From ! {pongGGT, ClientName}
+  end.
+
+handleKillCommand() ->
+  receive
+    kill ->
+      exit("Kill Command")
   end.
