@@ -26,53 +26,55 @@ init(Delay, TerminationTime, ClientName, NameService, CoordinatorName, Quota, Pr
         {pin, {Coordinator, Node}} ->
           % Beim Koordinator melden und anschließend auf die Namen der Nachbarn warten
           {Coordinator, Node} ! {hello, ClientName},
-          waitForNeighbors(TerminationTime, {Coordinator, Node}, Quota, Delay, NameService, ClientName)
+          waitForNeighbors(TerminationTime, {Coordinator, Node}, Quota, Delay, NameService, ClientName, NameService)
     end.
 
 % Wartet auf die Nachbarn vom Koordinator und fragt den linken Nachbarn beim NameService ab
-waitForNeighbors(TerminationTime, Coordinator, Quota, Delay, NameService, ClientName) ->
+waitForNeighbors(TerminationTime, Coordinator, Quota, Delay, NameService, ClientName, NameService) ->
     receive
         {setneighbors, Left, Right} ->
             NameService ! {lookup, Left, self()},
             receive
               {pin, {LeftNeighbor, Node}} ->
-                setRightNeighbor({LeftNeighbor, Node}, Right, NameService, TerminationTime, Coordinator, Quota, Delay, ClientName)
+                setRightNeighbor({LeftNeighbor, Node}, Right, NameService, TerminationTime, Coordinator, Quota, Delay, ClientName, NameService)
             end
     end.
 
 % Verarbeitet die Antwort an den NameService von waitForNeighbors ab und fragt anschließend den zweiten / rechten Nachbarn ab und führt dann zur waitForMi - Methode
-setRightNeighbor(LeftNeighbor, Right,  NameService, TerminationTime, Coordinator, Quota, Delay, ClientName) ->
+setRightNeighbor(LeftNeighbor, Right,  NameService, TerminationTime, Coordinator, Quota, Delay, ClientName, NameService) ->
   NameService ! {lookup, Right, self()},
   receive
     {pin, {RightNeighbor, Node}} ->
-      waitForMi(LeftNeighbor, {RightNeighbor, Node}, Coordinator, Quota, TerminationTime, Delay, ClientName)
+      waitForMi(LeftNeighbor, {RightNeighbor, Node}, Coordinator, Quota, TerminationTime, Delay, ClientName, NameService)
   end.
 
 % Wartet auf den Initaliserungswert
-waitForMi(NeighborLeft, NeighborRight, Coordinator, Quota, TerminationTime, Delay, ClientName) ->
+waitForMi(NeighborLeft, NeighborRight, Coordinator, Quota, TerminationTime, Delay, ClientName, NameService) ->
     receive
         {setpm, Mi} ->
-            waitForY(Mi, NeighborLeft, NeighborRight, Coordinator, Quota, TerminationTime, Delay, ClientName)
+            waitForY(Mi, NeighborLeft, NeighborRight, Coordinator, Quota, TerminationTime, Delay, ClientName, NameService)
     end.
 
 % Wartet auf das Y um eine Berechnung anzustoßen
-waitForY(Mi, NeighborLeft, NeighborRight, Coordinator, Quota, TerminationTime, Delay, ClientName) ->
+waitForY(Mi, NeighborLeft, NeighborRight, Coordinator, Quota, TerminationTime, Delay, ClientName, NameService) ->
     receive
         {sendy, Y} ->
-            calc(Mi, Y, NeighborLeft, NeighborRight, Coordinator, Quota, TerminationTime, Delay, ClientName)
+            calc(Mi, Y, NeighborLeft, NeighborRight, Coordinator, Quota, TerminationTime, Delay, ClientName, NameService)
+    after TerminationTime ->
+      initAbort(ClientName, NeighborLeft, NeighborRight, Coordinator, Quota, TerminationTime, Delay, ClientName, NameService, Mi)
     end.
 
 % Startet eine neue Berechnung
-calc(Mi, Y, NeighborLeft, NeighborRight, Coordinator, Quota, TerminationTime, Delay, ClientName) ->
+calc(Mi, Y, NeighborLeft, NeighborRight, Coordinator, Quota, TerminationTime, Delay, ClientName, NameService) ->
     timer:sleep(Delay),
     if
         (Y < Mi) ->
             NewMi = ((Mi-1) rem Y) + 1,
             NeighborLeft ! {sendy, NewMi},
             NeighborRight ! {sendy, NewMi},
-            waitForY(NewMi, Y, NeighborLeft, NeighborRight, Coordinator, Quota, TerminationTime, ClientName);
+            waitForY(NewMi, Y, NeighborLeft, NeighborRight, Coordinator, Quota, TerminationTime, ClientName, NameService);
         true ->
-            waitForY(Mi, Y, NeighborLeft, NeighborRight, Coordinator, Quota, TerminationTime, ClientName)
+            waitForY(Mi, NeighborLeft, NeighborRight, Coordinator, Quota, TerminationTime, Delay, ClientName, NameService)
     end.
 
 % ######################################################## Abbruch ########################################################## %
@@ -80,7 +82,7 @@ calc(Mi, Y, NeighborLeft, NeighborRight, Coordinator, Quota, TerminationTime, De
 % Startet einen Abbruch der aktuellen Berechnung
 initAbort(ClientName, LeftNeighbor, RightNeighbor, Coordinator, Quota, TerminationTime, Delay, ClientName, NameService, Mi) ->
   NameService ! {self(), {multicast, vote, ClientName}},
-  waitForY(Mi, LeftNeighbor, RightNeighbor, Coordinator, Quota, TerminationTime, Delay, ClientName).
+  waitForY(Mi, LeftNeighbor, RightNeighbor, Coordinator, Quota, TerminationTime, Delay, ClientName, NameService).
 
 % Verarbeitet die Vote - Nachrichten
 handleVotes(ClientName) ->
@@ -106,7 +108,7 @@ handleVoteYes(VoteList, ProcessCountNeeded, Coordinator, NewMi, ClientName) ->
   end.
 
 
-%######################################################## Other ############################################################## %
+% ######################################################## Other ############################################################## %
 
 handleTellMi(Mi) ->
   receive
