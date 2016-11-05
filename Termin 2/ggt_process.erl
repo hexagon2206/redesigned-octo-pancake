@@ -85,7 +85,7 @@ workPhase(ClientName, Coordinator, NameService, LeftNeighbor, RightNeighbor, Wor
       kill ->
         %exit("Kill Command"),
         tool:l(LogFile,ClientName,"Beende ggt_process | Zeitstempel:  ~p ", [erlang:system_time()]),
-        NameService ! {self(), {unbind,meindienst}},
+        NameService ! {self(), {unbind, ClientName}},
         ok
 
   after (WorkTime / 2) ->
