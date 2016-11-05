@@ -45,7 +45,6 @@ workPhase(ClientName, Nameservice, Coordinator, LeftNeighbor, RightNeighbor, Pro
         {sendy, Y} ->
             calc(Mi, Y, LeftNeighbor, RightNeighbor, Delay),
         
-
         kill ->
             exit("Kill Command"),
 
