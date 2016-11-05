@@ -18,6 +18,9 @@ init(Delay, WorkTime, ClientName, NameServiceNode, CoordinatorName, Quota, Proce
     NameService ! {self(), {lookup, CoordinatorName}},
 
     ProcessCountNeeded = round((ProcessCount / 100 * Quota)),
+    LogFile = ClientName ++ ".log",
+    tool:l(LogFile,ClientName,"ggt_process wird gestartet | Zeitstempel:  ~p ", [erlang:system_time()]),
+
    % spawn(fun() -> handleKillCommand() end),
    % spawn(fun() -> handlePing(ClientName) end),
    register(ClientName, self()),
@@ -27,58 +30,74 @@ init(Delay, WorkTime, ClientName, NameServiceNode, CoordinatorName, Quota, Proce
         {pin, {Coordinator, Node}} ->
           % Beim Koordinator melden und anschließend auf die Namen der Nachbarn warten
           {Coordinator, Node} ! {hello, ClientName},
-          workPhase(ClientName, {Coordinator, Node}, NameService, 'LeftNeighbor noch nicht gesetzt', 'RightNeighbor noch nicht gesetzt', WorkTime, Delay, ProcessCountNeeded, 'Mi noch nicht gesetzt')
+          tool:l(LogFile,ClientName,"Beim Koordinator anmelden | Zeitstempel:  ~p ", [erlang:system_time()]),
+          workPhase(ClientName, {Coordinator, Node}, NameService, 'LeftNeighbor noch nicht gesetzt', 'RightNeighbor noch nicht gesetzt', WorkTime, Delay, ProcessCountNeeded, 'Mi noch nicht gesetzt', LogFile)
     end.
 
 % Verarbeitet die Antwort an den NameService von waitForNeighbors ab und fragt anschließend den zweiten / rechten Nachbarn ab und führt dann zur waitForMi - Methode
-setRightNeighbor(LeftNeighbor, Right,  NameService, WorkTime, Coordinator, Delay, ClientName, NameService, ProcessCountNeeded) ->
+setRightNeighbor(LeftNeighbor, Right,  NameService, WorkTime, Coordinator, Delay, ClientName, NameService, ProcessCountNeeded, LogFile) ->
   NameService ! {lookup, Right, self()},
   receive
     {pin, PIDRight} ->
-      workPhase(ClientName, Coordinator, NameService, LeftNeighbor, PIDRight, WorkTime, Delay, ProcessCountNeeded, 0)
-      %waitForMi(LeftNeighbor, {RightNeighbor, Node}, Coordinator, WorkTime, Delay, ClientName, NameService, ProcessCountNeeded)
+      tool:l(LogFile,ClientName,"Setze linken Nachbarn | Zeitstempel:  ~p ", [erlang:system_time()]),
+      workPhase(ClientName, Coordinator, NameService, LeftNeighbor, PIDRight, WorkTime, Delay, ProcessCountNeeded,'Mi noch nicht gesetzt' ,LogFile)
+
   end.
 
 % ######################################################## Berechnung / Arbeitsphase ########################################################## %
 
-workPhase(ClientName, Coordinator, NameService, LeftNeighbor, RightNeighbor, WorkTime, Delay, ProcessCountNeeded, Mi) ->
+workPhase(ClientName, Coordinator, NameService, LeftNeighbor, RightNeighbor, WorkTime, Delay, ProcessCountNeeded, Mi, LogFile) ->
   receive
     {setneighbors, Left, Right} ->
             NameService ! {lookup, Left, self()},
             receive
               {pin, PIDLeft} ->
-                setRightNeighbor(PIDLeft, Right, NameService, WorkTime, Coordinator, Delay, ClientName, NameService, ProcessCountNeeded)
+                tool:l(LogFile,ClientName,"Setze rechten Nachbarn | Zeitstempel:  ~p ", [erlang:system_time()]),
+                setRightNeighbor(PIDLeft, Right, NameService, WorkTime, Coordinator, Delay, ClientName, NameService, ProcessCountNeeded, LogFile)
             end;
 
     {setpm, Mi} ->
-       %waitForY(Mi, LeftNeighbor, RightNeighbor, Coordinator, WorkTime, Delay, ClientName, NameService, ProcessCountNeeded);
-       workPhase(ClientName, Coordinator, NameService, LeftNeighbor, RightNeighbor, WorkTime, Delay, ProcessCountNeeded, Mi);
+      tool:l(LogFile,ClientName,"Mi erhalten | Zeitstempel:  ~p ", [erlang:system_time()]),
+       workPhase(ClientName, Coordinator, NameService, LeftNeighbor, RightNeighbor, WorkTime, Delay, ProcessCountNeeded, Mi, LogFile);
     {sendy, Y} ->
-     % calc(Mi, Y, LeftNeighbor, RightNeighbor, Coordinator, WorkTime, Delay, ClientName, NameService, ProcessCountNeeded);
-      NewMi = calc(Mi, Y, LeftNeighbor, RightNeighbor, Coordinator, Delay, ClientName, NameService),
-      workPhase(ClientName, Coordinator, NameService, LeftNeighbor, RightNeighbor, WorkTime, Delay, ProcessCountNeeded, NewMi);
+      tool:l(LogFile,ClientName,"Y erhalten | Zeitstempel:  ~p ", [erlang:system_time()]),
+      NewMi = calc(Mi, Y, LeftNeighbor, RightNeighbor, Coordinator, Delay, ClientName, NameService, LogFile),
+      workPhase(ClientName, Coordinator, NameService, LeftNeighbor, RightNeighbor, WorkTime, Delay, ProcessCountNeeded, NewMi, LogFile);
 
      {From, tellmi} ->
         From ! {mi, Mi},
-        workPhase(ClientName, Coordinator, NameService, LeftNeighbor, RightNeighbor, WorkTime, Delay, ProcessCountNeeded, Mi);
+        tool:l(LogFile,ClientName,"Teile Koordinator Mi mit| Zeitstempel:  ~p ", [erlang:system_time()]),
+        workPhase(ClientName, Coordinator, NameService, LeftNeighbor, RightNeighbor, WorkTime, Delay, ProcessCountNeeded, Mi, LogFile);
 
       {From, pingGGT} ->
         From ! {pongGGT, ClientName},
-        workPhase(ClientName, Coordinator, NameService, LeftNeighbor, RightNeighbor, WorkTime, Delay, ProcessCountNeeded, Mi);
+        tool:l(LogFile,ClientName,"Senden Ping an Koordinator | Zeitstempel:  ~p ", [erlang:system_time()]),
+        workPhase(ClientName, Coordinator, NameService, LeftNeighbor, RightNeighbor, WorkTime, Delay, ProcessCountNeeded, Mi, LogFile);
       
+   %   {From, {vote, Name}} ->
+   %     if
+   %       Terminator > 0 ->
+   %         From ! {voteYes, ClientName}  ;  
+   %       true ->
+   %         workPhase(ClientName, Coordinator, NameService, LeftNeighbor, RightNeighbor, WorkTime, Delay, ProcessCountNeeded, Mi)
+   %     end;
+        
       kill ->
         %exit("Kill Command"),
+        tool:l(LogFile,ClientName,"Beende ggt_process | Zeitstempel:  ~p ", [erlang:system_time()]),
+        NameService ! {self(), {unbind,meindienst}},
         ok
 
-  after WorkTime ->
-    initAbort(ClientName, LeftNeighbor, RightNeighbor, Coordinator, WorkTime, Delay, ClientName, NameService, Mi, ProcessCountNeeded)
+  after (WorkTime / 2) ->
+    workPhase(ClientName, Coordinator, NameService, LeftNeighbor, RightNeighbor, WorkTime, Delay, ProcessCountNeeded, Mi, LogFile)
   end.
 
 % Startet eine neue Berechnung
-calc(Mi, Y, NeighborLeft, NeighborRight, Coordinator, Delay, ClientName, NameService) ->
+calc(Mi, Y, NeighborLeft, NeighborRight, Coordinator, Delay, ClientName, NameService, LogFile) ->
     timer:sleep(Delay),
     if
         (Y < Mi) ->
+          tool:l(LogFile,ClientName,"Starte Berechnung mit Mi: ~p und Y: ~p | Zeitstempel:  ~p ", [Mi, Y, erlang:system_time()]),
             NewMi = ((Mi - 1) rem Y) + 1,
             NeighborLeft ! {sendy, NewMi},
             NeighborRight ! {sendy, NewMi},
