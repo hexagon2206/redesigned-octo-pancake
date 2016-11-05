@@ -19,6 +19,7 @@ init(StarterNumber) ->
 
 % Ruft die Steuerungsparamter für die ggt - Prozesse ab
 getParameters(Coordinator, Group, Team ,StarterNumber, NameService) ->
+    % Coordinator beim NameService abfragen
     Coordinator ! {self(), getsteeringval},
     receive
         {steeringval, WorkTime, TerminationTime, Quota, ProcessCount} ->
@@ -27,7 +28,7 @@ getParameters(Coordinator, Group, Team ,StarterNumber, NameService) ->
 
 % Startet die ggt - Prozesse
 startGGTprocesses(0, Delay, TerminationTime, Group, Team, StarterNumber, NameService, Coordinator, Quota, ProcessCount) ->
-  ClientName = Group ++ Team ++ 0 ++ StarterNumber,
+  ClientName = Group ++ Team ++ "0" ++ StarterNumber,
     spawn(fun() -> ggt_process:init(Delay, TerminationTime, ClientName, NameService, Coordinator, Quota, ProcessCount) end);
 
 startGGTprocesses(ProcessCount, Delay, TerminationTime, Group, Team, StarterNumber, NameService, Coordinator, Quota ProcessCount) ->

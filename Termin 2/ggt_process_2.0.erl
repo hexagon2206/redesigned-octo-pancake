@@ -1,24 +1,24 @@
--module(ggt_process_2.0).
-
+-module('ggt_process_2.0').
+-export([init/7]).
 
 % ####################################### init phase ######################################### %
-init(ClientName, NameserviceName, CoordinatorName, ProcessCount, Quota, Delay, WorkTime) ->
+init(ClientName, NameserviceNode, CoordinatorName, ProcessCount, Quota, Delay, WorkTime) ->
 
     % Mit dem Nameservice verbinden
-    net_adm:ping(Nameservice),
+     net_adm:ping(NameserviceNode),
     % Wichtig damit die Sync funktiniert
-    timer:sleep(500),
+    %timer:sleep(500),
     % Nameservice PID erfragen und anschließend registrieren
     Nameservice = global:whereis_name(NameserviceName),
     Nameservice ! {self(), {rebind, ClientName, self()}},
     Nameservice ! {self(), {lookup, CoordinatorName}},
-    register(ClientName, self());
+    register(ClientName, self()),
 
     ProcessCountNeeded = round(ProcessCount / 100 * Quota),
 
     receive
         {pin, {Coordinator, Node}} ->
-            {Coordinator, Node} ! {hello, ClientName},
+            {Coordinator, Node} ! {hello, ClientName}
     end.
 % Wartet auf die Nachbarn vom Koordinator, wenn er diese bekommt, werden die PID's der Nachbarn beim Nameservice abgefragt
 waitForNeighbors(ClientName, Nameservice, Coordinator, ProcessCountNeeded, WorkTime, Delay) ->
@@ -28,28 +28,28 @@ waitForNeighbors(ClientName, Nameservice, Coordinator, ProcessCountNeeded, WorkT
             Nameservice ! {lookup, Right, self()},
             receive
                 {pin, {N, Node}} ->
-                    LeftNeighbor = {N, Node},
+                    LeftNeighbor = {N, Node};
                 {pin, {N, Node}} ->
-                    RightNeighbor = {N, Node},
+                    RightNeighbor = {N, Node}
             end
-
-    end.
+    end,
+    workPhase(ClientName, Nameservice, Coordinator, LeftNeighbor, RightNeighbor, ProcessCountNeeded, WorkTime, Delay, 0).
 
 % ####################################### work phase ######################################### %
 
-workPhase(ClientName, Nameservice, Coordinator, LeftNeighbor, RightNeighbor, ProcessCountNeeded, WorkTime, Delay) ->
+workPhase(ClientName, Nameservice, Coordinator, LeftNeighbor, RightNeighbor, ProcessCountNeeded, WorkTime, Delay, Mi) ->
     receive
         {setpm, NewMi} ->
-            Mi = NewMi,
+            workPhase(ClientName, Nameservice, Coordinator, LeftNeighbor, RightNeighbor, ProcessCountNeeded, WorkTime, Delay, Mi);
 
         {sendy, Y} ->
-            calc(Mi, Y, LeftNeighbor, RightNeighbor, Delay),
+            calc(Mi, Y, LeftNeighbor, RightNeighbor, Delay);
         
         kill ->
-            exit("Kill Command"),
+            exit("Kill Command");
 
         {From, tellmi} ->
-            From ! {mi, Mi},
+            From ! {mi, Mi};
 
         {From, pngGGT} ->
             From ! {pongGGT, ClientName}
@@ -60,7 +60,7 @@ workPhase(ClientName, Nameservice, Coordinator, LeftNeighbor, RightNeighbor, Pro
             vote(ClientName)
     end,
 
-    workPhase{ClientName, Nameservice, Coordinator, LeftNeighbor, RightNeighbor, ProcessCountNeeded, WorkTime, Delay}.
+    workPhase(ClientName, Nameservice, Coordinator, LeftNeighbor, RightNeighbor, ProcessCountNeeded, WorkTime, Delay).
 
 
 % ######################################### Other ############################################### %
@@ -73,7 +73,7 @@ calc(Mi, Y, LeftNeighbor, RightNeighbor, Delay) ->
             if
                 NewMi < Mi ->
                     LeftNeighbor ! {sendy, NewMi},
-                    RightNeighbor ! {sendy, NewMi}
+                    RightNeighbor ! {sendy, NewMi},
                     self() ! {setpm, NewMi}    
             end            
     end.
@@ -83,7 +83,7 @@ handleVotes(VoteList, ProcessCountNeeded, Coordinator, ClientName, Mi) ->
 
     if
         Length == ProcessCountNeeded ->
-            Coordinator ! {briefmi, {ClientName, Mi, erlang:system_time()}},
+            Coordinator ! {briefmi, {ClientName, Mi, erlang:system_time()}};
         true ->
             receive
                 {voteYes, Name} ->
