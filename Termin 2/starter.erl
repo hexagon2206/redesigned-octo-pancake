@@ -13,25 +13,28 @@ init(StarterNumber) ->
     {ok, NameServiceName} = werkzeug:get_config_value(nameservicename, Config),
     {ok, Coordinator} = werkzeug:get_config_value(koordinatorname, Config),
 
-    NameService = {NameServiceName, NameServiceNode},
+    io:format("~p~n",[Config]),
+    net_adm:ping(NameServiceNode),
+    % Fürs Sync wichtig
+    timer:sleep(500),
 
-    getParameters(Coordinator, Group, Team, StarterNumber, NameService).
+    getParameters(Coordinator, Group, Team, StarterNumber, NameServiceName).
 
 % Ruft die Steuerungsparamter für die ggt - Prozesse ab
-getParameters(Coordinator, Group, Team ,StarterNumber, NameService) ->
-    % Coordinator beim NameService abfragen
-    Coordinator ! {self(), getsteeringval},
+getParameters(Coordinator, Group, Team ,StarterNumber, NameServiceName) ->
+    % Coordinator beim NameServiceName abfragen
+    tool:send(Coordinator,NameServiceName,{self(), getsteeringval}),
     receive
         {steeringval, WorkTime, TerminationTime, Quota, ProcessCount} ->
-            startGGTprocesses(ProcessCount, WorkTime, TerminationTime, Group, Team, StarterNumber, NameService, Coordinator, Quota, ProcessCount)
+            startGGTprocesses(ProcessCount, WorkTime, TerminationTime, Group, Team, StarterNumber, NameServiceName, Coordinator, Quota)
     end.
 
 % Startet die ggt - Prozesse
-startGGTprocesses(0, Delay, TerminationTime, Group, Team, StarterNumber, NameService, Coordinator, Quota, ProcessCount) ->
-  ClientName = Group ++ Team ++ "0" ++ StarterNumber,
-    spawn(fun() -> ggt_process:init(Delay, TerminationTime, ClientName, NameService, Coordinator, Quota, ProcessCount) end);
+startGGTprocesses(0, Delay, TerminationTime, Group, Team, StarterNumber, NameServiceName, Coordinator, Quota) ->
+    ClientName = list_to_atom(tool:format("~p~p~p~p",[Group,Team,0,StarterNumber])),
+    spawn(fun() -> ggt_process:init(Delay, TerminationTime, ClientName, NameServiceName, Coordinator, Quota)end);
 
-startGGTprocesses(ProcessCount, Delay, TerminationTime, Group, Team, StarterNumber, NameService, Coordinator, Quota ProcessCount) ->
-    ClientName = Group ++ Team ++ ProcessCount ++ StarterNumber,
-    spawn(fun() -> ggt_process:init(Delay, TerminationTime, ClientName, NameService, Coordinator, Quota, ProcessCount) end),
-    startGGTprocesses(ProcessCount - 1, Delay, TerminationTime, Group, Team, StarterNumber, NameService, Coordinator, Quota, ProcessCount).
+startGGTprocesses(ProcessCount, Delay, TerminationTime, Group, Team, StarterNumber, NameServiceName, Coordinator, Quota) ->
+    ClientName = list_to_atom(tool:format("~p~p~p~p",[Group,Team,ProcessCount,StarterNumber])),
+    spawn(fun() -> ggt_process:init(Delay, TerminationTime, ClientName, NameServiceName, Coordinator, Quota) end),
+    startGGTprocesses(ProcessCount - 1, Delay, TerminationTime, Group, Team, StarterNumber, NameServiceName, Coordinator, Quota).

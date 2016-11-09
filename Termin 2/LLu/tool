@@ -1,0 +1,12 @@
+-module(starter).
+-export([clearQueue/0]).
+
+
+clearQueue() ->
+    receive
+        M -> 
+            io:format("Verworfen ~p~n",[M]),
+            clearQueue()
+    after 0 ->
+        ok
+    end.
