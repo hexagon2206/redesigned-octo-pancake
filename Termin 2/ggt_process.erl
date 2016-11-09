@@ -19,7 +19,7 @@ init(Delay, WorkTime, ClientName, NameServiceName, CoordinatorName, Quota) ->
 
      register(ClientName, self()),
 
-      tool:send(CoordinatorName,NameServiceName,{hello, ClientName}),
+      tool:send(CoordinatorName, NameServiceName, {hello, ClientName}),
       tool:l(LogFile,ClientName,"Beim Koordinator anmelden "),
       workPhase(ClientName, false, noTimer_xD, CoordinatorName, NameServiceName, 'LeftNeighbor noch nicht gesetzt', 'RightNeighbor noch nicht gesetzt', WorkTime, Delay, Quota, 'Mi noch nicht gesetzt', LogFile)
     end. 
@@ -27,6 +27,7 @@ init(Delay, WorkTime, ClientName, NameServiceName, CoordinatorName, Quota) ->
 % ######################################################## Berechnung / Arbeitsphase ########################################################## %
 
 workPhase(ClientName, Consense, Timer, Coordinator, NameService, LeftNeighbor, RightNeighbor, WorkTime, Delay, ProcessCountNeeded, Mi, LogFile) ->
+  %tool:l(LogFile,ClientName,"Starte workPhase | Zeitstempel:  ~p ", [erlang:system_time()]),
   receive
     {setneighbors, Left, Right} ->
       tool:l(LogFile,ClientName,"Setze Rechten und Linken Nachbarn : Links- ~p , Rechts- ~p  ", [Left,Right]),
@@ -34,13 +35,14 @@ workPhase(ClientName, Consense, Timer, Coordinator, NameService, LeftNeighbor, R
     {setpm, NMi} ->
       tool:l(LogFile,ClientName,"Mi erhalten | Zeitstempel:  ~p ", [erlang:system_time()]),
       timer:cancel(Timer),
-      NewTimer = timer:send_after(round(WorkTime/2*1000), {self(),timeout}),
+      NewTimer = timer:send_after(round(WorkTime/2*1000), timeout),
       workPhase(ClientName,false,NewTimer, Coordinator, NameService, LeftNeighbor, RightNeighbor, WorkTime, Delay, ProcessCountNeeded, NMi, LogFile);
+
     {sendy, Y} ->
       tool:l(LogFile,ClientName,"Y erhalten | Zeitstempel:  ~p ", [erlang:system_time()]),
       NewMi = calc(Mi, Y, LeftNeighbor, RightNeighbor, Coordinator, Delay, ClientName, NameService, LogFile),
       timer:cancel(Timer),
-      NewTimer = timer:send_after(round(WorkTime/2*1000),{self(),timeout}),
+      NewTimer = timer:send_after(round(WorkTime/2*1000), timeout),
       workPhase(ClientName,false,NewTimer, Coordinator, NameService, LeftNeighbor, RightNeighbor, WorkTime, Delay, ProcessCountNeeded, NewMi, LogFile);
 
      {From, tellmi} ->
@@ -48,28 +50,39 @@ workPhase(ClientName, Consense, Timer, Coordinator, NameService, LeftNeighbor, R
         tool:l(LogFile,ClientName,"Teile Koordinator Mi mit| Zeitstempel:  ~p ", [erlang:system_time()]),
         workPhase(ClientName,Consense,Timer, Coordinator, NameService, LeftNeighbor, RightNeighbor, WorkTime, Delay, ProcessCountNeeded, Mi, LogFile);
 
-      {From, pingGGT} ->
+     {From, pingGGT} ->
         From ! {pongGGT, ClientName},
         tool:l(LogFile,ClientName,"Senden Ping an Koordinator | Zeitstempel:  ~p ", [erlang:system_time()]),
         workPhase(ClientName,Consense,Timer, Coordinator, NameService, LeftNeighbor, RightNeighbor, WorkTime, Delay, ProcessCountNeeded, Mi, LogFile);
       
-      {From, {vote, _}} ->
+    {From, {vote, Name}} ->
+      tool:l(LogFile,ClientName,"Erhalte vote Aufforderung von: ~p | Zeitstempel:  ~p ", [Name, erlang:system_time()]),
         if
           Consense ->
-            tool:l(LogFile,ClientName,"Stimme abbruch der Berechnung zu | Zeitstempel:  ~p ", [erlang:system_time()]),
-            From ! {voteYes, ClientName};  
+            tool:l(LogFile,ClientName, "Stimme abbruch der Berechnung zu | Zeitstempel:  ~p ", [erlang:system_time()]),
+            %From ! {voteYes, ClientName},
+
+            tool:send(Name, NameService, {voteYes, ClientName}),
+            workPhase(ClientName, true, Timer, Coordinator, NameService, LeftNeighbor, RightNeighbor, WorkTime, Delay, ProcessCountNeeded, Mi, LogFile);  
           true ->
             workPhase(ClientName, true, Timer, Coordinator, NameService, LeftNeighbor, RightNeighbor, WorkTime, Delay, ProcessCountNeeded, Mi, LogFile)
         end;
 
       timeout -> 
         if 
-          Consense -> 
+          Consense == true -> 
             tool:l(LogFile,ClientName,"Starte Abstimmung | Zeitstempel:  ~p ", [erlang:system_time()]),
-            timer:send_after(Delay*4000,{spawn(fun() -> startVote(ClientName, Coordinator, NameService, Mi, ProcessCountNeeded) end),timeout}),
-            workPhase(ClientName,true,Timer, Coordinator, NameService, LeftNeighbor, RightNeighbor, WorkTime, Delay, ProcessCountNeeded, Mi, LogFile);
+            % timer:send_after(Delay*4000,spawn(fun() -> startVote(ClientName, Coordinator, NameService, Mi, ProcessCountNeeded) end), timeout),
+            Vote = spawn(fun() -> startVote(ClientName, NameService, Coordinator, Mi, ProcessCountNeeded, LogFile) end),
+            
+           % NameService ! {self(), {multicast, vote, ClientName}},
+            TMP = global:whereis_name(NameService),
+            TMP ! {Vote, {multicast, vote, ClientName}},
+            %tool:send(NameService, NameService, {self(), {multicast, vote, ClientName}}),
+            workPhase(ClientName, true, Timer, Coordinator, NameService, LeftNeighbor, RightNeighbor, WorkTime, Delay, ProcessCountNeeded, Mi, LogFile);
           true ->
-            NewTimer = timer:send_after(round(WorkTime/2*1000),{self(),timeout}),
+            timer:cancel(Timer),
+            NewTimer = timer:send_after(round(WorkTime/2*1000),timeout),
             workPhase(ClientName,true, NewTimer, Coordinator, NameService, LeftNeighbor, RightNeighbor, WorkTime, Delay, ProcessCountNeeded, Mi, LogFile)
         end;
 
@@ -80,8 +93,15 @@ workPhase(ClientName, Consense, Timer, Coordinator, NameService, LeftNeighbor, R
         NameServicePID = global:whereis_name(NameService),
         NameServicePID ! {self(), {unbind, ClientName}},
         ok;
+
+      {voteYes, _} ->
+        tool:l(LogFile,ClientName,"Außerhalb einer Abstimmung"),
+        workPhase(ClientName, false, Timer, Coordinator, NameService, LeftNeighbor, RightNeighbor, WorkTime, Delay, ProcessCountNeeded, Mi, LogFile);
       O ->
         tool:l(LogFile,ClientName,"Unerwartete Nachricht :  ~p ", [O])
+        %timer:cancel(Timer),
+        %NewTimer = timer:send_after(round(WorkTime/2*1000),timeout),
+        %workPhase(ClientName, false, NewTimer, Coordinator, NameService, LeftNeighbor, RightNeighbor, WorkTime, Delay, ProcessCountNeeded, Mi, LogFile)
   end.
 
 % Startet eine neue Berechnung
@@ -101,13 +121,15 @@ calc(Mi, Y, NeighborLeft, NeighborRight, Coordinator, Delay, ClientName, NameSer
 
 % ########################################################## Abbruch ############################################################## %
 
-startVote(ClientName,Koordinator,NameService,Mi,0) -> 
-  %bief den Koordinatoooooor.
+startVote(ClientName, NameService, Coordinator, Mi, 0, LogFile) -> 
+
+  tool:send(Coordinator, NameService, {briefterm, {ClientName, Mi, erlang:system_time()}}),  
+  tool:l(LogFile,ClientName,"Briefe Koordinator | Zeitstempel:  ~p ", [erlang:system_time()]),
   ok;
-startVote(ClientName,Koordinator,NameService,Mi,Quota) -> 
+
+startVote(ClientName, NameService ,Coordinator, Mi, Quota, LogFile) -> 
   receive
-    {From, {voteYes, _}} ->
-      startVote(ClientName,Koordinator,NameService,Mi,Quota-1);
-    timeout -> 
-      ok
+    {voteYes, From} ->
+      tool:l(LogFile,ClientName,"Vote von: ~p erhalten | Zeitstempel:  ~p ", [From, erlang:system_time()]),
+      startVote(ClientName, NameService ,Coordinator, Mi, Quota-1, LogFile)
   end.

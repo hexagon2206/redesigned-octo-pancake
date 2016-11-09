@@ -129,7 +129,7 @@ initPhase(Koordinatorname,StrVal,StarterNummer,ClientList,Nameservicename,Korrig
 			clientList:destroy(Nameservicename,ClientList),
 			tool:l(lf(),'Koordinator',"Unbinding . . . "),
 			NSPID = global:whereis_name(Nameservicename),
-			NSPID ! {self(),{unbind,Koordinatorname}}
+			NSPID ! {self(),{unbind,Koordinatorname}},
 			receive 
 				ok -> 	tool:l(lf(),'Koordinator',"Unbind Done"),
 						tool:l(lf(),'Koordinator',"Shutting Down")
