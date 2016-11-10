@@ -97,9 +97,6 @@ reset(_Phase,Nameservicename,ClientList) ->
 	spawn( fun() -> start() end ),
 	tool:l(lf(),'Koordinator',"[GONE]").
 	
-		
-
-
 initPhase(Koordinatorname,StrVal,Nameservicename,Korrigieren) ->  
 	tool:l(lf(),'Koordinator',"Betrete init Phase"),
 	initPhase(Koordinatorname,StrVal,1,[],Nameservicename,Korrigieren,0). 
@@ -113,6 +110,7 @@ initPhase(Koordinatorname,StrVal,StarterNummer,ClientList,Nameservicename,Korrig
 			{steeringval,Arbeitszeit,Termzeit,Quote,Ggtprozessnummer} = StrVal,
 
 			SV = {steeringval,Arbeitszeit,Termzeit,round((Ggtprozessnummer+ClientCount)*Quote/100),Ggtprozessnummer},
+			%SV = {steeringval,Arbeitszeit,Termzeit, Quote,Ggtprozessnummer},
 			tool:l(lf(),'Koordinator',"Steuerwerte ~p an ~p",[SV,From]),
 			From ! SV,
 			initPhase(Koordinatorname,StrVal,StarterNummer+1,ClientList,Nameservicename,Korrigieren,Ggtprozessnummer+ClientCount);

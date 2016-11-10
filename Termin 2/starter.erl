@@ -26,14 +26,14 @@ getParameters(Coordinator, Group, Team ,StarterNumber, NameServiceName) ->
     tool:send(Coordinator,NameServiceName,{self(), getsteeringval}),
     receive
         {steeringval, WorkTime, TerminationTime, Quota, ProcessCount} ->
+            io:format("Quota vom Koordiantor: ~p",[Quota]),
             startGGTprocesses(ProcessCount, WorkTime, TerminationTime, Group, Team, StarterNumber, NameServiceName, Coordinator, Quota)
     end.
 
 % Startet die ggt - Prozesse
 startGGTprocesses(0, Delay, TerminationTime, Group, Team, StarterNumber, NameServiceName, Coordinator, Quota) ->
     ClientName = list_to_atom(tool:format("~p~p~p~p",[Group,Team,0,StarterNumber])),
-    spawn(fun() -> ggt_process:init(Delay, TerminationTime, ClientName, NameServiceName, Coordinator, Quota)end);
-
+    spawn(fun() -> ggt_process:init(Delay, TerminationTime, ClientName, NameServiceName, Coordinator, Quota) end);
 startGGTprocesses(ProcessCount, Delay, TerminationTime, Group, Team, StarterNumber, NameServiceName, Coordinator, Quota) ->
     ClientName = list_to_atom(tool:format("~p~p~p~p",[Group,Team,ProcessCount,StarterNumber])),
     spawn(fun() -> ggt_process:init(Delay, TerminationTime, ClientName, NameServiceName, Coordinator, Quota) end),
