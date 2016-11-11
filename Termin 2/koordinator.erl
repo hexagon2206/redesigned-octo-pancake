@@ -105,12 +105,10 @@ initPhase(Koordinatorname,StrVal,StarterNummer,ClientList,Nameservicename,Korrig
 	receive 
 		% STATE SPEZIFIC
 		{From,getsteeringval} ->
-			%TODO : Quote berechnen
-
 			{steeringval,Arbeitszeit,Termzeit,Quote,Ggtprozessnummer} = StrVal,
 
 			SV = {steeringval,Arbeitszeit,Termzeit,round((Ggtprozessnummer+ClientCount)*Quote/100),Ggtprozessnummer},
-			%SV = {steeringval,Arbeitszeit,Termzeit, Quote,Ggtprozessnummer},
+			
 			tool:l(lf(),'Koordinator',"Steuerwerte ~p an ~p",[SV,From]),
 			From ! SV,
 			initPhase(Koordinatorname,StrVal,StarterNummer+1,ClientList,Nameservicename,Korrigieren,Ggtprozessnummer+ClientCount);
@@ -132,7 +130,6 @@ initPhase(Koordinatorname,StrVal,StarterNummer,ClientList,Nameservicename,Korrig
 				ok -> 	tool:l(lf(),'Koordinator',"Unbind Done"),
 						tool:l(lf(),'Koordinator',"Shutting Down")
 			end;
-			%todo Unbind von dings bums
 		reset  -> 
 			reset(Nameservicename,init,ClientList);
 		nudge  ->
@@ -146,52 +143,70 @@ initPhase(Koordinatorname,StrVal,StarterNummer,ClientList,Nameservicename,Korrig
 
 stepp(Koordinatorname,ClientList,Nameservicename,Korrigieren) -> 
 	tool:l(lf(),'Koordinator',"stepping to Calculation, Clients :  ~p",[ClientList]),
-	ring:build(Nameservicename,ClientList),
-	calcPhase(Koordinatorname,ClientList,Nameservicename,Korrigieren).
+	MinMi = ring:build(Nameservicename,ClientList,lf()),
+	calcPhase(Koordinatorname,MinMi,ClientList,Nameservicename,Korrigieren).
 
 
-calcPhase(Koordinatorname,ClientList,Nameservicename,Korrigieren) -> 
+calcPhase(Koordinatorname,MinMi,ClientList,Nameservicename,Korrigieren) -> 
 	% ALL STATES
 	receive
 		toggle ->
-			calcPhase(Koordinatorname,ClientList,Nameservicename,not(Korrigieren)) ;
+			calcPhase(Koordinatorname,MinMi,ClientList,Nameservicename,not(Korrigieren)) ;
 		kill   -> 
-			clientList:destroy(Nameservicename,ClientList);
-			%todo Unbind von dings bums
+			clientList:destroy(Nameservicename,ClientList),
+			tool:l(lf(),'Koordinator',"Unbinding . . . "),
+			NSPID = global:whereis_name(Nameservicename),
+			NSPID ! {self(),{unbind,Koordinatorname}},
+			receive 
+				ok -> 	tool:l(lf(),'Koordinator',"Unbind Done"),
+						tool:l(lf(),'Koordinator',"Shutting Down")
+			end;
 		reset  -> 
 			reset(calculate,Nameservicename,ClientList);
 		nudge  ->
 			spawn( fun() -> Nameservicename,clientList:report(Nameservicename,ClientList)end),
-			calcPhase(Koordinatorname,ClientList,Nameservicename,Korrigieren);
+			calcPhase(Koordinatorname,MinMi,ClientList,Nameservicename,Korrigieren);
 		% CALC STATE
 
 		{calc,WggT} -> 
-			Values=ring:populate(Nameservicename,WggT,ClientList),
-			ring:calculate(Nameservicename,Values,ClientList),
-			calcPhase(Koordinatorname,ClientList,Nameservicename,Korrigieren);	
+			Values=ring:populate(Nameservicename,WggT,ClientList,lf()),
+			ring:calculate(Nameservicename,Values,ClientList,lf()),
+			[NMINIMI|_]=tool:sort(Values),
+			calcPhase(Koordinatorname,NMINIMI,ClientList,Nameservicename,Korrigieren);	
 		
+		
+
+		%Wird verwendet um das bis jetzt beste MI zu bekommen, für korektur notwendig
 		{briefmi,{ClientName,CMi,CZeit}} -> 
 			tool:l(lf(),'Koordinator',"Meldung von ~p um ~p wert : ~p",[ClientName,CZeit,CMi]),
-			calcPhase(Koordinatorname,ClientList,Nameservicename,Korrigieren);	
+			if 
+				MinMi > CMi -> 
+					calcPhase(Koordinatorname,CMi,ClientList,Nameservicename,Korrigieren);
+				true ->
+					calcPhase(Koordinatorname,MinMi,ClientList,Nameservicename,Korrigieren)	
+			end;
 
 		{_From,briefterm,{ClientName,CMi,CZeit}} ->
 			tool:l(lf(),'Koordinator',"Terminierung von ~p um ~p Ergebnis : ~p",[ClientName,CZeit,CMi]),
+			
 			%TODO Korektur senden
-			calcPhase(Koordinatorname,ClientList,Nameservicename,Korrigieren);	
 
+			calcPhase(Koordinatorname,MinMi,ClientList,Nameservicename,Korrigieren);	
 
+		{_PID,{vote,ClientName}} -> 
+			tool:l(lf(),'Koordinator',"Aufruf zur umfrage von  : ~p",[ClientName]),
+			calcPhase(Koordinatorname,MinMi,ClientList,Nameservicename,Korrigieren);	
 		prompt -> 
 			tool:l(lf(),'Koordinator',"prompt"),
-			calcPhase(Koordinatorname,ClientList,Nameservicename,Korrigieren);	
-
+			calcPhase(Koordinatorname,MinMi,ClientList,Nameservicename,Korrigieren);	
 			% prompt:
 			% Der Koordinator erfragt bei allen ggT-Prozessen per tellmi deren aktuelles Mi ab und zeigt dies im log an.
 			%
 			% CALC Phase
 
 		V -> 
-			tool:l(lf(),'Koordinator',"Recived unexpcted in init : ~p",[V]),
-			calcPhase(Koordinatorname,ClientList,Nameservicename,Korrigieren)
+			tool:l(lf(),'Koordinator',"Recived unexpcted in calc : ~p",[V]),
+			calcPhase(Koordinatorname,MinMi,ClientList,Nameservicename,Korrigieren)
 	end.
 
 

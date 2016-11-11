@@ -7,9 +7,19 @@
 -export([l/4]).	% logging mit daten im text
 -export([t/0]).	% Generiert einen Timestamp
 
+-export([sort/1]).
+
+
 -export([format/2]).	% Erfragt eim NameService Die PID des Empfängers und sendet MSG fals möglich an ihn
 
 -export([send/3]).	% Erfragt eim NameService Die PID des Empfängers und sendet MSG fals möglich an ihn
+
+
+sort([Pivot|T]) ->
+    sort([ X || X <- T, X < Pivot]) ++
+    [Pivot] ++
+    sort([ X || X <- T, X >= Pivot]);
+sort([]) -> [].
 
 
 l(File,Who,Text) ->
@@ -17,7 +27,7 @@ l(File,Who,Text) ->
 l(File,Who,Text,Data) ->
 	werkzeug:logging(File,io_lib:format("~p - ~p: "++Text++"~n",[werkzeug:timeMilliSecond(),Who|Data])).
 
-%used for dictgetting a Time Stamp
+%used for getting a Time Stamp
 t() -> erlang:system_time().
 
 format(Text,List) -> 
