@@ -12,7 +12,8 @@ namespace llu{
             unsigned int index;
             E data;
         };
-
+        // simple thread save implementation of a Array, implemented as linked List,
+        // The differenz in the indizes can be enormus
         template <typename E> class LinkedListArray{
             public:
                 LinkedListArray(){

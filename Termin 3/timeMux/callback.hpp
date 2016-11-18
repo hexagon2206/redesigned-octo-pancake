@@ -13,7 +13,8 @@ namespace llu{
 
         typedef unsigned int signal;
 
-
+        //This class can be used for callback registration in an Callback
+        // the C Data is the context of the function fnc, it will be the first parameter wen caled from Callback
         template<typename C,typename D>
         class callback_registration {
             public :
@@ -25,8 +26,14 @@ namespace llu{
         template <typename C,typename D>
         class Callback{
             public :
-                Callback(){
+                //We need to copy the Data we get in signal for each reciver
+                D(*copyFun)(D);
+
+                Callback(D(*copyFun)(D)){
+                    this->copyFun=copyFun;
                 }
+
+                //can be used to register a callboackRegistration for an signal number
                 void registerCallback(signal s,callback_registration<C,D> *c){
                     LinkedList<callback_registration<C,D>*> *tmp = this->registrations.get(s);
                     if(!tmp){
@@ -39,7 +46,7 @@ namespace llu{
                     tmp->append(c);
                 }
 
-
+                //Send a signal, it will automaticly call all registerd hanbdlers in new threads
                 void signal(signal s,D d ){
                     LinkedList<callback_registration<C,D>*> *tmp = this->registrations.get(s);
                     if(!tmp) return;
@@ -50,14 +57,13 @@ namespace llu{
                     while(elem->next){
                         elem=elem->next;
                         callback_registration<C,D>*  cbr=elem->data;
-                        std::thread(cbr->fnc,cbr->data,d).detach();
+                        std::thread(cbr->fnc,cbr->data,copyFun(d)).detach();
                     }
 
                     tmp->lock.unlock();
                 }
 
             private:
-
                 LinkedListArray< LinkedList< callback_registration<C,D>* >* > registrations;
         };
     };

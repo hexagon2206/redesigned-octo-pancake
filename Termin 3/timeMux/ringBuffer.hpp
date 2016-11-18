@@ -8,7 +8,7 @@
 namespace llu{
    namespace datastructs{
 
-
+        //Basic implementation of a Ring buffer
         template <typename D>
         class Ringbuffer{
 
@@ -32,15 +32,17 @@ namespace llu{
                     writePos = readPos = 0;
 
                 }
-
+                //True if it is possible to write data, may be not corect, wen used without lock
                 bool canWrite(){
                     return ((writePos+1)%mySize)!=readPos ;
                 }
+                //True if it is possible to read data, may be not corect, wen used without lock
                 bool canRead(){
                     return writePos!=readPos ;
                 }
 
 
+                //tryes to append D data if there is space in the Ring, returnes true if it was possible, otherwise false
                 bool tryPut(D data){
                     writeCondition_m.lock();
 
@@ -55,6 +57,7 @@ namespace llu{
                     return true;
                 }
 
+                //Putes D data to the ring, blocks till done
                 void put(D data){
                     std::unique_lock<std::mutex> lk(writeCondition_m);
                     while(!canWrite()){writeCondition.wait(lk);}
@@ -66,6 +69,7 @@ namespace llu{
                 }
 
 
+                //reads data from the ring, blocks till done
                 D get(){
                     std::unique_lock<std::mutex> lk(readCondition_m);
                     while(!canRead()){readCondition.wait(lk);}

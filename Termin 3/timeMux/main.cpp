@@ -16,10 +16,9 @@ void callbackHandler(int i,char *t){
 
 using namespace std::chrono;
 
-
 int main(){
 
-    Callback<int,char*> cb;
+    Callback<int,char*> cb([](char *A){return A;});
     llu::datastructs::Ringbuffer<int> ringbuf(5);
 
 

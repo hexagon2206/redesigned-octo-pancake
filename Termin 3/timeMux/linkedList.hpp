@@ -11,6 +11,7 @@ namespace llu{
             E data;
         };
 
+        //very spartanic implementation of a Linked list, which can be used threadsave
         template<typename E> class LinkedList{
             public:
 
