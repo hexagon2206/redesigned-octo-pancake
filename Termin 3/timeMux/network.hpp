@@ -31,6 +31,67 @@ namespace llu{
         using namespace llu::callback;
         using namespace llu::datastructs;
 
+
+        /**
+         * @brief convertes a given value to the Network byte order (big endian)
+         * @param value the value to be converted
+         * @param target a pointer to the data field, where the result should be stored
+         * @note is host byte order agnostic
+         */
+        void toNBO(uint8_t value,uint8_t* target);
+
+        /**
+         * @brief convertes a given byte fiedl in Network byte order to host byte order
+         * @param from where to finde thy byte field ( must be length 8bit)
+         * @return Host byte order representation of the data
+         */
+        uint8_t toHBO_8(uint8_t *from);
+
+        /**
+         * @brief convertes a given value to the Network byte order (big endian)
+         * @param value the value to be converted
+         * @param target a pointer to the data field, where the result should be stored
+         * @note is host byte order agnostic
+         */
+        void toNBO(uint16_t value,uint8_t* target);
+
+        /**
+         * @brief convertes a given byte fiedl in Network byte order to host byte order
+         * @param from where to finde thy byte field ( must be length 16bit)
+         * @return Host byte order representation of the data
+         */
+        uint16_t toHBO_16(uint8_t *from);
+
+        /**
+         * @brief convertes a given value to the Network byte order (big endian)
+         * @param value the value to be converted
+         * @param target a pointer to the data field, where the result should be stored
+         * @note is host byte order agnostic
+         */
+        void toNBO(uint32_t value,uint8_t* target);
+
+        /**
+         * @brief convertes a given byte fiedl in Network byte order to host byte order
+         * @param from where to finde thy byte field ( must be length 32bit)
+         * @return Host byte order representation of the data
+         */
+        uint32_t toHBO_32(uint8_t *from);
+
+        /**
+         * @brief convertes a given value to the Network byte order (big endian)
+         * @param value the value to be converted
+         * @param target a pointer to the data field, where the result should be stored
+         * @note is host byte order agnostic
+         */
+        void toNBO(uint64_t value,uint8_t* target);
+
+        /**
+         * @brief convertes a given byte fiedl in Network byte order to host byte order
+         * @param from where to finde thy byte field ( must be length 64bit)
+         * @return Host byte order representation of the data
+         */
+        uint64_t toHBO_64(uint8_t *from);
+
         /**
          * @brief resolves an Ipv4 and an port to a sockaddr_in
          * @param addr an ascii encodes IPv4 Address

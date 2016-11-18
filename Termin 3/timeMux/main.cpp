@@ -31,22 +31,35 @@ void PrintHandler(void *c,recivedMessage *m){
 }
 
 
+namespace timux{
+    class package{
+        uint8_t klasse[1];
+        uint8_t data[24];
+        uint8_t nextSlot[1];
+        uint8_t time[8];
+    }__attribute__((packed));
+
+};
+
+
 int main(){
     cout << "hallo Welt ?  " << endl;
-    Connection *con = new llu::network::UdpConnection(1,6002);
+    Connection *con = new llu::network::UdpConnection();
     ManagedConnection mcon(con);
 
     netwokMsgCallback printCallback = {&PrintHandler,NULL};
 
-    sendMessage *msg = createSendMessage(128,resolve("127.0.0.1",6001),"test");
 
     mcon.addClassifier(&PrintMatcher);
     mcon.addCallback(ECHO_SIGNAL,&printCallback);
 
-    mcon.sendMsg(msg);
-
+    char text[128];
+    sendMessage *msg;
+    sockaddr_in target = resolve("127.0.0.1",6001);
     while(true){
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        cin >> text;
+        msg = createSendMessage(128,target,text);
+        mcon.sendMsg(msg);
     }
     return 0;
 }
