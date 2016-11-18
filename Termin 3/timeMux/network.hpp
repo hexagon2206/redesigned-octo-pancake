@@ -18,6 +18,7 @@ namespace llu{
 
         struct sendMessage{
             size_t length;
+
             const void *data;
         };
 

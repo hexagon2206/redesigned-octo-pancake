@@ -43,6 +43,8 @@
 		<Unit filename="network.cpp" />
 		<Unit filename="network.hpp" />
 		<Unit filename="ringBuffer.hpp" />
+		<Unit filename="udp.cpp" />
+		<Unit filename="udp.hpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

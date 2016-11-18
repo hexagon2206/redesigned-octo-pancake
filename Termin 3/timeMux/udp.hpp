@@ -3,19 +3,37 @@
 #include <netinet/in.h>
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <netdb.h>
+
+#include <cstring>
+
 
 #include "network.hpp"
-
+#include "ringBuffer.hpp"
 
 namespace llu{
     namespace network{
+        using namespace std;
         class UdpConnection : public Connection {
+            public :
+                UdpConnection(const char *server,uint16_t targetPort,char ttl = 1,uint16_t myPort=0,size_t queueSize=128,size_t maxMsgLeng=128);
+                ~UdpConnection();
 
-            UdpConnection(const char *server,uint16_t port,char ttl = 1);
+                recivedMessage *recvMsg();
 
-            recivedMessage *recvMsg();
+                void sendMsg(sendMessage *m);
 
-            void sendMsg(sendMessage *m);
+            private :
+                recivedMessage *currentMsg;
+                llu::datastructs::Ringbuffer<sendMessage *> *outQueue;
+
+                struct sockaddr_in  cliAddr,
+                                    tmpAddr,
+                                    remoteServAddr;
+                size_t maxMsgLeng;
+                int s;
+                struct hostent *h;
+
 
         };
     };

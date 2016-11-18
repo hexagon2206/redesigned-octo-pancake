@@ -3,7 +3,7 @@
 
 namespace llu{
     namespace network{
-        recivedMessage *createRecivableMessage(size_t bufferSize){
+        recivedMessage *createRecivedMessage(size_t bufferSize){
             recivedMessage *m = (recivedMessage*)malloc(sizeof(recivedMessage)+sizeof(char)*bufferSize);
             m->length       = bufferSize;
             m->dataLength   = 0;
