@@ -1,0 +1,35 @@
+# depslib dependency file v1.0
+1479425862 source:/home/user/timeMux/linkedArray.cpp
+	"linkedArray.hpp"
+
+1479433115 /home/user/timeMux/linkedArray.hpp
+	<stdlib.h>
+	<mutex>
+
+1479439649 source:/home/user/timeMux/main.cpp
+	<iostream>
+	"callback.hpp"
+	"ringBuffer.hpp"
+	<chrono>
+	<thread>
+
+1479425702 source:/home/user/timeMux/linkedList.cpp
+	"linkedList.hpp"
+
+1479433056 /home/user/timeMux/linkedList.hpp
+	<stdlib.h>
+	<mutex>
+
+1479433384 /home/user/timeMux/callback.hpp
+	<stdlib.h>
+	<thread>
+	<mutex>
+	"linkedList.hpp"
+	"linkedArray.hpp"
+
+1479439591 /home/user/timeMux/ringBuffer.hpp
+	<stdlib.h>
+	<condition_variable>
+	<thread>
+	<mutex>
+
