@@ -22,6 +22,17 @@ namespace llu{
                 LinkedListArray(E defaultValue){
                     this->start = {NULL,0,defaultValue};
                 }
+                ~LinkedListArray(){
+                    listArrayEntrie<E> *p =start.next;
+                    listArrayEntrie<E> *op;
+
+                    while(p){
+                        op = p;
+                        p = p->next;
+                        free(op);
+                    }
+
+                }
 
 
                 std::mutex lock;

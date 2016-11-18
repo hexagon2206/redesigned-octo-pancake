@@ -47,6 +47,8 @@ namespace llu{
                 }
 
                 //Send a signal, it will automaticly call all registerd hanbdlers in new threads
+                //a coppy of D is given for each thread, the handler is responsable for thr copy
+                //the caller for the original
                 void signal(signal s,D d ){
                     LinkedList<callback_registration<C,D>*> *tmp = this->registrations.get(s);
                     if(!tmp) return;

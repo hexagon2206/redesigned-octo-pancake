@@ -1,12 +1,7 @@
 #ifndef __LLU_NETWORK_HPP__
 #define __LLU_NETWORK_HPP__
 
-#include <sys/types.h>
-#include <sys/socket.h>
 #include <netinet/in.h>
-#include <arpa/inet.h>
-#include <netdb.h>
-
 #include <stdlib.h>
 
 
@@ -27,8 +22,10 @@ namespace llu{
         };
 
         recivedMessage *createRecivedMessage(size_t bufferSize);
+        void destoryRecivedMessage(recivedMessage *m);
 
         sendMessage *createSendMessage(size_t bufferSize);
+        void destorySendMessage(sendMessage *m);
 
         //interaface class for a connection
         class Connection{
@@ -37,6 +34,7 @@ namespace llu{
             //Die nachricht wird nicht blockierend gesendet und die verantwortung für m liebt bei der Connection
             virtual void sendMsg(sendMessage *m)=0;
         };
+
 
     };
 };

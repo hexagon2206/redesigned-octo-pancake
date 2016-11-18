@@ -32,6 +32,9 @@ namespace llu{
                     writePos = readPos = 0;
 
                 }
+                ~Ringbuffer(){
+                    free(data);
+                }
                 //True if it is possible to write data, may be not corect, wen used without lock
                 bool canWrite(){
                     return ((writePos+1)%mySize)!=readPos ;

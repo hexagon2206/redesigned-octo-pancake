@@ -7,7 +7,7 @@ namespace llu{
     namespace datastructs{
 
         template<typename E> struct listEntrie{
-            struct listEntrie *next;
+            struct listEntrie<E> *next;
             E data;
         };
 
@@ -16,6 +16,16 @@ namespace llu{
             public:
 
                 LinkedList(){
+                }
+                ~LinkedList(){
+                    listEntrie<E> *p =start.next;
+                    listEntrie<E> *op;
+
+                    while(p){
+                        op = p;
+                        p = p->next;
+                        free(op);
+                    }
                 }
 
                 listEntrie<E> start;
