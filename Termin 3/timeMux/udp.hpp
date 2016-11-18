@@ -4,6 +4,8 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netdb.h>
+#include <stdlib.h>
+
 
 #include <cstring>
 
@@ -16,21 +18,24 @@ namespace llu{
         using namespace std;
         class UdpConnection : public Connection {
             public :
-                UdpConnection(const char *server,uint16_t targetPort,char ttl = 1,uint16_t myPort=0,size_t queueSize=128,size_t maxMsgLeng=128);
+                UdpConnection(const char *server,uint16_t targetPort,char ttl = 1,uint16_t myPort=0,size_t maxRcvMsgLeng=128);
                 ~UdpConnection();
 
                 recivedMessage *recvMsg();
 
                 void sendMsg(sendMessage *m);
 
+                bool alive();
+
+                void kill();
+
             private :
                 recivedMessage *currentMsg;
-                llu::datastructs::Ringbuffer<sendMessage *> *outQueue;
 
                 struct sockaddr_in  cliAddr,
                                     tmpAddr,
                                     remoteServAddr;
-                size_t maxMsgLeng;
+                size_t maxRcvMsgLeng;
                 int s;
                 struct hostent *h;
 

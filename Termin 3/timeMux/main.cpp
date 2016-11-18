@@ -41,8 +41,18 @@ int main(){
     cb.signal(11,(char *)"elf");
     cb.signal(12,(char *)"zwoelf");
     cout << "Hello world!" << endl;
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+
+    llu::network::UdpConnection con("127.0.0.1",8600);
+
+    llu::network::sendMessage msg = {4,(void*)"bob"};
+
+    con.sendMsg(&msg);
+
 
     std::this_thread::sleep_for(std::chrono::seconds(20));
+
+
     return 0;
 }
 

@@ -34,6 +34,7 @@ namespace llu{
                 }
 
                 //can be used to register a callboackRegistration for an signal number
+                //Zuständigkeit für c liegt bei dem aufruffer
                 void registerCallback(signal s,callback_registration<C,D> *c){
                     LinkedList<callback_registration<C,D>*> *tmp = this->registrations.get(s);
                     if(!tmp){
