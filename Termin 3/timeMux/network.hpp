@@ -1,10 +1,16 @@
 #ifndef __LLU_NETWORK_HPP__
 #define __LLU_NETWORK_HPP__
 
-#include <netinet/in.h>
 #include <stdlib.h>
 #include <string.h>
 #include <thread>
+#include <netdb.h>
+#include <stdlib.h>
+
+
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
 
 #include "callback.hpp"
 #include "ringBuffer.hpp"
@@ -19,6 +25,8 @@ namespace llu{
         using namespace llu::callback;
         using namespace llu::datastructs;
 
+        sockaddr_in resolve(const char*addr,uint16_t port);
+
         struct recivedMessage{
             size_t length;
             size_t dataLength;
@@ -28,14 +36,14 @@ namespace llu{
 
         struct sendMessage{
             size_t length;
-
-            const void *data;
+            sockaddr_in target;
+            void *data;
         };
 
         recivedMessage *createRecivedMessage(size_t bufferSize);
         void destoryRecivedMessage(recivedMessage *m);
 
-        sendMessage *createSendMessage(size_t bufferSize);
+        sendMessage *createSendMessage(size_t bufferSize,sockaddr_in target,const void *from);
         void destorySendMessage(sendMessage *m);
 
         //interaface class for a connection, NOT THREAD SAFE
@@ -60,6 +68,8 @@ namespace llu{
 
 
 
+        typedef callback_registration<void *,recivedMessage*> netwokMsgCallback;
+
         class ManagedConnection{
             public:
                 ManagedConnection(Connection *con);
@@ -67,7 +77,7 @@ namespace llu{
 
                 void sendMsg(sendMessage *m);
                 void addClassifier(recivedMessageClassifier c);
-                void addCallback(signal s,callback_registration<void *,recivedMessage*> *calback);
+                void addCallback(signal s,netwokMsgCallback *calback);
                 void kill();
                 bool alive();
 
@@ -75,13 +85,13 @@ namespace llu{
 
 
                 thread *senderThread;
-                static void sender(Connection *con,Ringbuffer<sendMessage> *outBuffer);
+                static void sender(Connection *con,Ringbuffer<sendMessage *> *outBuffer);
 
                 thread *reciverThread;
                 static void reciver(Connection *con,Callback<void *,recivedMessage *> *callbackHandler,LinkedList<recivedMessageClassifier> *classifiers);
 
                 Connection *con;
-                Ringbuffer<sendMessage> *outBuffer;
+                Ringbuffer<sendMessage*> *outBuffer;
                 Callback<void *,recivedMessage *> *callbackHandler;
                 LinkedList<recivedMessageClassifier> *classifiers;
         };

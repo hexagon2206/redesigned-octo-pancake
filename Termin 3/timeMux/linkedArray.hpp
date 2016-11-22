@@ -14,7 +14,7 @@ namespace llu{
         };
         // simple thread save implementation of a Array, implemented as linked List,
         // The differenz in the indizes can be enormus
-        template <typename E> class LinkedListArray{
+        template <typename E> class LinkedListArray {
             public:
                 LinkedListArray(){
                     this->start = {NULL,0,(E)NULL};

@@ -4,55 +4,50 @@
 #include "udp.hpp"
 #include <chrono>
 #include <thread>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
+#include <mutex>
 
 using namespace std;
 using namespace llu::callback;
+using namespace llu::network;
 
 
-typedef callback_registration<int,char*> cbr;
-
-void callbackHandler(int i,char *t){
-    cout << i << ":"<<t<<endl;
+#define ECHO_SIGNAL (1)
+bool PrintMatcher(recivedMessage* m,signal* s){
+    *s=ECHO_SIGNAL;
+    return true;
 }
 
-using namespace std::chrono;
+mutex screenLock;
+void PrintHandler(void *c,recivedMessage *m){
+    screenLock.lock();
+    char *p = ((char*)m->data);
+    p[m->dataLength-1]=0x0;
+    cout << inet_ntoa(m->sender.sin_addr) << ":"<<ntohs(m->sender.sin_port) << " > " << p << endl;
+    screenLock.unlock();
+    destoryRecivedMessage(m);
+}
+
 
 int main(){
+    cout << "hallo Welt ?  " << endl;
+    Connection *con = new llu::network::UdpConnection(1,6002);
+    ManagedConnection mcon(con);
 
-    Callback<int,char*> cb([](char *A){return A;});
-    llu::datastructs::Ringbuffer<int> ringbuf(5);
+    netwokMsgCallback printCallback = {&PrintHandler,NULL};
 
+    sendMessage *msg = createSendMessage(128,resolve("127.0.0.1",6001),"test");
 
-    cbr callbacks[]={
-        {&callbackHandler,1},
-        {&callbackHandler,2},
-        {&callbackHandler,3},
-        {&callbackHandler,4}};
+    mcon.addClassifier(&PrintMatcher);
+    mcon.addCallback(ECHO_SIGNAL,&printCallback);
 
-    cb.registerCallback(10,callbacks);
-    cb.registerCallback(11,callbacks);
-    cb.registerCallback(12,callbacks);
-    cb.registerCallback(13,callbacks);
-    cb.registerCallback(11,callbacks+1);
-    cb.registerCallback(12,callbacks+2);
-    cb.registerCallback(13,callbacks+3);
+    mcon.sendMsg(msg);
 
-    cb.signal(10,(char *)"zehn");
-    cb.signal(11,(char *)"elf");
-    cb.signal(12,(char *)"zwoelf");
-    cout << "Hello world!" << endl;
-    std::this_thread::sleep_for(std::chrono::seconds(2));
-
-    llu::network::UdpConnection con("127.0.0.1",8600);
-
-    llu::network::sendMessage msg = {4,(void*)"bob"};
-
-    con.sendMsg(&msg);
-
-
-    std::this_thread::sleep_for(std::chrono::seconds(20));
-
-
+    while(true){
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+    }
     return 0;
 }
 

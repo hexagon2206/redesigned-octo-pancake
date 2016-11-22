@@ -61,8 +61,9 @@ namespace llu{
                         elem=elem->next;
                         callback_registration<C,D>*  cbr=elem->data;
                         std::thread(cbr->fnc,cbr->data,copyFun(d)).detach();
+                        //t->detach();
                     }
-
+                    destoryRecivedMessage(d);
                     tmp->lock.unlock();
                 }
 

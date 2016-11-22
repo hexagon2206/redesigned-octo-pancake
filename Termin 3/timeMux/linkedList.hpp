@@ -52,6 +52,23 @@ namespace llu{
 
                     this->lock.unlock();
                 }
+
+                bool contains(bool (*comparer)(E,E),E elem){
+                    bool toret=false;
+                    this->lock.lock();
+
+                    listEntrie<E> *ptr = &(this->start);
+
+                    while(ptr->next){
+                        ptr = ptr->next;
+                        if(comparer(ptr->data,elem)){
+                            toret = true;
+                            break;
+                        }
+                    }
+                    this->lock.unlock();
+                    return toret;
+                }
         };
 
     };
