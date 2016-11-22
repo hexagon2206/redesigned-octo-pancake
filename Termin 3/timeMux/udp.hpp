@@ -1,3 +1,9 @@
+/** @file udp.hpp
+ *  @brief Prototypes for a udp network konnection implementation.
+ *  @author Lukas Lühr (hexagon2206)
+ *  @bug No known bugs.
+ */
+
 #ifndef __LLU_UDP_H__
 #define __LLU_UDP_H__
 #include <netinet/in.h>
