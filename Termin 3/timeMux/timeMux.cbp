@@ -76,6 +76,14 @@
 		<Unit filename="network.cpp" />
 		<Unit filename="network.hpp" />
 		<Unit filename="ringBuffer.hpp" />
+		<Unit filename="timux.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="timux.hpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="udp.cpp" />
 		<Unit filename="udp.hpp" />
 		<Extensions>

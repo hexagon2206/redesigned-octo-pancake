@@ -191,6 +191,7 @@ namespace llu{
         recivedMessage *copyRecivedMessage(recivedMessage *r);
 
 
+        typedef bool (recivedMessageClassifierType)(recivedMessage*,signal*);
         typedef bool (*recivedMessageClassifier)(recivedMessage*,signal*);
 
 
