@@ -104,6 +104,20 @@ namespace llu{
                     return toret;
                 }
 
+                /**
+                 * @brief disables the writing part of the ring buffer
+                 */
+                void lock(){
+                    writeCondition_m.lock();
+                }
+
+                /**
+                 * @brief reanables the writing part of the ring buffer
+                 * @note must be caled form the same thread aslock
+                 */
+                void unlock(){
+                    writeCondition_m.unlock();
+                }
 
             private :
                 D *data;

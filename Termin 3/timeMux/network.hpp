@@ -259,6 +259,18 @@ namespace llu{
                  */
                 Connection *raw();
 
+                /**
+                 * @brief locks the connection for writing
+                 */
+                void lockWrite();
+
+                /**
+                 * @brief unlocks the connection for writing
+                 * @note must be caled from the same thread as lockWrite
+                 */
+                 void unlockWrite();
+
+
             private:
 
                 /**

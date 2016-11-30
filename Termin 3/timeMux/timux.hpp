@@ -79,6 +79,7 @@ namespace timux{
         private:
             llu::network::netwokMsgCallback MsgCalback;
 
+            sockaddr_in target;
 
             unsigned long curentFrame;
             unsigned long lastSendIn=0;
@@ -91,15 +92,31 @@ namespace timux{
             int ready=false;
             int mySlot=-1;
 
-            enum State{
-                waitingForNewSlot,
-                lookingForSlot,
-                sending,
-                sleeping
-            };
+            uint8_t stationClass='B';
 
+            /**
+             * @brief cleans freeNextSlots and collisions
+             */
             void setupNextFrame();
 
+            /**
+              * @brief builds a Massage from data source
+              */
+            package *build();
+
+            /**
+             * @brief sends the pacakge p over the RAW connection of con
+             * the caller is no longer responable for p
+             */
+            void send(package *p);
+
+
+            uint8_t *dummyData=(uint8_t *)"12345678901234567890123";   //24bit dummy Data + Nullterminator
+
+            uint8_t *sendData;
+            std::mutex sendDataLock;
+
+            llu::network::ManagedConnection *con;
 
         public:
             timing t;
@@ -108,7 +125,7 @@ namespace timux{
 
             void recived(msg *m);
 
-            timux(llu::network::ManagedConnection *con,unsigned long frameLength,unsigned long slotCount);
+            timux(llu::network::ManagedConnection *con,unsigned long frameLength,unsigned long slotCount,sockaddr_in target);
 
             void loop();
 

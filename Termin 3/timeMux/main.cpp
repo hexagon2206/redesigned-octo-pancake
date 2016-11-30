@@ -30,13 +30,14 @@ using namespace timux;
 int main(){
     srand(time(NULL));
     cout << "hallo Welt ?  " << endl;
+
     Connection *con = new llu::network::UdpConnection();
     ManagedConnection mcon(con);
 
     sockaddr_in target = resolve("127.0.0.1",6001);
 
 
-    timux::timux timuxMain(&mcon,1000,25);
+    timux::timux timuxMain(&mcon,1000,25,target);
 
     timuxMain.loop();
 
