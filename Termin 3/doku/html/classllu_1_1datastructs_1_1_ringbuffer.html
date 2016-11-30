@@ -123,6 +123,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aba608e48dea9366fe553341301409508"><td class="memItemLeft" align="right" valign="top">D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html#aba608e48dea9366fe553341301409508">get</a> ()</td></tr>
 <tr class="memdesc:aba608e48dea9366fe553341301409508"><td class="mdescLeft">&#160;</td><td class="mdescRight">reads data form the buffer, blocks till done  <a href="#aba608e48dea9366fe553341301409508">More...</a><br /></td></tr>
 <tr class="separator:aba608e48dea9366fe553341301409508"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3ef1d293fe716106cf8b22259d6970b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html#ab3ef1d293fe716106cf8b22259d6970b">lock</a> ()</td></tr>
+<tr class="memdesc:ab3ef1d293fe716106cf8b22259d6970b"><td class="mdescLeft">&#160;</td><td class="mdescRight">disables the writing part of the ring buffer  <a href="#ab3ef1d293fe716106cf8b22259d6970b">More...</a><br /></td></tr>
+<tr class="separator:ab3ef1d293fe716106cf8b22259d6970b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0f39cea25a6c196a5c16f3cc8534827"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html#af0f39cea25a6c196a5c16f3cc8534827">unlock</a> ()</td></tr>
+<tr class="memdesc:af0f39cea25a6c196a5c16f3cc8534827"><td class="mdescLeft">&#160;</td><td class="mdescRight">reanables the writing part of the ring buffer  <a href="#af0f39cea25a6c196a5c16f3cc8534827">More...</a><br /></td></tr>
+<tr class="separator:af0f39cea25a6c196a5c16f3cc8534827"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename D&gt;<br />
@@ -130,6 +136,8 @@ class llu::datastructs::Ringbuffer&lt; D &gt;</h3>
 
 <p>Basic implementation of a generik and thread save Ring buffer. </p>
 <p>D is the type of data the buffer accepts </p>
+
+<p>Definition at line <a class="el" href="ring_buffer_8hpp_source.html#l00023">23</a> of file <a class="el" href="ring_buffer_8hpp_source.html">ringBuffer.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ab214a718ecf06d2911bd6f1e0e597fd8"></a>
 <div class="memitem">
@@ -163,6 +171,8 @@ template&lt;typename D&gt; </div>
   </dd>
 </dl>
 
+<p>Definition at line <a class="el" href="ring_buffer_8hpp_source.html#l00030">30</a> of file <a class="el" href="ring_buffer_8hpp_source.html">ringBuffer.hpp</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a18eaeb15f671f0ff28f8f6331d8e8cb5"></a>
@@ -187,6 +197,8 @@ template&lt;typename D&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="ring_buffer_8hpp_source.html#l00037">37</a> of file <a class="el" href="ring_buffer_8hpp_source.html">ringBuffer.hpp</a>.</p>
 
 </div>
 </div>
@@ -217,6 +229,8 @@ template&lt;typename D&gt; </div>
 <p>Used to check if data is available to be read. </p>
 <dl class="section return"><dt>Returns</dt><dd>True if it is possible to read data, may be not corect, wen used without lock </dd></dl>
 
+<p>Definition at line <a class="el" href="ring_buffer_8hpp_source.html#l00053">53</a> of file <a class="el" href="ring_buffer_8hpp_source.html">ringBuffer.hpp</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a42ad2af5a94eb3400aacbc02ff8f273f"></a>
@@ -245,6 +259,8 @@ template&lt;typename D&gt; </div>
 <p>Used to check if space for data is available to. </p>
 <dl class="section return"><dt>Returns</dt><dd>True if it is possible to write data, may be not corect, wen used without lock </dd></dl>
 
+<p>Definition at line <a class="el" href="ring_buffer_8hpp_source.html#l00044">44</a> of file <a class="el" href="ring_buffer_8hpp_source.html">ringBuffer.hpp</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="aba608e48dea9366fe553341301409508"></a>
@@ -272,6 +288,37 @@ template&lt;typename D&gt; </div>
 
 <p>reads data form the buffer, blocks till done </p>
 <dl class="section return"><dt>Returns</dt><dd>data from the ring </dd></dl>
+
+<p>Definition at line <a class="el" href="ring_buffer_8hpp_source.html#l00096">96</a> of file <a class="el" href="ring_buffer_8hpp_source.html">ringBuffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab3ef1d293fe716106cf8b22259d6970b"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename D&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html">llu::datastructs::Ringbuffer</a>&lt; D &gt;::lock </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>disables the writing part of the ring buffer </p>
+
+<p>Definition at line <a class="el" href="ring_buffer_8hpp_source.html#l00110">110</a> of file <a class="el" href="ring_buffer_8hpp_source.html">ringBuffer.hpp</a>.</p>
 
 </div>
 </div>
@@ -306,6 +353,8 @@ template&lt;typename D&gt; </div>
   </table>
   </dd>
 </dl>
+
+<p>Definition at line <a class="el" href="ring_buffer_8hpp_source.html#l00081">81</a> of file <a class="el" href="ring_buffer_8hpp_source.html">ringBuffer.hpp</a>.</p>
 
 </div>
 </div>
@@ -342,6 +391,38 @@ template&lt;typename D&gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if it was possible, otherwise false </dd></dl>
 
+<p>Definition at line <a class="el" href="ring_buffer_8hpp_source.html#l00063">63</a> of file <a class="el" href="ring_buffer_8hpp_source.html">ringBuffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af0f39cea25a6c196a5c16f3cc8534827"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename D&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html">llu::datastructs::Ringbuffer</a>&lt; D &gt;::unlock </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>reanables the writing part of the ring buffer </p>
+<dl class="section note"><dt>Note</dt><dd>must be caled form the same thread aslock </dd></dl>
+
+<p>Definition at line <a class="el" href="ring_buffer_8hpp_source.html#l00118">118</a> of file <a class="el" href="ring_buffer_8hpp_source.html">ringBuffer.hpp</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
@@ -350,7 +431,7 @@ template&lt;typename D&gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 22 2016 23:30:59 for timux by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 30 2016 15:33:43 for timux by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

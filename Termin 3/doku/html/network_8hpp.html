@@ -119,7 +119,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="network_8hpp__dep__incl.png" border="0" usemap="#time_mux_2network_8hppdep" alt=""/></div>
 <map name="time_mux_2network_8hppdep" id="time_mux_2network_8hppdep">
-<area shape="rect" id="node2" href="udp_8hpp.html" title="Prototypes for a udp network konnection implementation. " alt="" coords="186,80,309,107"/><area shape="rect" id="node6" href="network_8cpp.html" title="timeMux/network.cpp" alt="" coords="333,80,479,107"/><area shape="rect" id="node3" href="bc_server_8cpp.html" title="timeMux/bcServer.cpp" alt="" coords="5,155,159,181"/><area shape="rect" id="node4" href="main_8cpp.html" title="timeMux/main.cpp" alt="" coords="183,155,312,181"/><area shape="rect" id="node5" href="udp_8cpp.html" title="timeMux/udp.cpp" alt="" coords="337,155,459,181"/></map>
+<area shape="rect" id="node2" href="udp_8hpp.html" title="Prototypes for a udp network konnection implementation. " alt="" coords="183,80,306,107"/><area shape="rect" id="node6" href="timux_8hpp.html" title="timeMux/timux.hpp" alt="" coords="330,80,463,107"/><area shape="rect" id="node8" href="network_8cpp.html" title="Implementation of al general network stuff. " alt="" coords="487,80,634,107"/><area shape="rect" id="node3" href="bc_server_8cpp.html" title="Implementation of a UDP Broadcast server for testing. " alt="" coords="5,155,159,181"/><area shape="rect" id="node4" href="main_8cpp.html" title="Startsup the Timux System. " alt="" coords="331,155,460,181"/><area shape="rect" id="node5" href="udp_8cpp.html" title="Implementation of a UDP Connection. " alt="" coords="183,155,306,181"/><area shape="rect" id="node7" href="timux_8cpp.html" title="Implementation of The TIMUX logic. " alt="" coords="485,155,618,181"/></map>
 </div>
 </div>
 <p><a href="network_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -135,6 +135,7 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1network_1_1_connection.html">llu::network::Connection</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1network_1_1_managed_connection.html">llu::network::ManagedConnection</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a Managed form of a <a class="el" href="classllu_1_1network_1_1_connection.html">Connection</a> implements callbacks on massage recive internayls uses a callback handler  <a href="classllu_1_1network_1_1_managed_connection.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
@@ -147,14 +148,44 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a87e08dcb9ddcbeacd8bfbe47ed6d91e4"><td class="memItemLeft" align="right" valign="top">typedef bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacellu_1_1network.html#a87e08dcb9ddcbeacd8bfbe47ed6d91e4">llu::network::recivedMessageClassifier</a> )(recivedMessage *, <a class="el" href="namespacellu_1_1callback.html#a082ed24306809c4d250bd5ddfbae177f">signal</a> *)</td></tr>
-<tr class="separator:a87e08dcb9ddcbeacd8bfbe47ed6d91e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62e69230f04d1998f17b11e3bcc2d121"><td class="memItemLeft" align="right" valign="top">typedef bool(&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacellu_1_1network.html#a62e69230f04d1998f17b11e3bcc2d121">llu::network::recivedMessageClassifierType</a> )(recivedMessage *, <a class="el" href="namespacellu_1_1callback.html#a082ed24306809c4d250bd5ddfbae177f">signal</a> *)</td></tr>
+<tr class="memdesc:a62e69230f04d1998f17b11e3bcc2d121"><td class="mdescLeft">&#160;</td><td class="mdescRight">a Classifiere for massages recived Messages, the type  <a href="#a62e69230f04d1998f17b11e3bcc2d121">More...</a><br /></td></tr>
+<tr class="separator:a62e69230f04d1998f17b11e3bcc2d121"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac629c1180a0bee8ddef541f73cb3e5f9"><td class="memItemLeft" align="right" valign="top">typedef <br class="typebreak" />
+recivedMessageClassifierType *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacellu_1_1network.html#ac629c1180a0bee8ddef541f73cb3e5f9">llu::network::recivedMessageClassifier</a></td></tr>
+<tr class="memdesc:ac629c1180a0bee8ddef541f73cb3e5f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">the classifier pointer  <a href="#ac629c1180a0bee8ddef541f73cb3e5f9">More...</a><br /></td></tr>
+<tr class="separator:ac629c1180a0bee8ddef541f73cb3e5f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a999d34263abe84a87d12271383c606b9"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classllu_1_1callback_1_1callback__registration.html">callback_registration</a><br class="typebreak" />
 &lt; void *, recivedMessage * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacellu_1_1network.html#a999d34263abe84a87d12271383c606b9">llu::network::netwokMsgCallback</a></td></tr>
+<tr class="memdesc:a999d34263abe84a87d12271383c606b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">an callback registration for a mannaged connection  <a href="#a999d34263abe84a87d12271383c606b9">More...</a><br /></td></tr>
 <tr class="separator:a999d34263abe84a87d12271383c606b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a9db735ab1f182142c349fc313e33c32d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacellu_1_1network.html#a9db735ab1f182142c349fc313e33c32d">llu::network::toNBO</a> (uint8_t value, uint8_t *target)</td></tr>
+<tr class="memdesc:a9db735ab1f182142c349fc313e33c32d"><td class="mdescLeft">&#160;</td><td class="mdescRight">convertes a given value to the Network byte order (big endian)  <a href="#a9db735ab1f182142c349fc313e33c32d">More...</a><br /></td></tr>
+<tr class="separator:a9db735ab1f182142c349fc313e33c32d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec38b31ea6f294a14c7c3f9e426b312d"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacellu_1_1network.html#aec38b31ea6f294a14c7c3f9e426b312d">llu::network::toHBO_8</a> (uint8_t *from)</td></tr>
+<tr class="memdesc:aec38b31ea6f294a14c7c3f9e426b312d"><td class="mdescLeft">&#160;</td><td class="mdescRight">convertes a given byte fiedl in Network byte order to host byte order  <a href="#aec38b31ea6f294a14c7c3f9e426b312d">More...</a><br /></td></tr>
+<tr class="separator:aec38b31ea6f294a14c7c3f9e426b312d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1dd1b9198bfbe8d3fd01ca358d8d538"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacellu_1_1network.html#aa1dd1b9198bfbe8d3fd01ca358d8d538">llu::network::toNBO</a> (uint16_t value, uint8_t *target)</td></tr>
+<tr class="memdesc:aa1dd1b9198bfbe8d3fd01ca358d8d538"><td class="mdescLeft">&#160;</td><td class="mdescRight">convertes a given value to the Network byte order (big endian)  <a href="#aa1dd1b9198bfbe8d3fd01ca358d8d538">More...</a><br /></td></tr>
+<tr class="separator:aa1dd1b9198bfbe8d3fd01ca358d8d538"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c358826dbd0c43ec751139dca87ab71"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacellu_1_1network.html#a6c358826dbd0c43ec751139dca87ab71">llu::network::toHBO_16</a> (uint8_t *from)</td></tr>
+<tr class="memdesc:a6c358826dbd0c43ec751139dca87ab71"><td class="mdescLeft">&#160;</td><td class="mdescRight">convertes a given byte fiedl in Network byte order to host byte order  <a href="#a6c358826dbd0c43ec751139dca87ab71">More...</a><br /></td></tr>
+<tr class="separator:a6c358826dbd0c43ec751139dca87ab71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0132a9cde9b08a16e9b05709ea16a2b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacellu_1_1network.html#a0132a9cde9b08a16e9b05709ea16a2b9">llu::network::toNBO</a> (uint32_t value, uint8_t *target)</td></tr>
+<tr class="memdesc:a0132a9cde9b08a16e9b05709ea16a2b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">convertes a given value to the Network byte order (big endian)  <a href="#a0132a9cde9b08a16e9b05709ea16a2b9">More...</a><br /></td></tr>
+<tr class="separator:a0132a9cde9b08a16e9b05709ea16a2b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2222539df59075cc6f892b12956968eb"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacellu_1_1network.html#a2222539df59075cc6f892b12956968eb">llu::network::toHBO_32</a> (uint8_t *from)</td></tr>
+<tr class="memdesc:a2222539df59075cc6f892b12956968eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">convertes a given byte fiedl in Network byte order to host byte order  <a href="#a2222539df59075cc6f892b12956968eb">More...</a><br /></td></tr>
+<tr class="separator:a2222539df59075cc6f892b12956968eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0b046f65433995d5150c3f8251e7d07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacellu_1_1network.html#af0b046f65433995d5150c3f8251e7d07">llu::network::toNBO</a> (uint64_t value, uint8_t *target)</td></tr>
+<tr class="memdesc:af0b046f65433995d5150c3f8251e7d07"><td class="mdescLeft">&#160;</td><td class="mdescRight">convertes a given value to the Network byte order (big endian)  <a href="#af0b046f65433995d5150c3f8251e7d07">More...</a><br /></td></tr>
+<tr class="separator:af0b046f65433995d5150c3f8251e7d07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af97d326c7853fc1b5932a56b8cc8e4b6"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacellu_1_1network.html#af97d326c7853fc1b5932a56b8cc8e4b6">llu::network::toHBO_64</a> (uint8_t *from)</td></tr>
+<tr class="memdesc:af97d326c7853fc1b5932a56b8cc8e4b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">convertes a given byte fiedl in Network byte order to host byte order  <a href="#af97d326c7853fc1b5932a56b8cc8e4b6">More...</a><br /></td></tr>
+<tr class="separator:af97d326c7853fc1b5932a56b8cc8e4b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae50fed51b566b947fd0cb1a4efbb3b12"><td class="memItemLeft" align="right" valign="top">sockaddr_in&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacellu_1_1network.html#ae50fed51b566b947fd0cb1a4efbb3b12">llu::network::resolve</a> (const char *addr, uint16_t port)</td></tr>
 <tr class="memdesc:ae50fed51b566b947fd0cb1a4efbb3b12"><td class="mdescLeft">&#160;</td><td class="mdescRight">resolves an Ipv4 and an port to a sockaddr_in  <a href="#ae50fed51b566b947fd0cb1a4efbb3b12">More...</a><br /></td></tr>
 <tr class="separator:ae50fed51b566b947fd0cb1a4efbb3b12"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -177,11 +208,13 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Prototypes for network comunikation. </p>
 <dl class="section author"><dt>Author</dt><dd>Lukas Lühr (hexagon2206) </dd></dl>
-<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000004">Bug:</a></b></dt><dd>No known bugs. </dd></dl>
+<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000007">Bug:</a></b></dt><dd>No known bugs. </dd></dl>
+
+<p>Definition in file <a class="el" href="network_8hpp_source.html">network.hpp</a>.</p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 22 2016 23:30:59 for timux by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 30 2016 15:33:42 for timux by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

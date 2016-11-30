@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['linkedlist',['LinkedList',['../classllu_1_1datastructs_1_1_linked_list.html#ae12ddd9d50e228bc8602e902c2e4909e',1,'llu::datastructs::LinkedList']]],
-  ['linkedlistarray',['LinkedListArray',['../classllu_1_1datastructs_1_1_linked_list_array.html#abc6ac1822c04f74d5df08c500fb404c1',1,'llu::datastructs::LinkedListArray::LinkedListArray()'],['../classllu_1_1datastructs_1_1_linked_list_array.html#aed92b975cd23466ae97c8348a6caaf10',1,'llu::datastructs::LinkedListArray::LinkedListArray(E defaultValue)']]]
+  ['kill',['kill',['../classllu_1_1network_1_1_connection.html#a7e620755dde598fffc96d3ee6b3326a1',1,'llu::network::Connection::kill()'],['../classllu_1_1network_1_1_managed_connection.html#a04c4198e03082243885c058d7e703e8e',1,'llu::network::ManagedConnection::kill()'],['../classllu_1_1network_1_1_udp_connection.html#a97a62c2ab3975d9716f965aacc2f28fc',1,'llu::network::UdpConnection::kill()']]]
 ];

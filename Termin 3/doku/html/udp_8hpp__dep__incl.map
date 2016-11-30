@@ -1,5 +1,5 @@
 <map id="timeMux/udp.hpp" name="timeMux/udp.hpp">
-<area shape="rect" id="node2" href="$bc_server_8cpp.html" title="timeMux/bcServer.cpp" alt="" coords="5,80,159,107"/>
-<area shape="rect" id="node3" href="$main_8cpp.html" title="timeMux/main.cpp" alt="" coords="183,80,312,107"/>
-<area shape="rect" id="node4" href="$udp_8cpp.html" title="timeMux/udp.cpp" alt="" coords="337,80,459,107"/>
+<area shape="rect" id="node2" href="$bc_server_8cpp.html" title="Implementation of a UDP Broadcast server for testing. " alt="" coords="5,80,159,107"/>
+<area shape="rect" id="node3" href="$main_8cpp.html" title="Startsup the Timux System. " alt="" coords="183,80,312,107"/>
+<area shape="rect" id="node4" href="$udp_8cpp.html" title="Implementation of a UDP Connection. " alt="" coords="337,80,459,107"/>
 </map>

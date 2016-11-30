@@ -103,6 +103,7 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1network_1_1_connection.html">Connection</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1network_1_1_managed_connection.html">ManagedConnection</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a Managed form of a <a class="el" href="classllu_1_1network_1_1_connection.html">Connection</a> implements callbacks on massage recive internayls uses a callback handler  <a href="classllu_1_1network_1_1_managed_connection.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structllu_1_1network_1_1recived_message.html">recivedMessage</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">an recived message from an <a class="el" href="classllu_1_1network_1_1_connection.html">Connection</a> object  <a href="structllu_1_1network_1_1recived_message.html#details">More...</a><br /></td></tr>
@@ -115,14 +116,44 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a87e08dcb9ddcbeacd8bfbe47ed6d91e4"><td class="memItemLeft" align="right" valign="top">typedef bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacellu_1_1network.html#a87e08dcb9ddcbeacd8bfbe47ed6d91e4">recivedMessageClassifier</a> )(<a class="el" href="structllu_1_1network_1_1recived_message.html">recivedMessage</a> *, <a class="el" href="namespacellu_1_1callback.html#a082ed24306809c4d250bd5ddfbae177f">signal</a> *)</td></tr>
-<tr class="separator:a87e08dcb9ddcbeacd8bfbe47ed6d91e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62e69230f04d1998f17b11e3bcc2d121"><td class="memItemLeft" align="right" valign="top">typedef bool(&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacellu_1_1network.html#a62e69230f04d1998f17b11e3bcc2d121">recivedMessageClassifierType</a> )(<a class="el" href="structllu_1_1network_1_1recived_message.html">recivedMessage</a> *, <a class="el" href="namespacellu_1_1callback.html#a082ed24306809c4d250bd5ddfbae177f">signal</a> *)</td></tr>
+<tr class="memdesc:a62e69230f04d1998f17b11e3bcc2d121"><td class="mdescLeft">&#160;</td><td class="mdescRight">a Classifiere for massages recived Messages, the type  <a href="#a62e69230f04d1998f17b11e3bcc2d121">More...</a><br /></td></tr>
+<tr class="separator:a62e69230f04d1998f17b11e3bcc2d121"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac629c1180a0bee8ddef541f73cb3e5f9"><td class="memItemLeft" align="right" valign="top">typedef <br class="typebreak" />
+<a class="el" href="namespacellu_1_1network.html#a62e69230f04d1998f17b11e3bcc2d121">recivedMessageClassifierType</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacellu_1_1network.html#ac629c1180a0bee8ddef541f73cb3e5f9">recivedMessageClassifier</a></td></tr>
+<tr class="memdesc:ac629c1180a0bee8ddef541f73cb3e5f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">the classifier pointer  <a href="#ac629c1180a0bee8ddef541f73cb3e5f9">More...</a><br /></td></tr>
+<tr class="separator:ac629c1180a0bee8ddef541f73cb3e5f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a999d34263abe84a87d12271383c606b9"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classllu_1_1callback_1_1callback__registration.html">callback_registration</a><br class="typebreak" />
 &lt; void *, <a class="el" href="structllu_1_1network_1_1recived_message.html">recivedMessage</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacellu_1_1network.html#a999d34263abe84a87d12271383c606b9">netwokMsgCallback</a></td></tr>
+<tr class="memdesc:a999d34263abe84a87d12271383c606b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">an callback registration for a mannaged connection  <a href="#a999d34263abe84a87d12271383c606b9">More...</a><br /></td></tr>
 <tr class="separator:a999d34263abe84a87d12271383c606b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a9db735ab1f182142c349fc313e33c32d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacellu_1_1network.html#a9db735ab1f182142c349fc313e33c32d">toNBO</a> (uint8_t value, uint8_t *target)</td></tr>
+<tr class="memdesc:a9db735ab1f182142c349fc313e33c32d"><td class="mdescLeft">&#160;</td><td class="mdescRight">convertes a given value to the Network byte order (big endian)  <a href="#a9db735ab1f182142c349fc313e33c32d">More...</a><br /></td></tr>
+<tr class="separator:a9db735ab1f182142c349fc313e33c32d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec38b31ea6f294a14c7c3f9e426b312d"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacellu_1_1network.html#aec38b31ea6f294a14c7c3f9e426b312d">toHBO_8</a> (uint8_t *from)</td></tr>
+<tr class="memdesc:aec38b31ea6f294a14c7c3f9e426b312d"><td class="mdescLeft">&#160;</td><td class="mdescRight">convertes a given byte fiedl in Network byte order to host byte order  <a href="#aec38b31ea6f294a14c7c3f9e426b312d">More...</a><br /></td></tr>
+<tr class="separator:aec38b31ea6f294a14c7c3f9e426b312d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1dd1b9198bfbe8d3fd01ca358d8d538"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacellu_1_1network.html#aa1dd1b9198bfbe8d3fd01ca358d8d538">toNBO</a> (uint16_t value, uint8_t *target)</td></tr>
+<tr class="memdesc:aa1dd1b9198bfbe8d3fd01ca358d8d538"><td class="mdescLeft">&#160;</td><td class="mdescRight">convertes a given value to the Network byte order (big endian)  <a href="#aa1dd1b9198bfbe8d3fd01ca358d8d538">More...</a><br /></td></tr>
+<tr class="separator:aa1dd1b9198bfbe8d3fd01ca358d8d538"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c358826dbd0c43ec751139dca87ab71"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacellu_1_1network.html#a6c358826dbd0c43ec751139dca87ab71">toHBO_16</a> (uint8_t *from)</td></tr>
+<tr class="memdesc:a6c358826dbd0c43ec751139dca87ab71"><td class="mdescLeft">&#160;</td><td class="mdescRight">convertes a given byte fiedl in Network byte order to host byte order  <a href="#a6c358826dbd0c43ec751139dca87ab71">More...</a><br /></td></tr>
+<tr class="separator:a6c358826dbd0c43ec751139dca87ab71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0132a9cde9b08a16e9b05709ea16a2b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacellu_1_1network.html#a0132a9cde9b08a16e9b05709ea16a2b9">toNBO</a> (uint32_t value, uint8_t *target)</td></tr>
+<tr class="memdesc:a0132a9cde9b08a16e9b05709ea16a2b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">convertes a given value to the Network byte order (big endian)  <a href="#a0132a9cde9b08a16e9b05709ea16a2b9">More...</a><br /></td></tr>
+<tr class="separator:a0132a9cde9b08a16e9b05709ea16a2b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2222539df59075cc6f892b12956968eb"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacellu_1_1network.html#a2222539df59075cc6f892b12956968eb">toHBO_32</a> (uint8_t *from)</td></tr>
+<tr class="memdesc:a2222539df59075cc6f892b12956968eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">convertes a given byte fiedl in Network byte order to host byte order  <a href="#a2222539df59075cc6f892b12956968eb">More...</a><br /></td></tr>
+<tr class="separator:a2222539df59075cc6f892b12956968eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0b046f65433995d5150c3f8251e7d07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacellu_1_1network.html#af0b046f65433995d5150c3f8251e7d07">toNBO</a> (uint64_t value, uint8_t *target)</td></tr>
+<tr class="memdesc:af0b046f65433995d5150c3f8251e7d07"><td class="mdescLeft">&#160;</td><td class="mdescRight">convertes a given value to the Network byte order (big endian)  <a href="#af0b046f65433995d5150c3f8251e7d07">More...</a><br /></td></tr>
+<tr class="separator:af0b046f65433995d5150c3f8251e7d07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af97d326c7853fc1b5932a56b8cc8e4b6"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacellu_1_1network.html#af97d326c7853fc1b5932a56b8cc8e4b6">toHBO_64</a> (uint8_t *from)</td></tr>
+<tr class="memdesc:af97d326c7853fc1b5932a56b8cc8e4b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">convertes a given byte fiedl in Network byte order to host byte order  <a href="#af97d326c7853fc1b5932a56b8cc8e4b6">More...</a><br /></td></tr>
+<tr class="separator:af97d326c7853fc1b5932a56b8cc8e4b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae50fed51b566b947fd0cb1a4efbb3b12"><td class="memItemLeft" align="right" valign="top">sockaddr_in&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacellu_1_1network.html#ae50fed51b566b947fd0cb1a4efbb3b12">resolve</a> (const char *addr, uint16_t port)</td></tr>
 <tr class="memdesc:ae50fed51b566b947fd0cb1a4efbb3b12"><td class="mdescLeft">&#160;</td><td class="mdescRight">resolves an Ipv4 and an port to a sockaddr_in  <a href="#ae50fed51b566b947fd0cb1a4efbb3b12">More...</a><br /></td></tr>
 <tr class="separator:ae50fed51b566b947fd0cb1a4efbb3b12"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -155,17 +186,41 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>an callback registration for a mannaged connection </p>
+
+<p>Definition at line <a class="el" href="network_8hpp_source.html#l00206">206</a> of file <a class="el" href="network_8hpp_source.html">network.hpp</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="a87e08dcb9ddcbeacd8bfbe47ed6d91e4"></a>
+<a class="anchor" id="ac629c1180a0bee8ddef541f73cb3e5f9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef bool(* llu::network::recivedMessageClassifier)(<a class="el" href="structllu_1_1network_1_1recived_message.html">recivedMessage</a> *, <a class="el" href="namespacellu_1_1callback.html#a082ed24306809c4d250bd5ddfbae177f">signal</a> *)</td>
+          <td class="memname">typedef <a class="el" href="namespacellu_1_1network.html#a62e69230f04d1998f17b11e3bcc2d121">recivedMessageClassifierType</a>* <a class="el" href="namespacellu_1_1network.html#ac629c1180a0bee8ddef541f73cb3e5f9">llu::network::recivedMessageClassifier</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>the classifier pointer </p>
+
+<p>Definition at line <a class="el" href="network_8hpp_source.html#l00200">200</a> of file <a class="el" href="network_8hpp_source.html">network.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a62e69230f04d1998f17b11e3bcc2d121"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef bool( llu::network::recivedMessageClassifierType)(<a class="el" href="structllu_1_1network_1_1recived_message.html">recivedMessage</a> *, <a class="el" href="namespacellu_1_1callback.html#a082ed24306809c4d250bd5ddfbae177f">signal</a> *)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>a Classifiere for massages recived Messages, the type </p>
+
+<p>Definition at line <a class="el" href="network_8hpp_source.html#l00196">196</a> of file <a class="el" href="network_8hpp_source.html">network.hpp</a>.</p>
 
 </div>
 </div>
@@ -193,6 +248,8 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a compleate copy of r </dd></dl>
 
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00095">95</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a867a402a3f2a945cf6d5f9b9c9ca4bd1"></a>
@@ -216,6 +273,8 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00070">70</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
 
 </div>
 </div>
@@ -259,6 +318,8 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00082">82</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a957314727976f73a1566322ad0229ca8"></a>
@@ -283,6 +344,8 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00077">77</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a8c61905bb65d88aa69349ee7138577a8"></a>
@@ -306,6 +369,8 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00091">91</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
 
 </div>
 </div>
@@ -344,12 +409,274 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>the Sockaddr_in for the spezified Data </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Was wennn die daten nicht gültig sind </dd></dl>
 
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00062">62</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6c358826dbd0c43ec751139dca87ab71"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t llu::network::toHBO_16 </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>from</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>convertes a given byte fiedl in Network byte order to host byte order </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">from</td><td>where to finde thy byte field ( must be length 16bit) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Host byte order representation of the data </dd></dl>
+
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00024">24</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2222539df59075cc6f892b12956968eb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t llu::network::toHBO_32 </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>from</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>convertes a given byte fiedl in Network byte order to host byte order </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">from</td><td>where to finde thy byte field ( must be length 32bit) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Host byte order representation of the data </dd></dl>
+
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00034">34</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af97d326c7853fc1b5932a56b8cc8e4b6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t llu::network::toHBO_64 </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>from</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>convertes a given byte fiedl in Network byte order to host byte order </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">from</td><td>where to finde thy byte field ( must be length 64bit) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Host byte order representation of the data </dd></dl>
+
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00051">51</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aec38b31ea6f294a14c7c3f9e426b312d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t llu::network::toHBO_8 </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>from</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>convertes a given byte fiedl in Network byte order to host byte order </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">from</td><td>where to finde thy byte field ( must be length 8bit) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Host byte order representation of the data </dd></dl>
+
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00016">16</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9db735ab1f182142c349fc313e33c32d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void llu::network::toNBO </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>target</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>convertes a given value to the Network byte order (big endian) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>the value to be converted </td></tr>
+    <tr><td class="paramname">target</td><td>a pointer to the data field, where the result should be stored </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>is host byte order agnostic </dd></dl>
+
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00013">13</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa1dd1b9198bfbe8d3fd01ca358d8d538"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void llu::network::toNBO </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>target</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>convertes a given value to the Network byte order (big endian) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>the value to be converted </td></tr>
+    <tr><td class="paramname">target</td><td>a pointer to the data field, where the result should be stored </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>is host byte order agnostic </dd></dl>
+
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00020">20</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0132a9cde9b08a16e9b05709ea16a2b9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void llu::network::toNBO </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>target</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>convertes a given value to the Network byte order (big endian) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>the value to be converted </td></tr>
+    <tr><td class="paramname">target</td><td>a pointer to the data field, where the result should be stored </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>is host byte order agnostic </dd></dl>
+
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00028">28</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af0b046f65433995d5150c3f8251e7d07"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void llu::network::toNBO </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>target</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>convertes a given value to the Network byte order (big endian) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>the value to be converted </td></tr>
+    <tr><td class="paramname">target</td><td>a pointer to the data field, where the result should be stored </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>is host byte order agnostic </dd></dl>
+
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00041">41</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
+
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 22 2016 23:30:59 for timux by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 30 2016 15:33:43 for timux by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

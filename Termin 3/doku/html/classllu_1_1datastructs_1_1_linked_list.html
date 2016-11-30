@@ -110,7 +110,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9d51cbffdc243ae0831d7c91a7da528a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_linked_list.html#a9d51cbffdc243ae0831d7c91a7da528a">~LinkedList</a> ()</td></tr>
 <tr class="memdesc:a9d51cbffdc243ae0831d7c91a7da528a"><td class="mdescLeft">&#160;</td><td class="mdescRight">deletes the linekd list and clears memory  <a href="#a9d51cbffdc243ae0831d7c91a7da528a">More...</a><br /></td></tr>
 <tr class="separator:a9d51cbffdc243ae0831d7c91a7da528a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb594d9c6ee789ba60070365e8953a29"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_linked_list.html#afb594d9c6ee789ba60070365e8953a29">append</a> (E data)</td></tr>
+<tr class="memitem:afb594d9c6ee789ba60070365e8953a29"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_linked_list.html#afb594d9c6ee789ba60070365e8953a29">append</a> (E <a class="el" href="timux_8hpp.html#ad9c7575237a3a2780e8e6d16e1334982">data</a>)</td></tr>
 <tr class="memdesc:afb594d9c6ee789ba60070365e8953a29"><td class="mdescLeft">&#160;</td><td class="mdescRight">appends data to the end of the list  <a href="#afb594d9c6ee789ba60070365e8953a29">More...</a><br /></td></tr>
 <tr class="separator:afb594d9c6ee789ba60070365e8953a29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89e2f65a016e358dc174921d496e34ce"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_linked_list.html#a89e2f65a016e358dc174921d496e34ce">contains</a> (bool(*comparer)(E, E), E elem)</td></tr>
@@ -132,6 +132,8 @@ class llu::datastructs::LinkedList&lt; E &gt;</h3>
 
 <p>very spartanic implementation of a generik thread save Linked list </p>
 <p>The type E defines the type of elements to put in the list To get the data from the list it is nessasary to direkly use the <a class="el" href="structllu_1_1datastructs_1_1list_entrie.html" title="an list entry for a linked list of type E ">listEntrie</a> start The list is single linked </p>
+
+<p>Definition at line <a class="el" href="linked_list_8hpp_source.html#l00034">34</a> of file <a class="el" href="linked_list_8hpp_source.html">linkedList.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ae12ddd9d50e228bc8602e902c2e4909e"></a>
 <div class="memitem">
@@ -157,6 +159,8 @@ template&lt;typename E&gt; </div>
 </div><div class="memdoc">
 
 <p>creates an empty linked list </p>
+
+<p>Definition at line <a class="el" href="linked_list_8hpp_source.html#l00040">40</a> of file <a class="el" href="linked_list_8hpp_source.html">linkedList.hpp</a>.</p>
 
 </div>
 </div>
@@ -185,6 +189,8 @@ template&lt;typename E&gt; </div>
 
 <p>deletes the linekd list and clears memory </p>
 <dl class="section note"><dt>Note</dt><dd>the data which is in the list, will not be cleared </dd></dl>
+
+<p>Definition at line <a class="el" href="linked_list_8hpp_source.html#l00046">46</a> of file <a class="el" href="linked_list_8hpp_source.html">linkedList.hpp</a>.</p>
 
 </div>
 </div>
@@ -220,6 +226,8 @@ template&lt;typename E&gt; </div>
   </table>
   </dd>
 </dl>
+
+<p>Definition at line <a class="el" href="linked_list_8hpp_source.html#l00075">75</a> of file <a class="el" href="linked_list_8hpp_source.html">linkedList.hpp</a>.</p>
 
 </div>
 </div>
@@ -267,6 +275,8 @@ template&lt;typename E&gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if elem is in the list otherwise false </dd></dl>
 
+<p>Definition at line <a class="el" href="linked_list_8hpp_source.html#l00099">99</a> of file <a class="el" href="linked_list_8hpp_source.html">linkedList.hpp</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -285,6 +295,8 @@ template&lt;typename E&gt; </div>
 <p>Lock for accessing the linekd list threadsave. </p>
 <p>this must be used, wenn iterating manualy over the list </p>
 
+<p>Definition at line <a class="el" href="linked_list_8hpp_source.html#l00069">69</a> of file <a class="el" href="linked_list_8hpp_source.html">linkedList.hpp</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a2d5511009cd4b6579b8978af4f23c148"></a>
@@ -302,6 +314,8 @@ template&lt;typename E&gt; </div>
 <p>the first element of the linekd list </p>
 <p>it does not contain any user data, and must be used to start the interating of the list. </p>
 
+<p>Definition at line <a class="el" href="linked_list_8hpp_source.html#l00062">62</a> of file <a class="el" href="linked_list_8hpp_source.html">linkedList.hpp</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
@@ -310,7 +324,7 @@ template&lt;typename E&gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 22 2016 23:30:59 for timux by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 30 2016 15:33:43 for timux by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

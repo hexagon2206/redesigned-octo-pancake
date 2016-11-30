@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['next',['next',['../structllu_1_1datastructs_1_1list_array_entrie.html#a110bf134b27bdfaa3ca518b40042591e',1,'llu::datastructs::listArrayEntrie::next()'],['../structllu_1_1datastructs_1_1list_entrie.html#a3a0c3cef3ce8b0b9beaa1c6360fb6346',1,'llu::datastructs::listEntrie::next()']]]
+  ['klasse',['klasse',['../structtimux_1_1package.html#a95fc0bef41718ca6be503b1a65ede4ed',1,'timux::package::klasse()'],['../timux_8hpp.html#a3835939f8d204327e497456568a53926',1,'klasse():&#160;timux.hpp']]]
 ];

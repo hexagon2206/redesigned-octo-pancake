@@ -1,10 +1,15 @@
 var searchData=
 [
-  ['screenlock',['screenLock',['../bc_server_8cpp.html#ab68c2cee22ffb1d6c7829af1ff88f95a',1,'screenLock():&#160;bcServer.cpp'],['../main_8cpp.html#ab68c2cee22ffb1d6c7829af1ff88f95a',1,'screenLock():&#160;main.cpp']]],
-  ['sender',['sender',['../structllu_1_1network_1_1recived_message.html#a3e4538771244b3008f889a03a587c81b',1,'llu::network::recivedMessage']]],
-  ['sendmessage',['sendMessage',['../structllu_1_1network_1_1send_message.html',1,'llu::network']]],
-  ['sendmsg',['sendMsg',['../classllu_1_1network_1_1_connection.html#ac20ca6d4d56b39fadde27b6af10000ae',1,'llu::network::Connection::sendMsg()'],['../classllu_1_1network_1_1_managed_connection.html#a464e40505c93ce769dacf381a6e0e503',1,'llu::network::ManagedConnection::sendMsg()'],['../classllu_1_1network_1_1_udp_connection.html#a044432ee61191ecabd295fe4ea6cddf1',1,'llu::network::UdpConnection::sendMsg()']]],
-  ['signal',['signal',['../classllu_1_1callback_1_1_callback.html#acfe12b080db1647066890956c1aa8b8b',1,'llu::callback::Callback::signal()'],['../namespacellu_1_1callback.html#a082ed24306809c4d250bd5ddfbae177f',1,'llu::callback::signal()']]],
-  ['socketaddrcompare',['socketaddrCompare',['../bc_server_8cpp.html#ae915c722df9438586415bb59a2a7cbce',1,'bcServer.cpp']]],
-  ['start',['start',['../classllu_1_1datastructs_1_1_linked_list_array.html#ac6470a016e4ca99b16ab57db1b6f1f26',1,'llu::datastructs::LinkedListArray::start()'],['../classllu_1_1datastructs_1_1_linked_list.html#a2d5511009cd4b6579b8978af4f23c148',1,'llu::datastructs::LinkedList::start()']]]
+  ['raw',['raw',['../classllu_1_1network_1_1_managed_connection.html#a6b75597f4a9ed3be7202f5118383eba5',1,'llu::network::ManagedConnection']]],
+  ['recived',['recived',['../classtimux_1_1timux.html#ac732153dc6019d7ddd3aa93fdffcfc6f',1,'timux::timux']]],
+  ['recivedmessage',['recivedMessage',['../structllu_1_1network_1_1recived_message.html',1,'llu::network']]],
+  ['recivedmessageclassifier',['recivedMessageClassifier',['../namespacellu_1_1network.html#ac629c1180a0bee8ddef541f73cb3e5f9',1,'llu::network']]],
+  ['recivedmessageclassifiertype',['recivedMessageClassifierType',['../namespacellu_1_1network.html#a62e69230f04d1998f17b11e3bcc2d121',1,'llu::network']]],
+  ['recvmsg',['recvMsg',['../classllu_1_1network_1_1_connection.html#aae606f5aad246e892db5665cd7be1747',1,'llu::network::Connection::recvMsg()'],['../classllu_1_1network_1_1_udp_connection.html#abbd9d3906a283f5506a69a8922fa76c6',1,'llu::network::UdpConnection::recvMsg()']]],
+  ['registercallback',['registerCallback',['../classllu_1_1callback_1_1_callback.html#a45aaaa527c1623dba2e994df5049ef50',1,'llu::callback::Callback']]],
+  ['resolve',['resolve',['../namespacellu_1_1network.html#ae50fed51b566b947fd0cb1a4efbb3b12',1,'llu::network']]],
+  ['ringbuffer',['Ringbuffer',['../classllu_1_1datastructs_1_1_ringbuffer.html',1,'llu::datastructs']]],
+  ['ringbuffer',['Ringbuffer',['../classllu_1_1datastructs_1_1_ringbuffer.html#ab214a718ecf06d2911bd6f1e0e597fd8',1,'llu::datastructs::Ringbuffer']]],
+  ['ringbuffer_2ehpp',['ringBuffer.hpp',['../ring_buffer_8hpp.html',1,'']]],
+  ['ringbuffer_3c_20llu_3a_3anetwork_3a_3asendmessage_20_2a_20_3e',['Ringbuffer&lt; llu::network::sendMessage * &gt;',['../classllu_1_1datastructs_1_1_ringbuffer.html',1,'llu::datastructs']]]
 ];

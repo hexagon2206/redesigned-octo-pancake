@@ -113,7 +113,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4afa917caa5b398d66cf0853f7f258b9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_linked_list_array.html#a4afa917caa5b398d66cf0853f7f258b9">~LinkedListArray</a> ()</td></tr>
 <tr class="memdesc:a4afa917caa5b398d66cf0853f7f258b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">deletes this objekt, an clears memory  <a href="#a4afa917caa5b398d66cf0853f7f258b9">More...</a><br /></td></tr>
 <tr class="separator:a4afa917caa5b398d66cf0853f7f258b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac588bbfb35a0903ad5c782d11ec0f334"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_linked_list_array.html#ac588bbfb35a0903ad5c782d11ec0f334">put</a> (unsigned int index, E data)</td></tr>
+<tr class="memitem:ac588bbfb35a0903ad5c782d11ec0f334"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_linked_list_array.html#ac588bbfb35a0903ad5c782d11ec0f334">put</a> (unsigned int index, E <a class="el" href="timux_8hpp.html#ad9c7575237a3a2780e8e6d16e1334982">data</a>)</td></tr>
 <tr class="memdesc:ac588bbfb35a0903ad5c782d11ec0f334"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puts the element data at position index.  <a href="#ac588bbfb35a0903ad5c782d11ec0f334">More...</a><br /></td></tr>
 <tr class="separator:ac588bbfb35a0903ad5c782d11ec0f334"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ed83912b4cb5d14512d087ebbb2f8e9"><td class="memItemLeft" align="right" valign="top">E&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_linked_list_array.html#a9ed83912b4cb5d14512d087ebbb2f8e9">get</a> (unsigned int index)</td></tr>
@@ -135,6 +135,8 @@ class llu::datastructs::LinkedListArray&lt; E &gt;</h3>
 
 <p>Implementation of a simple generik thread save Array. </p>
 <p>internely this class is implemented as a linked List. therefor the differences in the indizes can be enormus, without much memory consumtion, </p><dl class="section note"><dt>Note</dt><dd>compared to a regular array this is very slow, should not be used if a normal array would fit the task </dd></dl>
+
+<p>Definition at line <a class="el" href="linked_array_8hpp_source.html#l00037">37</a> of file <a class="el" href="linked_array_8hpp_source.html">linkedArray.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="abc6ac1822c04f74d5df08c500fb404c1"></a>
 <div class="memitem">
@@ -160,6 +162,8 @@ template&lt;typename E&gt; </div>
 </div><div class="memdoc">
 
 <p>creates an empty <a class="el" href="classllu_1_1datastructs_1_1_linked_list_array.html" title="Implementation of a simple generik thread save Array. ">LinkedListArray</a> with the default value ((E)NULL) </p>
+
+<p>Definition at line <a class="el" href="linked_array_8hpp_source.html#l00042">42</a> of file <a class="el" href="linked_array_8hpp_source.html">linkedArray.hpp</a>.</p>
 
 </div>
 </div>
@@ -195,6 +199,8 @@ template&lt;typename E&gt; </div>
   </dd>
 </dl>
 
+<p>Definition at line <a class="el" href="linked_array_8hpp_source.html#l00050">50</a> of file <a class="el" href="linked_array_8hpp_source.html">linkedArray.hpp</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a4afa917caa5b398d66cf0853f7f258b9"></a>
@@ -222,6 +228,8 @@ template&lt;typename E&gt; </div>
 
 <p>deletes this objekt, an clears memory </p>
 <dl class="section note"><dt>Note</dt><dd>the stored data is still preserved, and must be cleared elsewere </dd></dl>
+
+<p>Definition at line <a class="el" href="linked_array_8hpp_source.html#l00058">58</a> of file <a class="el" href="linked_array_8hpp_source.html">linkedArray.hpp</a>.</p>
 
 </div>
 </div>
@@ -258,6 +266,8 @@ template&lt;typename E&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the element at index if there is no element at index, it will return the default value </dd></dl>
+
+<p>Definition at line <a class="el" href="linked_array_8hpp_source.html#l00127">127</a> of file <a class="el" href="linked_array_8hpp_source.html">linkedArray.hpp</a>.</p>
 
 </div>
 </div>
@@ -305,6 +315,8 @@ template&lt;typename E&gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if nothing was done otherwise 1 </dd></dl>
 
+<p>Definition at line <a class="el" href="linked_array_8hpp_source.html#l00093">93</a> of file <a class="el" href="linked_array_8hpp_source.html">linkedArray.hpp</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -323,6 +335,8 @@ template&lt;typename E&gt; </div>
 <p>lock for the Array. </p>
 <dl class="section note"><dt>Note</dt><dd>should be used, if accessing the Raw Linked List from outside </dd></dl>
 
+<p>Definition at line <a class="el" href="linked_array_8hpp_source.html#l00075">75</a> of file <a class="el" href="linked_array_8hpp_source.html">linkedArray.hpp</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="ac6470a016e4ca99b16ab57db1b6f1f26"></a>
@@ -340,6 +354,8 @@ template&lt;typename E&gt; </div>
 <p>the first element of the listArray </p>
 <p>no actual user data is stored here, it is an empty element. can be used to acces the Raw linked list </p>
 
+<p>Definition at line <a class="el" href="linked_array_8hpp_source.html#l00083">83</a> of file <a class="el" href="linked_array_8hpp_source.html">linkedArray.hpp</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
@@ -348,7 +364,7 @@ template&lt;typename E&gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 22 2016 23:30:59 for timux by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 30 2016 15:33:43 for timux by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

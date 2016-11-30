@@ -1,10 +1,12 @@
 <map id="timeMux/linkedArray.hpp" name="timeMux/linkedArray.hpp">
-<area shape="rect" id="node2" href="$callback_8hpp.html" title="Prototypes for a Callback Handler. " alt="" coords="319,80,469,107"/>
-<area shape="rect" id="node3" href="$bc_server_8cpp.html" title="timeMux/bcServer.cpp" alt="" coords="5,304,159,331"/>
+<area shape="rect" id="node2" href="$callback_8hpp.html" title="Prototypes for a Callback Handler. " alt="" coords="375,80,525,107"/>
+<area shape="rect" id="node3" href="$bc_server_8cpp.html" title="Implementation of a UDP Broadcast server for testing. " alt="" coords="5,304,159,331"/>
 <area shape="rect" id="node4" href="$network_8hpp.html" title="Prototypes for network comunikation. " alt="" coords="266,155,413,181"/>
-<area shape="rect" id="node6" href="$main_8cpp.html" title="timeMux/main.cpp" alt="" coords="357,304,487,331"/>
-<area shape="rect" id="node9" href="$callback_8cpp.html" title="timeMux/callback.cpp" alt="" coords="487,155,637,181"/>
+<area shape="rect" id="node6" href="$main_8cpp.html" title="Startsup the Timux System. " alt="" coords="359,304,488,331"/>
+<area shape="rect" id="node8" href="$timux_8hpp.html" title="timeMux/timux.hpp" alt="" coords="487,229,621,256"/>
+<area shape="rect" id="node11" href="$callback_8cpp.html" title="timeMux/callback.cpp" alt="" coords="538,155,687,181"/>
 <area shape="rect" id="node5" href="$udp_8hpp.html" title="Prototypes for a udp network konnection implementation. " alt="" coords="119,229,242,256"/>
-<area shape="rect" id="node8" href="$network_8cpp.html" title="timeMux/network.cpp" alt="" coords="266,229,413,256"/>
-<area shape="rect" id="node7" href="$udp_8cpp.html" title="timeMux/udp.cpp" alt="" coords="183,304,306,331"/>
+<area shape="rect" id="node10" href="$network_8cpp.html" title="Implementation of al general network stuff. " alt="" coords="266,229,413,256"/>
+<area shape="rect" id="node7" href="$udp_8cpp.html" title="Implementation of a UDP Connection. " alt="" coords="183,304,306,331"/>
+<area shape="rect" id="node9" href="$timux_8cpp.html" title="Implementation of The TIMUX logic. " alt="" coords="513,304,646,331"/>
 </map>
