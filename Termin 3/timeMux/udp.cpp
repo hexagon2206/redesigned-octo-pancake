@@ -1,3 +1,9 @@
+/** @file udp.cpp
+ *  @brief Implementation of a UDP Connection.
+ *  @author Lukas Lühr (hexagon2206)
+ *  @bug No known bugs.
+ */
+
 #include "udp.hpp"
 
 namespace llu{

@@ -1,4 +1,10 @@
-#include "network.hpp"
+/** @file network.cpp
+ *  @brief Implementation of al general network stuff.
+ *  @author Lukas Lühr (hexagon2206)
+ *  @bug No known bugs.
+ */
+
+ #include "network.hpp"
 
 
 namespace llu{

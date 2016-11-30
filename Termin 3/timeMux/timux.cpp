@@ -1,3 +1,10 @@
+/** @file timux.cpp
+ *  @brief Implementation of The TIMUX logic.
+ *  @author Lukas Lühr (hexagon2206)
+ *  @bug No known bugs.
+ *  @todo remove screen output
+ */
+
 #include "timux.hpp"
 #include <iostream>
 
@@ -86,24 +93,57 @@ namespace timux{
         unsigned long now = this->t.now();
         unsigned long curentFrame = now/this->frameLength;
         this->curentFrame = curentFrame;
+        while(this->curentFrame == curentFrame){            //Wait for the start of a new frame
+            now = this->t.now();
+            curentFrame = now/this->frameLength;
+
+        }
+
+        bool *nextFree=this->freeNextSlot;
+        int *collisions = this->collisions;
+        this->curentFrame = curentFrame;
+        setupNextFrame();                               //Clear the trash data
+        free(nextFree);
+        free(collisions);
 
         while(true){
             now = this->t.now();
             curentFrame = now/this->frameLength;
             if( curentFrame > this->curentFrame){
-                bool *nextFree=this->freeNextSlot;
-                int *collisions = this->collisions;
+                nextFree=this->freeNextSlot;
+                collisions = this->collisions;
                 this->curentFrame = curentFrame;
                 setupNextFrame();
                 std::cout << "frame Übergang : " << now << std::endl;
-
                 if(-1==this->mySlot){
-
-                }else{
+                    if(0==rand()%TIMUX_TRYTOJOIN){
+                        std::cout << "ttj" <<std::endl;
+                        for(unsigned int i = 0;i!=this->slotCount;i++){
+                            if(false==nextFree[i]){
+                                if(0==(rand()%TIMUX_TRY_TAKE_SLOT)){
+                                    this->mySlot=i;
+                                    std::cout << "mySlot ist :"<<this->mySlot<<std::endl;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }else if(1<(collisions[this->mySlot])){
+                    this->mySlot=-1;
 
                 }
                 free(nextFree);
                 free(collisions);
+
+                std::cout << "took : " << (this->t.now()-now) << std::endl;
+            }else if(-1!=mySlot){
+                unsigned int slot = (now-(this->frameLength * curentFrame))/(this->frameLength/this->slotCount);
+                if(this->lastSendIn < curentFrame && (unsigned int)mySlot == slot){
+                    this->lastSendIn=curentFrame;
+                    std::cout<<"sending slot :"<<mySlot<<" at: " << this->t.now()<<endl;
+                    //TODO Build mesaage and send it at half slot
+                }
+
             }
         }
 

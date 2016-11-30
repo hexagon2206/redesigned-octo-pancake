@@ -69,13 +69,19 @@ namespace timux{
     };
 
 
-    #define TIMUX_HISTORY_LENGTH 3
+    #define TIMUX_TRYTOJOIN 5   // 1 von X
+    #define TIMUX_TRY_TAKE_SLOT 2   // 1 von X
+
+    /**
+     * @brief the main Class that performess all the logic
+     */
     class timux{
         private:
             llu::network::netwokMsgCallback MsgCalback;
 
 
             unsigned long curentFrame;
+            unsigned long lastSendIn=0;
 
             std::mutex nextSlotLock;
 

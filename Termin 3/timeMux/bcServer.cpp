@@ -1,3 +1,9 @@
+/** @file bcServer.cpp
+ *  @brief Implementation of a UDP Broadcast server for testing.
+ *  @author Lukas Lühr (hexagon2206)
+ *  @bug No known bugs.
+ */
+
 #include <iostream>
 #include "callback.hpp"
 #include "ringBuffer.hpp"

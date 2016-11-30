@@ -1,4 +1,10 @@
-#include <iostream>
+/** @file main.cpp
+ *  @brief Startsup the Timux System.
+ *  @author Lukas Lühr (hexagon2206)
+ *  @bug No known bugs.
+ */
+
+ #include <iostream>
 #include "callback.hpp"
 #include "ringBuffer.hpp"
 #include "udp.hpp"
@@ -6,6 +12,7 @@
 #include <thread>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <time.h>
 
 #include <mutex>
 #include "timux.hpp"
@@ -21,6 +28,7 @@ using namespace llu::network;
 using namespace timux;
 
 int main(){
+    srand(time(NULL));
     cout << "hallo Welt ?  " << endl;
     Connection *con = new llu::network::UdpConnection();
     ManagedConnection mcon(con);
