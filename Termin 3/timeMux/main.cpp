@@ -28,7 +28,11 @@ int main(){
     sockaddr_in target = resolve("127.0.0.1",6001);
 
 
+    timux::timux timuxMain(&mcon,1000,25);
 
+    timuxMain.loop();
+
+    cout << "lebe noch ";
 
     char text[128];
     sendMessage *msg;
@@ -39,4 +43,5 @@ int main(){
     }
     return 0;
 }
+
 

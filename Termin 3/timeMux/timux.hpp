@@ -34,7 +34,6 @@ namespace timux{
         unsigned long frame;    /**< @brief the frame the package was recived in */
         uint8_t data[sizeof(package::data)]; /**< The unchanged payload */
         uint8_t nextSlot;       /**< @brief the next slot the client is going to use */
-        bool valide;            /**< @brief determens if the pacakge is valide */
     };
 
     /**
@@ -69,20 +68,44 @@ namespace timux{
 
     };
 
+
+    #define TIMUX_HISTORY_LENGTH 3
     class timux{
         private:
             llu::network::netwokMsgCallback MsgCalback;
 
-            msg *hisory[3];
 
-            long curentFrame;
+            unsigned long curentFrame;
+
+            std::mutex nextSlotLock;
+
+            bool *freeNextSlot;
+            int *collisions;
+
+            int ready=false;
+            int mySlot=-1;
+
+            enum State{
+                waitingForNewSlot,
+                lookingForSlot,
+                sending,
+                sleeping
+            };
+
+            void setupNextFrame();
+
 
         public:
             timing t;
             unsigned long frameLength;
             unsigned long slotCount;
+
             void recived(msg *m);
+
             timux(llu::network::ManagedConnection *con,unsigned long frameLength,unsigned long slotCount);
+
+            void loop();
+
     };
 
     /**
@@ -110,7 +133,5 @@ namespace timux{
     void MsgHandler(void* timuxClass,llu::network::recivedMessage* m);
 
 
-};
-
-
+ };
 #endif

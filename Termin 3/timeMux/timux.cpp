@@ -1,4 +1,5 @@
 #include "timux.hpp"
+#include <iostream>
 
 
 using namespace llu::callback;
@@ -31,8 +32,9 @@ namespace timux{
 
     long timing::getOffset(){
         this->lock.lock();
-        return this->timeOffset;
+        long offset =this->timeOffset;
         this->lock.unlock();
+        return offset;
     }
     timing::timing(llu::network::ManagedConnection *con,long offset){
         timeOffset=offset;
@@ -61,14 +63,51 @@ namespace timux{
         this->MsgCalback.data = (void* )this;
         this->MsgCalback.fnc  = &MsgHandler;
 
-        con->addCallback(TIMUX_SotSignal,&MsgCalback);
 
-    }
+        setupNextFrame();
+        con->addCallback(TIMUX_SotSignal,&MsgCalback);
+     }
+     void timux::setupNextFrame(){
+        nextSlotLock.lock();
+        this->freeNextSlot = (bool *)malloc(sizeof(bool)*this->slotCount);
+        this->collisions = (int *)malloc(sizeof(int)*this->slotCount);
+        nextSlotLock.unlock();
+     }
 
     void timux::recived(msg *m){
-
+        if(m->frame!=this->curentFrame)return ;
+        nextSlotLock.lock();
+        this->freeNextSlot[m->nextSlot]=true;
+        collisions[m->slot]++;
+        nextSlotLock.unlock();
     }
 
+    void timux::loop(){
+        unsigned long now = this->t.now();
+        unsigned long curentFrame = now/this->frameLength;
+        this->curentFrame = curentFrame;
+
+        while(true){
+            now = this->t.now();
+            curentFrame = now/this->frameLength;
+            if( curentFrame > this->curentFrame){
+                bool *nextFree=this->freeNextSlot;
+                int *collisions = this->collisions;
+                this->curentFrame = curentFrame;
+                setupNextFrame();
+                std::cout << "frame Übergang : " << now << std::endl;
+
+                if(-1==this->mySlot){
+
+                }else{
+
+                }
+                free(nextFree);
+                free(collisions);
+            }
+        }
+
+    }
 
     bool MsgSignal(llu::network::recivedMessage* m,llu::callback::signal* s){
         if(sizeof(package) != m->dataLength ) return false;
@@ -88,8 +127,6 @@ namespace timux{
         toret->slot = (int)((timestamp - (ti->frameLength * toret->frame))/(ti->frameLength/ti->slotCount));
         toret->nextSlot = toHBO_8(p->nextSlot);
         memcpy(toret->data,p->data,sizeof(toret->data));
-        toret->valide=true;
-
         ti->recived(toret);
 
         llu::network::destoryRecivedMessage(m);
