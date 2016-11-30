@@ -190,37 +190,115 @@ namespace llu{
          */
         recivedMessage *copyRecivedMessage(recivedMessage *r);
 
-
+        /**
+         * @brief a Classifiere for massages recived Messages, the type
+         */
         typedef bool (recivedMessageClassifierType)(recivedMessage*,signal*);
-        typedef bool (*recivedMessageClassifier)(recivedMessage*,signal*);
+        /**
+         * @brief the classifier pointer
+         */
+        typedef recivedMessageClassifierType *recivedMessageClassifier;
 
 
-
+        /**
+         * @brief an callback registration for a mannaged connection
+         */
         typedef callback_registration<void *,recivedMessage*> netwokMsgCallback;
 
+
+        /**
+         * @brief a Managed form of a Connection implements callbacks on massage recive
+         * internayls uses a callback handler
+         * @note a massage can onely be recived via a callback registration
+         * @note sending is thread Save
+         */
         class ManagedConnection{
             public:
+                /**
+                 * @brief wrapes a classic connection to make it managed
+                 */
                 ManagedConnection(Connection *con);
+
+                /**
+                 * @brief cleans up some stuff, also cloese the connection
+                 * @note delets the raw nonnection
+                 */
                 ~ManagedConnection();
 
+                /**
+                 * @brief puts a massage in the out queue
+                 * @note  it may takes some time for the massage to be send, if this is not aceptable raw() can be used
+                 */
                 void sendMsg(sendMessage *m);
+
+                /**
+                 * @brief adds a massage clasifier for callbacks
+                 */
                 void addClassifier(recivedMessageClassifier c);
+
+                /**
+                 * @brief adds a message recived callback
+                 */
                 void addCallback(signal s,netwokMsgCallback *calback);
+
+                /**
+                 * @brief closes the mennaged and underlying unmanaged connection
+                 */
                 void kill();
+
+                /**
+                 * @brief used to check if the connection is alvice
+                 * @return true if the connection is still usable
+                 */
                 bool alive();
+
+                /**
+                 * @brief can be used to acces the underlaying connection
+                 * @return the unmanaged connection
+                 * @note should not be used, onely sutable for sending data if the sendMsg of managed connection is NOT used or the senderThread is killed or the outBuffer is locked
+                 */
+                Connection *raw();
 
             private:
 
-
+                /**
+                 * @brief the thread responsable for sending data
+                 */
                 thread *senderThread;
+
+                /**
+                 * @brief The function that implements the sender behavior
+                 */
                 static void sender(Connection *con,Ringbuffer<sendMessage *> *outBuffer);
 
+                /**
+                 * @brief the thread responsible for reciving data and calling callback signals
+                 */
                 thread *reciverThread;
+
+                /**
+                 * @brief the function that implements the reciver thread beahvior
+                 */
                 static void reciver(Connection *con,Callback<void *,recivedMessage *> *callbackHandler,LinkedList<recivedMessageClassifier> *classifiers);
 
+                /**
+                 * @brief the raw connection
+                 */
                 Connection *con;
+
+                /**
+                 * @brief buffer for outgoing messages
+                 */
                 Ringbuffer<sendMessage*> *outBuffer;
+
+                /**
+                 * @brief the intern callback handler
+                 */
                 Callback<void *,recivedMessage *> *callbackHandler;
+
+                /**
+                 * @brief the Message classifier list
+                 */
                 LinkedList<recivedMessageClassifier> *classifiers;
         };
 

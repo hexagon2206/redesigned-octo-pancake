@@ -147,6 +147,10 @@ namespace llu{
             }
         }
 
+        Connection *ManagedConnection::raw(){
+            return con;
+        }
+
         void ManagedConnection::reciver(Connection *con,Callback<void *,recivedMessage *> *callbackHandler,LinkedList<recivedMessageClassifier> *classifiers){
             recivedMessage *msg ;
             signal s=0;
