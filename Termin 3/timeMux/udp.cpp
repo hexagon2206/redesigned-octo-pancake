@@ -21,13 +21,16 @@ namespace llu{
             cliAddr.sin_addr.s_addr = htonl (INADDR_ANY);
             cliAddr.sin_port = htons (myPort);
 
+
+
+            uint8_t value=1;
+            setsockopt(s, SOL_SOCKET, SO_REUSEPORT, &value, sizeof(value));
+           // setsockopt(s, SOL_SOCKET, SO_REUSEADDR, &value, sizeof(value));
+
             bind ( s, (struct sockaddr *) &cliAddr, sizeof (cliAddr) );
 
             if(bcGroup){
-                uint8_t value=1;
                 setsockopt(s, IPPROTO_IP, IP_MULTICAST_LOOP, &value, sizeof(value));
-
-                setsockopt(s, SOL_SOCKET, SO_REUSEPORT, &value, sizeof(value));
 
                 setsockopt(s, IPPROTO_IP, IP_MULTICAST_TTL, &ttl, sizeof(ttl));
 
