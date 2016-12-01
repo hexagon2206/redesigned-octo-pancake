@@ -25,7 +25,7 @@ namespace llu{
 
             uint8_t value=1;
             setsockopt(s, SOL_SOCKET, SO_REUSEPORT, &value, sizeof(value));
-           // setsockopt(s, SOL_SOCKET, SO_REUSEADDR, &value, sizeof(value));
+            setsockopt(s, SOL_SOCKET, SO_REUSEADDR, &value, sizeof(value));
 
             bind ( s, (struct sockaddr *) &cliAddr, sizeof (cliAddr) );
 
