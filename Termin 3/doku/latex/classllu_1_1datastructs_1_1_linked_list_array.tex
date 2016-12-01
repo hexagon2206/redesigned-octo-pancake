@@ -1,0 +1,187 @@
+\hypertarget{classllu_1_1datastructs_1_1_linked_list_array}{\section{llu\+:\+:datastructs\+:\+:Linked\+List\+Array$<$ E $>$ Class Template Reference}
+\label{classllu_1_1datastructs_1_1_linked_list_array}\index{llu\+::datastructs\+::\+Linked\+List\+Array$<$ E $>$@{llu\+::datastructs\+::\+Linked\+List\+Array$<$ E $>$}}
+}
+
+
+Implementation of a simple generik thread save Array.  
+
+
+
+
+{\ttfamily \#include $<$linked\+Array.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classllu_1_1datastructs_1_1_linked_list_array_abc6ac1822c04f74d5df08c500fb404c1}{Linked\+List\+Array} ()
+\begin{DoxyCompactList}\small\item\em creates an empty \hyperlink{classllu_1_1datastructs_1_1_linked_list_array}{Linked\+List\+Array} with the default value ((E)N\+U\+L\+L) \end{DoxyCompactList}\item 
+\hyperlink{classllu_1_1datastructs_1_1_linked_list_array_aed92b975cd23466ae97c8348a6caaf10}{Linked\+List\+Array} (E default\+Value)
+\begin{DoxyCompactList}\small\item\em creates an empty \hyperlink{classllu_1_1datastructs_1_1_linked_list_array}{Linked\+List\+Array} with the spezified default value \end{DoxyCompactList}\item 
+\hyperlink{classllu_1_1datastructs_1_1_linked_list_array_a4afa917caa5b398d66cf0853f7f258b9}{$\sim$\+Linked\+List\+Array} ()
+\begin{DoxyCompactList}\small\item\em deletes this objekt, an clears memory \end{DoxyCompactList}\item 
+int \hyperlink{classllu_1_1datastructs_1_1_linked_list_array_ac588bbfb35a0903ad5c782d11ec0f334}{put} (unsigned int index, E \hyperlink{timux_8hpp_ad9c7575237a3a2780e8e6d16e1334982}{data})
+\begin{DoxyCompactList}\small\item\em Puts the element data at position index. \end{DoxyCompactList}\item 
+E \hyperlink{classllu_1_1datastructs_1_1_linked_list_array_a9ed83912b4cb5d14512d087ebbb2f8e9}{get} (unsigned int index)
+\begin{DoxyCompactList}\small\item\em returns an element from index \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::mutex \hyperlink{classllu_1_1datastructs_1_1_linked_list_array_a7c9cdd61e7665e7f97447e25ca64451e}{lock}
+\begin{DoxyCompactList}\small\item\em lock for the Array. \end{DoxyCompactList}\item 
+\hyperlink{structllu_1_1datastructs_1_1list_array_entrie}{list\+Array\+Entrie}$<$ E $>$ \hyperlink{classllu_1_1datastructs_1_1_linked_list_array_ac6470a016e4ca99b16ab57db1b6f1f26}{start}
+\begin{DoxyCompactList}\small\item\em the first element of the list\+Array \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename E$>$class llu\+::datastructs\+::\+Linked\+List\+Array$<$ E $>$}
+
+Implementation of a simple generik thread save Array. 
+
+internely this class is implemented as a linked List. therefor the differences in the indizes can be enormus, without much memory consumtion, \begin{DoxyNote}{Note}
+compared to a regular array this is very slow, should not be used if a normal array would fit the task 
+\end{DoxyNote}
+
+
+Definition at line 37 of file linked\+Array.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classllu_1_1datastructs_1_1_linked_list_array_abc6ac1822c04f74d5df08c500fb404c1}{\index{llu\+::datastructs\+::\+Linked\+List\+Array@{llu\+::datastructs\+::\+Linked\+List\+Array}!Linked\+List\+Array@{Linked\+List\+Array}}
+\index{Linked\+List\+Array@{Linked\+List\+Array}!llu\+::datastructs\+::\+Linked\+List\+Array@{llu\+::datastructs\+::\+Linked\+List\+Array}}
+\subsubsection[{Linked\+List\+Array}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename E$>$ {\bf llu\+::datastructs\+::\+Linked\+List\+Array}$<$ E $>$\+::{\bf Linked\+List\+Array} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classllu_1_1datastructs_1_1_linked_list_array_abc6ac1822c04f74d5df08c500fb404c1}
+
+
+creates an empty \hyperlink{classllu_1_1datastructs_1_1_linked_list_array}{Linked\+List\+Array} with the default value ((E)N\+U\+L\+L) 
+
+
+
+Definition at line 42 of file linked\+Array.\+hpp.
+
+\hypertarget{classllu_1_1datastructs_1_1_linked_list_array_aed92b975cd23466ae97c8348a6caaf10}{\index{llu\+::datastructs\+::\+Linked\+List\+Array@{llu\+::datastructs\+::\+Linked\+List\+Array}!Linked\+List\+Array@{Linked\+List\+Array}}
+\index{Linked\+List\+Array@{Linked\+List\+Array}!llu\+::datastructs\+::\+Linked\+List\+Array@{llu\+::datastructs\+::\+Linked\+List\+Array}}
+\subsubsection[{Linked\+List\+Array}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename E$>$ {\bf llu\+::datastructs\+::\+Linked\+List\+Array}$<$ E $>$\+::{\bf Linked\+List\+Array} (
+\begin{DoxyParamCaption}
+\item[{E}]{default\+Value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classllu_1_1datastructs_1_1_linked_list_array_aed92b975cd23466ae97c8348a6caaf10}
+
+
+creates an empty \hyperlink{classllu_1_1datastructs_1_1_linked_list_array}{Linked\+List\+Array} with the spezified default value 
+
+
+\begin{DoxyParams}{Parameters}
+{\em default\+Value} & The default value for en empty cell \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 50 of file linked\+Array.\+hpp.
+
+\hypertarget{classllu_1_1datastructs_1_1_linked_list_array_a4afa917caa5b398d66cf0853f7f258b9}{\index{llu\+::datastructs\+::\+Linked\+List\+Array@{llu\+::datastructs\+::\+Linked\+List\+Array}!````~Linked\+List\+Array@{$\sim$\+Linked\+List\+Array}}
+\index{````~Linked\+List\+Array@{$\sim$\+Linked\+List\+Array}!llu\+::datastructs\+::\+Linked\+List\+Array@{llu\+::datastructs\+::\+Linked\+List\+Array}}
+\subsubsection[{$\sim$\+Linked\+List\+Array}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename E$>$ {\bf llu\+::datastructs\+::\+Linked\+List\+Array}$<$ E $>$\+::$\sim${\bf Linked\+List\+Array} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classllu_1_1datastructs_1_1_linked_list_array_a4afa917caa5b398d66cf0853f7f258b9}
+
+
+deletes this objekt, an clears memory 
+
+\begin{DoxyNote}{Note}
+the stored data is still preserved, and must be cleared elsewere 
+\end{DoxyNote}
+
+
+Definition at line 58 of file linked\+Array.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classllu_1_1datastructs_1_1_linked_list_array_a9ed83912b4cb5d14512d087ebbb2f8e9}{\index{llu\+::datastructs\+::\+Linked\+List\+Array@{llu\+::datastructs\+::\+Linked\+List\+Array}!get@{get}}
+\index{get@{get}!llu\+::datastructs\+::\+Linked\+List\+Array@{llu\+::datastructs\+::\+Linked\+List\+Array}}
+\subsubsection[{get}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename E$>$ E {\bf llu\+::datastructs\+::\+Linked\+List\+Array}$<$ E $>$\+::get (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classllu_1_1datastructs_1_1_linked_list_array_a9ed83912b4cb5d14512d087ebbb2f8e9}
+
+
+returns an element from index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & the index to get the element from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the element at index if there is no element at index, it will return the default value 
+\end{DoxyReturn}
+
+
+Definition at line 127 of file linked\+Array.\+hpp.
+
+\hypertarget{classllu_1_1datastructs_1_1_linked_list_array_ac588bbfb35a0903ad5c782d11ec0f334}{\index{llu\+::datastructs\+::\+Linked\+List\+Array@{llu\+::datastructs\+::\+Linked\+List\+Array}!put@{put}}
+\index{put@{put}!llu\+::datastructs\+::\+Linked\+List\+Array@{llu\+::datastructs\+::\+Linked\+List\+Array}}
+\subsubsection[{put}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename E$>$ int {\bf llu\+::datastructs\+::\+Linked\+List\+Array}$<$ E $>$\+::put (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{index, }
+\item[{E}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classllu_1_1datastructs_1_1_linked_list_array_ac588bbfb35a0903ad5c782d11ec0f334}
+
+
+Puts the element data at position index. 
+
+can be used to put an element at a spezific index, if the index was allready taken nothing would happen 
+\begin{DoxyParams}{Parameters}
+{\em index} & the inex in the array \\
+\hline
+{\em data} & of type E \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if nothing was done otherwise 1 
+\end{DoxyReturn}
+
+
+Definition at line 93 of file linked\+Array.\+hpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classllu_1_1datastructs_1_1_linked_list_array_a7c9cdd61e7665e7f97447e25ca64451e}{\index{llu\+::datastructs\+::\+Linked\+List\+Array@{llu\+::datastructs\+::\+Linked\+List\+Array}!lock@{lock}}
+\index{lock@{lock}!llu\+::datastructs\+::\+Linked\+List\+Array@{llu\+::datastructs\+::\+Linked\+List\+Array}}
+\subsubsection[{lock}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename E$>$ std\+::mutex {\bf llu\+::datastructs\+::\+Linked\+List\+Array}$<$ E $>$\+::lock}}\label{classllu_1_1datastructs_1_1_linked_list_array_a7c9cdd61e7665e7f97447e25ca64451e}
+
+
+lock for the Array. 
+
+\begin{DoxyNote}{Note}
+should be used, if accessing the Raw Linked List from outside 
+\end{DoxyNote}
+
+
+Definition at line 75 of file linked\+Array.\+hpp.
+
+\hypertarget{classllu_1_1datastructs_1_1_linked_list_array_ac6470a016e4ca99b16ab57db1b6f1f26}{\index{llu\+::datastructs\+::\+Linked\+List\+Array@{llu\+::datastructs\+::\+Linked\+List\+Array}!start@{start}}
+\index{start@{start}!llu\+::datastructs\+::\+Linked\+List\+Array@{llu\+::datastructs\+::\+Linked\+List\+Array}}
+\subsubsection[{start}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename E$>$ {\bf list\+Array\+Entrie}$<$E$>$ {\bf llu\+::datastructs\+::\+Linked\+List\+Array}$<$ E $>$\+::start}}\label{classllu_1_1datastructs_1_1_linked_list_array_ac6470a016e4ca99b16ab57db1b6f1f26}
+
+
+the first element of the list\+Array 
+
+no actual user data is stored here, it is an empty element. can be used to acces the Raw linked list 
+
+Definition at line 83 of file linked\+Array.\+hpp.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+time\+Mux/\hyperlink{linked_array_8hpp}{linked\+Array.\+hpp}\end{DoxyCompactItemize}

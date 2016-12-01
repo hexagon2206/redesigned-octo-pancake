@@ -1,0 +1,113 @@
+\hypertarget{classllu_1_1callback_1_1_callback}{\section{llu\+:\+:callback\+:\+:Callback$<$ C, D $>$ Class Template Reference}
+\label{classllu_1_1callback_1_1_callback}\index{llu\+::callback\+::\+Callback$<$ C, D $>$@{llu\+::callback\+::\+Callback$<$ C, D $>$}}
+}
+
+
+Calback manager class.  
+
+
+
+
+{\ttfamily \#include $<$callback.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classllu_1_1callback_1_1_callback_ad55e4e75a473f3cfe0f5bdbe1ae01a62}{Callback} (D($\ast$copy\+Fun)(D))
+\begin{DoxyCompactList}\small\item\em Creates a new callback handler. \end{DoxyCompactList}\item 
+void \hyperlink{classllu_1_1callback_1_1_callback_a45aaaa527c1623dba2e994df5049ef50}{register\+Callback} (\hyperlink{namespacellu_1_1callback_a082ed24306809c4d250bd5ddfbae177f}{signal} s, \hyperlink{classllu_1_1callback_1_1callback__registration}{callback\+\_\+registration}$<$ C, D $>$ $\ast$c)
+\begin{DoxyCompactList}\small\item\em registers the given callback c for a signal s \end{DoxyCompactList}\item 
+void \hyperlink{classllu_1_1callback_1_1_callback_acfe12b080db1647066890956c1aa8b8b}{signal} (\hyperlink{namespacellu_1_1callback_a082ed24306809c4d250bd5ddfbae177f}{signal} s, D d)
+\begin{DoxyCompactList}\small\item\em Send a signal, it will automaticly call all registerd hanbdlers in a new threads. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename C, typename D$>$class llu\+::callback\+::\+Callback$<$ C, D $>$}
+
+Calback manager class. 
+
+This class can be used for callbackmanagement, it impelemtnts functionality to use in a observer pattern the C is the context of a \hyperlink{classllu_1_1callback_1_1callback__registration}{callback\+\_\+registration} usuali a void$\ast$ D is the Data which must be given wen signaling listeners 
+
+Definition at line 58 of file callback.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classllu_1_1callback_1_1_callback_ad55e4e75a473f3cfe0f5bdbe1ae01a62}{\index{llu\+::callback\+::\+Callback@{llu\+::callback\+::\+Callback}!Callback@{Callback}}
+\index{Callback@{Callback}!llu\+::callback\+::\+Callback@{llu\+::callback\+::\+Callback}}
+\subsubsection[{Callback}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename C, typename D$>$ {\bf llu\+::callback\+::\+Callback}$<$ C, D $>$\+::{\bf Callback} (
+\begin{DoxyParamCaption}
+\item[{D($\ast$)(D)}]{copy\+Fun}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classllu_1_1callback_1_1_callback_ad55e4e75a473f3cfe0f5bdbe1ae01a62}
+
+
+Creates a new callback handler. 
+
+initialiese the callback handler. 
+\begin{DoxyParams}{Parameters}
+{\em copy\+Fun} & a funktion to copy an D will be stored in this-\/$>$copy\+Fun \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 66 of file callback.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classllu_1_1callback_1_1_callback_a45aaaa527c1623dba2e994df5049ef50}{\index{llu\+::callback\+::\+Callback@{llu\+::callback\+::\+Callback}!register\+Callback@{register\+Callback}}
+\index{register\+Callback@{register\+Callback}!llu\+::callback\+::\+Callback@{llu\+::callback\+::\+Callback}}
+\subsubsection[{register\+Callback}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename C, typename D$>$ void {\bf llu\+::callback\+::\+Callback}$<$ C\+O\+N\+T\+E\+X\+T, D\+A\+T\+A $>$\+::register\+Callback (
+\begin{DoxyParamCaption}
+\item[{{\bf signal}}]{s, }
+\item[{{\bf callback\+\_\+registration}$<$ C, D $>$ $\ast$}]{c}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classllu_1_1callback_1_1_callback_a45aaaa527c1623dba2e994df5049ef50}
+
+
+registers the given callback c for a signal s 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & the signal on which the callback should be called \\
+\hline
+{\em c} & a pointer to the compelte callback conext the responesbiliety for c is by the caller, if this class will be deletet, all registrations will continue to exist \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+the context c could be changed wile it is registerd 
+\end{DoxyNote}
+
+
+Definition at line 77 of file callback.\+hpp.
+
+\hypertarget{classllu_1_1callback_1_1_callback_acfe12b080db1647066890956c1aa8b8b}{\index{llu\+::callback\+::\+Callback@{llu\+::callback\+::\+Callback}!signal@{signal}}
+\index{signal@{signal}!llu\+::callback\+::\+Callback@{llu\+::callback\+::\+Callback}}
+\subsubsection[{signal}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename C, typename D$>$ void {\bf llu\+::callback\+::\+Callback}$<$ C, D $>$\+::{\bf signal} (
+\begin{DoxyParamCaption}
+\item[{{\bf signal}}]{s, }
+\item[{D}]{d}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classllu_1_1callback_1_1_callback_acfe12b080db1647066890956c1aa8b8b}
+
+
+Send a signal, it will automaticly call all registerd hanbdlers in a new threads. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & the signal to send \\
+\hline
+{\em d} & the Data to send to the Listeners, a coppy of D is given for each thread, the handler is responsable for the copy the caller for the original \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 97 of file callback.\+hpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+time\+Mux/\hyperlink{callback_8hpp}{callback.\+hpp}\item 
+time\+Mux/\hyperlink{callback_8cpp}{callback.\+cpp}\end{DoxyCompactItemize}

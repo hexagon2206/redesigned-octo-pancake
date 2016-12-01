@@ -1,0 +1,69 @@
+\hypertarget{network_8cpp}{\section{time\+Mux/network.cpp File Reference}
+\label{network_8cpp}\index{time\+Mux/network.\+cpp@{time\+Mux/network.\+cpp}}
+}
+
+
+Implementation of al general network stuff.  
+
+
+{\ttfamily \#include \char`\"{}network.\+hpp\char`\"{}}\\*
+Include dependency graph for network.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{network_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacellu}{llu}
+\item 
+ \hyperlink{namespacellu_1_1network}{llu\+::network}
+\begin{DoxyCompactList}\small\item\em Contaions functionalety used for network komunikation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{namespacellu_1_1network_a9db735ab1f182142c349fc313e33c32d}{llu\+::network\+::to\+N\+B\+O} (uint8\+\_\+t value, uint8\+\_\+t $\ast$target)
+\begin{DoxyCompactList}\small\item\em convertes a given value to the Network byte order (big endian) \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{namespacellu_1_1network_aec38b31ea6f294a14c7c3f9e426b312d}{llu\+::network\+::to\+H\+B\+O\+\_\+8} (uint8\+\_\+t $\ast$from)
+\begin{DoxyCompactList}\small\item\em convertes a given byte fiedl in Network byte order to host byte order \end{DoxyCompactList}\item 
+void \hyperlink{namespacellu_1_1network_aa1dd1b9198bfbe8d3fd01ca358d8d538}{llu\+::network\+::to\+N\+B\+O} (uint16\+\_\+t value, uint8\+\_\+t $\ast$target)
+\begin{DoxyCompactList}\small\item\em convertes a given value to the Network byte order (big endian) \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{namespacellu_1_1network_a6c358826dbd0c43ec751139dca87ab71}{llu\+::network\+::to\+H\+B\+O\+\_\+16} (uint8\+\_\+t $\ast$from)
+\begin{DoxyCompactList}\small\item\em convertes a given byte fiedl in Network byte order to host byte order \end{DoxyCompactList}\item 
+void \hyperlink{namespacellu_1_1network_a0132a9cde9b08a16e9b05709ea16a2b9}{llu\+::network\+::to\+N\+B\+O} (uint32\+\_\+t value, uint8\+\_\+t $\ast$target)
+\begin{DoxyCompactList}\small\item\em convertes a given value to the Network byte order (big endian) \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{namespacellu_1_1network_a2222539df59075cc6f892b12956968eb}{llu\+::network\+::to\+H\+B\+O\+\_\+32} (uint8\+\_\+t $\ast$from)
+\begin{DoxyCompactList}\small\item\em convertes a given byte fiedl in Network byte order to host byte order \end{DoxyCompactList}\item 
+void \hyperlink{namespacellu_1_1network_af0b046f65433995d5150c3f8251e7d07}{llu\+::network\+::to\+N\+B\+O} (uint64\+\_\+t value, uint8\+\_\+t $\ast$target)
+\begin{DoxyCompactList}\small\item\em convertes a given value to the Network byte order (big endian) \end{DoxyCompactList}\item 
+uint64\+\_\+t \hyperlink{namespacellu_1_1network_af97d326c7853fc1b5932a56b8cc8e4b6}{llu\+::network\+::to\+H\+B\+O\+\_\+64} (uint8\+\_\+t $\ast$from)
+\begin{DoxyCompactList}\small\item\em convertes a given byte fiedl in Network byte order to host byte order \end{DoxyCompactList}\item 
+sockaddr\+\_\+in \hyperlink{namespacellu_1_1network_ae50fed51b566b947fd0cb1a4efbb3b12}{llu\+::network\+::resolve} (const char $\ast$addr, uint16\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em resolves an Ipv4 and an port to a sockaddr\+\_\+in \end{DoxyCompactList}\item 
+recived\+Message $\ast$ \hyperlink{namespacellu_1_1network_a867a402a3f2a945cf6d5f9b9c9ca4bd1}{llu\+::network\+::create\+Recived\+Message} (size\+\_\+t buffer\+Size)
+\begin{DoxyCompactList}\small\item\em creates an empry \hyperlink{structllu_1_1network_1_1recived_message}{recived\+Message} object \end{DoxyCompactList}\item 
+void \hyperlink{namespacellu_1_1network_a957314727976f73a1566322ad0229ca8}{llu\+::network\+::destory\+Recived\+Message} (recived\+Message $\ast$m)
+\begin{DoxyCompactList}\small\item\em deletes a recived Massage, the data field itself is not touched \end{DoxyCompactList}\item 
+send\+Message $\ast$ \hyperlink{namespacellu_1_1network_a86501a24323e339aa0a3b4e935bb2495}{llu\+::network\+::create\+Send\+Message} (size\+\_\+t buffer\+Size, sockaddr\+\_\+in target, const void $\ast$from)
+\begin{DoxyCompactList}\small\item\em creates a Message ready to be send to a connection \end{DoxyCompactList}\item 
+void \hyperlink{namespacellu_1_1network_a8c61905bb65d88aa69349ee7138577a8}{llu\+::network\+::destory\+Send\+Message} (send\+Message $\ast$m)
+\begin{DoxyCompactList}\small\item\em deletes a send Massage, the data field itself is not touched \end{DoxyCompactList}\item 
+recived\+Message $\ast$ \hyperlink{namespacellu_1_1network_a126aeba4f63e2f7d5617ee4568b32895}{llu\+::network\+::copy\+Recived\+Message} (recived\+Message $\ast$r)
+\begin{DoxyCompactList}\small\item\em copies an compleate \hyperlink{structllu_1_1network_1_1recived_message}{recived\+Message} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of al general network stuff. 
+
+\begin{DoxyAuthor}{Author}
+Lukas Lühr (hexagon2206) 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Bug}
+\item[\hyperlink{bug__bug000006}{Bug}]No known bugs. \end{DoxyRefDesc}
+
+
+Definition in file \hyperlink{network_8cpp_source}{network.\+cpp}.
+

@@ -1,0 +1,154 @@
+\hypertarget{classllu_1_1network_1_1_udp_connection}{\section{llu\+:\+:network\+:\+:Udp\+Connection Class Reference}
+\label{classllu_1_1network_1_1_udp_connection}\index{llu\+::network\+::\+Udp\+Connection@{llu\+::network\+::\+Udp\+Connection}}
+}
+
+
+{\ttfamily \#include $<$udp.\+hpp$>$}
+
+
+
+Inheritance diagram for llu\+:\+:network\+:\+:Udp\+Connection\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classllu_1_1network_1_1_udp_connection__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for llu\+:\+:network\+:\+:Udp\+Connection\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classllu_1_1network_1_1_udp_connection__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classllu_1_1network_1_1_udp_connection_a715f5dabf94e43a9a54385a647cc587b}{Udp\+Connection} (char ttl=1, uint16\+\_\+t my\+Port=0, size\+\_\+t max\+Rcv\+Msg\+Leng=128)
+\item 
+\hyperlink{structllu_1_1network_1_1recived_message}{recived\+Message} $\ast$ \hyperlink{classllu_1_1network_1_1_udp_connection_abbd9d3906a283f5506a69a8922fa76c6}{recv\+Msg} ()
+\begin{DoxyCompactList}\small\item\em recives a \hyperlink{structllu_1_1network_1_1recived_message}{recived\+Message} from the connection \end{DoxyCompactList}\item 
+void \hyperlink{classllu_1_1network_1_1_udp_connection_a044432ee61191ecabd295fe4ea6cddf1}{send\+Msg} (\hyperlink{structllu_1_1network_1_1send_message}{send\+Message} $\ast$m)
+\begin{DoxyCompactList}\small\item\em sends the message m over the \hyperlink{classllu_1_1network_1_1_connection}{Connection} \end{DoxyCompactList}\item 
+bool \hyperlink{classllu_1_1network_1_1_udp_connection_add200cb20d4ece925b8752675d375828}{alive} ()
+\begin{DoxyCompactList}\small\item\em used to check if the connection is usable \end{DoxyCompactList}\item 
+void \hyperlink{classllu_1_1network_1_1_udp_connection_a97a62c2ab3975d9716f965aacc2f28fc}{kill} ()
+\begin{DoxyCompactList}\small\item\em closes a connection \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 23 of file udp.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classllu_1_1network_1_1_udp_connection_a715f5dabf94e43a9a54385a647cc587b}{\index{llu\+::network\+::\+Udp\+Connection@{llu\+::network\+::\+Udp\+Connection}!Udp\+Connection@{Udp\+Connection}}
+\index{Udp\+Connection@{Udp\+Connection}!llu\+::network\+::\+Udp\+Connection@{llu\+::network\+::\+Udp\+Connection}}
+\subsubsection[{Udp\+Connection}]{\setlength{\rightskip}{0pt plus 5cm}llu\+::network\+::\+Udp\+Connection\+::\+Udp\+Connection (
+\begin{DoxyParamCaption}
+\item[{char}]{ttl = {\ttfamily 1}, }
+\item[{uint16\+\_\+t}]{my\+Port = {\ttfamily 0}, }
+\item[{size\+\_\+t}]{max\+Rcv\+Msg\+Leng = {\ttfamily 128}}
+\end{DoxyParamCaption}
+)}}\label{classllu_1_1network_1_1_udp_connection_a715f5dabf94e43a9a54385a647cc587b}
+
+
+Definition at line 12 of file udp.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classllu_1_1network_1_1_udp_connection_add200cb20d4ece925b8752675d375828}{\index{llu\+::network\+::\+Udp\+Connection@{llu\+::network\+::\+Udp\+Connection}!alive@{alive}}
+\index{alive@{alive}!llu\+::network\+::\+Udp\+Connection@{llu\+::network\+::\+Udp\+Connection}}
+\subsubsection[{alive}]{\setlength{\rightskip}{0pt plus 5cm}bool llu\+::network\+::\+Udp\+Connection\+::alive (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classllu_1_1network_1_1_udp_connection_add200cb20d4ece925b8752675d375828}
+
+
+used to check if the connection is usable 
+
+\begin{DoxyReturn}{Returns}
+true if usable, otherwise false 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classllu_1_1network_1_1_connection_a05893a11a26ea97663637cf085e1b985}{llu\+::network\+::\+Connection}.
+
+
+
+Definition at line 42 of file udp.\+cpp.
+
+\hypertarget{classllu_1_1network_1_1_udp_connection_a97a62c2ab3975d9716f965aacc2f28fc}{\index{llu\+::network\+::\+Udp\+Connection@{llu\+::network\+::\+Udp\+Connection}!kill@{kill}}
+\index{kill@{kill}!llu\+::network\+::\+Udp\+Connection@{llu\+::network\+::\+Udp\+Connection}}
+\subsubsection[{kill}]{\setlength{\rightskip}{0pt plus 5cm}void llu\+::network\+::\+Udp\+Connection\+::kill (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classllu_1_1network_1_1_udp_connection_a97a62c2ab3975d9716f965aacc2f28fc}
+
+
+closes a connection 
+
+
+
+Implements \hyperlink{classllu_1_1network_1_1_connection_a7e620755dde598fffc96d3ee6b3326a1}{llu\+::network\+::\+Connection}.
+
+
+
+Definition at line 46 of file udp.\+cpp.
+
+\hypertarget{classllu_1_1network_1_1_udp_connection_abbd9d3906a283f5506a69a8922fa76c6}{\index{llu\+::network\+::\+Udp\+Connection@{llu\+::network\+::\+Udp\+Connection}!recv\+Msg@{recv\+Msg}}
+\index{recv\+Msg@{recv\+Msg}!llu\+::network\+::\+Udp\+Connection@{llu\+::network\+::\+Udp\+Connection}}
+\subsubsection[{recv\+Msg}]{\setlength{\rightskip}{0pt plus 5cm}{\bf recived\+Message} $\ast$ llu\+::network\+::\+Udp\+Connection\+::recv\+Msg (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classllu_1_1network_1_1_udp_connection_abbd9d3906a283f5506a69a8922fa76c6}
+
+
+recives a \hyperlink{structllu_1_1network_1_1recived_message}{recived\+Message} from the connection 
+
+Blocks untill data is avaliable \begin{DoxyReturn}{Returns}
+the \hyperlink{structllu_1_1network_1_1recived_message}{recived\+Message} rescived the responsebilety for the result belonges to the caller 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classllu_1_1network_1_1_connection_aae606f5aad246e892db5665cd7be1747}{llu\+::network\+::\+Connection}.
+
+
+
+Definition at line 28 of file udp.\+cpp.
+
+\hypertarget{classllu_1_1network_1_1_udp_connection_a044432ee61191ecabd295fe4ea6cddf1}{\index{llu\+::network\+::\+Udp\+Connection@{llu\+::network\+::\+Udp\+Connection}!send\+Msg@{send\+Msg}}
+\index{send\+Msg@{send\+Msg}!llu\+::network\+::\+Udp\+Connection@{llu\+::network\+::\+Udp\+Connection}}
+\subsubsection[{send\+Msg}]{\setlength{\rightskip}{0pt plus 5cm}void llu\+::network\+::\+Udp\+Connection\+::send\+Msg (
+\begin{DoxyParamCaption}
+\item[{{\bf send\+Message} $\ast$}]{m}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classllu_1_1network_1_1_udp_connection_a044432ee61191ecabd295fe4ea6cddf1}
+
+
+sends the message m over the \hyperlink{classllu_1_1network_1_1_connection}{Connection} 
+
+this methode is not blocking m will be deletet using destory\+Send\+Message 
+
+Implements \hyperlink{classllu_1_1network_1_1_connection_ac20ca6d4d56b39fadde27b6af10000ae}{llu\+::network\+::\+Connection}.
+
+
+
+Definition at line 36 of file udp.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+time\+Mux/\hyperlink{udp_8hpp}{udp.\+hpp}\item 
+time\+Mux/\hyperlink{udp_8cpp}{udp.\+cpp}\end{DoxyCompactItemize}

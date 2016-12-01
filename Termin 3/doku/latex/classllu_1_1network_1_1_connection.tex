@@ -1,0 +1,125 @@
+\hypertarget{classllu_1_1network_1_1_connection}{\section{llu\+:\+:network\+:\+:Connection Class Reference}
+\label{classllu_1_1network_1_1_connection}\index{llu\+::network\+::\+Connection@{llu\+::network\+::\+Connection}}
+}
+
+
+{\ttfamily \#include $<$network.\+hpp$>$}
+
+
+
+Inheritance diagram for llu\+:\+:network\+:\+:Connection\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classllu_1_1network_1_1_connection__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classllu_1_1network_1_1_connection_ad549cc793bf214a9097a62fa7fc01b33}{$\sim$\+Connection} ()
+\item 
+virtual \hyperlink{structllu_1_1network_1_1recived_message}{recived\+Message} $\ast$ \hyperlink{classllu_1_1network_1_1_connection_aae606f5aad246e892db5665cd7be1747}{recv\+Msg} ()=0
+\begin{DoxyCompactList}\small\item\em recives a \hyperlink{structllu_1_1network_1_1recived_message}{recived\+Message} from the connection \end{DoxyCompactList}\item 
+virtual void \hyperlink{classllu_1_1network_1_1_connection_ac20ca6d4d56b39fadde27b6af10000ae}{send\+Msg} (\hyperlink{structllu_1_1network_1_1send_message}{send\+Message} $\ast$m)=0
+\begin{DoxyCompactList}\small\item\em sends the message m over the \hyperlink{classllu_1_1network_1_1_connection}{Connection} \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classllu_1_1network_1_1_connection_a05893a11a26ea97663637cf085e1b985}{alive} ()=0
+\begin{DoxyCompactList}\small\item\em used to check if the connection is usable \end{DoxyCompactList}\item 
+virtual void \hyperlink{classllu_1_1network_1_1_connection_a7e620755dde598fffc96d3ee6b3326a1}{kill} ()=0
+\begin{DoxyCompactList}\small\item\em closes a connection \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 153 of file network.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classllu_1_1network_1_1_connection_ad549cc793bf214a9097a62fa7fc01b33}{\index{llu\+::network\+::\+Connection@{llu\+::network\+::\+Connection}!````~Connection@{$\sim$\+Connection}}
+\index{````~Connection@{$\sim$\+Connection}!llu\+::network\+::\+Connection@{llu\+::network\+::\+Connection}}
+\subsubsection[{$\sim$\+Connection}]{\setlength{\rightskip}{0pt plus 5cm}virtual llu\+::network\+::\+Connection\+::$\sim$\+Connection (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classllu_1_1network_1_1_connection_ad549cc793bf214a9097a62fa7fc01b33}
+
+
+Definition at line 156 of file network.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classllu_1_1network_1_1_connection_a05893a11a26ea97663637cf085e1b985}{\index{llu\+::network\+::\+Connection@{llu\+::network\+::\+Connection}!alive@{alive}}
+\index{alive@{alive}!llu\+::network\+::\+Connection@{llu\+::network\+::\+Connection}}
+\subsubsection[{alive}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool llu\+::network\+::\+Connection\+::alive (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classllu_1_1network_1_1_connection_a05893a11a26ea97663637cf085e1b985}
+
+
+used to check if the connection is usable 
+
+\begin{DoxyReturn}{Returns}
+true if usable, otherwise false 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classllu_1_1network_1_1_udp_connection_add200cb20d4ece925b8752675d375828}{llu\+::network\+::\+Udp\+Connection}.
+
+\hypertarget{classllu_1_1network_1_1_connection_a7e620755dde598fffc96d3ee6b3326a1}{\index{llu\+::network\+::\+Connection@{llu\+::network\+::\+Connection}!kill@{kill}}
+\index{kill@{kill}!llu\+::network\+::\+Connection@{llu\+::network\+::\+Connection}}
+\subsubsection[{kill}]{\setlength{\rightskip}{0pt plus 5cm}virtual void llu\+::network\+::\+Connection\+::kill (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classllu_1_1network_1_1_connection_a7e620755dde598fffc96d3ee6b3326a1}
+
+
+closes a connection 
+
+
+
+Implemented in \hyperlink{classllu_1_1network_1_1_udp_connection_a97a62c2ab3975d9716f965aacc2f28fc}{llu\+::network\+::\+Udp\+Connection}.
+
+\hypertarget{classllu_1_1network_1_1_connection_aae606f5aad246e892db5665cd7be1747}{\index{llu\+::network\+::\+Connection@{llu\+::network\+::\+Connection}!recv\+Msg@{recv\+Msg}}
+\index{recv\+Msg@{recv\+Msg}!llu\+::network\+::\+Connection@{llu\+::network\+::\+Connection}}
+\subsubsection[{recv\+Msg}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf recived\+Message}$\ast$ llu\+::network\+::\+Connection\+::recv\+Msg (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classllu_1_1network_1_1_connection_aae606f5aad246e892db5665cd7be1747}
+
+
+recives a \hyperlink{structllu_1_1network_1_1recived_message}{recived\+Message} from the connection 
+
+Blocks untill data is avaliable \begin{DoxyReturn}{Returns}
+the \hyperlink{structllu_1_1network_1_1recived_message}{recived\+Message} rescived the responsebilety for the result belonges to the caller 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classllu_1_1network_1_1_udp_connection_abbd9d3906a283f5506a69a8922fa76c6}{llu\+::network\+::\+Udp\+Connection}.
+
+\hypertarget{classllu_1_1network_1_1_connection_ac20ca6d4d56b39fadde27b6af10000ae}{\index{llu\+::network\+::\+Connection@{llu\+::network\+::\+Connection}!send\+Msg@{send\+Msg}}
+\index{send\+Msg@{send\+Msg}!llu\+::network\+::\+Connection@{llu\+::network\+::\+Connection}}
+\subsubsection[{send\+Msg}]{\setlength{\rightskip}{0pt plus 5cm}virtual void llu\+::network\+::\+Connection\+::send\+Msg (
+\begin{DoxyParamCaption}
+\item[{{\bf send\+Message} $\ast$}]{m}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classllu_1_1network_1_1_connection_ac20ca6d4d56b39fadde27b6af10000ae}
+
+
+sends the message m over the \hyperlink{classllu_1_1network_1_1_connection}{Connection} 
+
+this methode is not blocking m will be deletet using destory\+Send\+Message 
+
+Implemented in \hyperlink{classllu_1_1network_1_1_udp_connection_a044432ee61191ecabd295fe4ea6cddf1}{llu\+::network\+::\+Udp\+Connection}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+time\+Mux/\hyperlink{network_8hpp}{network.\+hpp}\end{DoxyCompactItemize}

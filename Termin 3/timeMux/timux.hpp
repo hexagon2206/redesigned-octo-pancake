@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <mutex>
+#include <thread>
 
 #include "callback.hpp"
 #include "network.hpp"
@@ -119,6 +120,8 @@ namespace timux{
             llu::network::ManagedConnection *con;
 
         public:
+
+            std::thread *mthread;
             timing t;
             unsigned long frameLength;
             unsigned long slotCount;

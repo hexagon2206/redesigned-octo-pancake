@@ -1,0 +1,162 @@
+\hypertarget{bc_server_8cpp}{\section{time\+Mux/bc\+Server.cpp File Reference}
+\label{bc_server_8cpp}\index{time\+Mux/bc\+Server.\+cpp@{time\+Mux/bc\+Server.\+cpp}}
+}
+
+
+Implementation of a U\+D\+P Broadcast server for testing.  
+
+
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include \char`\"{}callback.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}ring\+Buffer.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}udp.\+hpp\char`\"{}}\\*
+{\ttfamily \#include $<$chrono$>$}\\*
+{\ttfamily \#include $<$thread$>$}\\*
+{\ttfamily \#include $<$netinet/in.\+h$>$}\\*
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\\*
+{\ttfamily \#include $<$mutex$>$}\\*
+Include dependency graph for bc\+Server.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bc_server_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{bc_server_8cpp_a158a930828d856b72962ae4bb14d79a7}{E\+C\+H\+O\+\_\+\+S\+I\+G\+N\+A\+L}~(1)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{bc_server_8cpp_a73b04ffa1af0870539b2176ccd5fc1f3}{Print\+Matcher} (\hyperlink{structllu_1_1network_1_1recived_message}{recived\+Message} $\ast$m, \hyperlink{namespacellu_1_1callback_a082ed24306809c4d250bd5ddfbae177f}{signal} $\ast$s)
+\item 
+void \hyperlink{bc_server_8cpp_a17110670e7e47fbc3d08946d2891f8db}{Print\+Handler} (void $\ast$c, \hyperlink{structllu_1_1network_1_1recived_message}{recived\+Message} $\ast$m)
+\item 
+bool \hyperlink{bc_server_8cpp_ae915c722df9438586415bb59a2a7cbce}{socketaddr\+Compare} (sockaddr\+\_\+in A, sockaddr\+\_\+in B)
+\item 
+void \hyperlink{bc_server_8cpp_a2dc45723754eab307e0b3ce87735309d}{B\+C\+Handler} (void $\ast$c, \hyperlink{structllu_1_1network_1_1recived_message}{recived\+Message} $\ast$m)
+\item 
+int \hyperlink{bc_server_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+mutex \hyperlink{bc_server_8cpp_ab68c2cee22ffb1d6c7829af1ff88f95a}{screen\+Lock}
+\item 
+\hyperlink{classllu_1_1datastructs_1_1_linked_list}{Linked\+List}$<$ sockaddr\+\_\+in $>$ \hyperlink{bc_server_8cpp_acce8f31ca286e21002e779752b8b218a}{client\+List}
+\item 
+mutex \hyperlink{bc_server_8cpp_aeeac01e4649111607f78ca1cc033f067}{list\+Lock}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of a U\+D\+P Broadcast server for testing. 
+
+\begin{DoxyAuthor}{Author}
+Lukas Lühr (hexagon2206) 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Bug}
+\item[\hyperlink{bug__bug000001}{Bug}]No known bugs. \end{DoxyRefDesc}
+
+
+Definition in file \hyperlink{bc_server_8cpp_source}{bc\+Server.\+cpp}.
+
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{bc_server_8cpp_a158a930828d856b72962ae4bb14d79a7}{\index{bc\+Server.\+cpp@{bc\+Server.\+cpp}!E\+C\+H\+O\+\_\+\+S\+I\+G\+N\+A\+L@{E\+C\+H\+O\+\_\+\+S\+I\+G\+N\+A\+L}}
+\index{E\+C\+H\+O\+\_\+\+S\+I\+G\+N\+A\+L@{E\+C\+H\+O\+\_\+\+S\+I\+G\+N\+A\+L}!bc\+Server.\+cpp@{bc\+Server.\+cpp}}
+\subsubsection[{E\+C\+H\+O\+\_\+\+S\+I\+G\+N\+A\+L}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+C\+H\+O\+\_\+\+S\+I\+G\+N\+A\+L~(1)}}\label{bc_server_8cpp_a158a930828d856b72962ae4bb14d79a7}
+
+
+Definition at line 23 of file bc\+Server.\+cpp.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{bc_server_8cpp_a2dc45723754eab307e0b3ce87735309d}{\index{bc\+Server.\+cpp@{bc\+Server.\+cpp}!B\+C\+Handler@{B\+C\+Handler}}
+\index{B\+C\+Handler@{B\+C\+Handler}!bc\+Server.\+cpp@{bc\+Server.\+cpp}}
+\subsubsection[{B\+C\+Handler}]{\setlength{\rightskip}{0pt plus 5cm}void B\+C\+Handler (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{c, }
+\item[{{\bf recived\+Message} $\ast$}]{m}
+\end{DoxyParamCaption}
+)}}\label{bc_server_8cpp_a2dc45723754eab307e0b3ce87735309d}
+
+
+Definition at line 47 of file bc\+Server.\+cpp.
+
+\hypertarget{bc_server_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{\index{bc\+Server.\+cpp@{bc\+Server.\+cpp}!main@{main}}
+\index{main@{main}!bc\+Server.\+cpp@{bc\+Server.\+cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{bc_server_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}
+
+
+Definition at line 69 of file bc\+Server.\+cpp.
+
+\hypertarget{bc_server_8cpp_a17110670e7e47fbc3d08946d2891f8db}{\index{bc\+Server.\+cpp@{bc\+Server.\+cpp}!Print\+Handler@{Print\+Handler}}
+\index{Print\+Handler@{Print\+Handler}!bc\+Server.\+cpp@{bc\+Server.\+cpp}}
+\subsubsection[{Print\+Handler}]{\setlength{\rightskip}{0pt plus 5cm}void Print\+Handler (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{c, }
+\item[{{\bf recived\+Message} $\ast$}]{m}
+\end{DoxyParamCaption}
+)}}\label{bc_server_8cpp_a17110670e7e47fbc3d08946d2891f8db}
+
+
+Definition at line 30 of file bc\+Server.\+cpp.
+
+\hypertarget{bc_server_8cpp_a73b04ffa1af0870539b2176ccd5fc1f3}{\index{bc\+Server.\+cpp@{bc\+Server.\+cpp}!Print\+Matcher@{Print\+Matcher}}
+\index{Print\+Matcher@{Print\+Matcher}!bc\+Server.\+cpp@{bc\+Server.\+cpp}}
+\subsubsection[{Print\+Matcher}]{\setlength{\rightskip}{0pt plus 5cm}bool Print\+Matcher (
+\begin{DoxyParamCaption}
+\item[{{\bf recived\+Message} $\ast$}]{m, }
+\item[{{\bf signal} $\ast$}]{s}
+\end{DoxyParamCaption}
+)}}\label{bc_server_8cpp_a73b04ffa1af0870539b2176ccd5fc1f3}
+
+
+Definition at line 24 of file bc\+Server.\+cpp.
+
+\hypertarget{bc_server_8cpp_ae915c722df9438586415bb59a2a7cbce}{\index{bc\+Server.\+cpp@{bc\+Server.\+cpp}!socketaddr\+Compare@{socketaddr\+Compare}}
+\index{socketaddr\+Compare@{socketaddr\+Compare}!bc\+Server.\+cpp@{bc\+Server.\+cpp}}
+\subsubsection[{socketaddr\+Compare}]{\setlength{\rightskip}{0pt plus 5cm}bool socketaddr\+Compare (
+\begin{DoxyParamCaption}
+\item[{sockaddr\+\_\+in}]{A, }
+\item[{sockaddr\+\_\+in}]{B}
+\end{DoxyParamCaption}
+)}}\label{bc_server_8cpp_ae915c722df9438586415bb59a2a7cbce}
+
+
+Definition at line 41 of file bc\+Server.\+cpp.
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{bc_server_8cpp_acce8f31ca286e21002e779752b8b218a}{\index{bc\+Server.\+cpp@{bc\+Server.\+cpp}!client\+List@{client\+List}}
+\index{client\+List@{client\+List}!bc\+Server.\+cpp@{bc\+Server.\+cpp}}
+\subsubsection[{client\+List}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Linked\+List}$<$sockaddr\+\_\+in$>$ client\+List}}\label{bc_server_8cpp_acce8f31ca286e21002e779752b8b218a}
+
+
+Definition at line 44 of file bc\+Server.\+cpp.
+
+\hypertarget{bc_server_8cpp_aeeac01e4649111607f78ca1cc033f067}{\index{bc\+Server.\+cpp@{bc\+Server.\+cpp}!list\+Lock@{list\+Lock}}
+\index{list\+Lock@{list\+Lock}!bc\+Server.\+cpp@{bc\+Server.\+cpp}}
+\subsubsection[{list\+Lock}]{\setlength{\rightskip}{0pt plus 5cm}mutex list\+Lock}}\label{bc_server_8cpp_aeeac01e4649111607f78ca1cc033f067}
+
+
+Definition at line 45 of file bc\+Server.\+cpp.
+
+\hypertarget{bc_server_8cpp_ab68c2cee22ffb1d6c7829af1ff88f95a}{\index{bc\+Server.\+cpp@{bc\+Server.\+cpp}!screen\+Lock@{screen\+Lock}}
+\index{screen\+Lock@{screen\+Lock}!bc\+Server.\+cpp@{bc\+Server.\+cpp}}
+\subsubsection[{screen\+Lock}]{\setlength{\rightskip}{0pt plus 5cm}mutex screen\+Lock}}\label{bc_server_8cpp_ab68c2cee22ffb1d6c7829af1ff88f95a}
+
+
+Definition at line 29 of file bc\+Server.\+cpp.
+

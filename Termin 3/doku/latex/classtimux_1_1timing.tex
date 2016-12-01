@@ -1,0 +1,110 @@
+\hypertarget{classtimux_1_1timing}{\section{timux\+:\+:timing Class Reference}
+\label{classtimux_1_1timing}\index{timux\+::timing@{timux\+::timing}}
+}
+
+
+used for timing and time synchronisation is thread save  
+
+
+
+
+{\ttfamily \#include $<$timux.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classtimux_1_1timing_ae0da26b066603dea4f7abd847b6e583b}{timing} (\hyperlink{classllu_1_1network_1_1_managed_connection}{llu\+::network\+::\+Managed\+Connection} $\ast$con, long offset=0)
+\begin{DoxyCompactList}\small\item\em initialsises a timing class, and registers the Callbacks for con \end{DoxyCompactList}\item 
+void \hyperlink{classtimux_1_1timing_a668098b529ca02907b0985fd7ac67b91}{synchronize} (\hyperlink{structtimux_1_1package}{package} $\ast$p)
+\begin{DoxyCompactList}\small\item\em synchronizes the clock with a given msg \end{DoxyCompactList}\item 
+unsigned long \hyperlink{classtimux_1_1timing_a54814668e0ec81df6e8727959a5d61a8}{now} ()
+\begin{DoxyCompactList}\small\item\em calculates the current time, also uses offset ot this \end{DoxyCompactList}\item 
+long \hyperlink{classtimux_1_1timing_aadef25c2cf73f07e79ffa7ec0c7ae983}{get\+Offset} ()
+\begin{DoxyCompactList}\small\item\em returnes the offset \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+used for timing and time synchronisation is thread save 
+
+Definition at line 43 of file timux.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classtimux_1_1timing_ae0da26b066603dea4f7abd847b6e583b}{\index{timux\+::timing@{timux\+::timing}!timing@{timing}}
+\index{timing@{timing}!timux\+::timing@{timux\+::timing}}
+\subsubsection[{timing}]{\setlength{\rightskip}{0pt plus 5cm}timux\+::timing\+::timing (
+\begin{DoxyParamCaption}
+\item[{{\bf llu\+::network\+::\+Managed\+Connection} $\ast$}]{con, }
+\item[{long}]{offset = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}\label{classtimux_1_1timing_ae0da26b066603dea4f7abd847b6e583b}
+
+
+initialsises a timing class, and registers the Callbacks for con 
+
+
+\begin{DoxyParams}{Parameters}
+{\em con} & the connection to listen on for pacakges of type A \\
+\hline
+{\em offset} & the initials offset of this system clock \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 47 of file timux.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classtimux_1_1timing_aadef25c2cf73f07e79ffa7ec0c7ae983}{\index{timux\+::timing@{timux\+::timing}!get\+Offset@{get\+Offset}}
+\index{get\+Offset@{get\+Offset}!timux\+::timing@{timux\+::timing}}
+\subsubsection[{get\+Offset}]{\setlength{\rightskip}{0pt plus 5cm}long timux\+::timing\+::get\+Offset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classtimux_1_1timing_aadef25c2cf73f07e79ffa7ec0c7ae983}
+
+
+returnes the offset 
+
+
+
+Definition at line 41 of file timux.\+cpp.
+
+\hypertarget{classtimux_1_1timing_a54814668e0ec81df6e8727959a5d61a8}{\index{timux\+::timing@{timux\+::timing}!now@{now}}
+\index{now@{now}!timux\+::timing@{timux\+::timing}}
+\subsubsection[{now}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long timux\+::timing\+::now (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classtimux_1_1timing_a54814668e0ec81df6e8727959a5d61a8}
+
+
+calculates the current time, also uses offset ot this 
+
+
+
+Definition at line 35 of file timux.\+cpp.
+
+\hypertarget{classtimux_1_1timing_a668098b529ca02907b0985fd7ac67b91}{\index{timux\+::timing@{timux\+::timing}!synchronize@{synchronize}}
+\index{synchronize@{synchronize}!timux\+::timing@{timux\+::timing}}
+\subsubsection[{synchronize}]{\setlength{\rightskip}{0pt plus 5cm}void timux\+::timing\+::synchronize (
+\begin{DoxyParamCaption}
+\item[{{\bf package} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{classtimux_1_1timing_a668098b529ca02907b0985fd7ac67b91}
+
+
+synchronizes the clock with a given msg 
+
+
+
+Definition at line 27 of file timux.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+time\+Mux/\hyperlink{timux_8hpp}{timux.\+hpp}\item 
+time\+Mux/\hyperlink{timux_8cpp}{timux.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,73 @@
+\hypertarget{classllu_1_1callback_1_1callback__registration}{\section{llu\+:\+:callback\+:\+:callback\+\_\+registration$<$ C, D $>$ Class Template Reference}
+\label{classllu_1_1callback_1_1callback__registration}\index{llu\+::callback\+::callback\+\_\+registration$<$ C, D $>$@{llu\+::callback\+::callback\+\_\+registration$<$ C, D $>$}}
+}
+
+
+Calback registration, containing functon and.  
+
+
+
+
+{\ttfamily \#include $<$callback.\+hpp$>$}
+
+
+
+Collaboration diagram for llu\+:\+:callback\+:\+:callback\+\_\+registration$<$ C, D $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{classllu_1_1callback_1_1callback__registration__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+void($\ast$ \hyperlink{classllu_1_1callback_1_1callback__registration_a470bbcee9d41e0070e9630461b88084d}{fnc} )(C, D)
+\begin{DoxyCompactList}\small\item\em The pointer which will be caled if registered. \end{DoxyCompactList}\item 
+C \hyperlink{classllu_1_1callback_1_1callback__registration_aecc9f23363c08b42144d70d928b4ec02}{data}
+\begin{DoxyCompactList}\small\item\em The context of the callback, will be given to the fnc. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename C, typename D$>$class llu\+::callback\+::callback\+\_\+registration$<$ C, D $>$}
+
+Calback registration, containing functon and. 
+
+This class can be used for callback registration in an \hyperlink{classllu_1_1callback_1_1_callback}{Callback} class the C is the context of the function fnc, it will be the first parameter wen caled from \hyperlink{classllu_1_1callback_1_1_callback}{Callback} D is the sort of daten wich could be pased from a signal 
+
+Definition at line 34 of file callback.\+hpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classllu_1_1callback_1_1callback__registration_aecc9f23363c08b42144d70d928b4ec02}{\index{llu\+::callback\+::callback\+\_\+registration@{llu\+::callback\+::callback\+\_\+registration}!data@{data}}
+\index{data@{data}!llu\+::callback\+::callback\+\_\+registration@{llu\+::callback\+::callback\+\_\+registration}}
+\subsubsection[{data}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename C, typename D$>$ C {\bf llu\+::callback\+::callback\+\_\+registration}$<$ C, D $>$\+::data}}\label{classllu_1_1callback_1_1callback__registration_aecc9f23363c08b42144d70d928b4ec02}
+
+
+The context of the callback, will be given to the fnc. 
+
+This will be given to the function fnc everytime it is caled from the \hyperlink{classllu_1_1callback_1_1_callback}{Callback} handler Class. it could be used to give the fnc a Object of some sort. \begin{DoxyNote}{Note}
+will not be thread save 
+\end{DoxyNote}
+
+
+Definition at line 42 of file callback.\+hpp.
+
+\hypertarget{classllu_1_1callback_1_1callback__registration_a470bbcee9d41e0070e9630461b88084d}{\index{llu\+::callback\+::callback\+\_\+registration@{llu\+::callback\+::callback\+\_\+registration}!fnc@{fnc}}
+\index{fnc@{fnc}!llu\+::callback\+::callback\+\_\+registration@{llu\+::callback\+::callback\+\_\+registration}}
+\subsubsection[{fnc}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename C, typename D$>$ void($\ast$ {\bf llu\+::callback\+::callback\+\_\+registration}$<$ C, D $>$\+::fnc)(C, D)}}\label{classllu_1_1callback_1_1callback__registration_a470bbcee9d41e0070e9630461b88084d}
+
+
+The pointer which will be caled if registered. 
+
+must acept an C at first place and data D at the second, twill be called form context in an own thread should not implement a hole bunch of functionality. 
+
+Definition at line 36 of file callback.\+hpp.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+time\+Mux/\hyperlink{callback_8hpp}{callback.\+hpp}\end{DoxyCompactItemize}

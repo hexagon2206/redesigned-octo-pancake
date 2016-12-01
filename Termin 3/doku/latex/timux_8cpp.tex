@@ -1,0 +1,69 @@
+\hypertarget{timux_8cpp}{\section{time\+Mux/timux.cpp File Reference}
+\label{timux_8cpp}\index{time\+Mux/timux.\+cpp@{time\+Mux/timux.\+cpp}}
+}
+
+
+Implementation of The T\+I\+M\+U\+X logic.  
+
+
+{\ttfamily \#include \char`\"{}timux.\+hpp\char`\"{}}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+Include dependency graph for timux.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{timux_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacetimux}{timux}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{timux_8cpp_aef41e8aaf4c60819b30faf396cdf4978}{D\+E\+B\+U\+G}(X)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{namespacetimux_af9d865eb949c95b170ca458395332f06}{timux\+::\+Time\+Synchronize\+Signal} (\hyperlink{structllu_1_1network_1_1recived_message}{llu\+::network\+::recived\+Message} $\ast$m, \hyperlink{namespacellu_1_1callback_a082ed24306809c4d250bd5ddfbae177f}{llu\+::callback\+::signal} $\ast$s)
+\begin{DoxyCompactList}\small\item\em signals a T\+I\+M\+U\+X\+\_\+\+Time\+Signal , if the gven message m is from an A-\/\+Station \end{DoxyCompactList}\item 
+void \hyperlink{namespacetimux_aaaa8c2d5485d4108b450aa5edf1e3aa3}{timux\+::\+Time\+Synchronize\+Handler} (void $\ast$timing\+Class, \hyperlink{structllu_1_1network_1_1recived_message}{llu\+::network\+::recived\+Message} $\ast$m)
+\begin{DoxyCompactList}\small\item\em adjusts the offset of a timing class \end{DoxyCompactList}\item 
+bool \hyperlink{namespacetimux_ad0edf69fd830fa995ad603731acd5a20}{timux\+::\+Msg\+Signal} (\hyperlink{structllu_1_1network_1_1recived_message}{llu\+::network\+::recived\+Message} $\ast$m, \hyperlink{namespacellu_1_1callback_a082ed24306809c4d250bd5ddfbae177f}{llu\+::callback\+::signal} $\ast$s)
+\begin{DoxyCompactList}\small\item\em signals a T\+I\+M\+U\+X\+\_\+\+Sot\+Signal if a message is recived \end{DoxyCompactList}\item 
+void \hyperlink{namespacetimux_a0325847c7fd72e51034fc14c8547d505}{timux\+::\+Msg\+Handler} (void $\ast$timux\+Class, \hyperlink{structllu_1_1network_1_1recived_message}{llu\+::network\+::recived\+Message} $\ast$m)
+\begin{DoxyCompactList}\small\item\em handels an M\+S\+G from the Line \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of The T\+I\+M\+U\+X logic. 
+
+\begin{DoxyAuthor}{Author}
+Lukas Lühr (hexagon2206) 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Bug}
+\item[\hyperlink{bug__bug000009}{Bug}]No known bugs. \end{DoxyRefDesc}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000002}{Todo}]remove screen output \end{DoxyRefDesc}
+
+
+Definition in file \hyperlink{timux_8cpp_source}{timux.\+cpp}.
+
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{timux_8cpp_aef41e8aaf4c60819b30faf396cdf4978}{\index{timux.\+cpp@{timux.\+cpp}!D\+E\+B\+U\+G@{D\+E\+B\+U\+G}}
+\index{D\+E\+B\+U\+G@{D\+E\+B\+U\+G}!timux.\+cpp@{timux.\+cpp}}
+\subsubsection[{D\+E\+B\+U\+G}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+E\+B\+U\+G(
+\begin{DoxyParamCaption}
+\item[{}]{X}
+\end{DoxyParamCaption}
+)}}\label{timux_8cpp_aef41e8aaf4c60819b30faf396cdf4978}
+
+
+Definition at line 13 of file timux.\+cpp.
+

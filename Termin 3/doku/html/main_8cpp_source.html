@@ -123,24 +123,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    sockaddr_in target = <a class="code" href="namespacellu_1_1network.html#ae50fed51b566b947fd0cb1a4efbb3b12">resolve</a>(<span class="stringliteral">&quot;127.0.0.1&quot;</span>,6001);</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="classtimux_1_1timux.html">timux::timux</a> timuxMain(&amp;mcon,1000,25,target);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    mcon.<a class="code" href="classllu_1_1network_1_1_managed_connection.html#a464e40505c93ce769dacf381a6e0e503">sendMsg</a>(<a class="code" href="namespacellu_1_1network.html#a86501a24323e339aa0a3b4e935bb2495">createSendMessage</a>(7,target,<span class="stringliteral">&quot;bububa&quot;</span>));</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    timuxMain.<a class="code" href="classtimux_1_1timux.html#aedd4f1380074ca99661aa8ba142d5b72">loop</a>();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="classtimux_1_1timux.html">timux::timux</a> timuxMain(&amp;mcon,1000,25,target);</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    cout &lt;&lt; <span class="stringliteral">&quot;lebe noch &quot;</span>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    timuxMain.<a class="code" href="classtimux_1_1timux.html#aedd4f1380074ca99661aa8ba142d5b72">loop</a>();</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">char</span> text[128];</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="structllu_1_1network_1_1send_message.html">sendMessage</a> *<a class="code" href="structtimux_1_1msg.html">msg</a>;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">while</span>(<span class="keyword">true</span>){</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        cin &gt;&gt; text;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        msg = <a class="code" href="namespacellu_1_1network.html#a86501a24323e339aa0a3b4e935bb2495">createSendMessage</a>(128,target,text);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        mcon.<a class="code" href="classllu_1_1network_1_1_managed_connection.html#a464e40505c93ce769dacf381a6e0e503">sendMsg</a>(msg);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    cout &lt;&lt; <span class="stringliteral">&quot;lebe noch &quot;</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">char</span> text[128];</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="structllu_1_1network_1_1send_message.html">sendMessage</a> *<a class="code" href="structtimux_1_1msg.html">msg</a>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">while</span>(<span class="keyword">true</span>){</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        cin &gt;&gt; text;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        msg = <a class="code" href="namespacellu_1_1network.html#a86501a24323e339aa0a3b4e935bb2495">createSendMessage</a>(128,target,text);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        mcon.<a class="code" href="classllu_1_1network_1_1_managed_connection.html#a464e40505c93ce769dacf381a6e0e503">sendMsg</a>(msg);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    }</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
 <div class="ttc" id="timux_8hpp_html"><div class="ttname"><a href="timux_8hpp.html">timux.hpp</a></div></div>
 <div class="ttc" id="classllu_1_1network_1_1_udp_connection_html"><div class="ttname"><a href="classllu_1_1network_1_1_udp_connection.html">llu::network::UdpConnection</a></div><div class="ttdef"><b>Definition:</b> <a href="udp_8hpp_source.html#l00023">udp.hpp:23</a></div></div>
 <div class="ttc" id="namespacellu_1_1network_html"><div class="ttname"><a href="namespacellu_1_1network.html">llu::network</a></div><div class="ttdoc">Contaions functionalety used for network komunikation. </div><div class="ttdef"><b>Definition:</b> <a href="docs_8hpp_source.html#l00025">docs.hpp:25</a></div></div>
@@ -149,10 +151,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="namespacellu_1_1network_html_ae50fed51b566b947fd0cb1a4efbb3b12"><div class="ttname"><a href="namespacellu_1_1network.html#ae50fed51b566b947fd0cb1a4efbb3b12">llu::network::resolve</a></div><div class="ttdeci">sockaddr_in resolve(const char *ip, uint16_t port)</div><div class="ttdoc">resolves an Ipv4 and an port to a sockaddr_in </div><div class="ttdef"><b>Definition:</b> <a href="network_8cpp_source.html#l00062">network.cpp:62</a></div></div>
 <div class="ttc" id="classllu_1_1network_1_1_managed_connection_html_a464e40505c93ce769dacf381a6e0e503"><div class="ttname"><a href="classllu_1_1network_1_1_managed_connection.html#a464e40505c93ce769dacf381a6e0e503">llu::network::ManagedConnection::sendMsg</a></div><div class="ttdeci">void sendMsg(sendMessage *m)</div><div class="ttdoc">puts a massage in the out queue </div><div class="ttdef"><b>Definition:</b> <a href="network_8cpp_source.html#l00128">network.cpp:128</a></div></div>
 <div class="ttc" id="structtimux_1_1msg_html"><div class="ttname"><a href="structtimux_1_1msg.html">timux::msg</a></div><div class="ttdoc">more user friendly representation of a package does not containn all data, because it is no longer re...</div><div class="ttdef"><b>Definition:</b> <a href="timux_8hpp_source.html#l00032">timux.hpp:32</a></div></div>
-<div class="ttc" id="timux_8hpp_html_addb651b6286e45373916cc2700efe972"><div class="ttname"><a href="timux_8hpp.html#addb651b6286e45373916cc2700efe972">time</a></div><div class="ttdeci">uint8_t time[8]</div><div class="ttdoc">the time, the data was send on </div><div class="ttdef"><b>Definition:</b> <a href="timux_8hpp_source.html#l00197">timux.hpp:197</a></div></div>
+<div class="ttc" id="timux_8hpp_html_addb651b6286e45373916cc2700efe972"><div class="ttname"><a href="timux_8hpp.html#addb651b6286e45373916cc2700efe972">time</a></div><div class="ttdeci">uint8_t time[8]</div><div class="ttdoc">the time, the data was send on </div><div class="ttdef"><b>Definition:</b> <a href="timux_8hpp_source.html#l00198">timux.hpp:198</a></div></div>
 <div class="ttc" id="main_8cpp_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00030">main.cpp:30</a></div></div>
 <div class="ttc" id="udp_8hpp_html"><div class="ttname"><a href="udp_8hpp.html">udp.hpp</a></div><div class="ttdoc">Prototypes for a udp network konnection implementation. </div></div>
-<div class="ttc" id="classtimux_1_1timux_html_aedd4f1380074ca99661aa8ba142d5b72"><div class="ttname"><a href="classtimux_1_1timux.html#aedd4f1380074ca99661aa8ba142d5b72">timux::timux::loop</a></div><div class="ttdeci">void loop()</div><div class="ttdef"><b>Definition:</b> <a href="timux_8cpp_source.html#l00118">timux.cpp:118</a></div></div>
+<div class="ttc" id="classtimux_1_1timux_html_aedd4f1380074ca99661aa8ba142d5b72"><div class="ttname"><a href="classtimux_1_1timux.html#aedd4f1380074ca99661aa8ba142d5b72">timux::timux::loop</a></div><div class="ttdeci">void loop()</div><div class="ttdef"><b>Definition:</b> <a href="timux_8cpp_source.html#l00121">timux.cpp:121</a></div></div>
 <div class="ttc" id="structllu_1_1network_1_1send_message_html"><div class="ttname"><a href="structllu_1_1network_1_1send_message.html">llu::network::sendMessage</a></div><div class="ttdoc">A message ready to be send. </div><div class="ttdef"><b>Definition:</b> <a href="network_8hpp_source.html#l00117">network.hpp:117</a></div></div>
 <div class="ttc" id="namespacellu_1_1callback_html"><div class="ttname"><a href="namespacellu_1_1callback.html">llu::callback</a></div><div class="ttdoc">Contains the implementation of a generik callback handler. </div><div class="ttdef"><b>Definition:</b> <a href="callback_8cpp_source.html#l00006">callback.cpp:6</a></div></div>
 <div class="ttc" id="namespacellu_1_1network_html_a86501a24323e339aa0a3b4e935bb2495"><div class="ttname"><a href="namespacellu_1_1network.html#a86501a24323e339aa0a3b4e935bb2495">llu::network::createSendMessage</a></div><div class="ttdeci">sendMessage * createSendMessage(size_t bufferSize, sockaddr_in target, const void *from)</div><div class="ttdoc">creates a Message ready to be send to a connection </div><div class="ttdef"><b>Definition:</b> <a href="network_8cpp_source.html#l00082">network.cpp:82</a></div></div>
@@ -160,11 +162,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="ring_buffer_8hpp_html"><div class="ttname"><a href="ring_buffer_8hpp.html">ringBuffer.hpp</a></div><div class="ttdoc">Impelemnts a generik Ging buffer. </div></div>
 <div class="ttc" id="classllu_1_1network_1_1_connection_html"><div class="ttname"><a href="classllu_1_1network_1_1_connection.html">llu::network::Connection</a></div><div class="ttdef"><b>Definition:</b> <a href="network_8hpp_source.html#l00153">network.hpp:153</a></div></div>
 <div class="ttc" id="classllu_1_1network_1_1_managed_connection_html"><div class="ttname"><a href="classllu_1_1network_1_1_managed_connection.html">llu::network::ManagedConnection</a></div><div class="ttdoc">a Managed form of a Connection implements callbacks on massage recive internayls uses a callback hand...</div><div class="ttdef"><b>Definition:</b> <a href="network_8hpp_source.html#l00215">network.hpp:215</a></div></div>
-<div class="ttc" id="namespacetimux_html"><div class="ttname"><a href="namespacetimux.html">timux</a></div><div class="ttdef"><b>Definition:</b> <a href="timux_8cpp_source.html#l00016">timux.cpp:16</a></div></div>
+<div class="ttc" id="namespacetimux_html"><div class="ttname"><a href="namespacetimux.html">timux</a></div><div class="ttdef"><b>Definition:</b> <a href="timux_8cpp_source.html#l00018">timux.cpp:18</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 30 2016 15:33:42 for timux by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 1 2016 13:11:58 for timux by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

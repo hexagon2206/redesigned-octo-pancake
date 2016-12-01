@@ -1,0 +1,156 @@
+\hypertarget{classllu_1_1datastructs_1_1_linked_list}{\section{llu\+:\+:datastructs\+:\+:Linked\+List$<$ E $>$ Class Template Reference}
+\label{classllu_1_1datastructs_1_1_linked_list}\index{llu\+::datastructs\+::\+Linked\+List$<$ E $>$@{llu\+::datastructs\+::\+Linked\+List$<$ E $>$}}
+}
+
+
+very spartanic implementation of a generik thread save Linked list  
+
+
+
+
+{\ttfamily \#include $<$linked\+List.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classllu_1_1datastructs_1_1_linked_list_ae12ddd9d50e228bc8602e902c2e4909e}{Linked\+List} ()
+\begin{DoxyCompactList}\small\item\em creates an empty linked list \end{DoxyCompactList}\item 
+\hyperlink{classllu_1_1datastructs_1_1_linked_list_a9d51cbffdc243ae0831d7c91a7da528a}{$\sim$\+Linked\+List} ()
+\begin{DoxyCompactList}\small\item\em deletes the linekd list and clears memory \end{DoxyCompactList}\item 
+void \hyperlink{classllu_1_1datastructs_1_1_linked_list_afb594d9c6ee789ba60070365e8953a29}{append} (E \hyperlink{timux_8hpp_ad9c7575237a3a2780e8e6d16e1334982}{data})
+\begin{DoxyCompactList}\small\item\em appends data to the end of the list \end{DoxyCompactList}\item 
+bool \hyperlink{classllu_1_1datastructs_1_1_linked_list_a89e2f65a016e358dc174921d496e34ce}{contains} (bool($\ast$comparer)(E, E), E elem)
+\begin{DoxyCompactList}\small\item\em checks if the given element elem is contaned in the list \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structllu_1_1datastructs_1_1list_entrie}{list\+Entrie}$<$ E $>$ \hyperlink{classllu_1_1datastructs_1_1_linked_list_a2d5511009cd4b6579b8978af4f23c148}{start}
+\begin{DoxyCompactList}\small\item\em the first element of the linekd list \end{DoxyCompactList}\item 
+std\+::mutex \hyperlink{classllu_1_1datastructs_1_1_linked_list_abe1e82a0eab42b3ad2f0903a17c8003d}{lock}
+\begin{DoxyCompactList}\small\item\em Lock for accessing the linekd list threadsave. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename E$>$class llu\+::datastructs\+::\+Linked\+List$<$ E $>$}
+
+very spartanic implementation of a generik thread save Linked list 
+
+The type E defines the type of elements to put in the list To get the data from the list it is nessasary to direkly use the \hyperlink{structllu_1_1datastructs_1_1list_entrie}{list\+Entrie} start The list is single linked 
+
+Definition at line 34 of file linked\+List.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classllu_1_1datastructs_1_1_linked_list_ae12ddd9d50e228bc8602e902c2e4909e}{\index{llu\+::datastructs\+::\+Linked\+List@{llu\+::datastructs\+::\+Linked\+List}!Linked\+List@{Linked\+List}}
+\index{Linked\+List@{Linked\+List}!llu\+::datastructs\+::\+Linked\+List@{llu\+::datastructs\+::\+Linked\+List}}
+\subsubsection[{Linked\+List}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename E$>$ {\bf llu\+::datastructs\+::\+Linked\+List}$<$ E $>$\+::{\bf Linked\+List} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classllu_1_1datastructs_1_1_linked_list_ae12ddd9d50e228bc8602e902c2e4909e}
+
+
+creates an empty linked list 
+
+
+
+Definition at line 40 of file linked\+List.\+hpp.
+
+\hypertarget{classllu_1_1datastructs_1_1_linked_list_a9d51cbffdc243ae0831d7c91a7da528a}{\index{llu\+::datastructs\+::\+Linked\+List@{llu\+::datastructs\+::\+Linked\+List}!````~Linked\+List@{$\sim$\+Linked\+List}}
+\index{````~Linked\+List@{$\sim$\+Linked\+List}!llu\+::datastructs\+::\+Linked\+List@{llu\+::datastructs\+::\+Linked\+List}}
+\subsubsection[{$\sim$\+Linked\+List}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename E$>$ {\bf llu\+::datastructs\+::\+Linked\+List}$<$ E $>$\+::$\sim${\bf Linked\+List} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classllu_1_1datastructs_1_1_linked_list_a9d51cbffdc243ae0831d7c91a7da528a}
+
+
+deletes the linekd list and clears memory 
+
+\begin{DoxyNote}{Note}
+the data which is in the list, will not be cleared 
+\end{DoxyNote}
+
+
+Definition at line 46 of file linked\+List.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classllu_1_1datastructs_1_1_linked_list_afb594d9c6ee789ba60070365e8953a29}{\index{llu\+::datastructs\+::\+Linked\+List@{llu\+::datastructs\+::\+Linked\+List}!append@{append}}
+\index{append@{append}!llu\+::datastructs\+::\+Linked\+List@{llu\+::datastructs\+::\+Linked\+List}}
+\subsubsection[{append}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename E$>$ void {\bf llu\+::datastructs\+::\+Linked\+List}$<$ E $>$\+::append (
+\begin{DoxyParamCaption}
+\item[{E}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classllu_1_1datastructs_1_1_linked_list_afb594d9c6ee789ba60070365e8953a29}
+
+
+appends data to the end of the list 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & the data to append to the list \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 75 of file linked\+List.\+hpp.
+
+\hypertarget{classllu_1_1datastructs_1_1_linked_list_a89e2f65a016e358dc174921d496e34ce}{\index{llu\+::datastructs\+::\+Linked\+List@{llu\+::datastructs\+::\+Linked\+List}!contains@{contains}}
+\index{contains@{contains}!llu\+::datastructs\+::\+Linked\+List@{llu\+::datastructs\+::\+Linked\+List}}
+\subsubsection[{contains}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename E$>$ bool {\bf llu\+::datastructs\+::\+Linked\+List}$<$ E $>$\+::contains (
+\begin{DoxyParamCaption}
+\item[{bool($\ast$)(E, E)}]{comparer, }
+\item[{E}]{elem}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classllu_1_1datastructs_1_1_linked_list_a89e2f65a016e358dc174921d496e34ce}
+
+
+checks if the given element elem is contaned in the list 
+
+
+\begin{DoxyParams}{Parameters}
+{\em comparer} & is used to check if two elements of type E are equal \\
+\hline
+{\em elem} & the element to check for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if elem is in the list otherwise false 
+\end{DoxyReturn}
+
+
+Definition at line 99 of file linked\+List.\+hpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classllu_1_1datastructs_1_1_linked_list_abe1e82a0eab42b3ad2f0903a17c8003d}{\index{llu\+::datastructs\+::\+Linked\+List@{llu\+::datastructs\+::\+Linked\+List}!lock@{lock}}
+\index{lock@{lock}!llu\+::datastructs\+::\+Linked\+List@{llu\+::datastructs\+::\+Linked\+List}}
+\subsubsection[{lock}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename E$>$ std\+::mutex {\bf llu\+::datastructs\+::\+Linked\+List}$<$ E $>$\+::lock}}\label{classllu_1_1datastructs_1_1_linked_list_abe1e82a0eab42b3ad2f0903a17c8003d}
+
+
+Lock for accessing the linekd list threadsave. 
+
+this must be used, wenn iterating manualy over the list 
+
+Definition at line 69 of file linked\+List.\+hpp.
+
+\hypertarget{classllu_1_1datastructs_1_1_linked_list_a2d5511009cd4b6579b8978af4f23c148}{\index{llu\+::datastructs\+::\+Linked\+List@{llu\+::datastructs\+::\+Linked\+List}!start@{start}}
+\index{start@{start}!llu\+::datastructs\+::\+Linked\+List@{llu\+::datastructs\+::\+Linked\+List}}
+\subsubsection[{start}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename E$>$ {\bf list\+Entrie}$<$E$>$ {\bf llu\+::datastructs\+::\+Linked\+List}$<$ E $>$\+::start}}\label{classllu_1_1datastructs_1_1_linked_list_a2d5511009cd4b6579b8978af4f23c148}
+
+
+the first element of the linekd list 
+
+it does not contain any user data, and must be used to start the interating of the list. 
+
+Definition at line 62 of file linked\+List.\+hpp.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+time\+Mux/\hyperlink{linked_list_8hpp}{linked\+List.\+hpp}\end{DoxyCompactItemize}

@@ -14,7 +14,7 @@ var indexSectionsWithContent =
   4: "_abcdgklmnprstu~",
   5: "_cdfiklnst",
   6: "nrs",
-  7: "et",
+  7: "det",
   8: "bt"
 };
 

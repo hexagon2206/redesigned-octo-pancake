@@ -1,0 +1,155 @@
+\hypertarget{timux_8hpp}{\section{time\+Mux/timux.hpp File Reference}
+\label{timux_8hpp}\index{time\+Mux/timux.\+hpp@{time\+Mux/timux.\+hpp}}
+}
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$mutex$>$}\\*
+{\ttfamily \#include \char`\"{}callback.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}network.\+hpp\char`\"{}}\\*
+{\ttfamily \#include $<$chrono$>$}\\*
+Include dependency graph for timux.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{timux_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=296pt]{timux_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structtimux_1_1package}{timux\+::package}
+\begin{DoxyCompactList}\small\item\em a package as recived from the U\+D\+P socket can be direkly written to \end{DoxyCompactList}\item 
+struct \hyperlink{structtimux_1_1msg}{timux\+::msg}
+\begin{DoxyCompactList}\small\item\em more user friendly representation of a package does not containn all data, because it is no longer relevant \end{DoxyCompactList}\item 
+class \hyperlink{classtimux_1_1timing}{timux\+::timing}
+\begin{DoxyCompactList}\small\item\em used for timing and time synchronisation is thread save \end{DoxyCompactList}\item 
+class \hyperlink{classtimux_1_1timux}{timux\+::timux}
+\begin{DoxyCompactList}\small\item\em the main Class that performess all the logic \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacetimux}{timux}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{timux_8hpp_a1b8511f6591071dfa1f718b1cc1b69e9}{T\+I\+M\+U\+X\+\_\+\+Time\+Signal}~(1)
+\item 
+\#define \hyperlink{timux_8hpp_ad32d053f7dbac6c922a73695f3a84bce}{T\+I\+M\+U\+X\+\_\+\+Sot\+Signal}~(2)
+\item 
+\#define \hyperlink{timux_8hpp_add5f72936fed0c9f0a8434b3f4d16be2}{T\+I\+M\+U\+X\+\_\+\+T\+R\+Y\+T\+O\+J\+O\+I\+N}~5
+\item 
+\#define \hyperlink{timux_8hpp_a3ddd10cae37188220e210c8c1b4acfaa}{T\+I\+M\+U\+X\+\_\+\+T\+R\+Y\+\_\+\+T\+A\+K\+E\+\_\+\+S\+L\+O\+T}~2
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structtimux_1_1package}{timux\+::package} \hyperlink{namespacetimux_a31970845e61d49b6ee9f97328d9aebcc}{timux\+::\+\_\+\+\_\+attribute\+\_\+\+\_\+} ((packed))
+\item 
+bool \hyperlink{namespacetimux_af9d865eb949c95b170ca458395332f06}{timux\+::\+Time\+Synchronize\+Signal} (\hyperlink{structllu_1_1network_1_1recived_message}{llu\+::network\+::recived\+Message} $\ast$m, \hyperlink{namespacellu_1_1callback_a082ed24306809c4d250bd5ddfbae177f}{llu\+::callback\+::signal} $\ast$s)
+\begin{DoxyCompactList}\small\item\em signals a T\+I\+M\+U\+X\+\_\+\+Time\+Signal , if the gven message m is from an A-\/\+Station \end{DoxyCompactList}\item 
+void \hyperlink{namespacetimux_aaaa8c2d5485d4108b450aa5edf1e3aa3}{timux\+::\+Time\+Synchronize\+Handler} (void $\ast$timing\+Class, \hyperlink{structllu_1_1network_1_1recived_message}{llu\+::network\+::recived\+Message} $\ast$m)
+\begin{DoxyCompactList}\small\item\em adjusts the offset of a timing class \end{DoxyCompactList}\item 
+bool \hyperlink{namespacetimux_ad0edf69fd830fa995ad603731acd5a20}{timux\+::\+Msg\+Signal} (\hyperlink{structllu_1_1network_1_1recived_message}{llu\+::network\+::recived\+Message} $\ast$m, \hyperlink{namespacellu_1_1callback_a082ed24306809c4d250bd5ddfbae177f}{llu\+::callback\+::signal} $\ast$s)
+\begin{DoxyCompactList}\small\item\em signals a T\+I\+M\+U\+X\+\_\+\+Sot\+Signal if a message is recived \end{DoxyCompactList}\item 
+void \hyperlink{namespacetimux_a0325847c7fd72e51034fc14c8547d505}{timux\+::\+Msg\+Handler} (void $\ast$timux\+Class, \hyperlink{structllu_1_1network_1_1recived_message}{llu\+::network\+::recived\+Message} $\ast$m)
+\begin{DoxyCompactList}\small\item\em handels an M\+S\+G from the Line \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \hyperlink{timux_8hpp_a3835939f8d204327e497456568a53926}{klasse} \mbox{[}1\mbox{]}
+\begin{DoxyCompactList}\small\item\em the class of the Station (A or B) \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{timux_8hpp_ad9c7575237a3a2780e8e6d16e1334982}{data} \mbox{[}24\mbox{]}
+\begin{DoxyCompactList}\small\item\em the data payload \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{timux_8hpp_a7f381e6387e6ebf4b714dd55c0100e4c}{next\+Slot} \mbox{[}1\mbox{]}
+\begin{DoxyCompactList}\small\item\em the next slot, the clint will send on \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{timux_8hpp_addb651b6286e45373916cc2700efe972}{time} \mbox{[}8\mbox{]}
+\begin{DoxyCompactList}\small\item\em the time, the data was send on \end{DoxyCompactList}\item 
+struct \hyperlink{structtimux_1_1msg}{timux\+::msg} \hyperlink{namespacetimux_a92131d39983869230f2fb19fb9f654a6}{timux\+::\+\_\+\+\_\+attribute\+\_\+\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{timux_8hpp_ad32d053f7dbac6c922a73695f3a84bce}{\index{timux.\+hpp@{timux.\+hpp}!T\+I\+M\+U\+X\+\_\+\+Sot\+Signal@{T\+I\+M\+U\+X\+\_\+\+Sot\+Signal}}
+\index{T\+I\+M\+U\+X\+\_\+\+Sot\+Signal@{T\+I\+M\+U\+X\+\_\+\+Sot\+Signal}!timux.\+hpp@{timux.\+hpp}}
+\subsubsection[{T\+I\+M\+U\+X\+\_\+\+Sot\+Signal}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+I\+M\+U\+X\+\_\+\+Sot\+Signal~(2)}}\label{timux_8hpp_ad32d053f7dbac6c922a73695f3a84bce}
+
+
+Definition at line 14 of file timux.\+hpp.
+
+\hypertarget{timux_8hpp_a1b8511f6591071dfa1f718b1cc1b69e9}{\index{timux.\+hpp@{timux.\+hpp}!T\+I\+M\+U\+X\+\_\+\+Time\+Signal@{T\+I\+M\+U\+X\+\_\+\+Time\+Signal}}
+\index{T\+I\+M\+U\+X\+\_\+\+Time\+Signal@{T\+I\+M\+U\+X\+\_\+\+Time\+Signal}!timux.\+hpp@{timux.\+hpp}}
+\subsubsection[{T\+I\+M\+U\+X\+\_\+\+Time\+Signal}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+I\+M\+U\+X\+\_\+\+Time\+Signal~(1)}}\label{timux_8hpp_a1b8511f6591071dfa1f718b1cc1b69e9}
+
+
+Definition at line 13 of file timux.\+hpp.
+
+\hypertarget{timux_8hpp_a3ddd10cae37188220e210c8c1b4acfaa}{\index{timux.\+hpp@{timux.\+hpp}!T\+I\+M\+U\+X\+\_\+\+T\+R\+Y\+\_\+\+T\+A\+K\+E\+\_\+\+S\+L\+O\+T@{T\+I\+M\+U\+X\+\_\+\+T\+R\+Y\+\_\+\+T\+A\+K\+E\+\_\+\+S\+L\+O\+T}}
+\index{T\+I\+M\+U\+X\+\_\+\+T\+R\+Y\+\_\+\+T\+A\+K\+E\+\_\+\+S\+L\+O\+T@{T\+I\+M\+U\+X\+\_\+\+T\+R\+Y\+\_\+\+T\+A\+K\+E\+\_\+\+S\+L\+O\+T}!timux.\+hpp@{timux.\+hpp}}
+\subsubsection[{T\+I\+M\+U\+X\+\_\+\+T\+R\+Y\+\_\+\+T\+A\+K\+E\+\_\+\+S\+L\+O\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+I\+M\+U\+X\+\_\+\+T\+R\+Y\+\_\+\+T\+A\+K\+E\+\_\+\+S\+L\+O\+T~2}}\label{timux_8hpp_a3ddd10cae37188220e210c8c1b4acfaa}
+
+
+Definition at line 73 of file timux.\+hpp.
+
+\hypertarget{timux_8hpp_add5f72936fed0c9f0a8434b3f4d16be2}{\index{timux.\+hpp@{timux.\+hpp}!T\+I\+M\+U\+X\+\_\+\+T\+R\+Y\+T\+O\+J\+O\+I\+N@{T\+I\+M\+U\+X\+\_\+\+T\+R\+Y\+T\+O\+J\+O\+I\+N}}
+\index{T\+I\+M\+U\+X\+\_\+\+T\+R\+Y\+T\+O\+J\+O\+I\+N@{T\+I\+M\+U\+X\+\_\+\+T\+R\+Y\+T\+O\+J\+O\+I\+N}!timux.\+hpp@{timux.\+hpp}}
+\subsubsection[{T\+I\+M\+U\+X\+\_\+\+T\+R\+Y\+T\+O\+J\+O\+I\+N}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+I\+M\+U\+X\+\_\+\+T\+R\+Y\+T\+O\+J\+O\+I\+N~5}}\label{timux_8hpp_add5f72936fed0c9f0a8434b3f4d16be2}
+
+
+Definition at line 72 of file timux.\+hpp.
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{timux_8hpp_ad9c7575237a3a2780e8e6d16e1334982}{\index{timux.\+hpp@{timux.\+hpp}!data@{data}}
+\index{data@{data}!timux.\+hpp@{timux.\+hpp}}
+\subsubsection[{data}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t data\mbox{[}24\mbox{]}}}\label{timux_8hpp_ad9c7575237a3a2780e8e6d16e1334982}
+
+
+the data payload 
+
+
+
+Definition at line 196 of file timux.\+hpp.
+
+\hypertarget{timux_8hpp_a3835939f8d204327e497456568a53926}{\index{timux.\+hpp@{timux.\+hpp}!klasse@{klasse}}
+\index{klasse@{klasse}!timux.\+hpp@{timux.\+hpp}}
+\subsubsection[{klasse}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t klasse\mbox{[}1\mbox{]}}}\label{timux_8hpp_a3835939f8d204327e497456568a53926}
+
+
+the class of the Station (A or B) 
+
+
+
+Definition at line 195 of file timux.\+hpp.
+
+\hypertarget{timux_8hpp_a7f381e6387e6ebf4b714dd55c0100e4c}{\index{timux.\+hpp@{timux.\+hpp}!next\+Slot@{next\+Slot}}
+\index{next\+Slot@{next\+Slot}!timux.\+hpp@{timux.\+hpp}}
+\subsubsection[{next\+Slot}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t next\+Slot\mbox{[}1\mbox{]}}}\label{timux_8hpp_a7f381e6387e6ebf4b714dd55c0100e4c}
+
+
+the next slot, the clint will send on 
+
+
+
+Definition at line 197 of file timux.\+hpp.
+
+\hypertarget{timux_8hpp_addb651b6286e45373916cc2700efe972}{\index{timux.\+hpp@{timux.\+hpp}!time@{time}}
+\index{time@{time}!timux.\+hpp@{timux.\+hpp}}
+\subsubsection[{time}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t time\mbox{[}8\mbox{]}}}\label{timux_8hpp_addb651b6286e45373916cc2700efe972}
+
+
+the time, the data was send on 
+
+
+
+Definition at line 198 of file timux.\+hpp.
+

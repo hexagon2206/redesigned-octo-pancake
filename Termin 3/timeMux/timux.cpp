@@ -20,7 +20,6 @@ namespace timux{
     bool TimeSynchronizeSignal(recivedMessage* m,signal* s){
         if(sizeof(package) != m->dataLength ) return false;
         if('A' != ((package * )m->data)->klasse[0]) return false;
-
         *s=TIMUX_TimeSignal;
         return true;
     }
@@ -105,12 +104,6 @@ namespace timux{
         toNBO(this->stationClass,p->klasse);
         toNBO((uint8_t)this->mySlot, p->nextSlot);
 
-        if(this->stationClass == 'B'){
-            this->stationClass = 'A';
-        }else{
-            this->stationClass = 'B';
-        }
-
         this->sendDataLock.lock();
         if(this->sendData){
             memcpy(p->data,this->sendData,sizeof(p->data));
@@ -167,6 +160,7 @@ namespace timux{
                 }else{
                     if((this->lastSendIn != curentFrame-1) || (1!=collisions[this->mySlot])){
                         this->mySlot=-1;
+                        std::cout << "cooMtS" << std::endl;
                     }
                 }
                 free(nextFree);
@@ -178,16 +172,15 @@ namespace timux{
                 if(this->lastSendIn < curentFrame && (unsigned int)this->mySlot == slot){
                     this->lastSendIn=curentFrame;
                     package *p=build();
-                    unsigned long sendAt = this->frameLength*curentFrame + (mySlot*2+1)*(this->frameLength/this->slotCount/2);
+                    unsigned long sendAt = this->frameLength*curentFrame + (mySlot*4+1)*(this->frameLength/this->slotCount/4);
 
                     while(sendAt > (now=this->t.now())){}//Wait till middle of the slot
 
                     toNBO((uint64_t)now,p->time);
                     send(p);
-                    std::cout<<"sending slot :"<<mySlot<<" at: " << this->t.now()<<endl;
+                    std::cout<<"sending slot :"<<mySlot<<" at: " << now <<endl;
                 }
             }
-            std::this_thread::sleep_for(std::chrono::microseconds(1));
         }
 
     }

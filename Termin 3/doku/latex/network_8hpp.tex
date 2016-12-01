@@ -1,0 +1,107 @@
+\hypertarget{network_8hpp}{\section{time\+Mux/network.hpp File Reference}
+\label{network_8hpp}\index{time\+Mux/network.\+hpp@{time\+Mux/network.\+hpp}}
+}
+
+
+Prototypes for network comunikation.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$thread$>$}\\*
+{\ttfamily \#include $<$netdb.\+h$>$}\\*
+{\ttfamily \#include $<$netinet/in.\+h$>$}\\*
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}callback.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}ring\+Buffer.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}linked\+List.\+hpp\char`\"{}}\\*
+Include dependency graph for network.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{network_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{network_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structllu_1_1network_1_1recived_message}{llu\+::network\+::recived\+Message}
+\begin{DoxyCompactList}\small\item\em an recived message from an \hyperlink{classllu_1_1network_1_1_connection}{Connection} object \end{DoxyCompactList}\item 
+struct \hyperlink{structllu_1_1network_1_1send_message}{llu\+::network\+::send\+Message}
+\begin{DoxyCompactList}\small\item\em A message ready to be send. \end{DoxyCompactList}\item 
+class \hyperlink{classllu_1_1network_1_1_connection}{llu\+::network\+::\+Connection}
+\item 
+class \hyperlink{classllu_1_1network_1_1_managed_connection}{llu\+::network\+::\+Managed\+Connection}
+\begin{DoxyCompactList}\small\item\em a Managed form of a \hyperlink{classllu_1_1network_1_1_connection}{Connection} implements callbacks on massage recive internayls uses a callback handler \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacellu}{llu}
+\item 
+ \hyperlink{namespacellu_1_1network}{llu\+::network}
+\begin{DoxyCompactList}\small\item\em Contaions functionalety used for network komunikation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef bool( \hyperlink{namespacellu_1_1network_a62e69230f04d1998f17b11e3bcc2d121}{llu\+::network\+::recived\+Message\+Classifier\+Type} )(recived\+Message $\ast$, \hyperlink{namespacellu_1_1callback_a082ed24306809c4d250bd5ddfbae177f}{signal} $\ast$)
+\begin{DoxyCompactList}\small\item\em a Classifiere for massages recived Messages, the type \end{DoxyCompactList}\item 
+typedef \\*
+recived\+Message\+Classifier\+Type $\ast$ \hyperlink{namespacellu_1_1network_ac629c1180a0bee8ddef541f73cb3e5f9}{llu\+::network\+::recived\+Message\+Classifier}
+\begin{DoxyCompactList}\small\item\em the classifier pointer \end{DoxyCompactList}\item 
+typedef \hyperlink{classllu_1_1callback_1_1callback__registration}{callback\+\_\+registration}\\*
+$<$ void $\ast$, recived\+Message $\ast$ $>$ \hyperlink{namespacellu_1_1network_a999d34263abe84a87d12271383c606b9}{llu\+::network\+::netwok\+Msg\+Callback}
+\begin{DoxyCompactList}\small\item\em an callback registration for a mannaged connection \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{namespacellu_1_1network_a9db735ab1f182142c349fc313e33c32d}{llu\+::network\+::to\+N\+B\+O} (uint8\+\_\+t value, uint8\+\_\+t $\ast$target)
+\begin{DoxyCompactList}\small\item\em convertes a given value to the Network byte order (big endian) \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{namespacellu_1_1network_aec38b31ea6f294a14c7c3f9e426b312d}{llu\+::network\+::to\+H\+B\+O\+\_\+8} (uint8\+\_\+t $\ast$from)
+\begin{DoxyCompactList}\small\item\em convertes a given byte fiedl in Network byte order to host byte order \end{DoxyCompactList}\item 
+void \hyperlink{namespacellu_1_1network_aa1dd1b9198bfbe8d3fd01ca358d8d538}{llu\+::network\+::to\+N\+B\+O} (uint16\+\_\+t value, uint8\+\_\+t $\ast$target)
+\begin{DoxyCompactList}\small\item\em convertes a given value to the Network byte order (big endian) \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{namespacellu_1_1network_a6c358826dbd0c43ec751139dca87ab71}{llu\+::network\+::to\+H\+B\+O\+\_\+16} (uint8\+\_\+t $\ast$from)
+\begin{DoxyCompactList}\small\item\em convertes a given byte fiedl in Network byte order to host byte order \end{DoxyCompactList}\item 
+void \hyperlink{namespacellu_1_1network_a0132a9cde9b08a16e9b05709ea16a2b9}{llu\+::network\+::to\+N\+B\+O} (uint32\+\_\+t value, uint8\+\_\+t $\ast$target)
+\begin{DoxyCompactList}\small\item\em convertes a given value to the Network byte order (big endian) \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{namespacellu_1_1network_a2222539df59075cc6f892b12956968eb}{llu\+::network\+::to\+H\+B\+O\+\_\+32} (uint8\+\_\+t $\ast$from)
+\begin{DoxyCompactList}\small\item\em convertes a given byte fiedl in Network byte order to host byte order \end{DoxyCompactList}\item 
+void \hyperlink{namespacellu_1_1network_af0b046f65433995d5150c3f8251e7d07}{llu\+::network\+::to\+N\+B\+O} (uint64\+\_\+t value, uint8\+\_\+t $\ast$target)
+\begin{DoxyCompactList}\small\item\em convertes a given value to the Network byte order (big endian) \end{DoxyCompactList}\item 
+uint64\+\_\+t \hyperlink{namespacellu_1_1network_af97d326c7853fc1b5932a56b8cc8e4b6}{llu\+::network\+::to\+H\+B\+O\+\_\+64} (uint8\+\_\+t $\ast$from)
+\begin{DoxyCompactList}\small\item\em convertes a given byte fiedl in Network byte order to host byte order \end{DoxyCompactList}\item 
+sockaddr\+\_\+in \hyperlink{namespacellu_1_1network_ae50fed51b566b947fd0cb1a4efbb3b12}{llu\+::network\+::resolve} (const char $\ast$addr, uint16\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em resolves an Ipv4 and an port to a sockaddr\+\_\+in \end{DoxyCompactList}\item 
+recived\+Message $\ast$ \hyperlink{namespacellu_1_1network_a867a402a3f2a945cf6d5f9b9c9ca4bd1}{llu\+::network\+::create\+Recived\+Message} (size\+\_\+t buffer\+Size)
+\begin{DoxyCompactList}\small\item\em creates an empry \hyperlink{structllu_1_1network_1_1recived_message}{recived\+Message} object \end{DoxyCompactList}\item 
+void \hyperlink{namespacellu_1_1network_a957314727976f73a1566322ad0229ca8}{llu\+::network\+::destory\+Recived\+Message} (recived\+Message $\ast$m)
+\begin{DoxyCompactList}\small\item\em deletes a recived Massage, the data field itself is not touched \end{DoxyCompactList}\item 
+send\+Message $\ast$ \hyperlink{namespacellu_1_1network_a86501a24323e339aa0a3b4e935bb2495}{llu\+::network\+::create\+Send\+Message} (size\+\_\+t buffer\+Size, sockaddr\+\_\+in target, const void $\ast$from)
+\begin{DoxyCompactList}\small\item\em creates a Message ready to be send to a connection \end{DoxyCompactList}\item 
+void \hyperlink{namespacellu_1_1network_a8c61905bb65d88aa69349ee7138577a8}{llu\+::network\+::destory\+Send\+Message} (send\+Message $\ast$m)
+\begin{DoxyCompactList}\small\item\em deletes a send Massage, the data field itself is not touched \end{DoxyCompactList}\item 
+recived\+Message $\ast$ \hyperlink{namespacellu_1_1network_a126aeba4f63e2f7d5617ee4568b32895}{llu\+::network\+::copy\+Recived\+Message} (recived\+Message $\ast$r)
+\begin{DoxyCompactList}\small\item\em copies an compleate \hyperlink{structllu_1_1network_1_1recived_message}{recived\+Message} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Prototypes for network comunikation. 
+
+\begin{DoxyAuthor}{Author}
+Lukas Lühr (hexagon2206) 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Bug}
+\item[\hyperlink{bug__bug000007}{Bug}]No known bugs. \end{DoxyRefDesc}
+
+
+Definition in file \hyperlink{network_8hpp_source}{network.\+hpp}.
+

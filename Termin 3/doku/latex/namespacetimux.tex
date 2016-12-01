@@ -1,0 +1,132 @@
+\hypertarget{namespacetimux}{\section{timux Namespace Reference}
+\label{namespacetimux}\index{timux@{timux}}
+}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structtimux_1_1msg}{msg}
+\begin{DoxyCompactList}\small\item\em more user friendly representation of a package does not containn all data, because it is no longer relevant \end{DoxyCompactList}\item 
+struct \hyperlink{structtimux_1_1package}{package}
+\begin{DoxyCompactList}\small\item\em a package as recived from the U\+D\+P socket can be direkly written to \end{DoxyCompactList}\item 
+class \hyperlink{classtimux_1_1timing}{timing}
+\begin{DoxyCompactList}\small\item\em used for timing and time synchronisation is thread save \end{DoxyCompactList}\item 
+class \hyperlink{classtimux_1_1timux}{timux}
+\begin{DoxyCompactList}\small\item\em the main Class that performess all the logic \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{namespacetimux_af9d865eb949c95b170ca458395332f06}{Time\+Synchronize\+Signal} (\hyperlink{structllu_1_1network_1_1recived_message}{llu\+::network\+::recived\+Message} $\ast$m, \hyperlink{namespacellu_1_1callback_a082ed24306809c4d250bd5ddfbae177f}{llu\+::callback\+::signal} $\ast$s)
+\begin{DoxyCompactList}\small\item\em signals a T\+I\+M\+U\+X\+\_\+\+Time\+Signal , if the gven message m is from an A-\/\+Station \end{DoxyCompactList}\item 
+void \hyperlink{namespacetimux_aaaa8c2d5485d4108b450aa5edf1e3aa3}{Time\+Synchronize\+Handler} (void $\ast$timing\+Class, \hyperlink{structllu_1_1network_1_1recived_message}{llu\+::network\+::recived\+Message} $\ast$m)
+\begin{DoxyCompactList}\small\item\em adjusts the offset of a timing class \end{DoxyCompactList}\item 
+bool \hyperlink{namespacetimux_ad0edf69fd830fa995ad603731acd5a20}{Msg\+Signal} (\hyperlink{structllu_1_1network_1_1recived_message}{llu\+::network\+::recived\+Message} $\ast$m, \hyperlink{namespacellu_1_1callback_a082ed24306809c4d250bd5ddfbae177f}{llu\+::callback\+::signal} $\ast$s)
+\begin{DoxyCompactList}\small\item\em signals a T\+I\+M\+U\+X\+\_\+\+Sot\+Signal if a message is recived \end{DoxyCompactList}\item 
+void \hyperlink{namespacetimux_a0325847c7fd72e51034fc14c8547d505}{Msg\+Handler} (void $\ast$timux\+Class, \hyperlink{structllu_1_1network_1_1recived_message}{llu\+::network\+::recived\+Message} $\ast$m)
+\begin{DoxyCompactList}\small\item\em handels an M\+S\+G from the Line \end{DoxyCompactList}\item 
+struct \hyperlink{structtimux_1_1package}{timux\+::package} \hyperlink{namespacetimux_a31970845e61d49b6ee9f97328d9aebcc}{\+\_\+\+\_\+attribute\+\_\+\+\_\+} ((packed))
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structtimux_1_1msg}{timux\+::msg} \hyperlink{namespacetimux_a92131d39983869230f2fb19fb9f654a6}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{namespacetimux_a31970845e61d49b6ee9f97328d9aebcc}{\index{timux@{timux}!\+\_\+\+\_\+attribute\+\_\+\+\_\+@{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+attribute\+\_\+\+\_\+@{\+\_\+\+\_\+attribute\+\_\+\+\_\+}!timux@{timux}}
+\subsubsection[{\+\_\+\+\_\+attribute\+\_\+\+\_\+}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf timux\+::package} timux\+::\+\_\+\+\_\+attribute\+\_\+\+\_\+ (
+\begin{DoxyParamCaption}
+\item[{(packed)}]{}
+\end{DoxyParamCaption}
+)}}\label{namespacetimux_a31970845e61d49b6ee9f97328d9aebcc}
+\hypertarget{namespacetimux_a0325847c7fd72e51034fc14c8547d505}{\index{timux@{timux}!Msg\+Handler@{Msg\+Handler}}
+\index{Msg\+Handler@{Msg\+Handler}!timux@{timux}}
+\subsubsection[{Msg\+Handler}]{\setlength{\rightskip}{0pt plus 5cm}void timux\+::timux\+::\+Msg\+Handler (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{timux\+Class, }
+\item[{{\bf llu\+::network\+::recived\+Message} $\ast$}]{m}
+\end{DoxyParamCaption}
+)}}\label{namespacetimux_a0325847c7fd72e51034fc14c8547d505}
+
+
+handels an M\+S\+G from the Line 
+
+
+\begin{DoxyParams}{Parameters}
+{\em timux\+Class} & the timux class, which does the logic \\
+\hline
+{\em m} & the message M which courses the adjustmend \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 194 of file timux.\+cpp.
+
+\hypertarget{namespacetimux_ad0edf69fd830fa995ad603731acd5a20}{\index{timux@{timux}!Msg\+Signal@{Msg\+Signal}}
+\index{Msg\+Signal@{Msg\+Signal}!timux@{timux}}
+\subsubsection[{Msg\+Signal}]{\setlength{\rightskip}{0pt plus 5cm}bool timux\+::timux\+::\+Msg\+Signal (
+\begin{DoxyParamCaption}
+\item[{{\bf llu\+::network\+::recived\+Message} $\ast$}]{m, }
+\item[{{\bf llu\+::callback\+::signal} $\ast$}]{s}
+\end{DoxyParamCaption}
+)}}\label{namespacetimux_ad0edf69fd830fa995ad603731acd5a20}
+
+
+signals a T\+I\+M\+U\+X\+\_\+\+Sot\+Signal if a message is recived 
+
+\begin{DoxySeeAlso}{See also}
+recived\+Message\+Classifier 
+\end{DoxySeeAlso}
+
+
+Definition at line 188 of file timux.\+cpp.
+
+\hypertarget{namespacetimux_aaaa8c2d5485d4108b450aa5edf1e3aa3}{\index{timux@{timux}!Time\+Synchronize\+Handler@{Time\+Synchronize\+Handler}}
+\index{Time\+Synchronize\+Handler@{Time\+Synchronize\+Handler}!timux@{timux}}
+\subsubsection[{Time\+Synchronize\+Handler}]{\setlength{\rightskip}{0pt plus 5cm}void timux\+::timux\+::\+Time\+Synchronize\+Handler (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{timing\+Class, }
+\item[{{\bf llu\+::network\+::recived\+Message} $\ast$}]{m}
+\end{DoxyParamCaption}
+)}}\label{namespacetimux_aaaa8c2d5485d4108b450aa5edf1e3aa3}
+
+
+adjusts the offset of a timing class 
+
+
+\begin{DoxyParams}{Parameters}
+{\em timing\+Class} & the timing class, which should be adjusted \\
+\hline
+{\em m} & the message M which courses the adjustmend \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 59 of file timux.\+cpp.
+
+\hypertarget{namespacetimux_af9d865eb949c95b170ca458395332f06}{\index{timux@{timux}!Time\+Synchronize\+Signal@{Time\+Synchronize\+Signal}}
+\index{Time\+Synchronize\+Signal@{Time\+Synchronize\+Signal}!timux@{timux}}
+\subsubsection[{Time\+Synchronize\+Signal}]{\setlength{\rightskip}{0pt plus 5cm}bool timux\+::timux\+::\+Time\+Synchronize\+Signal (
+\begin{DoxyParamCaption}
+\item[{{\bf llu\+::network\+::recived\+Message} $\ast$}]{m, }
+\item[{{\bf llu\+::callback\+::signal} $\ast$}]{s}
+\end{DoxyParamCaption}
+)}}\label{namespacetimux_af9d865eb949c95b170ca458395332f06}
+
+
+signals a T\+I\+M\+U\+X\+\_\+\+Time\+Signal , if the gven message m is from an A-\/\+Station 
+
+\begin{DoxySeeAlso}{See also}
+recived\+Message\+Classifier 
+\end{DoxySeeAlso}
+
+
+Definition at line 20 of file timux.\+cpp.
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{namespacetimux_a92131d39983869230f2fb19fb9f654a6}{\index{timux@{timux}!\+\_\+\+\_\+attribute\+\_\+\+\_\+@{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+attribute\+\_\+\+\_\+@{\+\_\+\+\_\+attribute\+\_\+\+\_\+}!timux@{timux}}
+\subsubsection[{\+\_\+\+\_\+attribute\+\_\+\+\_\+}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf timux\+::msg} timux\+::\+\_\+\+\_\+attribute\+\_\+\+\_\+}}\label{namespacetimux_a92131d39983869230f2fb19fb9f654a6}

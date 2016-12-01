@@ -1,0 +1,230 @@
+\hypertarget{classllu_1_1network_1_1_managed_connection}{\section{llu\+:\+:network\+:\+:Managed\+Connection Class Reference}
+\label{classllu_1_1network_1_1_managed_connection}\index{llu\+::network\+::\+Managed\+Connection@{llu\+::network\+::\+Managed\+Connection}}
+}
+
+
+a Managed form of a \hyperlink{classllu_1_1network_1_1_connection}{Connection} implements callbacks on massage recive internayls uses a callback handler  
+
+
+
+
+{\ttfamily \#include $<$network.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classllu_1_1network_1_1_managed_connection_a799a62f147762b2c4992ce91f06ff451}{Managed\+Connection} (\hyperlink{classllu_1_1network_1_1_connection}{Connection} $\ast$con)
+\begin{DoxyCompactList}\small\item\em wrapes a classic connection to make it managed \end{DoxyCompactList}\item 
+\hyperlink{classllu_1_1network_1_1_managed_connection_ab2740d022d8af2679b76e3b7c097909c}{$\sim$\+Managed\+Connection} ()
+\begin{DoxyCompactList}\small\item\em cleans up some stuff, also cloese the connection \end{DoxyCompactList}\item 
+void \hyperlink{classllu_1_1network_1_1_managed_connection_a464e40505c93ce769dacf381a6e0e503}{send\+Msg} (\hyperlink{structllu_1_1network_1_1send_message}{send\+Message} $\ast$m)
+\begin{DoxyCompactList}\small\item\em puts a massage in the out queue \end{DoxyCompactList}\item 
+void \hyperlink{classllu_1_1network_1_1_managed_connection_a5bce6d60a66c9dc660b3cd20479830c9}{add\+Classifier} (\hyperlink{namespacellu_1_1network_ac629c1180a0bee8ddef541f73cb3e5f9}{recived\+Message\+Classifier} c)
+\begin{DoxyCompactList}\small\item\em adds a massage clasifier for callbacks \end{DoxyCompactList}\item 
+void \hyperlink{classllu_1_1network_1_1_managed_connection_a1348765635cc1e53340dc94c5879a4c6}{add\+Callback} (\hyperlink{namespacellu_1_1callback_a082ed24306809c4d250bd5ddfbae177f}{signal} s, \hyperlink{namespacellu_1_1network_a999d34263abe84a87d12271383c606b9}{netwok\+Msg\+Callback} $\ast$calback)
+\begin{DoxyCompactList}\small\item\em adds a message recived callback \end{DoxyCompactList}\item 
+void \hyperlink{classllu_1_1network_1_1_managed_connection_a04c4198e03082243885c058d7e703e8e}{kill} ()
+\begin{DoxyCompactList}\small\item\em closes the mennaged and underlying unmanaged connection \end{DoxyCompactList}\item 
+bool \hyperlink{classllu_1_1network_1_1_managed_connection_a21eb51f8f91b3103a71708c4b190784a}{alive} ()
+\begin{DoxyCompactList}\small\item\em used to check if the connection is alvice \end{DoxyCompactList}\item 
+\hyperlink{classllu_1_1network_1_1_connection}{Connection} $\ast$ \hyperlink{classllu_1_1network_1_1_managed_connection_a6b75597f4a9ed3be7202f5118383eba5}{raw} ()
+\begin{DoxyCompactList}\small\item\em can be used to acces the underlaying connection \end{DoxyCompactList}\item 
+void \hyperlink{classllu_1_1network_1_1_managed_connection_a2c5a8dca6f2cae9b3ae8f928a1c940ed}{lock\+Write} ()
+\begin{DoxyCompactList}\small\item\em locks the connection for writing \end{DoxyCompactList}\item 
+void \hyperlink{classllu_1_1network_1_1_managed_connection_a47c8c8c501e5794f2ab0ccd9faa16c2e}{unlock\+Write} ()
+\begin{DoxyCompactList}\small\item\em unlocks the connection for writing \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+a Managed form of a \hyperlink{classllu_1_1network_1_1_connection}{Connection} implements callbacks on massage recive internayls uses a callback handler 
+
+\begin{DoxyNote}{Note}
+a massage can onely be recived via a callback registration 
+
+sending is thread Save 
+\end{DoxyNote}
+
+
+Definition at line 215 of file network.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classllu_1_1network_1_1_managed_connection_a799a62f147762b2c4992ce91f06ff451}{\index{llu\+::network\+::\+Managed\+Connection@{llu\+::network\+::\+Managed\+Connection}!Managed\+Connection@{Managed\+Connection}}
+\index{Managed\+Connection@{Managed\+Connection}!llu\+::network\+::\+Managed\+Connection@{llu\+::network\+::\+Managed\+Connection}}
+\subsubsection[{Managed\+Connection}]{\setlength{\rightskip}{0pt plus 5cm}llu\+::network\+::\+Managed\+Connection\+::\+Managed\+Connection (
+\begin{DoxyParamCaption}
+\item[{{\bf Connection} $\ast$}]{con}
+\end{DoxyParamCaption}
+)}}\label{classllu_1_1network_1_1_managed_connection_a799a62f147762b2c4992ce91f06ff451}
+
+
+wrapes a classic connection to make it managed 
+
+
+
+Definition at line 104 of file network.\+cpp.
+
+\hypertarget{classllu_1_1network_1_1_managed_connection_ab2740d022d8af2679b76e3b7c097909c}{\index{llu\+::network\+::\+Managed\+Connection@{llu\+::network\+::\+Managed\+Connection}!````~Managed\+Connection@{$\sim$\+Managed\+Connection}}
+\index{````~Managed\+Connection@{$\sim$\+Managed\+Connection}!llu\+::network\+::\+Managed\+Connection@{llu\+::network\+::\+Managed\+Connection}}
+\subsubsection[{$\sim$\+Managed\+Connection}]{\setlength{\rightskip}{0pt plus 5cm}llu\+::network\+::\+Managed\+Connection\+::$\sim$\+Managed\+Connection (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classllu_1_1network_1_1_managed_connection_ab2740d022d8af2679b76e3b7c097909c}
+
+
+cleans up some stuff, also cloese the connection 
+
+\begin{DoxyNote}{Note}
+delets the raw nonnection 
+\end{DoxyNote}
+
+
+Definition at line 114 of file network.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classllu_1_1network_1_1_managed_connection_a1348765635cc1e53340dc94c5879a4c6}{\index{llu\+::network\+::\+Managed\+Connection@{llu\+::network\+::\+Managed\+Connection}!add\+Callback@{add\+Callback}}
+\index{add\+Callback@{add\+Callback}!llu\+::network\+::\+Managed\+Connection@{llu\+::network\+::\+Managed\+Connection}}
+\subsubsection[{add\+Callback}]{\setlength{\rightskip}{0pt plus 5cm}void llu\+::network\+::\+Managed\+Connection\+::add\+Callback (
+\begin{DoxyParamCaption}
+\item[{{\bf signal}}]{s, }
+\item[{{\bf netwok\+Msg\+Callback} $\ast$}]{calback}
+\end{DoxyParamCaption}
+)}}\label{classllu_1_1network_1_1_managed_connection_a1348765635cc1e53340dc94c5879a4c6}
+
+
+adds a message recived callback 
+
+
+
+Definition at line 136 of file network.\+cpp.
+
+\hypertarget{classllu_1_1network_1_1_managed_connection_a5bce6d60a66c9dc660b3cd20479830c9}{\index{llu\+::network\+::\+Managed\+Connection@{llu\+::network\+::\+Managed\+Connection}!add\+Classifier@{add\+Classifier}}
+\index{add\+Classifier@{add\+Classifier}!llu\+::network\+::\+Managed\+Connection@{llu\+::network\+::\+Managed\+Connection}}
+\subsubsection[{add\+Classifier}]{\setlength{\rightskip}{0pt plus 5cm}void llu\+::network\+::\+Managed\+Connection\+::add\+Classifier (
+\begin{DoxyParamCaption}
+\item[{{\bf recived\+Message\+Classifier}}]{c}
+\end{DoxyParamCaption}
+)}}\label{classllu_1_1network_1_1_managed_connection_a5bce6d60a66c9dc660b3cd20479830c9}
+
+
+adds a massage clasifier for callbacks 
+
+
+
+Definition at line 132 of file network.\+cpp.
+
+\hypertarget{classllu_1_1network_1_1_managed_connection_a21eb51f8f91b3103a71708c4b190784a}{\index{llu\+::network\+::\+Managed\+Connection@{llu\+::network\+::\+Managed\+Connection}!alive@{alive}}
+\index{alive@{alive}!llu\+::network\+::\+Managed\+Connection@{llu\+::network\+::\+Managed\+Connection}}
+\subsubsection[{alive}]{\setlength{\rightskip}{0pt plus 5cm}bool llu\+::network\+::\+Managed\+Connection\+::alive (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classllu_1_1network_1_1_managed_connection_a21eb51f8f91b3103a71708c4b190784a}
+
+
+used to check if the connection is alvice 
+
+\begin{DoxyReturn}{Returns}
+true if the connection is still usable 
+\end{DoxyReturn}
+
+
+Definition at line 144 of file network.\+cpp.
+
+\hypertarget{classllu_1_1network_1_1_managed_connection_a04c4198e03082243885c058d7e703e8e}{\index{llu\+::network\+::\+Managed\+Connection@{llu\+::network\+::\+Managed\+Connection}!kill@{kill}}
+\index{kill@{kill}!llu\+::network\+::\+Managed\+Connection@{llu\+::network\+::\+Managed\+Connection}}
+\subsubsection[{kill}]{\setlength{\rightskip}{0pt plus 5cm}void llu\+::network\+::\+Managed\+Connection\+::kill (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classllu_1_1network_1_1_managed_connection_a04c4198e03082243885c058d7e703e8e}
+
+
+closes the mennaged and underlying unmanaged connection 
+
+
+
+Definition at line 140 of file network.\+cpp.
+
+\hypertarget{classllu_1_1network_1_1_managed_connection_a2c5a8dca6f2cae9b3ae8f928a1c940ed}{\index{llu\+::network\+::\+Managed\+Connection@{llu\+::network\+::\+Managed\+Connection}!lock\+Write@{lock\+Write}}
+\index{lock\+Write@{lock\+Write}!llu\+::network\+::\+Managed\+Connection@{llu\+::network\+::\+Managed\+Connection}}
+\subsubsection[{lock\+Write}]{\setlength{\rightskip}{0pt plus 5cm}void llu\+::network\+::\+Managed\+Connection\+::lock\+Write (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classllu_1_1network_1_1_managed_connection_a2c5a8dca6f2cae9b3ae8f928a1c940ed}
+
+
+locks the connection for writing 
+
+
+
+Definition at line 149 of file network.\+cpp.
+
+\hypertarget{classllu_1_1network_1_1_managed_connection_a6b75597f4a9ed3be7202f5118383eba5}{\index{llu\+::network\+::\+Managed\+Connection@{llu\+::network\+::\+Managed\+Connection}!raw@{raw}}
+\index{raw@{raw}!llu\+::network\+::\+Managed\+Connection@{llu\+::network\+::\+Managed\+Connection}}
+\subsubsection[{raw}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Connection} $\ast$ llu\+::network\+::\+Managed\+Connection\+::raw (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classllu_1_1network_1_1_managed_connection_a6b75597f4a9ed3be7202f5118383eba5}
+
+
+can be used to acces the underlaying connection 
+
+\begin{DoxyReturn}{Returns}
+the unmanaged connection 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+should not be used, onely sutable for sending data if the send\+Msg of managed connection is N\+O\+T used or the sender\+Thread is killed or the out\+Buffer is locked 
+\end{DoxyNote}
+
+
+Definition at line 165 of file network.\+cpp.
+
+\hypertarget{classllu_1_1network_1_1_managed_connection_a464e40505c93ce769dacf381a6e0e503}{\index{llu\+::network\+::\+Managed\+Connection@{llu\+::network\+::\+Managed\+Connection}!send\+Msg@{send\+Msg}}
+\index{send\+Msg@{send\+Msg}!llu\+::network\+::\+Managed\+Connection@{llu\+::network\+::\+Managed\+Connection}}
+\subsubsection[{send\+Msg}]{\setlength{\rightskip}{0pt plus 5cm}void llu\+::network\+::\+Managed\+Connection\+::send\+Msg (
+\begin{DoxyParamCaption}
+\item[{{\bf send\+Message} $\ast$}]{m}
+\end{DoxyParamCaption}
+)}}\label{classllu_1_1network_1_1_managed_connection_a464e40505c93ce769dacf381a6e0e503}
+
+
+puts a massage in the out queue 
+
+\begin{DoxyNote}{Note}
+it may takes some time for the massage to be send, if this is not aceptable \hyperlink{classllu_1_1network_1_1_managed_connection_a6b75597f4a9ed3be7202f5118383eba5}{raw()} can be used 
+\end{DoxyNote}
+
+
+Definition at line 128 of file network.\+cpp.
+
+\hypertarget{classllu_1_1network_1_1_managed_connection_a47c8c8c501e5794f2ab0ccd9faa16c2e}{\index{llu\+::network\+::\+Managed\+Connection@{llu\+::network\+::\+Managed\+Connection}!unlock\+Write@{unlock\+Write}}
+\index{unlock\+Write@{unlock\+Write}!llu\+::network\+::\+Managed\+Connection@{llu\+::network\+::\+Managed\+Connection}}
+\subsubsection[{unlock\+Write}]{\setlength{\rightskip}{0pt plus 5cm}void llu\+::network\+::\+Managed\+Connection\+::unlock\+Write (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classllu_1_1network_1_1_managed_connection_a47c8c8c501e5794f2ab0ccd9faa16c2e}
+
+
+unlocks the connection for writing 
+
+\begin{DoxyNote}{Note}
+must be caled from the same thread as lock\+Write 
+\end{DoxyNote}
+
+
+Definition at line 153 of file network.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+time\+Mux/\hyperlink{network_8hpp}{network.\+hpp}\item 
+time\+Mux/\hyperlink{network_8cpp}{network.\+cpp}\end{DoxyCompactItemize}

@@ -34,24 +34,22 @@ int main(){
     Connection *con = new llu::network::UdpConnection();
     ManagedConnection mcon(con);
 
-    sockaddr_in target = resolve("127.0.0.1",6001);
+    sockaddr_in target = resolve("225.10.1.2",15002);
 
     mcon.sendMsg(createSendMessage(7,target,"bububa"));
-
 
     timux::timux timuxMain(&mcon,1000,25,target);
 
     timuxMain.loop();
 
     cout << "lebe noch ";
-
-    char text[128];
+/*
+    char *text=(char *)malloc(sizeof(msg::data));
     sendMessage *msg;
     while(true){
-        cin >> text;
-        msg = createSendMessage(128,target,text);
-        mcon.sendMsg(msg);
-    }
+        cin.read(text,sizeof(msg::data));
+        cout << text << endl;
+    }*/
     return 0;
 }
 

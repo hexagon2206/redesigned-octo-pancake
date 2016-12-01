@@ -1,0 +1,216 @@
+\hypertarget{classllu_1_1datastructs_1_1_ringbuffer}{\section{llu\+:\+:datastructs\+:\+:Ringbuffer$<$ D $>$ Class Template Reference}
+\label{classllu_1_1datastructs_1_1_ringbuffer}\index{llu\+::datastructs\+::\+Ringbuffer$<$ D $>$@{llu\+::datastructs\+::\+Ringbuffer$<$ D $>$}}
+}
+
+
+Basic implementation of a generik and thread save Ring buffer.  
+
+
+
+
+{\ttfamily \#include $<$ring\+Buffer.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classllu_1_1datastructs_1_1_ringbuffer_ab214a718ecf06d2911bd6f1e0e597fd8}{Ringbuffer} (size\+\_\+t my\+Size)
+\begin{DoxyCompactList}\small\item\em creates a \hyperlink{classllu_1_1datastructs_1_1_ringbuffer}{Ringbuffer} of spezified size \end{DoxyCompactList}\item 
+\hyperlink{classllu_1_1datastructs_1_1_ringbuffer_a18eaeb15f671f0ff28f8f6331d8e8cb5}{$\sim$\+Ringbuffer} ()
+\item 
+bool \hyperlink{classllu_1_1datastructs_1_1_ringbuffer_a42ad2af5a94eb3400aacbc02ff8f273f}{can\+Write} ()
+\begin{DoxyCompactList}\small\item\em Used to check if space for data is available to. \end{DoxyCompactList}\item 
+bool \hyperlink{classllu_1_1datastructs_1_1_ringbuffer_a192ce859addf55634c277465c5d8b167}{can\+Read} ()
+\begin{DoxyCompactList}\small\item\em Used to check if data is available to be read. \end{DoxyCompactList}\item 
+bool \hyperlink{classllu_1_1datastructs_1_1_ringbuffer_a9d0c1109ed1e655b6e8ee9eb68550552}{try\+Put} (D data)
+\begin{DoxyCompactList}\small\item\em tryes to append D data if there is space in the Ring \end{DoxyCompactList}\item 
+void \hyperlink{classllu_1_1datastructs_1_1_ringbuffer_a883dd9d2e40532aa255c4c12299bf490}{put} (D data)
+\begin{DoxyCompactList}\small\item\em Putes D data to the ring, blocks till done. \end{DoxyCompactList}\item 
+D \hyperlink{classllu_1_1datastructs_1_1_ringbuffer_aba608e48dea9366fe553341301409508}{get} ()
+\begin{DoxyCompactList}\small\item\em reads data form the buffer, blocks till done \end{DoxyCompactList}\item 
+void \hyperlink{classllu_1_1datastructs_1_1_ringbuffer_ab3ef1d293fe716106cf8b22259d6970b}{lock} ()
+\begin{DoxyCompactList}\small\item\em disables the writing part of the ring buffer \end{DoxyCompactList}\item 
+void \hyperlink{classllu_1_1datastructs_1_1_ringbuffer_af0f39cea25a6c196a5c16f3cc8534827}{unlock} ()
+\begin{DoxyCompactList}\small\item\em reanables the writing part of the ring buffer \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename D$>$class llu\+::datastructs\+::\+Ringbuffer$<$ D $>$}
+
+Basic implementation of a generik and thread save Ring buffer. 
+
+D is the type of data the buffer accepts 
+
+Definition at line 23 of file ring\+Buffer.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classllu_1_1datastructs_1_1_ringbuffer_ab214a718ecf06d2911bd6f1e0e597fd8}{\index{llu\+::datastructs\+::\+Ringbuffer@{llu\+::datastructs\+::\+Ringbuffer}!Ringbuffer@{Ringbuffer}}
+\index{Ringbuffer@{Ringbuffer}!llu\+::datastructs\+::\+Ringbuffer@{llu\+::datastructs\+::\+Ringbuffer}}
+\subsubsection[{Ringbuffer}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename D$>$ {\bf llu\+::datastructs\+::\+Ringbuffer}$<$ D $>$\+::{\bf Ringbuffer} (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+t}]{my\+Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classllu_1_1datastructs_1_1_ringbuffer_ab214a718ecf06d2911bd6f1e0e597fd8}
+
+
+creates a \hyperlink{classllu_1_1datastructs_1_1_ringbuffer}{Ringbuffer} of spezified size 
+
+
+\begin{DoxyParams}{Parameters}
+{\em my\+Size} & number of D to be put into the buffer \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 30 of file ring\+Buffer.\+hpp.
+
+\hypertarget{classllu_1_1datastructs_1_1_ringbuffer_a18eaeb15f671f0ff28f8f6331d8e8cb5}{\index{llu\+::datastructs\+::\+Ringbuffer@{llu\+::datastructs\+::\+Ringbuffer}!````~Ringbuffer@{$\sim$\+Ringbuffer}}
+\index{````~Ringbuffer@{$\sim$\+Ringbuffer}!llu\+::datastructs\+::\+Ringbuffer@{llu\+::datastructs\+::\+Ringbuffer}}
+\subsubsection[{$\sim$\+Ringbuffer}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename D$>$ {\bf llu\+::datastructs\+::\+Ringbuffer}$<$ D $>$\+::$\sim${\bf Ringbuffer} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classllu_1_1datastructs_1_1_ringbuffer_a18eaeb15f671f0ff28f8f6331d8e8cb5}
+
+
+Definition at line 37 of file ring\+Buffer.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classllu_1_1datastructs_1_1_ringbuffer_a192ce859addf55634c277465c5d8b167}{\index{llu\+::datastructs\+::\+Ringbuffer@{llu\+::datastructs\+::\+Ringbuffer}!can\+Read@{can\+Read}}
+\index{can\+Read@{can\+Read}!llu\+::datastructs\+::\+Ringbuffer@{llu\+::datastructs\+::\+Ringbuffer}}
+\subsubsection[{can\+Read}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename D$>$ bool {\bf llu\+::datastructs\+::\+Ringbuffer}$<$ D $>$\+::can\+Read (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classllu_1_1datastructs_1_1_ringbuffer_a192ce859addf55634c277465c5d8b167}
+
+
+Used to check if data is available to be read. 
+
+\begin{DoxyReturn}{Returns}
+True if it is possible to read data, may be not corect, wen used without lock 
+\end{DoxyReturn}
+
+
+Definition at line 53 of file ring\+Buffer.\+hpp.
+
+\hypertarget{classllu_1_1datastructs_1_1_ringbuffer_a42ad2af5a94eb3400aacbc02ff8f273f}{\index{llu\+::datastructs\+::\+Ringbuffer@{llu\+::datastructs\+::\+Ringbuffer}!can\+Write@{can\+Write}}
+\index{can\+Write@{can\+Write}!llu\+::datastructs\+::\+Ringbuffer@{llu\+::datastructs\+::\+Ringbuffer}}
+\subsubsection[{can\+Write}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename D$>$ bool {\bf llu\+::datastructs\+::\+Ringbuffer}$<$ D $>$\+::can\+Write (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classllu_1_1datastructs_1_1_ringbuffer_a42ad2af5a94eb3400aacbc02ff8f273f}
+
+
+Used to check if space for data is available to. 
+
+\begin{DoxyReturn}{Returns}
+True if it is possible to write data, may be not corect, wen used without lock 
+\end{DoxyReturn}
+
+
+Definition at line 44 of file ring\+Buffer.\+hpp.
+
+\hypertarget{classllu_1_1datastructs_1_1_ringbuffer_aba608e48dea9366fe553341301409508}{\index{llu\+::datastructs\+::\+Ringbuffer@{llu\+::datastructs\+::\+Ringbuffer}!get@{get}}
+\index{get@{get}!llu\+::datastructs\+::\+Ringbuffer@{llu\+::datastructs\+::\+Ringbuffer}}
+\subsubsection[{get}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename D$>$ D {\bf llu\+::datastructs\+::\+Ringbuffer}$<$ D $>$\+::get (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classllu_1_1datastructs_1_1_ringbuffer_aba608e48dea9366fe553341301409508}
+
+
+reads data form the buffer, blocks till done 
+
+\begin{DoxyReturn}{Returns}
+data from the ring 
+\end{DoxyReturn}
+
+
+Definition at line 96 of file ring\+Buffer.\+hpp.
+
+\hypertarget{classllu_1_1datastructs_1_1_ringbuffer_ab3ef1d293fe716106cf8b22259d6970b}{\index{llu\+::datastructs\+::\+Ringbuffer@{llu\+::datastructs\+::\+Ringbuffer}!lock@{lock}}
+\index{lock@{lock}!llu\+::datastructs\+::\+Ringbuffer@{llu\+::datastructs\+::\+Ringbuffer}}
+\subsubsection[{lock}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename D$>$ void {\bf llu\+::datastructs\+::\+Ringbuffer}$<$ D $>$\+::lock (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classllu_1_1datastructs_1_1_ringbuffer_ab3ef1d293fe716106cf8b22259d6970b}
+
+
+disables the writing part of the ring buffer 
+
+
+
+Definition at line 110 of file ring\+Buffer.\+hpp.
+
+\hypertarget{classllu_1_1datastructs_1_1_ringbuffer_a883dd9d2e40532aa255c4c12299bf490}{\index{llu\+::datastructs\+::\+Ringbuffer@{llu\+::datastructs\+::\+Ringbuffer}!put@{put}}
+\index{put@{put}!llu\+::datastructs\+::\+Ringbuffer@{llu\+::datastructs\+::\+Ringbuffer}}
+\subsubsection[{put}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename D$>$ void {\bf llu\+::datastructs\+::\+Ringbuffer}$<$ D $>$\+::put (
+\begin{DoxyParamCaption}
+\item[{D}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classllu_1_1datastructs_1_1_ringbuffer_a883dd9d2e40532aa255c4c12299bf490}
+
+
+Putes D data to the ring, blocks till done. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & the data to put in the ring \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 81 of file ring\+Buffer.\+hpp.
+
+\hypertarget{classllu_1_1datastructs_1_1_ringbuffer_a9d0c1109ed1e655b6e8ee9eb68550552}{\index{llu\+::datastructs\+::\+Ringbuffer@{llu\+::datastructs\+::\+Ringbuffer}!try\+Put@{try\+Put}}
+\index{try\+Put@{try\+Put}!llu\+::datastructs\+::\+Ringbuffer@{llu\+::datastructs\+::\+Ringbuffer}}
+\subsubsection[{try\+Put}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename D$>$ bool {\bf llu\+::datastructs\+::\+Ringbuffer}$<$ D $>$\+::try\+Put (
+\begin{DoxyParamCaption}
+\item[{D}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classllu_1_1datastructs_1_1_ringbuffer_a9d0c1109ed1e655b6e8ee9eb68550552}
+
+
+tryes to append D data if there is space in the Ring 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & the data to put in the ring \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if it was possible, otherwise false 
+\end{DoxyReturn}
+
+
+Definition at line 63 of file ring\+Buffer.\+hpp.
+
+\hypertarget{classllu_1_1datastructs_1_1_ringbuffer_af0f39cea25a6c196a5c16f3cc8534827}{\index{llu\+::datastructs\+::\+Ringbuffer@{llu\+::datastructs\+::\+Ringbuffer}!unlock@{unlock}}
+\index{unlock@{unlock}!llu\+::datastructs\+::\+Ringbuffer@{llu\+::datastructs\+::\+Ringbuffer}}
+\subsubsection[{unlock}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename D$>$ void {\bf llu\+::datastructs\+::\+Ringbuffer}$<$ D $>$\+::unlock (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classllu_1_1datastructs_1_1_ringbuffer_af0f39cea25a6c196a5c16f3cc8534827}
+
+
+reanables the writing part of the ring buffer 
+
+\begin{DoxyNote}{Note}
+must be caled form the same thread aslock 
+\end{DoxyNote}
+
+
+Definition at line 118 of file ring\+Buffer.\+hpp.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+time\+Mux/\hyperlink{ring_buffer_8hpp}{ring\+Buffer.\+hpp}\end{DoxyCompactItemize}
