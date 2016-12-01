@@ -11,9 +11,14 @@ namespace llu{
     namespace network{
         UdpConnection::UdpConnection(char *bcGroup,uint16_t myPort,char ttl,size_t maxRcvMsgLeng){
 
+            sender = socket (AF_INET, SOCK_DGRAM, 0);
+
             s = socket (AF_INET, SOCK_DGRAM, 0);
-
-
+            unsigned int yes=1;
+            if(setsockopt(s, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(yes))<0){
+                perror("AddrReuse Failed");
+            }
+            //setsockopt(s, SOL_SOCKET, SO_REUSEPORT, &yes, sizeof(yes));
 
 
 
@@ -23,22 +28,21 @@ namespace llu{
 
 
 
-            uint8_t value=1;
-            setsockopt(s, SOL_SOCKET, SO_REUSEPORT, &value, sizeof(value));
-            setsockopt(s, SOL_SOCKET, SO_REUSEADDR, &value, sizeof(value));
 
-            bind ( s, (struct sockaddr *) &cliAddr, sizeof (cliAddr) );
+            if(0>bind ( s, (struct sockaddr *) &cliAddr, sizeof (cliAddr) )){
+                perror("bind failed");
+            }
 
             if(bcGroup){
-                setsockopt(s, IPPROTO_IP, IP_MULTICAST_LOOP, &value, sizeof(value));
+                if(0>setsockopt(s, IPPROTO_IP, IP_MULTICAST_LOOP, &yes, sizeof(yes)))perror("multicastLoopFailed");
 
-                setsockopt(s, IPPROTO_IP, IP_MULTICAST_TTL, &ttl, sizeof(ttl));
+                if(0>setsockopt(s, IPPROTO_IP, IP_MULTICAST_TTL, &ttl, sizeof(ttl)))perror("MulticastTTLFailed");
 
                 myMreq.imr_multiaddr.s_addr = inet_addr(bcGroup);
                 myMreq.imr_interface.s_addr = htonl(INADDR_ANY);
 
                 if( setsockopt (s, IPPROTO_IP, IP_ADD_MEMBERSHIP, &myMreq, sizeof(myMreq))<0){
-                    std::cout << "could not join MC Group" << std::endl;
+                    perror("could not join MC Group");
                 }
             }
 
@@ -55,7 +59,7 @@ namespace llu{
         }
 
         void UdpConnection::sendMsg(sendMessage *m){
-            sendto(s,m->data, m->length,0 ,(struct sockaddr *) &m->target, sizeof (m->target));
+            sendto(sender,m->data, m->length,0 ,(struct sockaddr *) &m->target, sizeof (m->target));
             destorySendMessage(m);
         }
 

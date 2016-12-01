@@ -42,6 +42,7 @@ namespace llu{
 
                 size_t maxRcvMsgLeng;
                 int s;
+                int sender;
                 struct hostent *h;
 
 
