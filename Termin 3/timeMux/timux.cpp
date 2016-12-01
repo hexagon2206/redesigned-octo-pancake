@@ -141,9 +141,7 @@ namespace timux{
                 setupNextFrame();
 
                 std::cout << "frame Übergang : " << now << std::endl;
-                if(this->lastSendIn != curentFrame-1){
-                    this->mySlot = 0;
-                }else if(-1==this->mySlot){
+                if(-1==this->mySlot){
                     if(0==rand()%TIMUX_TRYTOJOIN){
                         std::cout << "ttj" <<std::endl;
                         for(unsigned int i = 0;i!=this->slotCount;i++){
@@ -157,7 +155,7 @@ namespace timux{
                         }
                     }
                 }else{
-                    if(1<(collisions[this->mySlot])){
+                    if((this->lastSendIn != curentFrame-1) || (1!=collisions[this->mySlot])){
                         this->mySlot=-1;
                     }
                 }
@@ -204,7 +202,7 @@ namespace timux{
         toret->nextSlot = toHBO_8(p->nextSlot);
         memcpy(toret->data,p->data,sizeof(toret->data));
         ti->recived(toret);
-        std::cout << "rrecived MSG F:" << toret->frame << "Slot : "<<  toret->slot << std::endl;
+        std::cout << "rrecived MSG F:" << toret->frame << "Slot : "<<  toret->slot << std::endl << toret->data << std::endl << std::endl;
 
         llu::network::destoryRecivedMessage(m);
     }

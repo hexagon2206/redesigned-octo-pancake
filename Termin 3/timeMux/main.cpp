@@ -36,6 +36,8 @@ int main(){
 
     sockaddr_in target = resolve("127.0.0.1",6001);
 
+    mcon.sendMsg(createSendMessage(7,target,"bububa"));
+
 
     timux::timux timuxMain(&mcon,1000,25,target);
 

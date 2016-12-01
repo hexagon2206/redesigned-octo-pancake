@@ -113,7 +113,7 @@ namespace timux{
 
             uint8_t *dummyData=(uint8_t *)"12345678901234567890123";   //24bit dummy Data + Nullterminator
 
-            uint8_t *sendData;
+            uint8_t *sendData = nullptr;
             std::mutex sendDataLock;
 
             llu::network::ManagedConnection *con;
