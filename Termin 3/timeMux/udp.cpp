@@ -24,8 +24,11 @@ namespace llu{
             bind ( s, (struct sockaddr *) &cliAddr, sizeof (cliAddr) );
 
             if(bcGroup){
-                uint8_t loop=1;
-                setsockopt(s, IPPROTO_IP, IP_MULTICAST_LOOP, &loop, sizeof(loop));
+                uint8_t value=1;
+                setsockopt(s, IPPROTO_IP, IP_MULTICAST_LOOP, &value, sizeof(value));
+
+                setsockopt(s, SOL_SOCKET, SO_REUSEPORT, &value, sizeof(value));
+
                 setsockopt(s, IPPROTO_IP, IP_MULTICAST_TTL, &ttl, sizeof(ttl));
 
                 myMreq.imr_multiaddr.s_addr = inet_addr(bcGroup);
