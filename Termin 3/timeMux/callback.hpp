@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <thread>
 #include <mutex>
+
 #include "linkedList.hpp"
 #include "linkedArray.hpp"
 
@@ -99,7 +100,6 @@ namespace llu{
                     tmp->lock.lock();
 
                     listEntrie<callback_registration<C,D>*> *elem = &tmp->start;
-
                     while(elem->next){
                         elem=elem->next;
                         callback_registration<C,D>*  cbr=elem->data;

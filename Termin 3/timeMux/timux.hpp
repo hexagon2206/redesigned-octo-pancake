@@ -11,7 +11,7 @@
 #include <chrono>
 
 #define TIMUX_TimeSignal (1)
-#define TIMUX_SotSignal (1)
+#define TIMUX_SotSignal (2)
 
 
 namespace timux{

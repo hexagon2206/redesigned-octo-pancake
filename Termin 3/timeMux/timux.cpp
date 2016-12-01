@@ -3,12 +3,14 @@
  *  @author Lukas Lühr (hexagon2206)
  *  @bug No known bugs.
  *  @todo remove screen output
+ *  @todo
  */
 
 #include "timux.hpp"
 #include <iostream>
 
 
+#define DEBUG(X)
 using namespace llu::callback;
 using namespace llu::network;
 using namespace std::chrono;
@@ -81,13 +83,15 @@ namespace timux{
      void timux::setupNextFrame(){
         nextSlotLock.lock();
         this->freeNextSlot = (bool *)malloc(sizeof(bool)*this->slotCount);
+        memset(freeNextSlot,0,sizeof(bool)*this->slotCount);
         this->collisions = (int *)malloc(sizeof(int)*this->slotCount);
+        memset(collisions,0,sizeof(int)*this->slotCount);
         nextSlotLock.unlock();
      }
 
     void timux::recived(msg *m){
         if(m->frame!=this->curentFrame){
-            std::cout << "MyFrame:" << this->curentFrame << " recived:" <<m->frame << std::endl;
+            std::cout << "Wrong Frame MyFrame:" << this->curentFrame << " recived:" <<m->frame << std::endl;
             return ;
         }
         nextSlotLock.lock();
@@ -100,6 +104,12 @@ namespace timux{
         package *p=(package *)malloc(sizeof(package));
         toNBO(this->stationClass,p->klasse);
         toNBO((uint8_t)this->mySlot, p->nextSlot);
+
+        if(this->stationClass == 'B'){
+            this->stationClass = 'A';
+        }else{
+            this->stationClass = 'B';
+        }
 
         this->sendDataLock.lock();
         if(this->sendData){
@@ -140,7 +150,7 @@ namespace timux{
                 this->curentFrame = curentFrame;
                 setupNextFrame();
 
-                std::cout << "frame Übergang : " << now << std::endl;
+                DEBUG(std::cout << "frame Übergang : " << now << std::endl;)
                 if(-1==this->mySlot){
                     if(0==rand()%TIMUX_TRYTOJOIN){
                         std::cout << "ttj" <<std::endl;
@@ -148,7 +158,7 @@ namespace timux{
                             if(false==nextFree[i]){
                                 if(0==(rand()%TIMUX_TRY_TAKE_SLOT)){
                                     this->mySlot=i;
-                                    std::cout << "mySlot ist :"<<this->mySlot<<std::endl;
+                                    DEBUG(std::cout << "mySlot ist :"<<this->mySlot<<std::endl;)
                                     break;
                                 }
                             }
@@ -162,7 +172,7 @@ namespace timux{
                 free(nextFree);
                 free(collisions);
 
-                std::cout << "took : " << (this->t.now()-now) << std::endl;
+                DEBUG(std::cout << "took : " << (this->t.now()-now) << std::endl;)
             }else if(-1!=this->mySlot){
                 unsigned int slot = (now%this->frameLength)/(this->frameLength/this->slotCount);
                 if(this->lastSendIn < curentFrame && (unsigned int)this->mySlot == slot){
@@ -176,8 +186,8 @@ namespace timux{
                     send(p);
                     std::cout<<"sending slot :"<<mySlot<<" at: " << this->t.now()<<endl;
                 }
-
             }
+            std::this_thread::sleep_for(std::chrono::microseconds(1));
         }
 
     }
@@ -202,7 +212,7 @@ namespace timux{
         toret->nextSlot = toHBO_8(p->nextSlot);
         memcpy(toret->data,p->data,sizeof(toret->data));
         ti->recived(toret);
-        std::cout << "rrecived MSG F:" << toret->frame << "Slot : "<<  toret->slot << std::endl << toret->data << std::endl << std::endl;
+        std::cout << "Recived MSG F:" << toret->frame << "Slot : "<<  toret->slot << std::endl << toret->data << std::endl << std::endl;
 
         llu::network::destoryRecivedMessage(m);
     }
