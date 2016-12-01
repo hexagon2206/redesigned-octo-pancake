@@ -9,21 +9,36 @@
 
 namespace llu{
     namespace network{
-        UdpConnection::UdpConnection(char ttl,uint16_t myPort,size_t maxRcvMsgLeng){
+        UdpConnection::UdpConnection(char *bcGroup,uint16_t myPort,char ttl,size_t maxRcvMsgLeng){
 
             s = socket (AF_INET, SOCK_DGRAM, 0);
-            setsockopt(s, IPPROTO_IP, IP_TTL, &ttl, sizeof(ttl));
+
+
+
+
 
             cliAddr.sin_family = AF_INET;
             cliAddr.sin_addr.s_addr = htonl (INADDR_ANY);
             cliAddr.sin_port = htons (myPort);
 
             bind ( s, (struct sockaddr *) &cliAddr, sizeof (cliAddr) );
+
+            if(bcGroup){
+                uint8_t loop=1;
+                setsockopt(s, IPPROTO_IP, IP_MULTICAST_LOOP, &loop, sizeof(loop));
+                setsockopt(s, IPPROTO_IP, IP_MULTICAST_TTL, &ttl, sizeof(ttl));
+
+                myMreq.imr_multiaddr.s_addr = inet_addr(bcGroup);
+                myMreq.imr_interface.s_addr = htonl(INADDR_ANY);
+
+                if( setsockopt (s, IPPROTO_IP, IP_ADD_MEMBERSHIP, &myMreq, sizeof(myMreq))<0){
+                    std::cout << "could not join MC Group" << std::endl;
+                }
+            }
+
             this->maxRcvMsgLeng=maxRcvMsgLeng;
             currentMsg = llu::network::createRecivedMessage(maxRcvMsgLeng);
         }
-
-
 
         recivedMessage *UdpConnection::recvMsg(){
             socklen_t len = (socklen_t) sizeof(currentMsg->sender);

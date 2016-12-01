@@ -31,7 +31,7 @@ int main(){
     srand(time(NULL));
     cout << "hallo Welt ?  " << endl;
 
-    Connection *con = new llu::network::UdpConnection();
+    llu::network::UdpConnection *con = new llu::network::UdpConnection("225.10.1.2");
     ManagedConnection mcon(con);
 
     sockaddr_in target = resolve("225.10.1.2",15002);

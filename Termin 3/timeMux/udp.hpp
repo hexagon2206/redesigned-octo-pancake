@@ -22,7 +22,7 @@ namespace llu{
         using namespace std;
         class UdpConnection : public Connection {
             public :
-                UdpConnection(char ttl = 1,uint16_t myPort=0,size_t maxRcvMsgLeng=128);
+                UdpConnection(char *bcGroup=0,uint16_t myPort=0,char ttl = 1,size_t maxRcvMsgLeng=128);
 
                 recivedMessage *recvMsg();
 
@@ -37,6 +37,9 @@ namespace llu{
 
                 struct sockaddr_in  cliAddr,
                                     tmpAddr;
+
+                struct ip_mreq      myMreq;
+
                 size_t maxRcvMsgLeng;
                 int s;
                 struct hostent *h;
