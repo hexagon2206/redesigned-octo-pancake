@@ -11,3 +11,13 @@ rel/example_project
 .rebar
 *.project
 *.cfg
+
+
+
+**/.idea/workspace.xml 
+**/.idea/tasks.xml
+**/.idea/misc.xml
+**/.idea/modules.xml
+**/.idea/dictionaries/*
+**/*.iml
+**/*.ipr
