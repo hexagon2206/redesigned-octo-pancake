@@ -1,9 +1,16 @@
 var searchData=
 [
-  ['netwokmsgcallback',['netwokMsgCallback',['../namespacellu_1_1network.html#a999d34263abe84a87d12271383c606b9',1,'llu::network']]],
-  ['network_2ecpp',['network.cpp',['../network_8cpp.html',1,'']]],
-  ['network_2ehpp',['network.hpp',['../network_8hpp.html',1,'']]],
-  ['next',['next',['../structllu_1_1datastructs_1_1list_array_entrie.html#a110bf134b27bdfaa3ca518b40042591e',1,'llu::datastructs::listArrayEntrie::next()'],['../structllu_1_1datastructs_1_1list_entrie.html#a3a0c3cef3ce8b0b9beaa1c6360fb6346',1,'llu::datastructs::listEntrie::next()']]],
-  ['nextslot',['nextSlot',['../structtimux_1_1package.html#acc01431f30b66014c1c61975d84e519d',1,'timux::package::nextSlot()'],['../structtimux_1_1msg.html#ac5e20000d09f9356645ce25a522466cf',1,'timux::msg::nextSlot()'],['../timux_8hpp.html#a7f381e6387e6ebf4b714dd55c0100e4c',1,'nextSlot():&#160;timux.hpp']]],
-  ['now',['now',['../classtimux_1_1timing.html#a54814668e0ec81df6e8727959a5d61a8',1,'timux::timing']]]
+  ['main',['main',['../bc_server_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;bcServer.cpp'],['../main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;main.cpp']]],
+  ['main_2ecpp',['main.cpp',['../main_8cpp.html',1,'']]],
+  ['managedconnection',['ManagedConnection',['../classllu_1_1network_1_1_managed_connection.html#a799a62f147762b2c4992ce91f06ff451',1,'llu::network::ManagedConnection']]],
+  ['managedconnection',['ManagedConnection',['../classllu_1_1network_1_1_managed_connection.html',1,'llu::network']]],
+  ['maxrcvmsgleng',['maxRcvMsgLeng',['../classllu_1_1network_1_1_udp_connection.html#a2cb54a9ca441a4771f8c14a32b6cd44f',1,'llu::network::UdpConnection']]],
+  ['msg',['msg',['../structtimux_1_1msg.html',1,'timux']]],
+  ['msgcalback',['MsgCalback',['../classtimux_1_1timux.html#a9e49cf628b995775c5e1f6e9e8c48761',1,'timux::timux']]],
+  ['msghandler',['MsgHandler',['../namespacetimux.html#a0325847c7fd72e51034fc14c8547d505',1,'timux']]],
+  ['msgsignal',['MsgSignal',['../namespacetimux.html#ad0edf69fd830fa995ad603731acd5a20',1,'timux']]],
+  ['mthread',['mthread',['../classtimux_1_1timux.html#ab4acf23e29ffbe143406789ab64a9851',1,'timux::timux']]],
+  ['mymreq',['myMreq',['../classllu_1_1network_1_1_udp_connection.html#af8426a409cfa5fd6ccfec21256638613',1,'llu::network::UdpConnection']]],
+  ['mysize',['mySize',['../classllu_1_1datastructs_1_1_ringbuffer.html#a0e5b87bc9ac51d5e1fd90cf08a858602',1,'llu::datastructs::Ringbuffer']]],
+  ['myslot',['mySlot',['../classtimux_1_1timux.html#a1c86c9e6407e7a3486252ce06aabbd8d',1,'timux::timux']]]
 ];

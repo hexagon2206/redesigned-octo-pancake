@@ -3,11 +3,17 @@
  *  @author Lukas Lühr (hexagon2206)
  *  @bug No known bugs.
  */
+//#define UDP_BC
+
 
  #include <iostream>
 #include "callback.hpp"
 #include "ringBuffer.hpp"
-#include "udp.hpp"
+#ifdef UDP_BC
+    #include "udp.hpp"
+#else
+    #include "udpTest.hpp"
+#endif
 #include <chrono>
 #include <thread>
 #include <netinet/in.h>
@@ -16,6 +22,8 @@
 
 #include <mutex>
 #include "timux.hpp"
+
+#include "DataBuffer.hpp"
 
 using namespace std;
 using namespace llu::callback;
@@ -27,29 +35,64 @@ using namespace llu::network;
 
 using namespace timux;
 
-int main(){
+int main(int argc,char **args){
     srand(time(NULL));
+
+    char *interfaceName = nullptr;
+    char *mcastAddress  = nullptr;
+    char *receivePort   = nullptr;
+    int port;
+    char *stationClass  = nullptr;
+
+    for(int i =1;i<argc;i++){
+        cout << args[i] <<endl;
+        switch(*args[i]){
+            case 'i':
+                interfaceName = args[i]+1;
+                break;
+            case 'a':
+                mcastAddress = args[i]+1;
+                break;
+            case 'p':
+                receivePort = args[i]+1;
+                break;
+            case 'c':
+                stationClass = args[i]+1;
+                break;
+        }
+    }
+
+    if(nullptr==mcastAddress || nullptr == receivePort || nullptr==stationClass){
+        cout << "Not Enough parameters" << endl;
+        return 1;
+    }
+    port = atoi(receivePort);
+
     cout << "hallo Welt ?  " << endl;
 
-    llu::network::UdpConnection *con = new llu::network::UdpConnection("225.10.1.2",15002);
+    llu::network::Connection *con;
+    #ifdef UDP_BC
+        con = new llu::network::UdpConnectionmcastAddress,15002);
+    #else
+        con = new llu::network::UdpTestConnection();
+    #endif
+
+
     ManagedConnection mcon(con);
 
-    sockaddr_in target = resolve("225.10.1.2",15002);
+    sockaddr_in target = resolve(mcastAddress,port);
+    #ifndef UDP_BC
+        mcon.sendMsg(createSendMessage(7,target,"bububa"));
+    #endif
 
-    mcon.sendMsg(createSendMessage(7,target,"bububa"));
+    llu::datastructs::DataBuffer<timux::data> db(&cin);
+    timux::timux timuxMain(&mcon,1000,25,target,*stationClass,&db);
 
-    timux::timux timuxMain(&mcon,1000,25,target);
 
+
+
+    //TODO: Buffer schreiben
     timuxMain.loop();
-
-    cout << "lebe noch ";
-/*
-    char *text=(char *)malloc(sizeof(msg::data));
-    sendMessage *msg;
-    while(true){
-        cin.read(text,sizeof(msg::data));
-        cout << text << endl;
-    }*/
     return 0;
 }
 

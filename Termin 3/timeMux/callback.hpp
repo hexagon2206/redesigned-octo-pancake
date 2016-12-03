@@ -123,7 +123,7 @@ namespace llu{
                  */
                 LinkedListArray< LinkedList< callback_registration<C,D>* >* > registrations;
         };
-    };
-};
+    }
+}
 
 #endif

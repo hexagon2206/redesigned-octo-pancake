@@ -90,6 +90,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classllu_1_1datastructs_1_1_ringbuffer-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">llu::datastructs::Ringbuffer&lt; D &gt; Class Template Reference</div>  </div>
@@ -100,10 +101,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <a href="classllu_1_1datastructs_1_1_ringbuffer.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="ring_buffer_8hpp_source.html">ringBuffer.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for llu::datastructs::Ringbuffer&lt; D &gt;:</div>
+<div class="dyncontent">
+<div class="center"><img src="classllu_1_1datastructs_1_1_ringbuffer__coll__graph.png" border="0" usemap="#llu_1_1datastructs_1_1_ringbuffer_3_01_d_01_4_coll__map" alt="Collaboration graph"/></div>
+<map name="llu_1_1datastructs_1_1_ringbuffer_3_01_d_01_4_coll__map" id="llu_1_1datastructs_1_1_ringbuffer_3_01_d_01_4_coll__map">
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab214a718ecf06d2911bd6f1e0e597fd8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html#ab214a718ecf06d2911bd6f1e0e597fd8">Ringbuffer</a> (size_t mySize)</td></tr>
+<tr class="memitem:ab214a718ecf06d2911bd6f1e0e597fd8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html#ab214a718ecf06d2911bd6f1e0e597fd8">Ringbuffer</a> (size_t <a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html#a0e5b87bc9ac51d5e1fd90cf08a858602">mySize</a>)</td></tr>
 <tr class="memdesc:ab214a718ecf06d2911bd6f1e0e597fd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">creates a <a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html" title="Basic implementation of a generik and thread save Ring buffer. ">Ringbuffer</a> of spezified size  <a href="#ab214a718ecf06d2911bd6f1e0e597fd8">More...</a><br /></td></tr>
 <tr class="separator:ab214a718ecf06d2911bd6f1e0e597fd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18eaeb15f671f0ff28f8f6331d8e8cb5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html#a18eaeb15f671f0ff28f8f6331d8e8cb5">~Ringbuffer</a> ()</td></tr>
@@ -114,10 +122,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a192ce859addf55634c277465c5d8b167"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html#a192ce859addf55634c277465c5d8b167">canRead</a> ()</td></tr>
 <tr class="memdesc:a192ce859addf55634c277465c5d8b167"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to check if data is available to be read.  <a href="#a192ce859addf55634c277465c5d8b167">More...</a><br /></td></tr>
 <tr class="separator:a192ce859addf55634c277465c5d8b167"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d0c1109ed1e655b6e8ee9eb68550552"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html#a9d0c1109ed1e655b6e8ee9eb68550552">tryPut</a> (D data)</td></tr>
+<tr class="memitem:a9d0c1109ed1e655b6e8ee9eb68550552"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html#a9d0c1109ed1e655b6e8ee9eb68550552">tryPut</a> (D <a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html#ac24a5e1982fcaf7e78b4c94ead2aca9d">data</a>)</td></tr>
 <tr class="memdesc:a9d0c1109ed1e655b6e8ee9eb68550552"><td class="mdescLeft">&#160;</td><td class="mdescRight">tryes to append D data if there is space in the Ring  <a href="#a9d0c1109ed1e655b6e8ee9eb68550552">More...</a><br /></td></tr>
 <tr class="separator:a9d0c1109ed1e655b6e8ee9eb68550552"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a883dd9d2e40532aa255c4c12299bf490"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html#a883dd9d2e40532aa255c4c12299bf490">put</a> (D data)</td></tr>
+<tr class="memitem:a883dd9d2e40532aa255c4c12299bf490"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html#a883dd9d2e40532aa255c4c12299bf490">put</a> (D <a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html#ac24a5e1982fcaf7e78b4c94ead2aca9d">data</a>)</td></tr>
 <tr class="memdesc:a883dd9d2e40532aa255c4c12299bf490"><td class="mdescLeft">&#160;</td><td class="mdescRight">Putes D data to the ring, blocks till done.  <a href="#a883dd9d2e40532aa255c4c12299bf490">More...</a><br /></td></tr>
 <tr class="separator:a883dd9d2e40532aa255c4c12299bf490"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba608e48dea9366fe553341301409508"><td class="memItemLeft" align="right" valign="top">D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html#aba608e48dea9366fe553341301409508">get</a> ()</td></tr>
@@ -129,6 +137,25 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af0f39cea25a6c196a5c16f3cc8534827"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html#af0f39cea25a6c196a5c16f3cc8534827">unlock</a> ()</td></tr>
 <tr class="memdesc:af0f39cea25a6c196a5c16f3cc8534827"><td class="mdescLeft">&#160;</td><td class="mdescRight">reanables the writing part of the ring buffer  <a href="#af0f39cea25a6c196a5c16f3cc8534827">More...</a><br /></td></tr>
 <tr class="separator:af0f39cea25a6c196a5c16f3cc8534827"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ac24a5e1982fcaf7e78b4c94ead2aca9d"><td class="memItemLeft" align="right" valign="top">D *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html#ac24a5e1982fcaf7e78b4c94ead2aca9d">data</a></td></tr>
+<tr class="separator:ac24a5e1982fcaf7e78b4c94ead2aca9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e5b87bc9ac51d5e1fd90cf08a858602"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html#a0e5b87bc9ac51d5e1fd90cf08a858602">mySize</a></td></tr>
+<tr class="separator:a0e5b87bc9ac51d5e1fd90cf08a858602"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a942b9c88bb879a1ed81ffecd42614d7b"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html#a942b9c88bb879a1ed81ffecd42614d7b">readPos</a></td></tr>
+<tr class="separator:a942b9c88bb879a1ed81ffecd42614d7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4f6d46562f5d0608072612e134cfb72"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html#af4f6d46562f5d0608072612e134cfb72">writePos</a></td></tr>
+<tr class="separator:af4f6d46562f5d0608072612e134cfb72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cc6590892b4204f507bf8a93c183dc5"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html#a0cc6590892b4204f507bf8a93c183dc5">readCondition_m</a></td></tr>
+<tr class="separator:a0cc6590892b4204f507bf8a93c183dc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a284ae05638bfb5fa0d15d2391e06e38f"><td class="memItemLeft" align="right" valign="top">std::condition_variable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html#a284ae05638bfb5fa0d15d2391e06e38f">readCondition</a></td></tr>
+<tr class="separator:a284ae05638bfb5fa0d15d2391e06e38f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab012d6f51f767a05fd2ae8dfe8bf9d7d"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html#ab012d6f51f767a05fd2ae8dfe8bf9d7d">writeCondition_m</a></td></tr>
+<tr class="separator:ab012d6f51f767a05fd2ae8dfe8bf9d7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94d43b8a125b51278339f78ec12114e6"><td class="memItemLeft" align="right" valign="top">std::condition_variable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html#a94d43b8a125b51278339f78ec12114e6">writeCondition</a></td></tr>
+<tr class="separator:a94d43b8a125b51278339f78ec12114e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename D&gt;<br />
@@ -425,13 +452,206 @@ template&lt;typename D&gt; </div>
 
 </div>
 </div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="ac24a5e1982fcaf7e78b4c94ead2aca9d"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename D&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">D* <a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html">llu::datastructs::Ringbuffer</a>&lt; D &gt;::data</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="ring_buffer_8hpp_source.html#l00123">123</a> of file <a class="el" href="ring_buffer_8hpp_source.html">ringBuffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0e5b87bc9ac51d5e1fd90cf08a858602"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename D&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t <a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html">llu::datastructs::Ringbuffer</a>&lt; D &gt;::mySize</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="ring_buffer_8hpp_source.html#l00124">124</a> of file <a class="el" href="ring_buffer_8hpp_source.html">ringBuffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a284ae05638bfb5fa0d15d2391e06e38f"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename D&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::condition_variable <a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html">llu::datastructs::Ringbuffer</a>&lt; D &gt;::readCondition</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="ring_buffer_8hpp_source.html#l00129">129</a> of file <a class="el" href="ring_buffer_8hpp_source.html">ringBuffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0cc6590892b4204f507bf8a93c183dc5"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename D&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::mutex <a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html">llu::datastructs::Ringbuffer</a>&lt; D &gt;::readCondition_m</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="ring_buffer_8hpp_source.html#l00128">128</a> of file <a class="el" href="ring_buffer_8hpp_source.html">ringBuffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a942b9c88bb879a1ed81ffecd42614d7b"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename D&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t <a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html">llu::datastructs::Ringbuffer</a>&lt; D &gt;::readPos</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="ring_buffer_8hpp_source.html#l00125">125</a> of file <a class="el" href="ring_buffer_8hpp_source.html">ringBuffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a94d43b8a125b51278339f78ec12114e6"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename D&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::condition_variable <a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html">llu::datastructs::Ringbuffer</a>&lt; D &gt;::writeCondition</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="ring_buffer_8hpp_source.html#l00132">132</a> of file <a class="el" href="ring_buffer_8hpp_source.html">ringBuffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab012d6f51f767a05fd2ae8dfe8bf9d7d"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename D&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::mutex <a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html">llu::datastructs::Ringbuffer</a>&lt; D &gt;::writeCondition_m</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="ring_buffer_8hpp_source.html#l00131">131</a> of file <a class="el" href="ring_buffer_8hpp_source.html">ringBuffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af4f6d46562f5d0608072612e134cfb72"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename D&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t <a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html">llu::datastructs::Ringbuffer</a>&lt; D &gt;::writePos</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="ring_buffer_8hpp_source.html#l00126">126</a> of file <a class="el" href="ring_buffer_8hpp_source.html">ringBuffer.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>timeMux/<a class="el" href="ring_buffer_8hpp_source.html">ringBuffer.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 1 2016 13:12:00 for timux by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 1 2016 22:16:41 for timux by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

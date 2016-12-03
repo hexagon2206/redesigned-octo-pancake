@@ -90,6 +90,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classllu_1_1callback_1_1_callback-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">llu::callback::Callback&lt; C, D &gt; Class Template Reference</div>  </div>
@@ -100,10 +101,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <a href="classllu_1_1callback_1_1_callback.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="callback_8hpp_source.html">callback.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for llu::callback::Callback&lt; C, D &gt;:</div>
+<div class="dyncontent">
+<div class="center"><img src="classllu_1_1callback_1_1_callback__coll__graph.png" border="0" usemap="#llu_1_1callback_1_1_callback_3_01_c_00_01_d_01_4_coll__map" alt="Collaboration graph"/></div>
+<map name="llu_1_1callback_1_1_callback_3_01_c_00_01_d_01_4_coll__map" id="llu_1_1callback_1_1_callback_3_01_c_00_01_d_01_4_coll__map">
+<area shape="rect" id="node3" href="classllu_1_1datastructs_1_1_linked_list_array.html" title="{llu::datastructs::Linked\lListArray\&lt; llu::datastructs\l::LinkedList\&lt; llu::callback\l::callback_registration\&lt; C,\l D \&gt; * \&gt; * \&gt;\n||+ LinkedListArray()\l+ LinkedListArray()\l+ ~LinkedListArray()\l+ put()\l+ get()\l}" alt="" coords="69,741,244,936"/><area shape="rect" id="node9" href="classllu_1_1datastructs_1_1_linked_list.html" title="{llu::datastructs::Linked\lList\&lt; llu::callback::callback\l_registration\&lt; C, D \&gt; * \&gt;\n||+ LinkedList()\l+ ~LinkedList()\l+ append()\l+ contains()\l}" alt="" coords="209,329,389,480"/><area shape="rect" id="node5" href="structllu_1_1datastructs_1_1list_array_entrie.html" title="{llu::datastructs::listArray\lEntrie\&lt; llu::datastructs\l::LinkedList\&lt; llu::callback\l::callback_registration\&lt; C,\l D \&gt; * \&gt; * \&gt;\n||}" alt="" coords="167,543,341,679"/><area shape="rect" id="node6" href="structllu_1_1datastructs_1_1list_array_entrie.html" title="An entry of an listArray of type E. " alt="" coords="417,359,581,451"/><area shape="rect" id="node10" href="structllu_1_1datastructs_1_1list_entrie.html" title="{llu::datastructs::listEntrie\l\&lt; llu::callback::callback\l_registration\&lt; C, D \&gt; * \&gt;\n||}" alt="" coords="201,160,368,267"/></map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad55e4e75a473f3cfe0f5bdbe1ae01a62"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1callback_1_1_callback.html#ad55e4e75a473f3cfe0f5bdbe1ae01a62">Callback</a> (D(*copyFun)(D))</td></tr>
+<tr class="memitem:ad55e4e75a473f3cfe0f5bdbe1ae01a62"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1callback_1_1_callback.html#ad55e4e75a473f3cfe0f5bdbe1ae01a62">Callback</a> (D(*<a class="el" href="classllu_1_1callback_1_1_callback.html#a1f1757185730a8d9f7021225e4239c17">copyFun</a>)(D))</td></tr>
 <tr class="memdesc:ad55e4e75a473f3cfe0f5bdbe1ae01a62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new callback handler.  <a href="#ad55e4e75a473f3cfe0f5bdbe1ae01a62">More...</a><br /></td></tr>
 <tr class="separator:ad55e4e75a473f3cfe0f5bdbe1ae01a62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45aaaa527c1623dba2e994df5049ef50"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1callback_1_1_callback.html#a45aaaa527c1623dba2e994df5049ef50">registerCallback</a> (<a class="el" href="namespacellu_1_1callback.html#a082ed24306809c4d250bd5ddfbae177f">signal</a> s, <a class="el" href="classllu_1_1callback_1_1callback__registration.html">callback_registration</a>&lt; C, D &gt; *c)</td></tr>
@@ -112,6 +120,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:acfe12b080db1647066890956c1aa8b8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1callback_1_1_callback.html#acfe12b080db1647066890956c1aa8b8b">signal</a> (<a class="el" href="namespacellu_1_1callback.html#a082ed24306809c4d250bd5ddfbae177f">signal</a> s, D d)</td></tr>
 <tr class="memdesc:acfe12b080db1647066890956c1aa8b8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a signal, it will automaticly call all registerd hanbdlers in a new threads.  <a href="#acfe12b080db1647066890956c1aa8b8b">More...</a><br /></td></tr>
 <tr class="separator:acfe12b080db1647066890956c1aa8b8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a1f1757185730a8d9f7021225e4239c17"><td class="memItemLeft" align="right" valign="top">D(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1callback_1_1_callback.html#a1f1757185730a8d9f7021225e4239c17">copyFun</a> )(D)</td></tr>
+<tr class="memdesc:a1f1757185730a8d9f7021225e4239c17"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function pointer to a function which copies an D.  <a href="#a1f1757185730a8d9f7021225e4239c17">More...</a><br /></td></tr>
+<tr class="separator:a1f1757185730a8d9f7021225e4239c17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6c3662f211604554e3ea6639115c1c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classllu_1_1datastructs_1_1_linked_list_array.html">LinkedListArray</a>&lt; <a class="el" href="classllu_1_1datastructs_1_1_linked_list.html">LinkedList</a><br class="typebreak" />
+&lt; <a class="el" href="classllu_1_1callback_1_1callback__registration.html">callback_registration</a>&lt; C, D &gt; * &gt; * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1callback_1_1_callback.html#aa6c3662f211604554e3ea6639115c1c4">registrations</a></td></tr>
+<tr class="memdesc:aa6c3662f211604554e3ea6639115c1c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">contains an linked list onely for the indexes on which a calback_context is registerd, the linked list contains all the registrations  <a href="#aa6c3662f211604554e3ea6639115c1c4">More...</a><br /></td></tr>
+<tr class="separator:aa6c3662f211604554e3ea6639115c1c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename C, typename D&gt;<br />
@@ -254,6 +272,60 @@ template&lt;typename C, typename D&gt; </div>
 
 </div>
 </div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a1f1757185730a8d9f7021225e4239c17"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename C, typename D&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">D(* <a class="el" href="classllu_1_1callback_1_1_callback.html">llu::callback::Callback</a>&lt; C, D &gt;::copyFun)(D)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A function pointer to a function which copies an D. </p>
+<p>Each listener in the event of a callback onely becomes a copy of the original data, therefor we must know how to copy D </p>
+
+<p>Definition at line <a class="el" href="callback_8hpp_source.html#l00119">119</a> of file <a class="el" href="callback_8hpp_source.html">callback.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa6c3662f211604554e3ea6639115c1c4"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename C, typename D&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classllu_1_1datastructs_1_1_linked_list_array.html">LinkedListArray</a>&lt; <a class="el" href="classllu_1_1datastructs_1_1_linked_list.html">LinkedList</a>&lt; <a class="el" href="classllu_1_1callback_1_1callback__registration.html">callback_registration</a>&lt;C,D&gt;* &gt;* &gt; <a class="el" href="classllu_1_1callback_1_1_callback.html">llu::callback::Callback</a>&lt; C, D &gt;::registrations</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>contains an linked list onely for the indexes on which a calback_context is registerd, the linked list contains all the registrations </p>
+
+<p>Definition at line <a class="el" href="callback_8hpp_source.html#l00124">124</a> of file <a class="el" href="callback_8hpp_source.html">callback.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>timeMux/<a class="el" href="callback_8hpp_source.html">callback.hpp</a></li>
 <li>timeMux/<a class="el" href="callback_8cpp_source.html">callback.cpp</a></li>
@@ -261,7 +333,7 @@ template&lt;typename C, typename D&gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 1 2016 13:12:00 for timux by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 1 2016 22:16:40 for timux by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

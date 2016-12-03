@@ -90,6 +90,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-static-methods">Static Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classllu_1_1network_1_1_managed_connection-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">llu::network::ManagedConnection Class Reference</div>  </div>
@@ -100,10 +102,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <a href="classllu_1_1network_1_1_managed_connection.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="network_8hpp_source.html">network.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for llu::network::ManagedConnection:</div>
+<div class="dyncontent">
+<div class="center"><img src="classllu_1_1network_1_1_managed_connection__coll__graph.png" border="0" usemap="#llu_1_1network_1_1_managed_connection_coll__map" alt="Collaboration graph"/></div>
+<map name="llu_1_1network_1_1_managed_connection_coll__map" id="llu_1_1network_1_1_managed_connection_coll__map">
+<area shape="rect" id="node2" href="classllu_1_1datastructs_1_1_linked_list.html" title="{llu::datastructs::Linked\lList\&lt; recivedMessageClassifier \&gt;\n||+ LinkedList()\l+ ~LinkedList()\l+ append()\l+ contains()\l}" alt="" coords="61,565,279,701"/><area shape="rect" id="node11" href="classllu_1_1datastructs_1_1_linked_list_array.html" title="{llu::datastructs::Linked\lListArray\&lt; llu::datastructs\l::LinkedList\&lt; llu::callback\l::callback_registration\&lt; void\l *, llu::network::recivedMessage\l * \&gt; * \&gt; * \&gt;\n||+ LinkedListArray()\l+ LinkedListArray()\l+ ~LinkedListArray()\l+ put()\l+ get()\l}" alt="" coords="424,1013,633,1223"/><area shape="rect" id="node16" href="classllu_1_1datastructs_1_1_linked_list.html" title="{llu::datastructs::Linked\lList\&lt; llu::callback::callback\l_registration\&lt; void *, llu\l::network::recivedMessage * \&gt; * \&gt;\n||+ LinkedList()\l+ ~LinkedList()\l+ append()\l+ contains()\l}" alt="" coords="418,550,639,715"/><area shape="rect" id="node22" href="classllu_1_1datastructs_1_1_ringbuffer.html" title="{llu::datastructs::Ringbuffer\l\&lt; llu::network::sendMessage * \&gt;\n||+ Ringbuffer()\l+ ~Ringbuffer()\l+ canWrite()\l+ canRead()\l+ tryPut()\l+ put()\l+ get()\l+ lock()\l+ unlock()\l}" alt="" coords="1003,528,1214,737"/><area shape="rect" id="node4" href="structllu_1_1datastructs_1_1list_entrie.html" title="{llu::datastructs::listEntrie\l\&lt; recivedMessageClassifier \&gt;\n||}" alt="" coords="5,344,201,436"/><area shape="rect" id="node6" href="classllu_1_1callback_1_1_callback.html" title="{llu::callback::Callback\l\&lt; void *, llu::network\l::recivedMessage * \&gt;\n||+ Callback()\l+ registerCallback()\l+ signal()\l}" alt="" coords="709,1285,860,1421"/><area shape="rect" id="node7" href="structllu_1_1network_1_1recived_message.html" title="an recived message from an Connection object " alt="" coords="857,351,1049,429"/><area shape="rect" id="node24" href="structllu_1_1network_1_1send_message.html" title="A message ready to be send. " alt="" coords="1337,351,1515,429"/><area shape="rect" id="node18" href="classllu_1_1callback_1_1callback__registration.html" title="{llu::callback::callback\l_registration\&lt; void *,\l llu::network::recivedMessage * \&gt;\n||}" alt="" coords="513,145,731,252"/><area shape="rect" id="node12" href="structllu_1_1datastructs_1_1list_array_entrie.html" title="{llu::datastructs::listArray\lEntrie\&lt; llu::datastructs\l::LinkedList\&lt; llu::callback\l::callback_registration\&lt; void\l *, llu::network::recivedMessage\l * \&gt; * \&gt; * \&gt;\n||}" alt="" coords="424,800,633,951"/><area shape="rect" id="node13" href="structllu_1_1datastructs_1_1list_array_entrie.html" title="An entry of an listArray of type E. " alt="" coords="664,587,828,679"/><area shape="rect" id="node17" href="structllu_1_1datastructs_1_1list_entrie.html" title="{llu::datastructs::listEntrie\l\&lt; llu::callback::callback\l_registration\&lt; void *, llu\l::network::recivedMessage * \&gt; * \&gt;\n||}" alt="" coords="370,329,591,451"/><area shape="rect" id="node21" href="classllu_1_1network_1_1_connection.html" title="{llu::network::Connection\n||+ ~Connection()\l+ recvMsg()\l+ sendMsg()\l+ alive()\l+ kill()\l}" alt="" coords="885,1285,1047,1421"/></map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a799a62f147762b2c4992ce91f06ff451"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1network_1_1_managed_connection.html#a799a62f147762b2c4992ce91f06ff451">ManagedConnection</a> (<a class="el" href="classllu_1_1network_1_1_connection.html">Connection</a> *con)</td></tr>
+<tr class="memitem:a799a62f147762b2c4992ce91f06ff451"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1network_1_1_managed_connection.html#a799a62f147762b2c4992ce91f06ff451">ManagedConnection</a> (<a class="el" href="classllu_1_1network_1_1_connection.html">Connection</a> *<a class="el" href="classllu_1_1network_1_1_managed_connection.html#aa1d50eb12ce42d647a767cf5b15340ae">con</a>)</td></tr>
 <tr class="memdesc:a799a62f147762b2c4992ce91f06ff451"><td class="mdescLeft">&#160;</td><td class="mdescRight">wrapes a classic connection to make it managed  <a href="#a799a62f147762b2c4992ce91f06ff451">More...</a><br /></td></tr>
 <tr class="separator:a799a62f147762b2c4992ce91f06ff451"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2740d022d8af2679b76e3b7c097909c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1network_1_1_managed_connection.html#ab2740d022d8af2679b76e3b7c097909c">~ManagedConnection</a> ()</td></tr>
@@ -133,6 +142,38 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a47c8c8c501e5794f2ab0ccd9faa16c2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1network_1_1_managed_connection.html#a47c8c8c501e5794f2ab0ccd9faa16c2e">unlockWrite</a> ()</td></tr>
 <tr class="memdesc:a47c8c8c501e5794f2ab0ccd9faa16c2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">unlocks the connection for writing  <a href="#a47c8c8c501e5794f2ab0ccd9faa16c2e">More...</a><br /></td></tr>
 <tr class="separator:a47c8c8c501e5794f2ab0ccd9faa16c2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
+Static Private Member Functions</h2></td></tr>
+<tr class="memitem:a62ce18ac56330d7a4b65df90062dc85c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1network_1_1_managed_connection.html#a62ce18ac56330d7a4b65df90062dc85c">sender</a> (<a class="el" href="classllu_1_1network_1_1_connection.html">Connection</a> *<a class="el" href="classllu_1_1network_1_1_managed_connection.html#aa1d50eb12ce42d647a767cf5b15340ae">con</a>, <a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html">Ringbuffer</a>&lt; <a class="el" href="structllu_1_1network_1_1send_message.html">sendMessage</a> * &gt; *<a class="el" href="classllu_1_1network_1_1_managed_connection.html#a399dee81f9cd2fe32e6b85eaf740f976">outBuffer</a>)</td></tr>
+<tr class="memdesc:a62ce18ac56330d7a4b65df90062dc85c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function that implements the sender behavior.  <a href="#a62ce18ac56330d7a4b65df90062dc85c">More...</a><br /></td></tr>
+<tr class="separator:a62ce18ac56330d7a4b65df90062dc85c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28197cdc951fb6fe56cfc8cdca1b500e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1network_1_1_managed_connection.html#a28197cdc951fb6fe56cfc8cdca1b500e">reciver</a> (<a class="el" href="classllu_1_1network_1_1_connection.html">Connection</a> *<a class="el" href="classllu_1_1network_1_1_managed_connection.html#aa1d50eb12ce42d647a767cf5b15340ae">con</a>, <a class="el" href="classllu_1_1callback_1_1_callback.html">Callback</a>&lt; void *, <a class="el" href="structllu_1_1network_1_1recived_message.html">recivedMessage</a> * &gt; *<a class="el" href="classllu_1_1network_1_1_managed_connection.html#ad332940b1972cb7b6f47105c7763b31b">callbackHandler</a>, <a class="el" href="classllu_1_1datastructs_1_1_linked_list.html">LinkedList</a>&lt; <a class="el" href="namespacellu_1_1network.html#ac629c1180a0bee8ddef541f73cb3e5f9">recivedMessageClassifier</a> &gt; *<a class="el" href="classllu_1_1network_1_1_managed_connection.html#aaf7eef8e7f7f7833c4c2182d0eac2883">classifiers</a>)</td></tr>
+<tr class="memdesc:a28197cdc951fb6fe56cfc8cdca1b500e"><td class="mdescLeft">&#160;</td><td class="mdescRight">the function that implements the reciver thread beahvior  <a href="#a28197cdc951fb6fe56cfc8cdca1b500e">More...</a><br /></td></tr>
+<tr class="separator:a28197cdc951fb6fe56cfc8cdca1b500e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aa98ab3412413e3166fda540d02e5ac85"><td class="memItemLeft" align="right" valign="top">thread *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1network_1_1_managed_connection.html#aa98ab3412413e3166fda540d02e5ac85">senderThread</a></td></tr>
+<tr class="memdesc:aa98ab3412413e3166fda540d02e5ac85"><td class="mdescLeft">&#160;</td><td class="mdescRight">the thread responsable for sending data  <a href="#aa98ab3412413e3166fda540d02e5ac85">More...</a><br /></td></tr>
+<tr class="separator:aa98ab3412413e3166fda540d02e5ac85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e3b809064e060aaf0fdd7190d013657"><td class="memItemLeft" align="right" valign="top">thread *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1network_1_1_managed_connection.html#a3e3b809064e060aaf0fdd7190d013657">reciverThread</a></td></tr>
+<tr class="memdesc:a3e3b809064e060aaf0fdd7190d013657"><td class="mdescLeft">&#160;</td><td class="mdescRight">the thread responsible for reciving data and calling callback signals  <a href="#a3e3b809064e060aaf0fdd7190d013657">More...</a><br /></td></tr>
+<tr class="separator:a3e3b809064e060aaf0fdd7190d013657"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1d50eb12ce42d647a767cf5b15340ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classllu_1_1network_1_1_connection.html">Connection</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1network_1_1_managed_connection.html#aa1d50eb12ce42d647a767cf5b15340ae">con</a></td></tr>
+<tr class="memdesc:aa1d50eb12ce42d647a767cf5b15340ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">the raw connection  <a href="#aa1d50eb12ce42d647a767cf5b15340ae">More...</a><br /></td></tr>
+<tr class="separator:aa1d50eb12ce42d647a767cf5b15340ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a399dee81f9cd2fe32e6b85eaf740f976"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html">Ringbuffer</a>&lt; <a class="el" href="structllu_1_1network_1_1send_message.html">sendMessage</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1network_1_1_managed_connection.html#a399dee81f9cd2fe32e6b85eaf740f976">outBuffer</a></td></tr>
+<tr class="memdesc:a399dee81f9cd2fe32e6b85eaf740f976"><td class="mdescLeft">&#160;</td><td class="mdescRight">buffer for outgoing messages  <a href="#a399dee81f9cd2fe32e6b85eaf740f976">More...</a><br /></td></tr>
+<tr class="separator:a399dee81f9cd2fe32e6b85eaf740f976"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad332940b1972cb7b6f47105c7763b31b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classllu_1_1callback_1_1_callback.html">Callback</a>&lt; void <br class="typebreak" />
+*, <a class="el" href="structllu_1_1network_1_1recived_message.html">recivedMessage</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1network_1_1_managed_connection.html#ad332940b1972cb7b6f47105c7763b31b">callbackHandler</a></td></tr>
+<tr class="memdesc:ad332940b1972cb7b6f47105c7763b31b"><td class="mdescLeft">&#160;</td><td class="mdescRight">the intern callback handler  <a href="#ad332940b1972cb7b6f47105c7763b31b">More...</a><br /></td></tr>
+<tr class="separator:ad332940b1972cb7b6f47105c7763b31b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf7eef8e7f7f7833c4c2182d0eac2883"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classllu_1_1datastructs_1_1_linked_list.html">LinkedList</a><br class="typebreak" />
+&lt; <a class="el" href="namespacellu_1_1network.html#ac629c1180a0bee8ddef541f73cb3e5f9">recivedMessageClassifier</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1network_1_1_managed_connection.html#aaf7eef8e7f7f7833c4c2182d0eac2883">classifiers</a></td></tr>
+<tr class="memdesc:aaf7eef8e7f7f7833c4c2182d0eac2883"><td class="mdescLeft">&#160;</td><td class="mdescRight">the Message classifier list  <a href="#aaf7eef8e7f7f7833c4c2182d0eac2883">More...</a><br /></td></tr>
+<tr class="separator:aaf7eef8e7f7f7833c4c2182d0eac2883"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>a Managed form of a <a class="el" href="classllu_1_1network_1_1_connection.html">Connection</a> implements callbacks on massage recive internayls uses a callback handler </p>
@@ -312,6 +353,88 @@ sending is thread Save </dd></dl>
 
 </div>
 </div>
+<a class="anchor" id="a28197cdc951fb6fe56cfc8cdca1b500e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void llu::network::ManagedConnection::reciver </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classllu_1_1network_1_1_connection.html">Connection</a> *&#160;</td>
+          <td class="paramname"><em>con</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classllu_1_1callback_1_1_callback.html">Callback</a>&lt; void *, <a class="el" href="structllu_1_1network_1_1recived_message.html">recivedMessage</a> * &gt; *&#160;</td>
+          <td class="paramname"><em>callbackHandler</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classllu_1_1datastructs_1_1_linked_list.html">LinkedList</a>&lt; <a class="el" href="namespacellu_1_1network.html#ac629c1180a0bee8ddef541f73cb3e5f9">recivedMessageClassifier</a> &gt; *&#160;</td>
+          <td class="paramname"><em>classifiers</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>the function that implements the reciver thread beahvior </p>
+
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00169">169</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a62ce18ac56330d7a4b65df90062dc85c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void llu::network::ManagedConnection::sender </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classllu_1_1network_1_1_connection.html">Connection</a> *&#160;</td>
+          <td class="paramname"><em>con</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html">Ringbuffer</a>&lt; <a class="el" href="structllu_1_1network_1_1send_message.html">sendMessage</a> * &gt; *&#160;</td>
+          <td class="paramname"><em>outBuffer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The function that implements the sender behavior. </p>
+
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00158">158</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a464e40505c93ce769dacf381a6e0e503"></a>
 <div class="memitem">
 <div class="memproto">
@@ -353,6 +476,151 @@ sending is thread Save </dd></dl>
 
 </div>
 </div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="ad332940b1972cb7b6f47105c7763b31b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classllu_1_1callback_1_1_callback.html">Callback</a>&lt;void *,<a class="el" href="structllu_1_1network_1_1recived_message.html">recivedMessage</a> *&gt;* llu::network::ManagedConnection::callbackHandler</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>the intern callback handler </p>
+
+<p>Definition at line <a class="el" href="network_8hpp_source.html#l00309">309</a> of file <a class="el" href="network_8hpp_source.html">network.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aaf7eef8e7f7f7833c4c2182d0eac2883"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classllu_1_1datastructs_1_1_linked_list.html">LinkedList</a>&lt;<a class="el" href="namespacellu_1_1network.html#ac629c1180a0bee8ddef541f73cb3e5f9">recivedMessageClassifier</a>&gt;* llu::network::ManagedConnection::classifiers</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>the Message classifier list </p>
+
+<p>Definition at line <a class="el" href="network_8hpp_source.html#l00314">314</a> of file <a class="el" href="network_8hpp_source.html">network.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa1d50eb12ce42d647a767cf5b15340ae"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classllu_1_1network_1_1_connection.html">Connection</a>* llu::network::ManagedConnection::con</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>the raw connection </p>
+
+<p>Definition at line <a class="el" href="network_8hpp_source.html#l00299">299</a> of file <a class="el" href="network_8hpp_source.html">network.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a399dee81f9cd2fe32e6b85eaf740f976"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classllu_1_1datastructs_1_1_ringbuffer.html">Ringbuffer</a>&lt;<a class="el" href="structllu_1_1network_1_1send_message.html">sendMessage</a>*&gt;* llu::network::ManagedConnection::outBuffer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>buffer for outgoing messages </p>
+
+<p>Definition at line <a class="el" href="network_8hpp_source.html#l00304">304</a> of file <a class="el" href="network_8hpp_source.html">network.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3e3b809064e060aaf0fdd7190d013657"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">thread* llu::network::ManagedConnection::reciverThread</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>the thread responsible for reciving data and calling callback signals </p>
+
+<p>Definition at line <a class="el" href="network_8hpp_source.html#l00289">289</a> of file <a class="el" href="network_8hpp_source.html">network.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa98ab3412413e3166fda540d02e5ac85"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">thread* llu::network::ManagedConnection::senderThread</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>the thread responsable for sending data </p>
+
+<p>Definition at line <a class="el" href="network_8hpp_source.html#l00279">279</a> of file <a class="el" href="network_8hpp_source.html">network.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>timeMux/<a class="el" href="network_8hpp_source.html">network.hpp</a></li>
 <li>timeMux/<a class="el" href="network_8cpp_source.html">network.cpp</a></li>
@@ -360,7 +628,7 @@ sending is thread Save </dd></dl>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 1 2016 13:12:00 for timux by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 1 2016 22:16:41 for timux by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

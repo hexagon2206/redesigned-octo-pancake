@@ -11,7 +11,12 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option parameters="a127.0.0.1 p6001 cB" />
 				<Compiler>
+					<Add option="-pedantic-errors" />
+					<Add option="-pedantic" />
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
 					<Add option="-g" />
 				</Compiler>
 			</Target>
@@ -33,7 +38,6 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
-					<Add option="-std=c++0x" />
 					<Add option="-g" />
 				</Compiler>
 				<Linker>
@@ -61,6 +65,7 @@
 		<Linker>
 			<Add library="pthread" />
 		</Linker>
+		<Unit filename="DataBuffer.hpp" />
 		<Unit filename="bcServer.cpp">
 			<Option target="BCDebug" />
 			<Option target="BCRelease" />
@@ -86,6 +91,8 @@
 		</Unit>
 		<Unit filename="udp.cpp" />
 		<Unit filename="udp.hpp" />
+		<Unit filename="udpTest.cpp" />
+		<Unit filename="udpTest.hpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

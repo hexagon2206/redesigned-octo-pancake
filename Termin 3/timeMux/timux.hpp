@@ -7,7 +7,7 @@
 
 #include "callback.hpp"
 #include "network.hpp"
-
+#include "DataBuffer.hpp"
 
 #include <chrono>
 
@@ -69,6 +69,9 @@ namespace timux{
 
     };
 
+    struct data{
+        uint8_t d[sizeof(package::data)];
+    } __attribute__((packed));
 
     #define TIMUX_TRYTOJOIN 5   // 1 von X
     #define TIMUX_TRY_TAKE_SLOT 2   // 1 von X
@@ -87,13 +90,17 @@ namespace timux{
 
             std::mutex nextSlotLock;
 
-            bool *freeNextSlot;
+            uint8_t *freeNextSlot;
             int *collisions;
 
             int ready=false;
             int mySlot=-1;
 
             uint8_t stationClass='B';
+
+
+            llu::datastructs::DataBuffer<data> *dataSource;
+
 
             /**
              * @brief cleans freeNextSlots and collisions
@@ -128,7 +135,7 @@ namespace timux{
 
             void recived(msg *m);
 
-            timux(llu::network::ManagedConnection *con,unsigned long frameLength,unsigned long slotCount,sockaddr_in target);
+            timux(llu::network::ManagedConnection *con,unsigned long frameLength,unsigned long slotCount,sockaddr_in target,uint8_t stationClass='B',llu::datastructs::DataBuffer<data> *dataSource=nullptr);
 
             void loop();
 
@@ -159,5 +166,5 @@ namespace timux{
     void MsgHandler(void* timuxClass,llu::network::recivedMessage* m);
 
 
- };
+ }
 #endif

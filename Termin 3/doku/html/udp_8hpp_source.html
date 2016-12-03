@@ -109,7 +109,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keyword">using namespace </span><a class="code" href="namespacestd.html">std</a>;</div>
 <div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classllu_1_1network_1_1_udp_connection.html">   23</a></span>&#160;        <span class="keyword">class </span><a class="code" href="classllu_1_1network_1_1_udp_connection.html">UdpConnection</a> : <span class="keyword">public</span> <a class="code" href="classllu_1_1network_1_1_connection.html">Connection</a> {</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <span class="keyword">public</span> :</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                <a class="code" href="classllu_1_1network_1_1_udp_connection.html">UdpConnection</a>(<span class="keywordtype">char</span> ttl = 1,uint16_t myPort=0,<span class="keywordtype">size_t</span> maxRcvMsgLeng=128);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                <a class="code" href="classllu_1_1network_1_1_udp_connection.html">UdpConnection</a>(<span class="keywordtype">char</span> *bcGroup=0,uint16_t myPort=0,<span class="keywordtype">char</span> ttl = 1,<span class="keywordtype">size_t</span> maxRcvMsgLeng=128);</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <a class="code" href="structllu_1_1network_1_1recived_message.html">recivedMessage</a> *recvMsg();</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
@@ -120,32 +120,41 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                <span class="keywordtype">void</span> kill();</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <span class="keyword">private</span> :</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                <a class="code" href="structllu_1_1network_1_1recived_message.html">recivedMessage</a> *currentMsg;</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classllu_1_1network_1_1_udp_connection.html#af8327e50c39f0fdac91d100f4d4bd6fd">   36</a></span>&#160;                <a class="code" href="structllu_1_1network_1_1recived_message.html">recivedMessage</a> *<a class="code" href="classllu_1_1network_1_1_udp_connection.html#af8327e50c39f0fdac91d100f4d4bd6fd">currentMsg</a>;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                <span class="keyword">struct </span>sockaddr_in  cliAddr,</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classllu_1_1network_1_1_udp_connection.html#a8c70ed64df02f4073ab19e11383589bc">   38</a></span>&#160;                <span class="keyword">struct </span>sockaddr_in  cliAddr,</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                                    tmpAddr;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                <span class="keywordtype">size_t</span> maxRcvMsgLeng;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                <span class="keywordtype">int</span> s;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                <span class="keyword">struct </span>hostent *h;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        };</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    };</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;};</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classllu_1_1network_1_1_udp_connection.html#af8426a409cfa5fd6ccfec21256638613">   41</a></span>&#160;                <span class="keyword">struct </span>ip_mreq      myMreq;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classllu_1_1network_1_1_udp_connection.html#a2cb54a9ca441a4771f8c14a32b6cd44f">   43</a></span>&#160;                <span class="keywordtype">size_t</span> <a class="code" href="classllu_1_1network_1_1_udp_connection.html#a2cb54a9ca441a4771f8c14a32b6cd44f">maxRcvMsgLeng</a>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classllu_1_1network_1_1_udp_connection.html#a60f454381f9bf0f5895e98e69dd83ad9">   44</a></span>&#160;                <span class="keywordtype">int</span> <a class="code" href="classllu_1_1network_1_1_udp_connection.html#a60f454381f9bf0f5895e98e69dd83ad9">s</a>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classllu_1_1network_1_1_udp_connection.html#af1effb2e90a194df8ddf41cf3d94132a">   45</a></span>&#160;                <span class="keywordtype">int</span> <a class="code" href="classllu_1_1network_1_1_udp_connection.html#af1effb2e90a194df8ddf41cf3d94132a">sender</a>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classllu_1_1network_1_1_udp_connection.html#ac2bfef3191aa2854fccf626db64b7d0f">   46</a></span>&#160;                <span class="keyword">struct </span>hostent *<a class="code" href="classllu_1_1network_1_1_udp_connection.html#ac2bfef3191aa2854fccf626db64b7d0f">h</a>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        };</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    };</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;};</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="classllu_1_1network_1_1_udp_connection_html"><div class="ttname"><a href="classllu_1_1network_1_1_udp_connection.html">llu::network::UdpConnection</a></div><div class="ttdef"><b>Definition:</b> <a href="udp_8hpp_source.html#l00023">udp.hpp:23</a></div></div>
+<div class="ttc" id="classllu_1_1network_1_1_udp_connection_html_a60f454381f9bf0f5895e98e69dd83ad9"><div class="ttname"><a href="classllu_1_1network_1_1_udp_connection.html#a60f454381f9bf0f5895e98e69dd83ad9">llu::network::UdpConnection::s</a></div><div class="ttdeci">int s</div><div class="ttdef"><b>Definition:</b> <a href="udp_8hpp_source.html#l00044">udp.hpp:44</a></div></div>
 <div class="ttc" id="namespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div></div>
 <div class="ttc" id="structllu_1_1network_1_1send_message_html"><div class="ttname"><a href="structllu_1_1network_1_1send_message.html">llu::network::sendMessage</a></div><div class="ttdoc">A message ready to be send. </div><div class="ttdef"><b>Definition:</b> <a href="network_8hpp_source.html#l00117">network.hpp:117</a></div></div>
+<div class="ttc" id="classllu_1_1network_1_1_udp_connection_html_a2cb54a9ca441a4771f8c14a32b6cd44f"><div class="ttname"><a href="classllu_1_1network_1_1_udp_connection.html#a2cb54a9ca441a4771f8c14a32b6cd44f">llu::network::UdpConnection::maxRcvMsgLeng</a></div><div class="ttdeci">size_t maxRcvMsgLeng</div><div class="ttdef"><b>Definition:</b> <a href="udp_8hpp_source.html#l00043">udp.hpp:43</a></div></div>
 <div class="ttc" id="namespacellu_html"><div class="ttname"><a href="namespacellu.html">llu</a></div><div class="ttdef"><b>Definition:</b> <a href="callback_8cpp_source.html#l00005">callback.cpp:5</a></div></div>
 <div class="ttc" id="network_8hpp_html"><div class="ttname"><a href="network_8hpp.html">network.hpp</a></div><div class="ttdoc">Prototypes for network comunikation. </div></div>
+<div class="ttc" id="classllu_1_1network_1_1_udp_connection_html_af1effb2e90a194df8ddf41cf3d94132a"><div class="ttname"><a href="classllu_1_1network_1_1_udp_connection.html#af1effb2e90a194df8ddf41cf3d94132a">llu::network::UdpConnection::sender</a></div><div class="ttdeci">int sender</div><div class="ttdef"><b>Definition:</b> <a href="udp_8hpp_source.html#l00045">udp.hpp:45</a></div></div>
+<div class="ttc" id="classllu_1_1network_1_1_udp_connection_html_af8327e50c39f0fdac91d100f4d4bd6fd"><div class="ttname"><a href="classllu_1_1network_1_1_udp_connection.html#af8327e50c39f0fdac91d100f4d4bd6fd">llu::network::UdpConnection::currentMsg</a></div><div class="ttdeci">recivedMessage * currentMsg</div><div class="ttdef"><b>Definition:</b> <a href="udp_8hpp_source.html#l00036">udp.hpp:36</a></div></div>
 <div class="ttc" id="ring_buffer_8hpp_html"><div class="ttname"><a href="ring_buffer_8hpp.html">ringBuffer.hpp</a></div><div class="ttdoc">Impelemnts a generik Ging buffer. </div></div>
 <div class="ttc" id="classllu_1_1network_1_1_connection_html"><div class="ttname"><a href="classllu_1_1network_1_1_connection.html">llu::network::Connection</a></div><div class="ttdef"><b>Definition:</b> <a href="network_8hpp_source.html#l00153">network.hpp:153</a></div></div>
 <div class="ttc" id="structllu_1_1network_1_1recived_message_html"><div class="ttname"><a href="structllu_1_1network_1_1recived_message.html">llu::network::recivedMessage</a></div><div class="ttdoc">an recived message from an Connection object </div><div class="ttdef"><b>Definition:</b> <a href="network_8hpp_source.html#l00107">network.hpp:107</a></div></div>
+<div class="ttc" id="classllu_1_1network_1_1_udp_connection_html_ac2bfef3191aa2854fccf626db64b7d0f"><div class="ttname"><a href="classllu_1_1network_1_1_udp_connection.html#ac2bfef3191aa2854fccf626db64b7d0f">llu::network::UdpConnection::h</a></div><div class="ttdeci">struct hostent * h</div><div class="ttdef"><b>Definition:</b> <a href="udp_8hpp_source.html#l00046">udp.hpp:46</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 1 2016 13:11:59 for timux by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 1 2016 22:16:40 for timux by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

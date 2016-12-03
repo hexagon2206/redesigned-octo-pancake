@@ -28,7 +28,7 @@ namespace timux{
         unsigned long n = this->now();
         this->lock.lock();
         unsigned long o = toHBO_64(p->time);
-        this->timeOffset = 0;//(this->timeOffset+(n-o))/2;
+        this->timeOffset = (this->timeOffset+(n-o))/2;
         this->lock.unlock();
     }
 
@@ -62,9 +62,12 @@ namespace timux{
         destoryRecivedMessage(m);
     }
 
-    timux::timux(llu::network::ManagedConnection *con,unsigned long frameLength,unsigned long slotCount,sockaddr_in target):t(con){
+    timux::timux(llu::network::ManagedConnection *con,unsigned long frameLength,unsigned long slotCount,sockaddr_in target,uint8_t stationClass,llu::datastructs::DataBuffer<data> *dataSource):t(con){
         this->frameLength = frameLength;
         this->slotCount = slotCount;
+        this->dataSource = dataSource;
+        this->stationClass = stationClass;
+
 
         con->addClassifier(&MsgSignal);
 
@@ -81,9 +84,11 @@ namespace timux{
      }
      void timux::setupNextFrame(){
         nextSlotLock.lock();
-        this->freeNextSlot = (bool *)malloc(sizeof(bool)*this->slotCount);
-        memset(freeNextSlot,0,sizeof(bool)*this->slotCount);
+        this->freeNextSlot = (uint8_t *)malloc(sizeof(uint8_t)*this->slotCount);
+        memset(freeNextSlot,0xFF,sizeof(uint8_t)*this->slotCount);
+
         this->collisions = (int *)malloc(sizeof(int)*this->slotCount);
+
         memset(collisions,0,sizeof(int)*this->slotCount);
         nextSlotLock.unlock();
      }
@@ -94,7 +99,7 @@ namespace timux{
             return ;
         }
         nextSlotLock.lock();
-        this->freeNextSlot[m->nextSlot]=true;
+        this->freeNextSlot[m->nextSlot]=m->nextSlot;
         collisions[m->slot]++;
         nextSlotLock.unlock();
     }
@@ -105,6 +110,12 @@ namespace timux{
         toNBO((uint8_t)this->mySlot, p->nextSlot);
 
         this->sendDataLock.lock();
+        data *d = this->dataSource->getData();
+
+        if(d){
+            if(this->sendData)free(this->sendData);
+            this->sendData = (uint8_t*)d;
+        }
         if(this->sendData){
             memcpy(p->data,this->sendData,sizeof(p->data));
         }else{
@@ -112,6 +123,7 @@ namespace timux{
         }
         this->sendDataLock.unlock();
         return p;
+
     }
     void timux::send(package *p){
         this->con->raw()->sendMsg(createSendMessage(sizeof(package),this->target,p));
@@ -127,7 +139,7 @@ namespace timux{
             curentFrame = now/this->frameLength;
         }
 
-        bool *nextFree=this->freeNextSlot;
+        uint8_t *nextFree=this->freeNextSlot;
         int *collisions = this->collisions;
         this->curentFrame = curentFrame;
         setupNextFrame();                               //Clear the trash data
@@ -148,7 +160,7 @@ namespace timux{
                     if(0==rand()%TIMUX_TRYTOJOIN){
                         std::cout << "ttj" <<std::endl;
                         for(unsigned int i = 0;i!=this->slotCount;i++){
-                            if(false==nextFree[i]){
+                            if(0xFF==nextFree[i] || collisions[nextFree[i]]!=1){
                                 if(0==(rand()%TIMUX_TRY_TAKE_SLOT)){
                                     this->mySlot=i;
                                     DEBUG(std::cout << "mySlot ist :"<<this->mySlot<<std::endl;)
@@ -209,4 +221,4 @@ namespace timux{
 
         llu::network::destoryRecivedMessage(m);
     }
-};
+}

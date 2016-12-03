@@ -90,6 +90,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classllu_1_1network_1_1_udp_connection-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">llu::network::UdpConnection Class Reference</div>  </div>
@@ -102,20 +103,20 @@ Inheritance diagram for llu::network::UdpConnection:</div>
 <div class="dyncontent">
 <div class="center"><img src="classllu_1_1network_1_1_udp_connection__inherit__graph.png" border="0" usemap="#llu_1_1network_1_1_udp_connection_inherit__map" alt="Inheritance graph"/></div>
 <map name="llu_1_1network_1_1_udp_connection_inherit__map" id="llu_1_1network_1_1_udp_connection_inherit__map">
-<area shape="rect" id="node2" href="classllu_1_1network_1_1_connection.html" title="llu::network::Connection" alt="" coords="17,5,180,32"/></map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<area shape="rect" id="node2" href="classllu_1_1network_1_1_connection.html" title="{llu::network::Connection\n||+ ~Connection()\l+ recvMsg()\l+ sendMsg()\l+ alive()\l+ kill()\l}" alt="" coords="17,5,180,141"/></map>
+</div>
 <div class="dynheader">
 Collaboration diagram for llu::network::UdpConnection:</div>
 <div class="dyncontent">
 <div class="center"><img src="classllu_1_1network_1_1_udp_connection__coll__graph.png" border="0" usemap="#llu_1_1network_1_1_udp_connection_coll__map" alt="Collaboration graph"/></div>
 <map name="llu_1_1network_1_1_udp_connection_coll__map" id="llu_1_1network_1_1_udp_connection_coll__map">
-<area shape="rect" id="node2" href="classllu_1_1network_1_1_connection.html" title="llu::network::Connection" alt="" coords="17,5,180,32"/></map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<area shape="rect" id="node2" href="classllu_1_1network_1_1_connection.html" title="{llu::network::Connection\n||+ ~Connection()\l+ recvMsg()\l+ sendMsg()\l+ alive()\l+ kill()\l}" alt="" coords="5,160,168,296"/><area shape="rect" id="node4" href="structllu_1_1network_1_1recived_message.html" title="an recived message from an Connection object " alt="" coords="433,189,625,267"/></map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a715f5dabf94e43a9a54385a647cc587b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1network_1_1_udp_connection.html#a715f5dabf94e43a9a54385a647cc587b">UdpConnection</a> (char ttl=1, uint16_t myPort=0, size_t maxRcvMsgLeng=128)</td></tr>
-<tr class="separator:a715f5dabf94e43a9a54385a647cc587b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac227d6a2efbddea08eeeb949bc2d1f21"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1network_1_1_udp_connection.html#ac227d6a2efbddea08eeeb949bc2d1f21">UdpConnection</a> (char *bcGroup=0, uint16_t myPort=0, char ttl=1, size_t <a class="el" href="classllu_1_1network_1_1_udp_connection.html#a2cb54a9ca441a4771f8c14a32b6cd44f">maxRcvMsgLeng</a>=128)</td></tr>
+<tr class="separator:ac227d6a2efbddea08eeeb949bc2d1f21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abbd9d3906a283f5506a69a8922fa76c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structllu_1_1network_1_1recived_message.html">recivedMessage</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1network_1_1_udp_connection.html#abbd9d3906a283f5506a69a8922fa76c6">recvMsg</a> ()</td></tr>
 <tr class="memdesc:abbd9d3906a283f5506a69a8922fa76c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">recives a <a class="el" href="structllu_1_1network_1_1recived_message.html" title="an recived message from an Connection object ">recivedMessage</a> from the connection  <a href="#abbd9d3906a283f5506a69a8922fa76c6">More...</a><br /></td></tr>
 <tr class="separator:abbd9d3906a283f5506a69a8922fa76c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -131,26 +132,49 @@ Public Member Functions</h2></td></tr>
 <tr class="inherit_header pub_methods_classllu_1_1network_1_1_connection"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classllu_1_1network_1_1_connection')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classllu_1_1network_1_1_connection.html">llu::network::Connection</a></td></tr>
 <tr class="memitem:ad549cc793bf214a9097a62fa7fc01b33 inherit pub_methods_classllu_1_1network_1_1_connection"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1network_1_1_connection.html#ad549cc793bf214a9097a62fa7fc01b33">~Connection</a> ()</td></tr>
 <tr class="separator:ad549cc793bf214a9097a62fa7fc01b33 inherit pub_methods_classllu_1_1network_1_1_connection"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:af8327e50c39f0fdac91d100f4d4bd6fd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structllu_1_1network_1_1recived_message.html">recivedMessage</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1network_1_1_udp_connection.html#af8327e50c39f0fdac91d100f4d4bd6fd">currentMsg</a></td></tr>
+<tr class="separator:af8327e50c39f0fdac91d100f4d4bd6fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c70ed64df02f4073ab19e11383589bc"><td class="memItemLeft" align="right" valign="top">struct sockaddr_in cliAddr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1network_1_1_udp_connection.html#a8c70ed64df02f4073ab19e11383589bc">tmpAddr</a></td></tr>
+<tr class="separator:a8c70ed64df02f4073ab19e11383589bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8426a409cfa5fd6ccfec21256638613"><td class="memItemLeft" align="right" valign="top">struct ip_mreq&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1network_1_1_udp_connection.html#af8426a409cfa5fd6ccfec21256638613">myMreq</a></td></tr>
+<tr class="separator:af8426a409cfa5fd6ccfec21256638613"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cb54a9ca441a4771f8c14a32b6cd44f"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1network_1_1_udp_connection.html#a2cb54a9ca441a4771f8c14a32b6cd44f">maxRcvMsgLeng</a></td></tr>
+<tr class="separator:a2cb54a9ca441a4771f8c14a32b6cd44f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60f454381f9bf0f5895e98e69dd83ad9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1network_1_1_udp_connection.html#a60f454381f9bf0f5895e98e69dd83ad9">s</a></td></tr>
+<tr class="separator:a60f454381f9bf0f5895e98e69dd83ad9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1effb2e90a194df8ddf41cf3d94132a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1network_1_1_udp_connection.html#af1effb2e90a194df8ddf41cf3d94132a">sender</a></td></tr>
+<tr class="separator:af1effb2e90a194df8ddf41cf3d94132a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2bfef3191aa2854fccf626db64b7d0f"><td class="memItemLeft" align="right" valign="top">struct hostent *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classllu_1_1network_1_1_udp_connection.html#ac2bfef3191aa2854fccf626db64b7d0f">h</a></td></tr>
+<tr class="separator:ac2bfef3191aa2854fccf626db64b7d0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
 <p>Definition at line <a class="el" href="udp_8hpp_source.html#l00023">23</a> of file <a class="el" href="udp_8hpp_source.html">udp.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a715f5dabf94e43a9a54385a647cc587b"></a>
+<a class="anchor" id="ac227d6a2efbddea08eeeb949bc2d1f21"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">llu::network::UdpConnection::UdpConnection </td>
           <td>(</td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>ttl</em> = <code>1</code>, </td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>bcGroup</em> = <code>0</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint16_t&#160;</td>
           <td class="paramname"><em>myPort</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>ttl</em> = <code>1</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -197,7 +221,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="classllu_1_1network_1_1_connection.html#a05893a11a26ea97663637cf085e1b985">llu::network::Connection</a>.</p>
 
-<p>Definition at line <a class="el" href="udp_8cpp_source.html#l00042">42</a> of file <a class="el" href="udp_8cpp_source.html">udp.cpp</a>.</p>
+<p>Definition at line <a class="el" href="udp_8cpp_source.html#l00067">67</a> of file <a class="el" href="udp_8cpp_source.html">udp.cpp</a>.</p>
 
 </div>
 </div>
@@ -226,7 +250,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="classllu_1_1network_1_1_connection.html#a7e620755dde598fffc96d3ee6b3326a1">llu::network::Connection</a>.</p>
 
-<p>Definition at line <a class="el" href="udp_8cpp_source.html#l00046">46</a> of file <a class="el" href="udp_8cpp_source.html">udp.cpp</a>.</p>
+<p>Definition at line <a class="el" href="udp_8cpp_source.html#l00071">71</a> of file <a class="el" href="udp_8cpp_source.html">udp.cpp</a>.</p>
 
 </div>
 </div>
@@ -256,7 +280,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="classllu_1_1network_1_1_connection.html#aae606f5aad246e892db5665cd7be1747">llu::network::Connection</a>.</p>
 
-<p>Definition at line <a class="el" href="udp_8cpp_source.html#l00028">28</a> of file <a class="el" href="udp_8cpp_source.html">udp.cpp</a>.</p>
+<p>Definition at line <a class="el" href="udp_8cpp_source.html#l00053">53</a> of file <a class="el" href="udp_8cpp_source.html">udp.cpp</a>.</p>
 
 </div>
 </div>
@@ -287,7 +311,162 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="classllu_1_1network_1_1_connection.html#ac20ca6d4d56b39fadde27b6af10000ae">llu::network::Connection</a>.</p>
 
-<p>Definition at line <a class="el" href="udp_8cpp_source.html#l00036">36</a> of file <a class="el" href="udp_8cpp_source.html">udp.cpp</a>.</p>
+<p>Definition at line <a class="el" href="udp_8cpp_source.html#l00061">61</a> of file <a class="el" href="udp_8cpp_source.html">udp.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="af8327e50c39f0fdac91d100f4d4bd6fd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structllu_1_1network_1_1recived_message.html">recivedMessage</a>* llu::network::UdpConnection::currentMsg</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="udp_8hpp_source.html#l00036">36</a> of file <a class="el" href="udp_8hpp_source.html">udp.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac2bfef3191aa2854fccf626db64b7d0f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct hostent* llu::network::UdpConnection::h</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="udp_8hpp_source.html#l00046">46</a> of file <a class="el" href="udp_8hpp_source.html">udp.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2cb54a9ca441a4771f8c14a32b6cd44f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t llu::network::UdpConnection::maxRcvMsgLeng</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="udp_8hpp_source.html#l00043">43</a> of file <a class="el" href="udp_8hpp_source.html">udp.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af8426a409cfa5fd6ccfec21256638613"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct ip_mreq llu::network::UdpConnection::myMreq</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="udp_8hpp_source.html#l00041">41</a> of file <a class="el" href="udp_8hpp_source.html">udp.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a60f454381f9bf0f5895e98e69dd83ad9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int llu::network::UdpConnection::s</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="udp_8hpp_source.html#l00044">44</a> of file <a class="el" href="udp_8hpp_source.html">udp.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af1effb2e90a194df8ddf41cf3d94132a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int llu::network::UdpConnection::sender</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="udp_8hpp_source.html#l00045">45</a> of file <a class="el" href="udp_8hpp_source.html">udp.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8c70ed64df02f4073ab19e11383589bc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct sockaddr_in cliAddr llu::network::UdpConnection::tmpAddr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="udp_8hpp_source.html#l00038">38</a> of file <a class="el" href="udp_8hpp_source.html">udp.hpp</a>.</p>
 
 </div>
 </div>
@@ -298,7 +477,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 1 2016 13:12:01 for timux by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 1 2016 22:16:41 for timux by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

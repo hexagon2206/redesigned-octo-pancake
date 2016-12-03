@@ -126,11 +126,12 @@
 	<arpa/inet.h>
 	<mutex>
 
-1480606200 source:/home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/main.cpp
+1480769793 source:/home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/main.cpp
 	<iostream>
 	"callback.hpp"
 	"ringBuffer.hpp"
 	"udp.hpp"
+	"udpTest.hpp"
 	<chrono>
 	<thread>
 	<netinet/in.h>
@@ -138,29 +139,30 @@
 	<time.h>
 	<mutex>
 	"timux.hpp"
+	"DataBuffer.hpp"
 
-1480586539 /home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/callback.hpp
+1480773107 /home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/callback.hpp
 	<stdlib.h>
 	<thread>
 	<mutex>
 	"linkedList.hpp"
 	"linkedArray.hpp"
 
-1480342173 /home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/linkedList.hpp
+1480773013 /home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/linkedList.hpp
 	<stdlib.h>
 	<mutex>
 
-1480342173 /home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/linkedArray.hpp
+1480773024 /home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/linkedArray.hpp
 	<stdlib.h>
 	<mutex>
 
-1480510171 /home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/ringBuffer.hpp
+1480773121 /home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/ringBuffer.hpp
 	<stdlib.h>
 	<condition_variable>
 	<thread>
 	<mutex>
 
-1480608032 /home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/udp.hpp
+1480773399 /home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/udp.hpp
 	<netinet/in.h>
 	<sys/types.h>
 	<sys/socket.h>
@@ -168,7 +170,7 @@
 	"network.hpp"
 	"ringBuffer.hpp"
 
-1480510299 /home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/network.hpp
+1480773259 /home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/network.hpp
 	<stdlib.h>
 	<string.h>
 	<thread>
@@ -180,22 +182,40 @@
 	"ringBuffer.hpp"
 	"linkedList.hpp"
 
-1480601584 /home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/timux.hpp
+1480773298 /home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/timux.hpp
 	<stdlib.h>
 	<mutex>
 	<thread>
 	"callback.hpp"
 	"network.hpp"
+	"DataBuffer.hpp"
 	<chrono>
 
-1480586703 source:/home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/network.cpp
+1480773329 source:/home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/network.cpp
 	"network.hpp"
 
-1480608098 source:/home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/udp.cpp
+1480773400 source:/home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/udp.cpp
 	"udp.hpp"
 	<iostream>
 
-1480601622 source:/home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/timux.cpp
+1480773368 source:/home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/timux.cpp
 	"timux.hpp"
 	<iostream>
+
+1480773460 source:/home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/udpTest.cpp
+	"udpTest.hpp"
+	<iostream>
+
+1480773474 /home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/udpTest.hpp
+	<netinet/in.h>
+	<sys/types.h>
+	<sys/socket.h>
+	<cstring>
+	"network.hpp"
+	"ringBuffer.hpp"
+
+1480773299 /home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/DataBuffer.hpp
+	<iostream>
+	<mutex>
+	<thread>
 
