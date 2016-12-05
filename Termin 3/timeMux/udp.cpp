@@ -53,6 +53,7 @@ namespace llu{
         recivedMessage *UdpConnection::recvMsg(){
             socklen_t len = (socklen_t) sizeof(currentMsg->sender);
             currentMsg->dataLength = recvfrom ( s, currentMsg->data, currentMsg->length, 0,(struct sockaddr *) &currentMsg->sender,&len);
+            std::cout << "msg empfangen" << std::endl;
             recivedMessage *t=currentMsg;
             currentMsg = llu::network::createRecivedMessage(maxRcvMsgLeng);
             return t;
