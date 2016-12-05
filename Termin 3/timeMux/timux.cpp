@@ -34,8 +34,9 @@ namespace timux{
 
     unsigned long timing::now(){
         long ofset=getOffset();
-        milliseconds ms = duration_cast< milliseconds >(system_clock::now().time_since_epoch());
-        return ms.count()+ofset;
+        //milliseconds ms = duration_cast< milliseconds >(system_clock::now().time_since_epoch());
+        //return ms.count()+ofset;
+        return time(nullptr)+ofset;
     }
 
     long timing::getOffset(){
@@ -107,7 +108,7 @@ namespace timux{
     package *timux::build(){
         package *p=(package *)malloc(sizeof(package));
         toNBO(this->stationClass,p->klasse);
-        toNBO((uint8_t)this->mySlot, p->nextSlot);
+        toNBO((uint8_t)(this->mySlot+1), p->nextSlot);
 
         this->sendDataLock.lock();
         data *d = this->dataSource->getData();
@@ -214,7 +215,7 @@ namespace timux{
 
         toret->frame= timestamp / ti->frameLength;
         toret->slot = (int)((timestamp%ti->frameLength)/(ti->frameLength/ti->slotCount));
-        toret->nextSlot = toHBO_8(p->nextSlot);
+        toret->nextSlot = toHBO_8(p->nextSlot)-1;
         memcpy(toret->data,p->data,sizeof(toret->data));
         ti->recived(toret);
         std::cout << "Recived MSG F:" << toret->frame << "Slot : "<<  toret->slot << std::endl << toret->data << std::endl << std::endl;
