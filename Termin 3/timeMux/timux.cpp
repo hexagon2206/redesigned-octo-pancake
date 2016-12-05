@@ -35,7 +35,7 @@ namespace timux{
     unsigned long timing::now(){
         long ofset=getOffset();
         milliseconds ms = duration_cast< milliseconds >(system_clock::now().time_since_epoch());
-        return ms.count();
+        return ms.count()+ofset;
     }
 
     long timing::getOffset(){

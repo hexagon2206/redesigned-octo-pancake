@@ -10,7 +10,56 @@
 namespace llu{
     namespace network{
 
-        void toNBO(uint8_t value,uint8_t* target){
+            void toNBO(uint8_t value,uint8_t* target){
+            *target=value;
+        }
+        uint8_t toHBO_8(uint8_t *from){
+            return *from;
+        }
+
+        void toNBO(uint16_t value,uint8_t* target){
+            *(target+1)=(uint8_t)value;
+            *(target)=(uint8_t)(value>>8);
+        }
+        uint16_t toHBO_16(uint8_t *from){
+            return ((uint16_t)*(from))<<8|*(from+1);
+        }
+
+        void toNBO(uint32_t value,uint8_t* target){
+            *(target+3)=(uint8_t)value;
+            *(target+3)=(uint8_t)(value>>8);
+            *(target+1)=(uint8_t)(value>>16);
+            *(target  )=(uint8_t)(value>>24);
+        }
+        uint32_t toHBO_32(uint8_t *from){
+            return  ((uint32_t)*(from+3))     |
+                    ((uint32_t)*(from+2))<<8  |
+                    ((uint32_t)*(from+1))<<16 |
+                    ((uint32_t)*(from  ))<<24 ;
+        }
+
+        void toNBO(uint64_t value,uint8_t* target){
+            *(target+7)=(uint8_t)value;
+            *(target+6)=(uint8_t)(value>> 8);
+            *(target+5)=(uint8_t)(value>>16);
+            *(target+4)=(uint8_t)(value>>24);
+            *(target+3)=(uint8_t)(value>>32);
+            *(target+2)=(uint8_t)(value>>40);
+            *(target+1)=(uint8_t)(value>>48);
+            *(target  )=(uint8_t)(value>>56);
+        }
+        uint64_t toHBO_64(uint8_t *from){
+            return  ((uint64_t)*(from+7))        |
+                    ((uint64_t)*(from+6))<< 8 |
+                    ((uint64_t)*(from+5))<<16 |
+                    ((uint64_t)*(from+4))<<24 |
+                    ((uint64_t)*(from+3))<<32 |
+                    ((uint64_t)*(from+2))<<40 |
+                    ((uint64_t)*(from+1))<<48 |
+                    ((uint64_t)*(from  ))<<56 ;
+        }
+
+        /*void toNBO(uint8_t value,uint8_t* target){
             *target=value;
         }
         uint8_t toHBO_8(uint8_t *from){
@@ -57,7 +106,7 @@ namespace llu{
                     ((uint64_t)*(from+5))<<40 |
                     ((uint64_t)*(from+6))<<48 |
                     ((uint64_t)*(from+7))<<56 ;
-        }
+        }*/
 
         sockaddr_in resolve(const char*ip,uint16_t port){
             sockaddr_in remoteServAddr;
