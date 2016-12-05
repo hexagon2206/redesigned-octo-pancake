@@ -21,5 +21,5 @@ var searchData=
   ['createrecivedmessage',['createRecivedMessage',['../namespacellu_1_1network.html#a867a402a3f2a945cf6d5f9b9c9ca4bd1',1,'llu::network']]],
   ['createsendmessage',['createSendMessage',['../namespacellu_1_1network.html#a86501a24323e339aa0a3b4e935bb2495',1,'llu::network']]],
   ['curentframe',['curentFrame',['../classtimux_1_1timux.html#a2b5fe764c8e6f699eb46c0afea942297',1,'timux::timux']]],
-  ['currentmsg',['currentMsg',['../classllu_1_1network_1_1_udp_connection.html#af8327e50c39f0fdac91d100f4d4bd6fd',1,'llu::network::UdpConnection']]]
+  ['currentmsg',['currentMsg',['../classllu_1_1network_1_1_udp_connection.html#af8327e50c39f0fdac91d100f4d4bd6fd',1,'llu::network::UdpConnection::currentMsg()'],['../classllu_1_1network_1_1_udp_test_connection.html#a5bd92b83bcbdc2f2a02bca6eb9cdb74f',1,'llu::network::UdpTestConnection::currentMsg()']]]
 ];

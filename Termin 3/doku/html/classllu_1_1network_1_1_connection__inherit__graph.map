@@ -1,3 +1,4 @@
 <map id="llu::network::Connection" name="llu::network::Connection">
 <area shape="rect" id="node2" href="$classllu_1_1network_1_1_udp_connection.html" title="{llu::network::UdpConnection\n|&#45; currentMsg\l&#45; tmpAddr\l&#45; myMreq\l&#45; maxRcvMsgLeng\l&#45; s\l&#45; sender\l&#45; h\l|+ UdpConnection()\l+ recvMsg()\l+ sendMsg()\l+ alive()\l+ kill()\l}" alt="" coords="5,189,192,413"/>
+<area shape="rect" id="node3" href="$classllu_1_1network_1_1_udp_test_connection.html" title="{llu::network::UdpTestConnection\n|&#45; currentMsg\l&#45; tmpAddr\l&#45; maxRcvMsgLeng\l&#45; s\l&#45; h\l|+ UdpTestConnection()\l+ recvMsg()\l+ sendMsg()\l+ alive()\l+ kill()\l}" alt="" coords="216,204,429,399"/>
 </map>

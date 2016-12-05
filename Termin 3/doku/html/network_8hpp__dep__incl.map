@@ -2,8 +2,10 @@
 <area shape="rect" id="node2" href="$udp_8hpp.html" title="Prototypes for a udp network konnection implementation. " alt="" coords="183,80,306,107"/>
 <area shape="rect" id="node6" href="$timux_8hpp.html" title="timeMux/timux.hpp" alt="" coords="330,80,463,107"/>
 <area shape="rect" id="node8" href="$network_8cpp.html" title="Implementation of al general network stuff. " alt="" coords="487,80,634,107"/>
+<area shape="rect" id="node9" href="$udp_test_8hpp.html" title="timeMux/udpTest.hpp" alt="" coords="659,80,807,107"/>
 <area shape="rect" id="node3" href="$bc_server_8cpp.html" title="Implementation of a UDP Broadcast server for testing. " alt="" coords="5,155,159,181"/>
 <area shape="rect" id="node4" href="$main_8cpp.html" title="Startsup the Timux System. " alt="" coords="331,155,460,181"/>
 <area shape="rect" id="node5" href="$udp_8cpp.html" title="Implementation of a UDP Connection. " alt="" coords="183,155,306,181"/>
 <area shape="rect" id="node7" href="$timux_8cpp.html" title="Implementation of The TIMUX logic. " alt="" coords="485,155,618,181"/>
+<area shape="rect" id="node10" href="$udp_test_8cpp.html" title="timeMux/udpTest.cpp" alt="" coords="659,155,807,181"/>
 </map>

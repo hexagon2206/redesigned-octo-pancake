@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['udpconnection',['UdpConnection',['../classllu_1_1network_1_1_udp_connection.html',1,'llu::network']]]
+  ['timing',['timing',['../classtimux_1_1timing.html',1,'timux']]],
+  ['timux',['timux',['../classtimux_1_1timux.html',1,'timux']]]
 ];

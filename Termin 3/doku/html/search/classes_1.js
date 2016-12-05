@@ -1,17 +1,6 @@
 var searchData=
 [
-  ['linkedlist',['LinkedList',['../classllu_1_1datastructs_1_1_linked_list.html',1,'llu::datastructs']]],
-  ['linkedlist_3c_20llu_3a_3acallback_3a_3acallback_5fregistration_3c_20c_2c_20d_20_3e_20_2a_20_3e',['LinkedList&lt; llu::callback::callback_registration&lt; C, D &gt; * &gt;',['../classllu_1_1datastructs_1_1_linked_list.html',1,'llu::datastructs']]],
-  ['linkedlist_3c_20llu_3a_3acallback_3a_3acallback_5fregistration_3c_20void_20_2a_2c_20llu_3a_3anetwork_3a_3arecivedmessage_20_2a_20_3e_20_2a_20_3e',['LinkedList&lt; llu::callback::callback_registration&lt; void *, llu::network::recivedMessage * &gt; * &gt;',['../classllu_1_1datastructs_1_1_linked_list.html',1,'llu::datastructs']]],
-  ['linkedlist_3c_20recivedmessageclassifier_20_3e',['LinkedList&lt; recivedMessageClassifier &gt;',['../classllu_1_1datastructs_1_1_linked_list.html',1,'llu::datastructs']]],
-  ['linkedlistarray',['LinkedListArray',['../classllu_1_1datastructs_1_1_linked_list_array.html',1,'llu::datastructs']]],
-  ['linkedlistarray_3c_20llu_3a_3adatastructs_3a_3alinkedlist_3c_20llu_3a_3acallback_3a_3acallback_5fregistration_3c_20c_2c_20d_20_3e_20_2a_20_3e_20_2a_20_3e',['LinkedListArray&lt; llu::datastructs::LinkedList&lt; llu::callback::callback_registration&lt; C, D &gt; * &gt; * &gt;',['../classllu_1_1datastructs_1_1_linked_list_array.html',1,'llu::datastructs']]],
-  ['linkedlistarray_3c_20llu_3a_3adatastructs_3a_3alinkedlist_3c_20llu_3a_3acallback_3a_3acallback_5fregistration_3c_20void_20_2a_2c_20llu_3a_3anetwork_3a_3arecivedmessage_20_2a_20_3e_20_2a_20_3e_20_2a_20_3e',['LinkedListArray&lt; llu::datastructs::LinkedList&lt; llu::callback::callback_registration&lt; void *, llu::network::recivedMessage * &gt; * &gt; * &gt;',['../classllu_1_1datastructs_1_1_linked_list_array.html',1,'llu::datastructs']]],
-  ['listarrayentrie',['listArrayEntrie',['../structllu_1_1datastructs_1_1list_array_entrie.html',1,'llu::datastructs']]],
-  ['listarrayentrie_3c_20llu_3a_3adatastructs_3a_3alinkedlist_3c_20llu_3a_3acallback_3a_3acallback_5fregistration_3c_20c_2c_20d_20_3e_20_2a_20_3e_20_2a_20_3e',['listArrayEntrie&lt; llu::datastructs::LinkedList&lt; llu::callback::callback_registration&lt; C, D &gt; * &gt; * &gt;',['../structllu_1_1datastructs_1_1list_array_entrie.html',1,'llu::datastructs']]],
-  ['listarrayentrie_3c_20llu_3a_3adatastructs_3a_3alinkedlist_3c_20llu_3a_3acallback_3a_3acallback_5fregistration_3c_20void_20_2a_2c_20llu_3a_3anetwork_3a_3arecivedmessage_20_2a_20_3e_20_2a_20_3e_20_2a_20_3e',['listArrayEntrie&lt; llu::datastructs::LinkedList&lt; llu::callback::callback_registration&lt; void *, llu::network::recivedMessage * &gt; * &gt; * &gt;',['../structllu_1_1datastructs_1_1list_array_entrie.html',1,'llu::datastructs']]],
-  ['listentrie',['listEntrie',['../structllu_1_1datastructs_1_1list_entrie.html',1,'llu::datastructs']]],
-  ['listentrie_3c_20llu_3a_3acallback_3a_3acallback_5fregistration_3c_20c_2c_20d_20_3e_20_2a_20_3e',['listEntrie&lt; llu::callback::callback_registration&lt; C, D &gt; * &gt;',['../structllu_1_1datastructs_1_1list_entrie.html',1,'llu::datastructs']]],
-  ['listentrie_3c_20llu_3a_3acallback_3a_3acallback_5fregistration_3c_20void_20_2a_2c_20llu_3a_3anetwork_3a_3arecivedmessage_20_2a_20_3e_20_2a_20_3e',['listEntrie&lt; llu::callback::callback_registration&lt; void *, llu::network::recivedMessage * &gt; * &gt;',['../structllu_1_1datastructs_1_1list_entrie.html',1,'llu::datastructs']]],
-  ['listentrie_3c_20recivedmessageclassifier_20_3e',['listEntrie&lt; recivedMessageClassifier &gt;',['../structllu_1_1datastructs_1_1list_entrie.html',1,'llu::datastructs']]]
+  ['data',['data',['../structtimux_1_1data.html',1,'timux']]],
+  ['databuffer',['DataBuffer',['../classllu_1_1datastructs_1_1_data_buffer.html',1,'llu::datastructs']]],
+  ['databuffer_3c_20timux_3a_3adata_20_3e',['DataBuffer&lt; timux::data &gt;',['../classllu_1_1datastructs_1_1_data_buffer.html',1,'llu::datastructs']]]
 ];

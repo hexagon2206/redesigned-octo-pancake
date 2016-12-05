@@ -102,14 +102,12 @@ Inheritance diagram for llu::network::Connection:</div>
 <div class="dyncontent">
 <div class="center"><img src="classllu_1_1network_1_1_connection__inherit__graph.png" border="0" usemap="#llu_1_1network_1_1_connection_inherit__map" alt="Inheritance graph"/></div>
 <map name="llu_1_1network_1_1_connection_inherit__map" id="llu_1_1network_1_1_connection_inherit__map">
-<area shape="rect" id="node2" href="classllu_1_1network_1_1_udp_connection.html" title="{llu::network::UdpConnection\n|&#45; currentMsg\l&#45; tmpAddr\l&#45; myMreq\l&#45; maxRcvMsgLeng\l&#45; s\l&#45; sender\l&#45; h\l|+ UdpConnection()\l+ recvMsg()\l+ sendMsg()\l+ alive()\l+ kill()\l}" alt="" coords="5,189,192,413"/></map>
+<area shape="rect" id="node2" href="classllu_1_1network_1_1_udp_connection.html" title="{llu::network::UdpConnection\n|&#45; currentMsg\l&#45; tmpAddr\l&#45; myMreq\l&#45; maxRcvMsgLeng\l&#45; s\l&#45; sender\l&#45; h\l|+ UdpConnection()\l+ recvMsg()\l+ sendMsg()\l+ alive()\l+ kill()\l}" alt="" coords="5,189,192,413"/><area shape="rect" id="node3" href="classllu_1_1network_1_1_udp_test_connection.html" title="{llu::network::UdpTestConnection\n|&#45; currentMsg\l&#45; tmpAddr\l&#45; maxRcvMsgLeng\l&#45; s\l&#45; h\l|+ UdpTestConnection()\l+ recvMsg()\l+ sendMsg()\l+ alive()\l+ kill()\l}" alt="" coords="216,204,429,399"/></map>
 </div>
 <div class="dynheader">
 Collaboration diagram for llu::network::Connection:</div>
 <div class="dyncontent">
 <div class="center"><img src="classllu_1_1network_1_1_connection__coll__graph.png" border="0" usemap="#llu_1_1network_1_1_connection_coll__map" alt="Collaboration graph"/></div>
-<map name="llu_1_1network_1_1_connection_coll__map" id="llu_1_1network_1_1_connection_coll__map">
-</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -183,7 +181,7 @@ Public Member Functions</h2></td></tr>
 <p>used to check if the connection is usable </p>
 <dl class="section return"><dt>Returns</dt><dd>true if usable, otherwise false </dd></dl>
 
-<p>Implemented in <a class="el" href="classllu_1_1network_1_1_udp_connection.html#add200cb20d4ece925b8752675d375828">llu::network::UdpConnection</a>.</p>
+<p>Implemented in <a class="el" href="classllu_1_1network_1_1_udp_connection.html#add200cb20d4ece925b8752675d375828">llu::network::UdpConnection</a>, and <a class="el" href="classllu_1_1network_1_1_udp_test_connection.html#a04dea6c7f83671d7c1a1c47334181706">llu::network::UdpTestConnection</a>.</p>
 
 </div>
 </div>
@@ -210,7 +208,7 @@ Public Member Functions</h2></td></tr>
 
 <p>closes a connection </p>
 
-<p>Implemented in <a class="el" href="classllu_1_1network_1_1_udp_connection.html#a97a62c2ab3975d9716f965aacc2f28fc">llu::network::UdpConnection</a>.</p>
+<p>Implemented in <a class="el" href="classllu_1_1network_1_1_udp_connection.html#a97a62c2ab3975d9716f965aacc2f28fc">llu::network::UdpConnection</a>, and <a class="el" href="classllu_1_1network_1_1_udp_test_connection.html#a0f91706e5c6b5277846554212bebe726">llu::network::UdpTestConnection</a>.</p>
 
 </div>
 </div>
@@ -238,7 +236,7 @@ Public Member Functions</h2></td></tr>
 <p>recives a <a class="el" href="structllu_1_1network_1_1recived_message.html" title="an recived message from an Connection object ">recivedMessage</a> from the connection </p>
 <p>Blocks untill data is avaliable </p><dl class="section return"><dt>Returns</dt><dd>the <a class="el" href="structllu_1_1network_1_1recived_message.html" title="an recived message from an Connection object ">recivedMessage</a> rescived the responsebilety for the result belonges to the caller </dd></dl>
 
-<p>Implemented in <a class="el" href="classllu_1_1network_1_1_udp_connection.html#abbd9d3906a283f5506a69a8922fa76c6">llu::network::UdpConnection</a>.</p>
+<p>Implemented in <a class="el" href="classllu_1_1network_1_1_udp_connection.html#abbd9d3906a283f5506a69a8922fa76c6">llu::network::UdpConnection</a>, and <a class="el" href="classllu_1_1network_1_1_udp_test_connection.html#ad5ecc7c010021a819b2b0899dc67f749">llu::network::UdpTestConnection</a>.</p>
 
 </div>
 </div>
@@ -267,7 +265,7 @@ Public Member Functions</h2></td></tr>
 <p>sends the message m over the <a class="el" href="classllu_1_1network_1_1_connection.html">Connection</a> </p>
 <p>this methode is not blocking m will be deletet using destorySendMessage </p>
 
-<p>Implemented in <a class="el" href="classllu_1_1network_1_1_udp_connection.html#a044432ee61191ecabd295fe4ea6cddf1">llu::network::UdpConnection</a>.</p>
+<p>Implemented in <a class="el" href="classllu_1_1network_1_1_udp_connection.html#a044432ee61191ecabd295fe4ea6cddf1">llu::network::UdpConnection</a>, and <a class="el" href="classllu_1_1network_1_1_udp_test_connection.html#adb9b9924dffd7c594dd75687b75dd057">llu::network::UdpTestConnection</a>.</p>
 
 </div>
 </div>
@@ -277,7 +275,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 1 2016 22:16:41 for timux by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 5 2016 20:19:50 for timux by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

@@ -1,10 +1,12 @@
 <map id="timeMux/ringBuffer.hpp" name="timeMux/ringBuffer.hpp">
 <area shape="rect" id="node2" href="$bc_server_8cpp.html" title="Implementation of a UDP Broadcast server for testing. " alt="" coords="5,229,159,256"/>
-<area shape="rect" id="node3" href="$network_8hpp.html" title="Prototypes for network comunikation. " alt="" coords="365,80,511,107"/>
-<area shape="rect" id="node4" href="$udp_8hpp.html" title="Prototypes for a udp network konnection implementation. " alt="" coords="167,155,290,181"/>
+<area shape="rect" id="node3" href="$network_8hpp.html" title="Prototypes for network comunikation. " alt="" coords="381,80,527,107"/>
+<area shape="rect" id="node4" href="$udp_8hpp.html" title="Prototypes for a udp network konnection implementation. " alt="" coords="183,155,306,181"/>
 <area shape="rect" id="node5" href="$main_8cpp.html" title="Startsup the Timux System. " alt="" coords="331,229,460,256"/>
-<area shape="rect" id="node7" href="$timux_8hpp.html" title="timeMux/timux.hpp" alt="" coords="535,155,669,181"/>
-<area shape="rect" id="node9" href="$network_8cpp.html" title="Implementation of al general network stuff. " alt="" coords="365,155,511,181"/>
+<area shape="rect" id="node10" href="$udp_test_8hpp.html" title="timeMux/udpTest.hpp" alt="" coords="709,155,857,181"/>
+<area shape="rect" id="node7" href="$timux_8hpp.html" title="timeMux/timux.hpp" alt="" coords="381,155,514,181"/>
+<area shape="rect" id="node9" href="$network_8cpp.html" title="Implementation of al general network stuff. " alt="" coords="538,155,685,181"/>
 <area shape="rect" id="node6" href="$udp_8cpp.html" title="Implementation of a UDP Connection. " alt="" coords="183,229,306,256"/>
-<area shape="rect" id="node8" href="$timux_8cpp.html" title="Implementation of The TIMUX logic. " alt="" coords="535,229,669,256"/>
+<area shape="rect" id="node8" href="$timux_8cpp.html" title="Implementation of The TIMUX logic. " alt="" coords="485,229,618,256"/>
+<area shape="rect" id="node11" href="$udp_test_8cpp.html" title="timeMux/udpTest.cpp" alt="" coords="709,229,857,256"/>
 </map>

@@ -101,13 +101,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &lt;thread&gt;</code><br />
 <code>#include &quot;<a class="el" href="callback_8hpp_source.html">callback.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="network_8hpp_source.html">network.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_data_buffer_8hpp_source.html">DataBuffer.hpp</a>&quot;</code><br />
 <code>#include &lt;chrono&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for timux.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="timux_8hpp__incl.png" border="0" usemap="#time_mux_2timux_8hpp" alt=""/></div>
 <map name="time_mux_2timux_8hpp" id="time_mux_2timux_8hpp">
-<area shape="rect" id="node5" href="callback_8hpp.html" title="Prototypes for a Callback Handler. " alt="" coords="29,155,124,181"/><area shape="rect" id="node8" href="network_8hpp.html" title="Prototypes for network comunikation. " alt="" coords="418,80,511,107"/><area shape="rect" id="node6" href="linked_list_8hpp.html" title="implements a generik Linked List. " alt="" coords="258,229,361,256"/><area shape="rect" id="node7" href="linked_array_8hpp.html" title="Prototypes for a Linked Array. The Linked array implements acces over simulated index in a linked lis..." alt="" coords="119,229,231,256"/><area shape="rect" id="node13" href="ring_buffer_8hpp.html" title="Impelemnts a generik Ging buffer. " alt="" coords="698,155,801,181"/></map>
+<area shape="rect" id="node5" href="callback_8hpp.html" title="Prototypes for a Callback Handler. " alt="" coords="258,155,353,181"/><area shape="rect" id="node8" href="network_8hpp.html" title="Prototypes for network comunikation. " alt="" coords="487,80,580,107"/><area shape="rect" id="node15" href="_data_buffer_8hpp.html" title="DataBuffer.hpp" alt="" coords="21,155,132,181"/><area shape="rect" id="node6" href="linked_list_8hpp.html" title="implements a generik Linked List. " alt="" coords="498,229,601,256"/><area shape="rect" id="node7" href="linked_array_8hpp.html" title="Prototypes for a Linked Array. The Linked array implements acces over simulated index in a linked lis..." alt="" coords="343,229,455,256"/><area shape="rect" id="node13" href="ring_buffer_8hpp.html" title="Impelemnts a generik Ging buffer. " alt="" coords="826,155,929,181"/></map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -129,6 +130,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimux_1_1timing.html">timux::timing</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">used for timing and time synchronisation is thread save  <a href="classtimux_1_1timing.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtimux_1_1data.html">timux::data</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimux_1_1timux.html">timux::timux</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">the main Class that performess all the logic  <a href="classtimux_1_1timux.html#details">More...</a><br /></td></tr>
@@ -181,8 +184,10 @@ Variables</h2></td></tr>
 <tr class="memitem:addb651b6286e45373916cc2700efe972"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timux_8hpp.html#addb651b6286e45373916cc2700efe972">time</a> [8]</td></tr>
 <tr class="memdesc:addb651b6286e45373916cc2700efe972"><td class="mdescLeft">&#160;</td><td class="mdescRight">the time, the data was send on  <a href="#addb651b6286e45373916cc2700efe972">More...</a><br /></td></tr>
 <tr class="separator:addb651b6286e45373916cc2700efe972"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92131d39983869230f2fb19fb9f654a6"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structtimux_1_1msg.html">timux::msg</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetimux.html#a92131d39983869230f2fb19fb9f654a6">timux::__attribute__</a></td></tr>
-<tr class="separator:a92131d39983869230f2fb19fb9f654a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a83b0304f53ef94f65fc70ec89da9f6"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structtimux_1_1msg.html">timux::msg</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetimux.html#a2a83b0304f53ef94f65fc70ec89da9f6">timux::__attribute__</a></td></tr>
+<tr class="separator:a2a83b0304f53ef94f65fc70ec89da9f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c49e295b60607019b34d65d9c7fecf3"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timux_8hpp.html#a8c49e295b60607019b34d65d9c7fecf3">d</a> [sizeof(<a class="el" href="timux_8hpp.html#ad9c7575237a3a2780e8e6d16e1334982">package::data</a>)]</td></tr>
+<tr class="separator:a8c49e295b60607019b34d65d9c7fecf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a class="anchor" id="ad32d053f7dbac6c922a73695f3a84bce"></a>
@@ -223,7 +228,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="timux_8hpp_source.html#l00074">74</a> of file <a class="el" href="timux_8hpp_source.html">timux.hpp</a>.</p>
+<p>Definition at line <a class="el" href="timux_8hpp_source.html#l00077">77</a> of file <a class="el" href="timux_8hpp_source.html">timux.hpp</a>.</p>
 
 </div>
 </div>
@@ -237,11 +242,25 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="timux_8hpp_source.html#l00073">73</a> of file <a class="el" href="timux_8hpp_source.html">timux.hpp</a>.</p>
+<p>Definition at line <a class="el" href="timux_8hpp_source.html#l00076">76</a> of file <a class="el" href="timux_8hpp_source.html">timux.hpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="a8c49e295b60607019b34d65d9c7fecf3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t d[sizeof(<a class="el" href="timux_8hpp.html#ad9c7575237a3a2780e8e6d16e1334982">package::data</a>)]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="timux_8hpp_source.html#l00218">218</a> of file <a class="el" href="timux_8hpp_source.html">timux.hpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ad9c7575237a3a2780e8e6d16e1334982"></a>
 <div class="memitem">
 <div class="memproto">
@@ -254,7 +273,7 @@ Variables</h2></td></tr>
 
 <p>the data payload </p>
 
-<p>Definition at line <a class="el" href="timux_8hpp_source.html#l00196">196</a> of file <a class="el" href="timux_8hpp_source.html">timux.hpp</a>.</p>
+<p>Definition at line <a class="el" href="timux_8hpp_source.html#l00219">219</a> of file <a class="el" href="timux_8hpp_source.html">timux.hpp</a>.</p>
 
 </div>
 </div>
@@ -270,7 +289,7 @@ Variables</h2></td></tr>
 
 <p>the class of the Station (A or B) </p>
 
-<p>Definition at line <a class="el" href="timux_8hpp_source.html#l00195">195</a> of file <a class="el" href="timux_8hpp_source.html">timux.hpp</a>.</p>
+<p>Definition at line <a class="el" href="timux_8hpp_source.html#l00218">218</a> of file <a class="el" href="timux_8hpp_source.html">timux.hpp</a>.</p>
 
 </div>
 </div>
@@ -286,7 +305,7 @@ Variables</h2></td></tr>
 
 <p>the next slot, the clint will send on </p>
 
-<p>Definition at line <a class="el" href="timux_8hpp_source.html#l00197">197</a> of file <a class="el" href="timux_8hpp_source.html">timux.hpp</a>.</p>
+<p>Definition at line <a class="el" href="timux_8hpp_source.html#l00220">220</a> of file <a class="el" href="timux_8hpp_source.html">timux.hpp</a>.</p>
 
 </div>
 </div>
@@ -302,14 +321,14 @@ Variables</h2></td></tr>
 
 <p>the time, the data was send on </p>
 
-<p>Definition at line <a class="el" href="timux_8hpp_source.html#l00198">198</a> of file <a class="el" href="timux_8hpp_source.html">timux.hpp</a>.</p>
+<p>Definition at line <a class="el" href="timux_8hpp_source.html#l00221">221</a> of file <a class="el" href="timux_8hpp_source.html">timux.hpp</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 1 2016 22:16:40 for timux by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 5 2016 20:19:49 for timux by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

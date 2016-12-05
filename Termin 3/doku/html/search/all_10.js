@@ -11,7 +11,7 @@ var searchData=
   ['recivedmessageclassifiertype',['recivedMessageClassifierType',['../namespacellu_1_1network.html#a62e69230f04d1998f17b11e3bcc2d121',1,'llu::network']]],
   ['reciver',['reciver',['../classllu_1_1network_1_1_managed_connection.html#a28197cdc951fb6fe56cfc8cdca1b500e',1,'llu::network::ManagedConnection']]],
   ['reciverthread',['reciverThread',['../classllu_1_1network_1_1_managed_connection.html#a3e3b809064e060aaf0fdd7190d013657',1,'llu::network::ManagedConnection']]],
-  ['recvmsg',['recvMsg',['../classllu_1_1network_1_1_connection.html#aae606f5aad246e892db5665cd7be1747',1,'llu::network::Connection::recvMsg()'],['../classllu_1_1network_1_1_udp_connection.html#abbd9d3906a283f5506a69a8922fa76c6',1,'llu::network::UdpConnection::recvMsg()']]],
+  ['recvmsg',['recvMsg',['../classllu_1_1network_1_1_connection.html#aae606f5aad246e892db5665cd7be1747',1,'llu::network::Connection::recvMsg()'],['../classllu_1_1network_1_1_udp_connection.html#abbd9d3906a283f5506a69a8922fa76c6',1,'llu::network::UdpConnection::recvMsg()'],['../classllu_1_1network_1_1_udp_test_connection.html#ad5ecc7c010021a819b2b0899dc67f749',1,'llu::network::UdpTestConnection::recvMsg()']]],
   ['registercallback',['registerCallback',['../classllu_1_1callback_1_1_callback.html#a45aaaa527c1623dba2e994df5049ef50',1,'llu::callback::Callback']]],
   ['registrations',['registrations',['../classllu_1_1callback_1_1_callback.html#aa6c3662f211604554e3ea6639115c1c4',1,'llu::callback::Callback']]],
   ['resolve',['resolve',['../namespacellu_1_1network.html#ae50fed51b566b947fd0cb1a4efbb3b12',1,'llu::network']]],

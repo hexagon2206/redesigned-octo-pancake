@@ -169,11 +169,11 @@ namespace timux{
                             int chosenSlot = (rand()%freeslotCount);
                             for(int i = 0;i<(this->slotCount);i++){
                                 if(0xFF==nextFree[i] || collisions[nextFree[i]]!=1){
-                                    chosenSlot--;
                                     if(chosenSlot==0){
                                         this->mySlot=i;
                                         break;
                                     }
+                                    chosenSlot--;
                                 }
                             }
                             DEBUG(std::cout << "mySlot ist :"<<this->mySlot<<std::endl;)

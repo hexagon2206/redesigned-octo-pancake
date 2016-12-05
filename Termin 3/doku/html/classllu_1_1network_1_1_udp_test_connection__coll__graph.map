@@ -1,0 +1,4 @@
+<map id="llu::network::UdpTestConnection" name="llu::network::UdpTestConnection">
+<area shape="rect" id="node2" href="$classllu_1_1network_1_1_connection.html" title="{llu::network::Connection\n||+ ~Connection()\l+ recvMsg()\l+ sendMsg()\l+ alive()\l+ kill()\l}" alt="" coords="5,160,168,296"/>
+<area shape="rect" id="node4" href="$structllu_1_1network_1_1recived_message.html" title="an recived message from an Connection object " alt="" coords="433,189,625,267"/>
+</map>

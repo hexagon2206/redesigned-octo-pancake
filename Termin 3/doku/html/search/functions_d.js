@@ -3,7 +3,7 @@ var searchData=
   ['timesynchronizehandler',['TimeSynchronizeHandler',['../namespacetimux.html#aaaa8c2d5485d4108b450aa5edf1e3aa3',1,'timux']]],
   ['timesynchronizesignal',['TimeSynchronizeSignal',['../namespacetimux.html#af9d865eb949c95b170ca458395332f06',1,'timux']]],
   ['timing',['timing',['../classtimux_1_1timing.html#ae0da26b066603dea4f7abd847b6e583b',1,'timux::timing']]],
-  ['timux',['timux',['../classtimux_1_1timux.html#a84e972805455951e68973856c91d8bb4',1,'timux::timux']]],
+  ['timux',['timux',['../classtimux_1_1timux.html#af1c9acc16f6c5e3e02c3bf6343e76bfe',1,'timux::timux']]],
   ['tohbo_5f16',['toHBO_16',['../namespacellu_1_1network.html#a6c358826dbd0c43ec751139dca87ab71',1,'llu::network']]],
   ['tohbo_5f32',['toHBO_32',['../namespacellu_1_1network.html#a2222539df59075cc6f892b12956968eb',1,'llu::network']]],
   ['tohbo_5f64',['toHBO_64',['../namespacellu_1_1network.html#af97d326c7853fc1b5932a56b8cc8e4b6',1,'llu::network']]],

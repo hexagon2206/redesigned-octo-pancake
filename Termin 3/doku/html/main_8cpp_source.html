@@ -91,77 +91,129 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="main_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"> #include &lt;iostream&gt;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="callback_8hpp.html">callback.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ring_buffer_8hpp.html">ringBuffer.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="udp_8hpp.html">udp.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;chrono&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;thread&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;netinet/in.h&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;arpa/inet.h&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;time.h&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;mutex&gt;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="timux_8hpp.html">timux.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespacestd.html">std</a>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespacellu_1_1callback.html">llu::callback</a>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespacellu_1_1network.html">llu::network</a>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="main_8cpp.html#a37b417233f99cfdabb36236bf47b2fb3">    6</a></span>&#160;<span class="preprocessor">#define UDP_BC</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor"> #include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="callback_8hpp.html">callback.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ring_buffer_8hpp.html">ringBuffer.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#ifdef UDP_BC</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">    #include &quot;<a class="code" href="udp_8hpp.html">udp.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">    #include &quot;<a class="code" href="udp_test_8hpp.html">udpTest.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;chrono&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;thread&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;netinet/in.h&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;arpa/inet.h&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;time.h&gt;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;mutex&gt;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="timux_8hpp.html">timux.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_data_buffer_8hpp.html">DataBuffer.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespacetimux.html">timux</a>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">   30</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>(){</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    srand(<a class="code" href="timux_8hpp.html#addb651b6286e45373916cc2700efe972">time</a>(NULL));</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    cout &lt;&lt; <span class="stringliteral">&quot;hallo Welt ?  &quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespacestd.html">std</a>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespacechrono.html">chrono</a>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespacellu_1_1callback.html">llu::callback</a>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespacellu_1_1network.html">llu::network</a>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="classllu_1_1network_1_1_udp_connection.html">llu::network::UdpConnection</a> *con = <span class="keyword">new</span> <a class="code" href="classllu_1_1network_1_1_udp_connection.html">llu::network::UdpConnection</a>(<span class="stringliteral">&quot;225.10.1.2&quot;</span>,15002);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="classllu_1_1network_1_1_managed_connection.html">ManagedConnection</a> mcon(con);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    sockaddr_in target = <a class="code" href="namespacellu_1_1network.html#ae50fed51b566b947fd0cb1a4efbb3b12">resolve</a>(<span class="stringliteral">&quot;225.10.1.2&quot;</span>,15002);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespacetimux.html">timux</a>;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    mcon.<a class="code" href="classllu_1_1network_1_1_managed_connection.html#a464e40505c93ce769dacf381a6e0e503">sendMsg</a>(<a class="code" href="namespacellu_1_1network.html#a86501a24323e339aa0a3b4e935bb2495">createSendMessage</a>(7,target,<span class="stringliteral">&quot;bububa&quot;</span>));</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="main_8cpp.html#a7a29781a20c5dd4153c3c1cecf0ff328">   39</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#a7a29781a20c5dd4153c3c1cecf0ff328">main</a>(<span class="keywordtype">int</span> argc,<span class="keywordtype">char</span> **args){</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="classtimux_1_1timux.html">timux::timux</a> timuxMain(&amp;mcon,1000,25,target);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    timuxMain.<a class="code" href="classtimux_1_1timux.html#aedd4f1380074ca99661aa8ba142d5b72">loop</a>();</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    cout &lt;&lt; <span class="stringliteral">&quot;lebe noch &quot;</span>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">    char *text=(char *)malloc(sizeof(msg::data));</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">    sendMessage *msg;</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">    while(true){</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">        cin.read(text,sizeof(msg::data));</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">        cout &lt;&lt; text &lt;&lt; endl;</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">    }*/</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    srand(duration_cast&lt; nanoseconds &gt;(system_clock::now().time_since_epoch()).count());</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">char</span> *interfaceName = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">char</span> *mcastAddress  = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">char</span> *receivePort   = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">int</span> port;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">char</span> *stationClass  = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i =1;i&lt;argc;i++){</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        cout &lt;&lt; args[i] &lt;&lt;endl;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">switch</span>(*args[i]){</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;i&#39;</span>:</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                interfaceName = args[i]+1;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;a&#39;</span>:</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                mcastAddress = args[i]+1;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;p&#39;</span>:</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                receivePort = args[i]+1;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;c&#39;</span>:</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                stationClass = args[i]+1;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">if</span>(<span class="keyword">nullptr</span>==mcastAddress || <span class="keyword">nullptr</span> == receivePort || <span class="keyword">nullptr</span>==stationClass){</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        cout &lt;&lt; <span class="stringliteral">&quot;Not Enough parameters&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    }</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    port = atoi(receivePort);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    cout &lt;&lt; <span class="stringliteral">&quot;hallo Welt ?  &quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <a class="code" href="classllu_1_1network_1_1_connection.html">llu::network::Connection</a> *con;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">    #ifdef UDP_BC</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        con = <span class="keyword">new</span> <a class="code" href="classllu_1_1network_1_1_udp_connection.html">llu::network::UdpConnection</a>(mcastAddress,port);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">    #else</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        con = <span class="keyword">new</span> <a class="code" href="classllu_1_1network_1_1_udp_test_connection.html">llu::network::UdpTestConnection</a>();</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">    #endif</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <a class="code" href="classllu_1_1network_1_1_managed_connection.html">ManagedConnection</a> mcon(con);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    sockaddr_in target = <a class="code" href="namespacellu_1_1network.html#ae50fed51b566b947fd0cb1a4efbb3b12">resolve</a>(mcastAddress,port);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">    #ifndef UDP_BC</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        mcon.<a class="code" href="classllu_1_1network_1_1_managed_connection.html#a464e40505c93ce769dacf381a6e0e503">sendMsg</a>(<a class="code" href="namespacellu_1_1network.html#a86501a24323e339aa0a3b4e935bb2495">createSendMessage</a>(7,target,<span class="stringliteral">&quot;bububa&quot;</span>));</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">    #endif</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <a class="code" href="classllu_1_1datastructs_1_1_data_buffer.html">llu::datastructs::DataBuffer&lt;timux::data&gt;</a> db(&amp;cin);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="classtimux_1_1timux.html">timux::timux</a> timuxMain(&amp;mcon,1000,25,target,*stationClass,&amp;db);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="comment">//TODO: Buffer schreiben</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    timuxMain.<a class="code" href="classtimux_1_1timux.html#aedd4f1380074ca99661aa8ba142d5b72">loop</a>();</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;}</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
 <div class="ttc" id="timux_8hpp_html"><div class="ttname"><a href="timux_8hpp.html">timux.hpp</a></div></div>
 <div class="ttc" id="classllu_1_1network_1_1_udp_connection_html"><div class="ttname"><a href="classllu_1_1network_1_1_udp_connection.html">llu::network::UdpConnection</a></div><div class="ttdef"><b>Definition:</b> <a href="udp_8hpp_source.html#l00023">udp.hpp:23</a></div></div>
 <div class="ttc" id="namespacellu_1_1network_html"><div class="ttname"><a href="namespacellu_1_1network.html">llu::network</a></div><div class="ttdoc">Contaions functionalety used for network komunikation. </div><div class="ttdef"><b>Definition:</b> <a href="docs_8hpp_source.html#l00025">docs.hpp:25</a></div></div>
-<div class="ttc" id="classtimux_1_1timux_html"><div class="ttname"><a href="classtimux_1_1timux.html">timux::timux</a></div><div class="ttdoc">the main Class that performess all the logic </div><div class="ttdef"><b>Definition:</b> <a href="timux_8hpp_source.html#l00079">timux.hpp:79</a></div></div>
+<div class="ttc" id="classtimux_1_1timux_html"><div class="ttname"><a href="classtimux_1_1timux.html">timux::timux</a></div><div class="ttdoc">the main Class that performess all the logic </div><div class="ttdef"><b>Definition:</b> <a href="timux_8hpp_source.html#l00082">timux.hpp:82</a></div></div>
 <div class="ttc" id="namespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div></div>
-<div class="ttc" id="namespacellu_1_1network_html_ae50fed51b566b947fd0cb1a4efbb3b12"><div class="ttname"><a href="namespacellu_1_1network.html#ae50fed51b566b947fd0cb1a4efbb3b12">llu::network::resolve</a></div><div class="ttdeci">sockaddr_in resolve(const char *ip, uint16_t port)</div><div class="ttdoc">resolves an Ipv4 and an port to a sockaddr_in </div><div class="ttdef"><b>Definition:</b> <a href="network_8cpp_source.html#l00062">network.cpp:62</a></div></div>
-<div class="ttc" id="classllu_1_1network_1_1_managed_connection_html_a464e40505c93ce769dacf381a6e0e503"><div class="ttname"><a href="classllu_1_1network_1_1_managed_connection.html#a464e40505c93ce769dacf381a6e0e503">llu::network::ManagedConnection::sendMsg</a></div><div class="ttdeci">void sendMsg(sendMessage *m)</div><div class="ttdoc">puts a massage in the out queue </div><div class="ttdef"><b>Definition:</b> <a href="network_8cpp_source.html#l00128">network.cpp:128</a></div></div>
-<div class="ttc" id="timux_8hpp_html_addb651b6286e45373916cc2700efe972"><div class="ttname"><a href="timux_8hpp.html#addb651b6286e45373916cc2700efe972">time</a></div><div class="ttdeci">uint8_t time[8]</div><div class="ttdoc">the time, the data was send on </div><div class="ttdef"><b>Definition:</b> <a href="timux_8hpp_source.html#l00198">timux.hpp:198</a></div></div>
-<div class="ttc" id="main_8cpp_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00030">main.cpp:30</a></div></div>
+<div class="ttc" id="classllu_1_1datastructs_1_1_data_buffer_html"><div class="ttname"><a href="classllu_1_1datastructs_1_1_data_buffer.html">llu::datastructs::DataBuffer&lt; timux::data &gt;</a></div></div>
+<div class="ttc" id="namespacellu_1_1network_html_ae50fed51b566b947fd0cb1a4efbb3b12"><div class="ttname"><a href="namespacellu_1_1network.html#ae50fed51b566b947fd0cb1a4efbb3b12">llu::network::resolve</a></div><div class="ttdeci">sockaddr_in resolve(const char *ip, uint16_t port)</div><div class="ttdoc">resolves an Ipv4 and an port to a sockaddr_in </div><div class="ttdef"><b>Definition:</b> <a href="network_8cpp_source.html#l00111">network.cpp:111</a></div></div>
+<div class="ttc" id="classllu_1_1network_1_1_managed_connection_html_a464e40505c93ce769dacf381a6e0e503"><div class="ttname"><a href="classllu_1_1network_1_1_managed_connection.html#a464e40505c93ce769dacf381a6e0e503">llu::network::ManagedConnection::sendMsg</a></div><div class="ttdeci">void sendMsg(sendMessage *m)</div><div class="ttdoc">puts a massage in the out queue </div><div class="ttdef"><b>Definition:</b> <a href="network_8cpp_source.html#l00177">network.cpp:177</a></div></div>
+<div class="ttc" id="udp_test_8hpp_html"><div class="ttname"><a href="udp_test_8hpp.html">udpTest.hpp</a></div></div>
+<div class="ttc" id="classllu_1_1network_1_1_udp_test_connection_html"><div class="ttname"><a href="classllu_1_1network_1_1_udp_test_connection.html">llu::network::UdpTestConnection</a></div><div class="ttdef"><b>Definition:</b> <a href="udp_test_8hpp_source.html#l00023">udpTest.hpp:23</a></div></div>
+<div class="ttc" id="main_8cpp_html_a7a29781a20c5dd4153c3c1cecf0ff328"><div class="ttname"><a href="main_8cpp.html#a7a29781a20c5dd4153c3c1cecf0ff328">main</a></div><div class="ttdeci">int main(int argc, char **args)</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00039">main.cpp:39</a></div></div>
 <div class="ttc" id="udp_8hpp_html"><div class="ttname"><a href="udp_8hpp.html">udp.hpp</a></div><div class="ttdoc">Prototypes for a udp network konnection implementation. </div></div>
-<div class="ttc" id="classtimux_1_1timux_html_aedd4f1380074ca99661aa8ba142d5b72"><div class="ttname"><a href="classtimux_1_1timux.html#aedd4f1380074ca99661aa8ba142d5b72">timux::timux::loop</a></div><div class="ttdeci">void loop()</div><div class="ttdef"><b>Definition:</b> <a href="timux_8cpp_source.html#l00121">timux.cpp:121</a></div></div>
+<div class="ttc" id="classtimux_1_1timux_html_aedd4f1380074ca99661aa8ba142d5b72"><div class="ttname"><a href="classtimux_1_1timux.html#aedd4f1380074ca99661aa8ba142d5b72">timux::timux::loop</a></div><div class="ttdeci">void loop()</div><div class="ttdef"><b>Definition:</b> <a href="timux_8cpp_source.html#l00133">timux.cpp:133</a></div></div>
 <div class="ttc" id="namespacellu_1_1callback_html"><div class="ttname"><a href="namespacellu_1_1callback.html">llu::callback</a></div><div class="ttdoc">Contains the implementation of a generik callback handler. </div><div class="ttdef"><b>Definition:</b> <a href="callback_8cpp_source.html#l00006">callback.cpp:6</a></div></div>
-<div class="ttc" id="namespacellu_1_1network_html_a86501a24323e339aa0a3b4e935bb2495"><div class="ttname"><a href="namespacellu_1_1network.html#a86501a24323e339aa0a3b4e935bb2495">llu::network::createSendMessage</a></div><div class="ttdeci">sendMessage * createSendMessage(size_t bufferSize, sockaddr_in target, const void *from)</div><div class="ttdoc">creates a Message ready to be send to a connection </div><div class="ttdef"><b>Definition:</b> <a href="network_8cpp_source.html#l00082">network.cpp:82</a></div></div>
+<div class="ttc" id="namespacellu_1_1network_html_a86501a24323e339aa0a3b4e935bb2495"><div class="ttname"><a href="namespacellu_1_1network.html#a86501a24323e339aa0a3b4e935bb2495">llu::network::createSendMessage</a></div><div class="ttdeci">sendMessage * createSendMessage(size_t bufferSize, sockaddr_in target, const void *from)</div><div class="ttdoc">creates a Message ready to be send to a connection </div><div class="ttdef"><b>Definition:</b> <a href="network_8cpp_source.html#l00131">network.cpp:131</a></div></div>
+<div class="ttc" id="namespacechrono_html"><div class="ttname"><a href="namespacechrono.html">chrono</a></div></div>
 <div class="ttc" id="callback_8hpp_html"><div class="ttname"><a href="callback_8hpp.html">callback.hpp</a></div><div class="ttdoc">Prototypes for a Callback Handler. </div></div>
 <div class="ttc" id="ring_buffer_8hpp_html"><div class="ttname"><a href="ring_buffer_8hpp.html">ringBuffer.hpp</a></div><div class="ttdoc">Impelemnts a generik Ging buffer. </div></div>
+<div class="ttc" id="classllu_1_1network_1_1_connection_html"><div class="ttname"><a href="classllu_1_1network_1_1_connection.html">llu::network::Connection</a></div><div class="ttdef"><b>Definition:</b> <a href="network_8hpp_source.html#l00153">network.hpp:153</a></div></div>
 <div class="ttc" id="classllu_1_1network_1_1_managed_connection_html"><div class="ttname"><a href="classllu_1_1network_1_1_managed_connection.html">llu::network::ManagedConnection</a></div><div class="ttdoc">a Managed form of a Connection implements callbacks on massage recive internayls uses a callback hand...</div><div class="ttdef"><b>Definition:</b> <a href="network_8hpp_source.html#l00215">network.hpp:215</a></div></div>
+<div class="ttc" id="_data_buffer_8hpp_html"><div class="ttname"><a href="_data_buffer_8hpp.html">DataBuffer.hpp</a></div></div>
 <div class="ttc" id="namespacetimux_html"><div class="ttname"><a href="namespacetimux.html">timux</a></div><div class="ttdef"><b>Definition:</b> <a href="timux_8cpp_source.html#l00018">timux.cpp:18</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 1 2016 22:16:40 for timux by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 5 2016 20:19:48 for timux by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

@@ -1,7 +1,8 @@
 <map id="timeMux/timux.hpp" name="timeMux/timux.hpp">
-<area shape="rect" id="node5" href="$callback_8hpp.html" title="Prototypes for a Callback Handler. " alt="" coords="29,155,124,181"/>
-<area shape="rect" id="node8" href="$network_8hpp.html" title="Prototypes for network comunikation. " alt="" coords="418,80,511,107"/>
-<area shape="rect" id="node6" href="$linked_list_8hpp.html" title="implements a generik Linked List. " alt="" coords="258,229,361,256"/>
-<area shape="rect" id="node7" href="$linked_array_8hpp.html" title="Prototypes for a Linked Array. The Linked array implements acces over simulated index in a linked lis..." alt="" coords="119,229,231,256"/>
-<area shape="rect" id="node13" href="$ring_buffer_8hpp.html" title="Impelemnts a generik Ging buffer. " alt="" coords="698,155,801,181"/>
+<area shape="rect" id="node5" href="$callback_8hpp.html" title="Prototypes for a Callback Handler. " alt="" coords="258,155,353,181"/>
+<area shape="rect" id="node8" href="$network_8hpp.html" title="Prototypes for network comunikation. " alt="" coords="487,80,580,107"/>
+<area shape="rect" id="node15" href="$_data_buffer_8hpp.html" title="DataBuffer.hpp" alt="" coords="21,155,132,181"/>
+<area shape="rect" id="node6" href="$linked_list_8hpp.html" title="implements a generik Linked List. " alt="" coords="498,229,601,256"/>
+<area shape="rect" id="node7" href="$linked_array_8hpp.html" title="Prototypes for a Linked Array. The Linked array implements acces over simulated index in a linked lis..." alt="" coords="343,229,455,256"/>
+<area shape="rect" id="node13" href="$ring_buffer_8hpp.html" title="Impelemnts a generik Ging buffer. " alt="" coords="826,155,929,181"/>
 </map>

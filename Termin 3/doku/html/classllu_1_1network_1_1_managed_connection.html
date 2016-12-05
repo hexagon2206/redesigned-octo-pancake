@@ -199,7 +199,7 @@ sending is thread Save </dd></dl>
 
 <p>wrapes a classic connection to make it managed </p>
 
-<p>Definition at line <a class="el" href="network_8cpp_source.html#l00104">104</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00153">153</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
 
 </div>
 </div>
@@ -219,7 +219,7 @@ sending is thread Save </dd></dl>
 <p>cleans up some stuff, also cloese the connection </p>
 <dl class="section note"><dt>Note</dt><dd>delets the raw nonnection </dd></dl>
 
-<p>Definition at line <a class="el" href="network_8cpp_source.html#l00114">114</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00163">163</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
 
 </div>
 </div>
@@ -250,7 +250,7 @@ sending is thread Save </dd></dl>
 
 <p>adds a message recived callback </p>
 
-<p>Definition at line <a class="el" href="network_8cpp_source.html#l00136">136</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00185">185</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
 
 </div>
 </div>
@@ -270,7 +270,7 @@ sending is thread Save </dd></dl>
 
 <p>adds a massage clasifier for callbacks </p>
 
-<p>Definition at line <a class="el" href="network_8cpp_source.html#l00132">132</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00181">181</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
 
 </div>
 </div>
@@ -290,7 +290,7 @@ sending is thread Save </dd></dl>
 <p>used to check if the connection is alvice </p>
 <dl class="section return"><dt>Returns</dt><dd>true if the connection is still usable </dd></dl>
 
-<p>Definition at line <a class="el" href="network_8cpp_source.html#l00144">144</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00193">193</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
 
 </div>
 </div>
@@ -309,7 +309,7 @@ sending is thread Save </dd></dl>
 
 <p>closes the mennaged and underlying unmanaged connection </p>
 
-<p>Definition at line <a class="el" href="network_8cpp_source.html#l00140">140</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00189">189</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
 
 </div>
 </div>
@@ -328,7 +328,7 @@ sending is thread Save </dd></dl>
 
 <p>locks the connection for writing </p>
 
-<p>Definition at line <a class="el" href="network_8cpp_source.html#l00149">149</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00198">198</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
 
 </div>
 </div>
@@ -349,7 +349,7 @@ sending is thread Save </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>the unmanaged connection </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>should not be used, onely sutable for sending data if the sendMsg of managed connection is NOT used or the senderThread is killed or the outBuffer is locked </dd></dl>
 
-<p>Definition at line <a class="el" href="network_8cpp_source.html#l00165">165</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00214">214</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
 
 </div>
 </div>
@@ -393,7 +393,7 @@ sending is thread Save </dd></dl>
 
 <p>the function that implements the reciver thread beahvior </p>
 
-<p>Definition at line <a class="el" href="network_8cpp_source.html#l00169">169</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00218">218</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
 
 </div>
 </div>
@@ -431,7 +431,7 @@ sending is thread Save </dd></dl>
 
 <p>The function that implements the sender behavior. </p>
 
-<p>Definition at line <a class="el" href="network_8cpp_source.html#l00158">158</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00207">207</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
 
 </div>
 </div>
@@ -452,7 +452,7 @@ sending is thread Save </dd></dl>
 <p>puts a massage in the out queue </p>
 <dl class="section note"><dt>Note</dt><dd>it may takes some time for the massage to be send, if this is not aceptable <a class="el" href="classllu_1_1network_1_1_managed_connection.html#a6b75597f4a9ed3be7202f5118383eba5" title="can be used to acces the underlaying connection ">raw()</a> can be used </dd></dl>
 
-<p>Definition at line <a class="el" href="network_8cpp_source.html#l00128">128</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00177">177</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
 
 </div>
 </div>
@@ -472,7 +472,7 @@ sending is thread Save </dd></dl>
 <p>unlocks the connection for writing </p>
 <dl class="section note"><dt>Note</dt><dd>must be caled from the same thread as lockWrite </dd></dl>
 
-<p>Definition at line <a class="el" href="network_8cpp_source.html#l00153">153</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
+<p>Definition at line <a class="el" href="network_8cpp_source.html#l00202">202</a> of file <a class="el" href="network_8cpp_source.html">network.cpp</a>.</p>
 
 </div>
 </div>
@@ -628,7 +628,7 @@ sending is thread Save </dd></dl>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 1 2016 22:16:41 for timux by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 5 2016 20:19:50 for timux by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>
