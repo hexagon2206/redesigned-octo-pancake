@@ -3,7 +3,7 @@
  *  @author Lukas Lühr (hexagon2206)
  *  @bug No known bugs.
  */
-//#define UDP_BC
+#define UDP_BC
 
 
  #include <iostream>
@@ -72,7 +72,7 @@ int main(int argc,char **args){
 
     llu::network::Connection *con;
     #ifdef UDP_BC
-        con = new llu::network::UdpConnectionmcastAddress,15002);
+        con = new llu::network::UdpConnection(mcastAddress,15002);
     #else
         con = new llu::network::UdpTestConnection();
     #endif
