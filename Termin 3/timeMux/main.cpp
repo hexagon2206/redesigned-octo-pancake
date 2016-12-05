@@ -26,6 +26,7 @@
 #include "DataBuffer.hpp"
 
 using namespace std;
+using namespace chrono;
 using namespace llu::callback;
 using namespace llu::network;
 
@@ -36,7 +37,9 @@ using namespace llu::network;
 using namespace timux;
 
 int main(int argc,char **args){
-    srand(time(NULL));
+
+
+    srand(duration_cast< nanoseconds >(system_clock::now().time_since_epoch()).count());
 
     char *interfaceName = nullptr;
     char *mcastAddress  = nullptr;
