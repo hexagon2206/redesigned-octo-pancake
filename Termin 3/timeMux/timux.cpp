@@ -158,21 +158,32 @@ namespace timux{
                 DEBUG(std::cout << "frame Übergang : " << now << std::endl;)
                 if(-1==this->mySlot){
                     if(0==rand()%TIMUX_TRYTOJOIN){
-                        std::cout << "ttj" <<std::endl;
+                        DEBUG(std::cout << "ttj" <<std::endl;)
+                        int freeslotCount =0;
                         for(unsigned int i = 0;i!=this->slotCount;i++){
                             if(0xFF==nextFree[i] || collisions[nextFree[i]]!=1){
-                                if(0==(rand()%TIMUX_TRY_TAKE_SLOT)){
-                                    this->mySlot=i;
-                                    DEBUG(std::cout << "mySlot ist :"<<this->mySlot<<std::endl;)
-                                    break;
-                                }
+                                freeslotCount++;
                             }
                         }
+                        if(freeslotCount!=0){
+                            int chosenSlot = (rand()%freeslotCount);
+                            for(int i = 0;i<(this->slotCount);i++){
+                                if(0xFF==nextFree[i] || collisions[nextFree[i]]!=1){
+                                    chosenSlot--;
+                                    if(chosenSlot==0){
+                                        this->mySlot=i;
+                                        break;
+                                    }
+                                }
+                            }
+                            DEBUG(std::cout << "mySlot ist :"<<this->mySlot<<std::endl;)
+                        }
+
                     }
                 }else{
                     if((this->lastSendIn != curentFrame-1) || (1!=collisions[this->mySlot])){
                         this->mySlot=-1;
-                        std::cout << "cooMtS" << std::endl;
+                       DEBUG(std::cout << "cooMtS" << std::endl;)
                     }
                 }
                 free(nextFree);
