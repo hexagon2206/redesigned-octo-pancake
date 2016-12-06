@@ -3,7 +3,7 @@
  *  @author Lukas Lühr (hexagon2206)
  *  @bug No known bugs.
  */
-#define UDP_BC
+//define UDP_BC
 
 
  #include <iostream>

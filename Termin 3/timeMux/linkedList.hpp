@@ -38,6 +38,7 @@ namespace llu{
                  * @brief creates an empty linked list
                  */
                 LinkedList(){
+                    start.next=nullptr;
                 }
                 /**
                  * @brief deletes the linekd list and clears memory

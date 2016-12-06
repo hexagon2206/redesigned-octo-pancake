@@ -25,34 +25,43 @@ namespace timux{
     }
 
     void timing::synchronize(package *p){
-        unsigned long n = this->now();
-        this->lock.lock();
+        unsigned long n = this->raw();
+
         unsigned long o = toHBO_64(p->time);
-        this->timeOffset = (this->timeOffset+(n-o))/2;
+        synchronize(n-o);
+    }
+
+    void timing::synchronize(signed long no){
+        this->lock.lock();
+        this->timeOffset += no;
+        this->sampleCount++;
         this->lock.unlock();
     }
 
     unsigned long timing::now(){
-        long ofset=getOffset();
+        return raw()+getOffset();
+    }
+
+    unsigned long timing::raw(){
         milliseconds ms = duration_cast< milliseconds >(system_clock::now().time_since_epoch());
-        return ms.count()+ofset;
+        return ms.count();
     }
 
     long timing::getOffset(){
         this->lock.lock();
-        long offset =this->timeOffset;
+        long offset =this->timeOffset/this->sampleCount;
         this->lock.unlock();
         return offset;
     }
     timing::timing(llu::network::ManagedConnection *con,long offset){
         timeOffset=offset;
-        con->addClassifier(&TimeSynchronizeSignal);
+        /*con->addClassifier(&TimeSynchronizeSignal);
 
         this->timeSynchronizeCalback.data = (void* )this;
         this->timeSynchronizeCalback.fnc  = &TimeSynchronizeHandler;
 
         con->addCallback(TIMUX_TimeSignal,&timeSynchronizeCalback);
-
+        */
     }
 
 
@@ -82,27 +91,42 @@ namespace timux{
         setupNextFrame();
         con->addCallback(TIMUX_SotSignal,&MsgCalback);
      }
-     void timux::setupNextFrame(){
-        nextSlotLock.lock();
-        this->freeNextSlot = (uint8_t *)malloc(sizeof(uint8_t)*this->slotCount);
-        memset(freeNextSlot,0xFF,sizeof(uint8_t)*this->slotCount);
+     llu::datastructs::LinkedListArray<msg*> *timux::setupNextFrame(){
+        llu::datastructs::LinkedListArray<msg*> *tmp;
+        msgLock.lock();
+        tmp = msgForTimeSync;
+        msgForTimeSync = new llu::datastructs::LinkedListArray<msg*>();
+        msgLock.unlock();
+        return tmp;
+    }
 
-        this->collisions = (int *)malloc(sizeof(int)*this->slotCount);
-
-        memset(collisions,0,sizeof(int)*this->slotCount);
-        nextSlotLock.unlock();
-     }
+    void destroyFrameData(llu::datastructs::LinkedListArray<msg*> *frameData){
+        frameData->lock.lock();
+        listArrayEntrie<msg*> *s=&frameData->start;
+        s=s->next;
+        while(s){
+            free(s->data);
+            s=s->next;
+        }
+        frameData->lock.unlock();
+        delete frameData;
+    }
 
     void timux::recived(msg *m){
         if(m->frame!=this->curentFrame){
             std::cout << "Wrong Frame MyFrame:" << this->curentFrame << " recived:" <<m->frame << std::endl;
+            free(m);
             return ;
         }
-        nextSlotLock.lock();
-        this->freeNextSlot[m->nextSlot]=m->nextSlot;
-        collisions[m->slot]++;
-        nextSlotLock.unlock();
+        m->valide= true;
+        msgLock.lock();
+        int i = 0;
+        while(0==this->msgForTimeSync->put(m->rawRecivedTime+i,m)){
+            i++;
+        }
+        msgLock.unlock();
     }
+
 
     package *timux::build(){
         package *p=(package *)malloc(sizeof(package));
@@ -130,66 +154,82 @@ namespace timux{
         free(p);
     }
 
+    void timux::frameEnd(llu::datastructs::LinkedListArray<msg*> *frameData){
+        freeSlotList sl = removeColisons(frameData);
+
+        DEBUG(std::cout << "frame Übergang : " << now << std::endl;)
+        if(-1==this->mySlot && sl.freeSlots!=0){
+            if(0==rand()%joinPropability){
+                DEBUG(std::cout << "ttj" <<std::endl;)
+                int chosen = rand()%sl.freeSlots;
+                this->mySlot = sl.data[chosen];
+                DEBUG(std::cout << "mySlot ist :"<<this->mySlot<<std::endl;)
+            }
+        }
+        free(sl.data);
+        destroyFrameData(frameData);
+        DEBUG(std::cout << "took : " << (this->t.now()-now) << std::endl;)
+    }
+
+
+
+    freeSlotList timux::removeColisons(llu::datastructs::LinkedListArray<msg*> *frameData){
+        freeSlotList toret;
+        toret.freeSlots = 0;
+        toret.data      = (int*)malloc(sizeof(int)*this->slotCount);
+        bool *used       = (bool*)malloc(sizeof(bool)*this->slotCount);
+
+        frameData->lock.lock();
+        listArrayEntrie<msg*> *s=&frameData->start;
+
+        s=s->next;
+        if(s)while(s->next){
+            if(s->data->slot == s->next->data->slot){
+                s->data->valide = false;
+                s->next->data->valide=false;
+            }
+            if(s->data->valide){
+                used[s->data->slot]=true;
+                if(s->data->klasse=='A'){
+                    this->t.synchronize((s->data->rawRecivedTime)-(s->data->sendeTime));
+                }
+            }
+            s=s->next;
+        }
+        frameData->lock.unlock();
+        for(unsigned int i = 0 ;i< this->slotCount;i++){
+            if(!used[i]){
+                toret.data[toret.freeSlots] = i;
+                toret.freeSlots++;
+            }
+        }
+
+        free(used);
+        return toret;
+    }
+
     void timux::loop(){
         unsigned long now = this->t.now();
         unsigned long curentFrame = now/this->frameLength;
         this->curentFrame = curentFrame;
+
         while(this->curentFrame == curentFrame){            //Wait for the start of a new frame
             now = this->t.now();
             curentFrame = now/this->frameLength;
         }
 
-        uint8_t *nextFree=this->freeNextSlot;
-        int *collisions = this->collisions;
         this->curentFrame = curentFrame;
-        setupNextFrame();                               //Clear the trash data
-        free(nextFree);
-        free(collisions);
+        destroyFrameData(setupNextFrame());
 
         while(true){
             now = this->t.now();
             curentFrame = now/this->frameLength;
             if( curentFrame > this->curentFrame){
-                nextFree=this->freeNextSlot;
-                collisions = this->collisions;
                 this->curentFrame = curentFrame;
-                setupNextFrame();
 
-                DEBUG(std::cout << "frame Übergang : " << now << std::endl;)
-                if(-1==this->mySlot){
-                    if(0==rand()%TIMUX_TRYTOJOIN){
-                        DEBUG(std::cout << "ttj" <<std::endl;)
-                        int freeslotCount =0;
-                        for(unsigned int i = 0;i!=this->slotCount;i++){
-                            if(0xFF==nextFree[i] || collisions[nextFree[i]]!=1){
-                                freeslotCount++;
-                            }
-                        }
-                        if(freeslotCount!=0){
-                            int chosenSlot = (rand()%freeslotCount);
-                            for(int i = 0;i<(this->slotCount);i++){
-                                if(0xFF==nextFree[i] || collisions[nextFree[i]]!=1){
-                                    if(chosenSlot==0){
-                                        this->mySlot=i;
-                                        break;
-                                    }
-                                    chosenSlot--;
-                                }
-                            }
-                            DEBUG(std::cout << "mySlot ist :"<<this->mySlot<<std::endl;)
-                        }
+                frameEnd(setupNextFrame());
 
-                    }
-                }else{
-                    if((this->lastSendIn != curentFrame-1) || (1!=collisions[this->mySlot])){
-                        this->mySlot=-1;
-                       DEBUG(std::cout << "cooMtS" << std::endl;)
-                    }
-                }
-                free(nextFree);
-                free(collisions);
 
-                DEBUG(std::cout << "took : " << (this->t.now()-now) << std::endl;)
             }else if(-1!=this->mySlot){
                 unsigned int slot = (now%this->frameLength)/(this->frameLength/this->slotCount);
                 if(this->lastSendIn < curentFrame && (unsigned int)this->mySlot == slot){
@@ -227,7 +267,13 @@ namespace timux{
         toret->slot = (int)((timestamp%ti->frameLength)/(ti->frameLength/ti->slotCount));
         toret->nextSlot = toHBO_8(p->nextSlot)-1;
         memcpy(toret->data,p->data,sizeof(toret->data));
+        toret->sendeTime = timestamp;
+
+        toret->klasse = toHBO_8(p->klasse);
+
+        toret->rawRecivedTime = ti->t.raw();
         ti->recived(toret);
+
         std::cout << "Recived MSG F:" << toret->frame << "Slot : "<<  toret->slot << std::endl << toret->data << std::endl << std::endl;
 
         llu::network::destoryRecivedMessage(m);

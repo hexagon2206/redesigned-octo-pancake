@@ -33,8 +33,12 @@ namespace timux{
     struct msg{
         unsigned int slot;      /**< @brief the slot the package was recived in */
         unsigned long frame;    /**< @brief the frame the package was recived in */
-        uint8_t data[sizeof(package::data)]; /**< The unchanged payload */
+        uint8_t data[sizeof(package::data)]; /**< @brief The unchanged payload */
+        uint8_t klasse;
         uint8_t nextSlot;       /**< @brief the next slot the client is going to use */
+        unsigned long sendeTime;/**< @brief The time wenn the Message was send*/
+        unsigned long rawRecivedTime;/**< @brief The Time the Msg Was recived, without Offset*/
+        bool valide;
     };
 
     /**
@@ -43,6 +47,7 @@ namespace timux{
      */
     class timing{
             long timeOffset;    /**< @brief stores the offset of this system clock */
+            long sampleCount=1;
             std::mutex lock;    /**< @brief used for synchronisation */
             llu::network::netwokMsgCallback timeSynchronizeCalback; /**< @brief the callback for the A class massages */
         public :
@@ -58,9 +63,19 @@ namespace timux{
             void synchronize(package *p);
 
             /**
+             * @brief synchronizes with a given offset
+             */
+            void synchronize(long offset);
+
+            /**
              * @brief calculates the current time, also uses offset ot this
              */
             unsigned long now();
+
+            /**
+             * @brief returns the raw time without offset
+             */
+            unsigned long raw();
 
             /**
              * @brief returnes the offset
@@ -73,8 +88,11 @@ namespace timux{
         uint8_t d[sizeof(package::data)];
     } __attribute__((packed));
 
-    #define TIMUX_TRYTOJOIN 5   // 1 von X
-    #define TIMUX_TRY_TAKE_SLOT 2   // 1 von X
+
+    struct freeSlotList{
+        int freeSlots;
+        int *data;
+    };
 
     /**
      * @brief the main Class that performess all the logic
@@ -83,18 +101,20 @@ namespace timux{
         private:
             llu::network::netwokMsgCallback MsgCalback;
 
+            llu::datastructs::LinkedListArray<msg*> *msgForTimeSync;
+
             sockaddr_in target;
 
             unsigned long curentFrame;
             unsigned long lastSendIn=0;
 
-            std::mutex nextSlotLock;
+            std::mutex msgLock;
 
-            uint8_t *freeNextSlot;
-            int *collisions;
 
             int ready=false;
             int mySlot=-1;
+
+            int joinPropability=5;      // 1/5 Warseinlichkeit bei zu treten zu versuchen
 
             uint8_t stationClass='B';
 
@@ -105,7 +125,7 @@ namespace timux{
             /**
              * @brief cleans freeNextSlots and collisions
              */
-            void setupNextFrame();
+            llu::datastructs::LinkedListArray<msg*> *setupNextFrame();
 
             /**
               * @brief builds a Massage from data source
@@ -125,6 +145,13 @@ namespace timux{
             std::mutex sendDataLock;
 
             llu::network::ManagedConnection *con;
+
+
+            void frameEnd(llu::datastructs::LinkedListArray<msg*> *frameData);
+
+            freeSlotList removeColisons(llu::datastructs::LinkedListArray<msg*> *frameData);
+
+
 
         public:
 
