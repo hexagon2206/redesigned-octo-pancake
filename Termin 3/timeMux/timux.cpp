@@ -184,8 +184,8 @@ namespace timux{
 
         s=s->next;
         bool msok=false;
-        if(s)while(s->next){
-            if(s->data->slot == s->next->data->slot){
+        while(s){
+            if(s->next && s->data->slot == s->next->data->slot){
                 s->data->valide = false;
                 s->next->data->valide=false;
             }
