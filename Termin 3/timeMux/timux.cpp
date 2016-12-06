@@ -183,18 +183,26 @@ namespace timux{
         listArrayEntrie<msg*> *s=&frameData->start;
 
         s=s->next;
+        bool msok=false;
         if(s)while(s->next){
             if(s->data->slot == s->next->data->slot){
                 s->data->valide = false;
                 s->next->data->valide=false;
             }
             if(s->data->valide){
-                used[s->data->slot]=true;
+                if(this->mySlot == s->data->slot){
+                    msok = true;
+                }
+
+                used[s->data->nextSlot]=true;
                 if(s->data->klasse=='A'){
                     this->t.synchronize((s->data->rawRecivedTime)-(s->data->sendeTime));
                 }
             }
             s=s->next;
+        }
+        if(!msok){
+            this->mySlot=-1;
         }
         frameData->lock.unlock();
         for(unsigned int i = 0 ;i< this->slotCount;i++){
