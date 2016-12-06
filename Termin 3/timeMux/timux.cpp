@@ -190,8 +190,9 @@ namespace timux{
                 s->next->data->valide=false;
             }
             if(s->data->valide){
-                if(this->mySlot == s->data->slot){
+                if(this->mySlot!=-1 && this->mySlot == s->data->slot){
                     msok = true;
+                    std::cout << "mySlotBestätigt"<<std::endl;
                 }
 
                 used[s->data->nextSlot]=true;
