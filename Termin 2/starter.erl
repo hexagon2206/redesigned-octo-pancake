@@ -15,10 +15,11 @@ init(StarterNumber) ->
 
     io:format("~p~n",[Config]),
     net_adm:ping(NameServiceNode),
+    NameService = global:whereis_name(NameServiceName),
     % Fürs Sync wichtig
     timer:sleep(500),
 
-    getParameters(Coordinator, Group, Team, StarterNumber, NameServiceName).
+    getParameters(Coordinator, Group, Team, StarterNumber, NameService).
 
 % Ruft die Steuerungsparamter für die ggt - Prozesse ab
 getParameters(Coordinator, Group, Team ,StarterNumber, NameServiceName) ->

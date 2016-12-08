@@ -11,7 +11,7 @@ rel/example_project
 .rebar
 *.project
 *.cfg
-
+**/out/
 
 
 **/.idea/workspace.xml 
@@ -21,3 +21,4 @@ rel/example_project
 **/.idea/dictionaries/*
 **/*.iml
 **/*.ipr
+*.xml
