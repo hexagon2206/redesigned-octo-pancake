@@ -22,7 +22,7 @@ namespace llu{
 
 
 
-            if(interface){
+/*            if(interface){
                 struct ifreq ifr1,
                              ifr2;
                 memset(&ifr1, 0, sizeof(ifr1));
@@ -35,7 +35,7 @@ namespace llu{
                 if (setsockopt(s, SOL_SOCKET, SO_BINDTODEVICE, (void *)&ifr2, sizeof(ifr2)) < 0) {
                     perror("could not set sender interface");
                 }
-            }
+            }*/
 
 
 
@@ -51,12 +51,23 @@ namespace llu{
             }
 
             if(bcGroup){
+
                 if(0>setsockopt(s, IPPROTO_IP, IP_MULTICAST_LOOP, &yes, sizeof(yes)))perror("multicastLoopFailed");
 
                 if(0>setsockopt(s, IPPROTO_IP, IP_MULTICAST_TTL, &ttl, sizeof(ttl)))perror("MulticastTTLFailed");
 
-                myMreq.imr_multiaddr.s_addr = inet_addr(bcGroup);
-                myMreq.imr_interface.s_addr = htonl(INADDR_ANY);
+
+                if(interface){
+                    myMreq.imr_multiaddr.s_addr = inet_addr(bcGroup);
+                    myMreq.imr_interface.s_addr = htonl(INADDR_ANY);
+
+                    struct ip_mreqn mreqn;
+                    memset(&mreqn,0,sizeof(mreqn));
+                    mreqn.imr_ifindex = if_nametoindex(interface);
+
+                    if(0>setsockopt(s, IPPROTO_IP, IP_MULTICAST_IF, &mreqn, sizeof(mreqn)))perror("COULD not set interface");
+
+                }
 
                 if( setsockopt (s, IPPROTO_IP, IP_ADD_MEMBERSHIP, &myMreq, sizeof(myMreq))<0){
                     perror("could not join MC Group");
