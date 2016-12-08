@@ -11,83 +11,71 @@ namespace llu{
     namespace network{
         UdpConnection::UdpConnection(char *bcGroup,uint16_t myPort,char *interface,char ttl,size_t maxRcvMsgLeng){
 
-            sender = socket (AF_INET, SOCK_DGRAM, 0);
+            int yes=1;
 
-            s = socket (AF_INET, SOCK_DGRAM, 0);
-            unsigned int yes=1;
-            if(setsockopt(s, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(yes))<0){
-                perror("AddrReuse Failed");
-            }
-            //setsockopt(s, SOL_SOCKET, SO_REUSEPORT, &yes, sizeof(yes));
-
-
-
-/*            if(interface){
-                struct ifreq ifr1,
-                             ifr2;
-                memset(&ifr1, 0, sizeof(ifr1));
-                memset(&ifr2, 0, sizeof(ifr2));
-                snprintf(ifr1.ifr_name, sizeof(ifr1.ifr_name), interface);
-                snprintf(ifr2.ifr_name, sizeof(ifr2.ifr_name), interface);
-                if (setsockopt(s, SOL_SOCKET, SO_BINDTODEVICE, (void *)&ifr1, sizeof(ifr1)) < 0) {
-                    perror("could not set reciver interface");
-                }
-                if (setsockopt(s, SOL_SOCKET, SO_BINDTODEVICE, (void *)&ifr2, sizeof(ifr2)) < 0) {
-                    perror("could not set sender interface");
-                }
-            }*/
-
-
-
-            cliAddr.sin_family = AF_INET;
-            cliAddr.sin_addr.s_addr = htonl (INADDR_ANY);
-            cliAddr.sin_port = htons (myPort);
-
-
-
-
-            if(0>bind ( s, (struct sockaddr *) &cliAddr, sizeof (cliAddr) )){
-                perror("bind failed");
+            //Setting up sender
+            if(0>(this->sender=socket(AF_INET,SOCK_DGRAM,0))){
+                perror("error setting up sender socket");
             }
 
-            if(bcGroup){
+            memset((char*)&this->groupAddr,0,sizeof(this->groupAddr));
+            this->groupAddr.sin_family = AF_INET;
+            this->groupAddr.sin_addr.s_addr = inet_addr(bcGroup);
+            this->groupAddr.sin_port = htons(myPort);
 
-                if(0>setsockopt(s, IPPROTO_IP, IP_MULTICAST_LOOP, &yes, sizeof(yes)))perror("multicastLoopFailed");
-
-                if(0>setsockopt(s, IPPROTO_IP, IP_MULTICAST_TTL, &ttl, sizeof(ttl)))perror("MulticastTTLFailed");
-
-                myMreq.imr_multiaddr.s_addr = inet_addr(bcGroup);
-                myMreq.imr_interface.s_addr = inet_addr(interface);
-
-
-/*                if(interface){
-                    struct ip_mreqn mreqn;
-                    memset(&mreqn,0,sizeof(mreqn));
-                    mreqn.imr_ifindex = if_nametoindex(interface);
-
-                    if(0>setsockopt(s, IPPROTO_IP, IP_MULTICAST_IF, &mreqn, sizeof(mreqn)))perror("COULD not set interface");
-
-                }*/
-
-                if( setsockopt (s, IPPROTO_IP, IP_ADD_MEMBERSHIP, &myMreq, sizeof(myMreq))<0){
-                    perror("could not join MC Group");
-                }
+            if(0>setsockopt(this->sender, IPPROTO_IP, IP_MULTICAST_LOOP, &yes, sizeof(yes))){
+                perror("error setting loopback");
             }
+
+            if(0>setsockopt(this->sender, IPPROTO_IP, IP_MULTICAST_TTL, &yes, sizeof(yes))){
+                perror("error setting TTL");
+            }
+
+            struct in_addr localInterface;
+            memset((char*)&localInterface,0,sizeof(localInterface));
+
+            localInterface.s_addr = inet_addr(interface);
+            if(0>setsockopt(sender, IPPROTO_IP, IP_MULTICAST_IF, (char *)&localInterface, sizeof(localInterface))){
+              perror("Setting local interface error");
+            }
+
+            //setting up Reciver
+            reciver = socket(AF_INET, SOCK_DGRAM,0);
+
+            if(0>setsockopt(reciver, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(yes))){
+                perror("Setting SO_REUSEADDR error");
+            }
+
+            memset((char *) &localSock, 0, sizeof(localSock));
+            localSock.sin_family = AF_INET;
+            localSock.sin_port = htons(myPort);
+            localSock.sin_addr.s_addr = inet_addr(bcGroup);
+            if(bind(reciver, (struct sockaddr*)&localSock, sizeof(localSock))){
+                perror("Binding datagram socket error");
+            }
+
+            memset((char *) &group, 0, sizeof(group));
+            group.imr_multiaddr.s_addr = inet_addr(bcGroup);
+            group.imr_interface.s_addr = inet_addr(interface);
+            if(0>setsockopt(reciver, IPPROTO_IP, IP_ADD_MEMBERSHIP, (char *)&group, sizeof(group))){
+                perror("Adding multicast group error");
+            }
+
 
             this->maxRcvMsgLeng=maxRcvMsgLeng;
-            currentMsg = llu::network::createRecivedMessage(maxRcvMsgLeng);
         }
 
         recivedMessage *UdpConnection::recvMsg(){
-            socklen_t len = (socklen_t) sizeof(currentMsg->sender);
-            currentMsg->dataLength = recvfrom ( s, currentMsg->data, currentMsg->length, 0,(struct sockaddr *) &currentMsg->sender,&len);
-            recivedMessage *t=currentMsg;
             currentMsg = llu::network::createRecivedMessage(maxRcvMsgLeng);
+            socklen_t len = (socklen_t) sizeof(currentMsg->sender);
+            currentMsg->dataLength = recvfrom ( reciver, currentMsg->data, currentMsg->length, 0,(struct sockaddr *) &currentMsg->sender,&len);
+            recivedMessage *t=currentMsg;
+            currentMsg=nullptr;
             return t;
         }
 
         void UdpConnection::sendMsg(sendMessage *m){
-            sendto(sender,m->data, m->length,0 ,(struct sockaddr *) &m->target, sizeof (m->target));
+            sendto(sender,m->data, m->length,0 ,(const sockaddr *)&this->groupAddr, sizeof (this->groupAddr));
             destorySendMessage(m);
         }
 
@@ -97,8 +85,8 @@ namespace llu{
         }
 
         void UdpConnection::kill(){
-            destoryRecivedMessage(currentMsg);
-            shutdown(s,2);
+            if(currentMsg!=nullptr)destoryRecivedMessage(currentMsg);
+            shutdown(reciver,2);
         }
 
 

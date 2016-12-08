@@ -38,7 +38,6 @@ namespace llu{
 
                         db->dataLock.lock();
                         if(nullptr!=db->data)free(db->data);
-                        std::cout  << (char*)tmp<<std::endl;
                         db->data=tmp;
                         db->dataLock.unlock();
                     }

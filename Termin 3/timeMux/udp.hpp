@@ -6,11 +6,11 @@
 
 #ifndef __LLU_UDP_H__
 #define __LLU_UDP_H__
-#include <netinet/in.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/ioctl.h>
 #include <net/if.h>
+#include <netinet/in.h>
 
 
 #include <cstring>
@@ -37,15 +37,14 @@ namespace llu{
             private :
                 recivedMessage *currentMsg;
 
-                struct sockaddr_in  cliAddr,
-                                    tmpAddr;
+                struct sockaddr_in  groupAddr,
+                                    localSock;
 
-                struct ip_mreq      myMreq;
+                ip_mreq             group;
 
                 size_t maxRcvMsgLeng;
-                int s;
+                int reciver;
                 int sender;
-                struct hostent *h;
 
 
         };

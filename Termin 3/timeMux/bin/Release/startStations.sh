@@ -57,7 +57,8 @@ dataSource="./Vessel3"
 #
 # Example: stationCmd="java aufgabe4.MyStation $interfaceName $mcastAddress $receivePort $stationClass"
 ########################################################################################################
-stationCmd="./timeMux  i$interfaceName a$mcastAddress p$receivePort c$stationClass o$UTCoffsetMs"
+ifIP=$(ip addr show "${interfaceName}" | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
+stationCmd="./timeMux  i$ifIP a$mcastAddress p$receivePort c$stationClass o$UTCoffsetMs"
 
 
 printUsage() {
