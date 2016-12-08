@@ -1,7 +1,8 @@
 package mware_lib;
 
 /**
- *
+ * Stellt den Namensdinest für die Middleware zur Verfügung
+ * Möglichkeit: Objektreferezen werden an Hand des übergebenen Namens identifiziert
  */
 public interface Nameservice {
     /**

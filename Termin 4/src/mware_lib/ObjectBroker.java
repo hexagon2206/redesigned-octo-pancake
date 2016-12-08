@@ -1,8 +1,6 @@
 package mware_lib;
 
-/**
- * Created by Jolly Joker on 02.12.2016.
- */
+
 public interface  ObjectBroker {
     /**
      * Liefert das Objekt zurück, das als zentrales Objekt der Middleware aus Anwendungsschicht dient
