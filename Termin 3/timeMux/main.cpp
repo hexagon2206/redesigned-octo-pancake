@@ -38,14 +38,12 @@ using namespace timux;
 
 int main(int argc,char **args){
 
-
-    srand(duration_cast< nanoseconds >(system_clock::now().time_since_epoch()).count());
-
     char *interfaceName = nullptr;
     char *mcastAddress  = nullptr;
     char *receivePort   = nullptr;
     int port;
     char *stationClass  = nullptr;
+    char *seed          = nullptr;
 
     for(int i =1;i<argc;i++){
         cout << args[i] <<endl;
@@ -62,6 +60,9 @@ int main(int argc,char **args){
             case 'c':
                 stationClass = args[i]+1;
                 break;
+            case 's':
+                seed = args[i]+1;
+                break;
         }
     }
 
@@ -71,6 +72,11 @@ int main(int argc,char **args){
     }
     port = atoi(receivePort);
 
+    if(nullptr == seed){
+        srand(duration_cast< nanoseconds >(system_clock::now().time_since_epoch()).count());
+    }else{
+        srand(atol(seed));
+    }
     cout << "hallo Welt ?  " << endl;
 
     llu::network::Connection *con;
@@ -90,12 +96,8 @@ int main(int argc,char **args){
 
     llu::datastructs::DataBuffer<timux::data> db(&cin);
     timux::timux timuxMain(&mcon,1000,25,target,*stationClass,&db);
-
-
-
-
-    //TODO: Buffer schreiben
     timuxMain.loop();
+
     return 0;
 }
 
