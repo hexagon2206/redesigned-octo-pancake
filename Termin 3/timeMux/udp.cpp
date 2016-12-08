@@ -56,18 +56,18 @@ namespace llu{
 
                 if(0>setsockopt(s, IPPROTO_IP, IP_MULTICAST_TTL, &ttl, sizeof(ttl)))perror("MulticastTTLFailed");
 
+                myMreq.imr_multiaddr.s_addr = inet_addr(bcGroup);
+                myMreq.imr_interface.s_addr = inet_addr(interface);
 
-                if(interface){
-                    myMreq.imr_multiaddr.s_addr = inet_addr(bcGroup);
-                    myMreq.imr_interface.s_addr = htonl(INADDR_ANY);
 
+/*                if(interface){
                     struct ip_mreqn mreqn;
                     memset(&mreqn,0,sizeof(mreqn));
                     mreqn.imr_ifindex = if_nametoindex(interface);
 
                     if(0>setsockopt(s, IPPROTO_IP, IP_MULTICAST_IF, &mreqn, sizeof(mreqn)))perror("COULD not set interface");
 
-                }
+                }*/
 
                 if( setsockopt (s, IPPROTO_IP, IP_ADD_MEMBERSHIP, &myMreq, sizeof(myMreq))<0){
                     perror("could not join MC Group");
