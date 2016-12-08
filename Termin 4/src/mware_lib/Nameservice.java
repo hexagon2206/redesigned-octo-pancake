@@ -1,7 +1,7 @@
 package mware_lib;
 
 /**
- * Created by Jolly Joker on 02.12.2016.
+ *
  */
 public interface Nameservice {
     /**

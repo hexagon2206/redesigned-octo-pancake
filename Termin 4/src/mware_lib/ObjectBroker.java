@@ -3,7 +3,7 @@ package mware_lib;
 /**
  * Created by Jolly Joker on 02.12.2016.
  */
-public abstract class ObjectBroker {
+public interface  ObjectBroker {
     /**
      * Liefert das Objekt zurück, das als zentrales Objekt der Middleware aus Anwendungsschicht dient
      *
@@ -12,8 +12,7 @@ public abstract class ObjectBroker {
      * @param debug gibt an, ob Debuginformationen angezeigt werden sollen oder nicht
      * @return das zentrale Objekt der Middleware
      */
-    public static ObjectBroker init(String host, int port, boolean debug){
-        // TODO: Implementierung
+     static ObjectBroker init(String host, int port, boolean debug){
         return null;
     }
 
@@ -21,10 +20,10 @@ public abstract class ObjectBroker {
      * Liefert den Namensdienst
      * @return das Namensdienstobjekt
      */
-    abstract Nameservice getNameservice();
+     Nameservice getNameservice();
 
     /**
      * Fährt das System herunter
      */
-    abstract void shutDown();
+     void shutDown();
 }
