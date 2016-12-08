@@ -9,7 +9,7 @@
 
 namespace llu{
     namespace network{
-        UdpConnection::UdpConnection(char *bcGroup,uint16_t myPort,char ttl,size_t maxRcvMsgLeng){
+        UdpConnection::UdpConnection(char *bcGroup,uint16_t myPort,char *interface,char ttl,size_t maxRcvMsgLeng){
 
             sender = socket (AF_INET, SOCK_DGRAM, 0);
 
@@ -19,6 +19,23 @@ namespace llu{
                 perror("AddrReuse Failed");
             }
             //setsockopt(s, SOL_SOCKET, SO_REUSEPORT, &yes, sizeof(yes));
+
+
+
+            if(interface){
+                struct ifreq ifr1,
+                             ifr2;
+                memset(&ifr1, 0, sizeof(ifr1));
+                memset(&ifr2, 0, sizeof(ifr2));
+                snprintf(ifr1.ifr_name, sizeof(ifr1.ifr_name), interface);
+                snprintf(ifr2.ifr_name, sizeof(ifr2.ifr_name), interface);
+                if (setsockopt(s, SOL_SOCKET, SO_BINDTODEVICE, (void *)&ifr1, sizeof(ifr1)) < 0) {
+                    perror("could not set reciver interface");
+                }
+                if (setsockopt(s, SOL_SOCKET, SO_BINDTODEVICE, (void *)&ifr2, sizeof(ifr2)) < 0) {
+                    perror("could not set sender interface");
+                }
+            }
 
 
 

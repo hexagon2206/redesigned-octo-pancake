@@ -126,7 +126,7 @@
 	<arpa/inet.h>
 	<mutex>
 
-1481100619 source:/home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/main.cpp
+1481194179 source:/home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/main.cpp
 	<iostream>
 	"callback.hpp"
 	"ringBuffer.hpp"
@@ -162,10 +162,12 @@
 	<thread>
 	<mutex>
 
-1480773399 /home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/udp.hpp
+1481194388 /home/user/uni/vs/redesigned-octo-pancake/Termin 3/timeMux/udp.hpp
 	<netinet/in.h>
 	<sys/types.h>
 	<sys/socket.h>
+	<sys/ioctl.h>
+	<net/if.h>
 	<cstring>
 	"network.hpp"
 	"ringBuffer.hpp"

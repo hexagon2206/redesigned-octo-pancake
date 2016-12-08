@@ -81,7 +81,7 @@ int main(int argc,char **args){
 
     llu::network::Connection *con;
     #ifdef UDP_BC
-        con = new llu::network::UdpConnection(mcastAddress,port);
+        con = new llu::network::UdpConnection(mcastAddress,port,interfaceName);
     #else
         con = new llu::network::UdpTestConnection();
     #endif
