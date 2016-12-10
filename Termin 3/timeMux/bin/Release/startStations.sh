@@ -80,7 +80,7 @@ then
 				for i in `seq $firstIndex $lastIndex`
 				do
 					# Launching data source and station.
-					$dataSource $teamNo $i | $stationCmd &
+					$dataSource $teamNo $i | $stationCmd s$RANDOM &
 					#
 					# If your are annoyed by all the output, try this instead:
 					#  $dataSource $teamNo $i | $stationCmd > /dev/null 2>&1 &

@@ -225,6 +225,7 @@ namespace timux{
         while(this->curentFrame == curentFrame){            //Wait for the start of a new frame
             now = this->t.now();
             curentFrame = now/this->frameLength;
+            std::this_thread::sleep_for(std::chrono::microseconds(1));
         }
 
         this->curentFrame = curentFrame;
@@ -251,8 +252,12 @@ namespace timux{
                     toNBO((uint64_t)now,p->time);
                     send(p);
                     std::cout<<"sending slot :"<<mySlot<<" at: " << now <<endl;
+
+                    std::this_thread::sleep_for(std::chrono::microseconds(this->frameLength/this->slotCount*(this->slotCount-2)));
                 }
             }
+            std::this_thread::sleep_for(std::chrono::microseconds(1));
+
         }
 
     }
@@ -283,7 +288,7 @@ namespace timux{
         toret->rawRecivedTime = ti->t.raw();
         ti->recived(toret);
 
-        std::cout << "Recived MSG F:" << toret->frame << "Slot : "<<  toret->slot << std::endl << toret->data << std::endl << std::endl;
+        //std::cout << "Recived MSG F:" << toret->frame << "Slot : "<<  toret->slot << std::endl << toret->data << std::endl << std::endl;
 
         llu::network::destoryRecivedMessage(m);
     }
