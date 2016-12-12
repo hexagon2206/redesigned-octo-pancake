@@ -1,7 +1,7 @@
 package mware_lib;
 
 
-public interface  ObjectBroker {
+public interface ObjectBrokerInterface {
     /**
      * Liefert das Objekt zurück, das als zentrales Objekt der Middleware aus Anwendungsschicht dient
      *
@@ -10,7 +10,7 @@ public interface  ObjectBroker {
      * @param debug gibt an, ob Debuginformationen angezeigt werden sollen oder nicht
      * @return das zentrale Objekt der Middleware
      */
-     static ObjectBroker init(String host, int port, boolean debug){
+     static ObjectBrokerInterface init(String host, int port, boolean debug){
         return null;
     }
 
@@ -18,7 +18,7 @@ public interface  ObjectBroker {
      * Liefert den Namensdienst
      * @return das Namensdienstobjekt
      */
-     Nameservice getNameservice();
+     NameServiceInterface getNameservice();
 
     /**
      * Fährt das System herunter

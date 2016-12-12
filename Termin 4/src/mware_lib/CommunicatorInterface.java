@@ -12,7 +12,7 @@ import java.net.InetAddress;
  * TODO:
  * - Wie soll die Nachricht im Detail aussen? (Datentyp etc.)
  */
-public interface Communicator {
+public interface CommunicatorInterface {
 
     /**
      * Sendet eine Nachricht an den übergeben Empfänger
