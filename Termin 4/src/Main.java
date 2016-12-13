@@ -26,10 +26,10 @@ public class Main {
                 sc = SocketChannel.open(isa);
 
                 System.out.println("habe channel geöffnet");
-                byte[] message = "1".getBytes();
+                byte[] message = "1".getBytes("UTF-8");
                 ByteBuffer bb = ByteBuffer.wrap(message);
                 sc.write(bb);
-                message = "Hallo Welt".getBytes();
+                message = "Hallo Welt".getBytes("UTF-8");
                 bb = ByteBuffer.wrap(message);
                 sc.write(bb);
                 sc.close();

@@ -10,12 +10,12 @@ interface NameServiceInterface {
      * @param servant die Objektreferenz
      * @param name der Name des Objekts
      */
-    void rebind(Object servant, String name);
+    void rebind(String servant, String name);
 
     /**
      * Liefert eine Objektreferenz zu einem Namen zurück
      * @param name der Name der Objektrefrenz
      * @return die Objektreferenz zum übergebenen Namen
      */
-    Object resolve(String name);
+    String resolve(String name);
 }
