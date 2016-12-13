@@ -36,6 +36,7 @@ namespace timux{
         this->timeOffset += no;
         this->sampleCount++;
         this->lock.unlock();
+        std::cout << "adding offset" << no << endl;
     }
 
     unsigned long timing::now(){
@@ -71,7 +72,7 @@ namespace timux{
         destoryRecivedMessage(m);
     }
 
-    timux::timux(llu::network::ManagedConnection *con,unsigned long frameLength,unsigned long slotCount,sockaddr_in target,uint8_t stationClass,llu::datastructs::DataBuffer<data> *dataSource):t(con){
+    timux::timux(llu::network::ManagedConnection *con,unsigned long frameLength,unsigned long slotCount,sockaddr_in target,uint8_t stationClass,llu::datastructs::DataBuffer<data> *dataSource,long offset):t(con,offset){
         this->frameLength = frameLength;
         this->slotCount = slotCount;
         this->dataSource = dataSource;
@@ -197,7 +198,7 @@ namespace timux{
 
                 used[s->data->nextSlot]=true;
                 if(s->data->klasse=='A'){
-                    this->t.synchronize((s->data->rawRecivedTime)-(s->data->sendeTime));
+                    this->t.synchronize((s->data->sendeTime)-(s->data->rawRecivedTime));
                 }
             }
             s=s->next;

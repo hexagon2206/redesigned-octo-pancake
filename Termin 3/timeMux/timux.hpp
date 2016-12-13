@@ -162,7 +162,7 @@ namespace timux{
 
             void recived(msg *m);
 
-            timux(llu::network::ManagedConnection *con,unsigned long frameLength,unsigned long slotCount,sockaddr_in target,uint8_t stationClass='B',llu::datastructs::DataBuffer<data> *dataSource=nullptr);
+            timux(llu::network::ManagedConnection *con,unsigned long frameLength,unsigned long slotCount,sockaddr_in target,uint8_t stationClass='B',llu::datastructs::DataBuffer<data> *dataSource=nullptr,long offset=0);
 
             void loop();
 

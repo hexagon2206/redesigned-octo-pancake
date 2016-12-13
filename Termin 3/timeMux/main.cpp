@@ -44,6 +44,8 @@ int main(int argc,char **args){
     int port;
     char *stationClass  = nullptr;
     char *seed          = nullptr;
+    char *offset        = nullptr;
+    int offsetVal          = 0 ;
 
     for(int i =1;i<argc;i++){
         cout << args[i] <<endl;
@@ -63,6 +65,10 @@ int main(int argc,char **args){
             case 's':
                 seed = args[i]+1;
                 break;
+            case 'o':
+                offset = args[i]+1;
+                break;
+
         }
     }
 
@@ -71,6 +77,11 @@ int main(int argc,char **args){
         return 1;
     }
     port = atoi(receivePort);
+
+    if(nullptr!= offset){
+        offsetVal = atoi(offset);
+    }
+
 
     if(nullptr == seed){
         srand(duration_cast< nanoseconds >(system_clock::now().time_since_epoch()).count());
@@ -95,7 +106,7 @@ int main(int argc,char **args){
     #endif
 
     llu::datastructs::DataBuffer<timux::data> db(&cin);
-    timux::timux timuxMain(&mcon,1000,25,target,*stationClass,&db);
+    timux::timux timuxMain(&mcon,1000,25,target,*stationClass,&db,offsetVal);
     timuxMain.loop();
 
     return 0;
