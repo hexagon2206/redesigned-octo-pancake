@@ -1,7 +1,6 @@
 package mware_lib;
 
-import org.omg.CORBA.Object;
-
+import mware_lib.interfaces.ObjectBrokerInterface;
 import java.util.HashMap;
 
 public class ObjectBroker implements ObjectBrokerInterface {
@@ -47,7 +46,11 @@ public class ObjectBroker implements ObjectBrokerInterface {
      * @param response die Antwort der Anfrage
      */
     private void response(int requestID, Object response){
-        
+        if (!_responses.containsKey(requestID)) {
+            _responses.put(requestID, response);
+        }else{
+            System.out.println("RequestID schon vorhanden");
+        }
     }
 
     /**

@@ -1,10 +1,10 @@
-package mware_lib;
+package mware_lib.interfaces;
 
 /**
  * Stellt den Namensdinest für die Middleware zur Verfügung
  * Möglichkeit: Objektreferezen werden an Hand des übergebenen Namens identifiziert
  */
-interface NameServiceInterface {
+public interface NameServiceInterface {
     /**
      * Mit der Funktion sollen sich Objekte beim Namensdienst registrieren
      * @param servant die Objektreferenz
