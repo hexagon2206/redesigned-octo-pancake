@@ -13,8 +13,10 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class NameService implements NameServiceInterface {
 
+    // Speichert die Referenzen der Objekte mit einem dazugehörigen Namen
     private ConcurrentHashMap<String, String> _clients = new ConcurrentHashMap<>();
-    private static final int _TYPEBUFFERSIZE = 1;
+
+ /*   private static final int _TYPEBUFFERSIZE = 1;
     private static final int _NAMEBUFFERSIZE = 10;
     private static final int _REFERENCEBUFFERSIZE = 246;
     private static final String _CHARSET = "UTF-8";
@@ -22,6 +24,7 @@ public class NameService implements NameServiceInterface {
     public NameService(int port){
         listenOnPort(port);
     }
+
 
     private void listenOnPort(int port) {
         // Verwaltet die einzelnen Channels
@@ -137,9 +140,10 @@ public class NameService implements NameServiceInterface {
                 System.out.println("Fehler");
         }
     }
-
+*/
     /**
-     * Mit der Funktion sollen sich Objekte beim Namensdienst registrieren
+     * Mit der Funktion sollen sich Objekte beim Namensdienst registrieren.
+     * Erhält der Namensdienst mehrmals  den gleichen Key, dann wird die dazugehröge Referenz überschrieben
      *
      * @param servant die Objektreferenz
      * @param name    der Name des Objekts

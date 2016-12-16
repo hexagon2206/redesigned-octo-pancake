@@ -18,7 +18,7 @@ public interface ObjectBrokerInterface {
      * Liefert den Namensdienst
      * @return das Namensdienstobjekt
      */
-     NameServiceInterface getNameservice();
+     NameService getNameservice();
 
     /**
      * Fährt das System herunter
