@@ -159,12 +159,16 @@ namespace timux{
         freeSlotList sl = removeColisons(frameData);
 
         DEBUG(std::cout << "frame Übergang : " << now << std::endl;)
-        if(-1==this->mySlot && sl.freeSlots!=0){
-            if(0==rand()%joinPropability){
-                DEBUG(std::cout << "ttj" <<std::endl;)
-                int chosen = rand()%sl.freeSlots;
-                this->mySlot = sl.data[chosen];
-                DEBUG(std::cout << "mySlot ist :"<<this->mySlot<<std::endl;)
+        if(-1==this->mySlot){
+            if(sl.freeSlots!=0){
+                if(0==rand()%joinPropability){
+                    DEBUG(std::cout << "ttj" <<std::endl;)
+                    int chosen = rand()%sl.freeSlots;
+                    this->mySlot = sl.data[chosen];
+                    DEBUG(std::cout << "mySlot ist :"<<this->mySlot<<std::endl;)
+                }
+            }else if(0==sl.freeSlots){
+                cout << "no free slots, cant join" << endl;
             }
         }
         free(sl.data);
@@ -179,6 +183,7 @@ namespace timux{
         toret.freeSlots = 0;
         toret.data      = (int*)malloc(sizeof(int)*this->slotCount);
         bool *used       = (bool*)malloc(sizeof(bool)*this->slotCount);
+        memset(used,false,sizeof(bool)*this->slotCount);
 
         frameData->lock.lock();
         listArrayEntrie<msg*> *s=&frameData->start;
