@@ -4,7 +4,7 @@ import java.net.Inet4Address;
 import java.util.HashMap;
 import java.util.Map;
 
-import nameService._NameServiceImplBase;
+import mware_lib._NameServiceImplBase;
 
 public class NameServiceImpl extends _NameServiceImplBase {
 
@@ -13,14 +13,25 @@ public class NameServiceImpl extends _NameServiceImplBase {
 	@Override
 	public int rebind(String host, int port, String name) throws Exception {
 		String addr = Inet4Address.getByName(host).getHostAddress()+":"+port+":"+name;
-		services.put(name, addr);
+		synchronized (services) {
+			services.put(name, addr);	
+		}
 		return 0;
 	}
 
 	@Override
 	public String getService(String name) throws Exception {
-		String s = services.get(name);
-		System.out.println("answer  :"+s);	
+		String s;
+		synchronized (services) {
+			s = services.get(name);
+		}
+		
+		if(s==null){
+			System.out.println(name + " can not be resolved");
+			throw new RuntimeException("name cant be resolved");
+		}else{
+			System.out.println(name +" -> "+s);	
+		}
 		return s;
 	}
 

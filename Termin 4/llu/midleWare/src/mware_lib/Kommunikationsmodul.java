@@ -1,5 +1,7 @@
 package mware_lib;
 
+import java.awt.SecondaryLoop;
+import java.awt.SystemColor;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,154 +18,182 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-
-
 /**
- * @author lukas_luehr
- * handels requests and responses, also mcommunication over the TCP sockets
+ * @author lukas_luehr handels requests and responses, also mcommunication over
+ *         the TCP sockets
  */
-public class Kommunikationsmodul  implements Runnable  {
-	
+public class Kommunikationsmodul implements Runnable {
+
 	ServerSocket ss;
-	
-	private class SocketListEntrie{
-		SocketListEntrie(Socket s) throws IOException{
+
+	private class SocketListEntrie {
+		SocketListEntrie(Socket s) throws IOException {
 			this.s = s;
 			this.baos = new ByteArrayOutputStream();
 			this.os = s.getOutputStream();
 			this.is = s.getInputStream();
 		}
+
 		Socket s;
 		ByteArrayOutputStream baos;
 		OutputStream os;
 		InputStream is;
 	}
-	
-	
-	Map<SocketAddress,SocketListEntrie> sockets;
-	
-	ObjectBroker broaker;
-	
+
+	Map<SocketAddress, SocketListEntrie> sockets;
+
+	SpezialObjectBroker broaker;
+
 	/**
-	 * @param port The port to listen on, can be 0  if it is not relevant
-	 * @param broaker an instance of the Broker responcable for handeling incomming data
-	 * @throws IOException if it was not possible to bind a server socket to the spezified port
+	 * @param port
+	 *            The port to listen on, can be 0 if it is not relevant
+	 * @param spezialObjectBroker
+	 *            an instance of the Broker responcable for handeling incomming
+	 *            data
+	 * @param localAddres
+	 *            The local socket addres, can be null, then the default is used
+	 * @throws IOException
+	 *             if it was not possible to bind a server socket to the
+	 *             spezified port
 	 */
-	public Kommunikationsmodul(int port,ObjectBroker broaker) throws IOException{
-		ss= new ServerSocket(port);
+	public Kommunikationsmodul(int port, SpezialObjectBroker spezialObjectBroker, InetAddress localAddres)
+			throws IOException {
+		if (null == localAddres) {
+			ss = new ServerSocket(port);
+		} else {
+			ss = new ServerSocket(port, 1000, localAddres);
+		}
 		ss.setSoTimeout(1);
-		sockets=new HashMap<>();
-		this.broaker = broaker;
+		sockets = new HashMap<>();
+		this.broaker = spezialObjectBroker;
 	}
-	
-	
+
 	/**
 	 * used to send a Request to a remote host
-	 * @param requestID the ID of the Request, important for responses
-	 * @param host the Host, on which die remote object is located
-	 * @param port the port of the middleware on the host
-	 * @param objName the name of the object
-	 * @param methode the methode to invokle
-	 * @param args the parameters 
+	 * 
+	 * @param requestID
+	 *            the ID of the Request, important for responses
+	 * @param host
+	 *            the Host, on which die remote object is located
+	 * @param port
+	 *            the port of the middleware on the host
+	 * @param objName
+	 *            the name of the object
+	 * @param methode
+	 *            the methode to invokle
+	 * @param args
+	 *            the parameters
 	 */
-	public void call(int requestID,String host,int port,String objName,String methode,Object... args){
-		try {
-			Request re = new Request();
-		re.requestID = requestID;
-		re.obj=objName;
-		re.methode=methode;
-		re.args=args;
-		
-			
-		byte[] data = Decoder.request2Bytes(re);
-		InetAddress inet;
-		
-			inet = InetAddress.getByName(host);
-			
-			SocketAddress sockAddr = new InetSocketAddress(inet,port);
-			SocketListEntrie s = sockets.get(sockAddr);
-			
-			
-			if(s==null || s.s.isClosed()){
-				System.out.println("opening new Route");
-				s=new SocketListEntrie(new Socket(inet,port));
-				sockets.put(sockAddr, s);
+	public void call(int requestID, String host, int port, String objName, String methode, Object... args) {
+		synchronized (sockets) {
+
+			try {
+				Request re = new Request();
+				re.requestID = requestID;
+				re.obj = objName;
+				re.methode = methode;
+				re.args = args;
+
+				byte[] data = Decoder.request2Bytes(re);
+				InetAddress inet;
+
+				inet = InetAddress.getByName(host);
+
+				SocketAddress sockAddr = new InetSocketAddress(inet, port);
+
+				SocketListEntrie s = sockets.get(sockAddr);
+
+				if (s == null || s.s.isClosed()) {
+					System.out.println("opening new Route");
+
+					s = new SocketListEntrie(new Socket(inet, port));
+					sockets.put(sockAddr, s);
+				}
+
+				synchronized (s) {
+					s.os.write(data);
+					s.os.flush();
+				}
+			} catch (UnknownHostException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			
-			synchronized (s) {
-				s.os.write(data);
-				s.os.flush();
-			}
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * used to send a response for a request to a remote host
-	 * @param addr The address Referenz
-	 * @param RequestID the ID of the request to respond to
-	 * @param returnValue the value to transmit to the remote host
-	 * @throws IOException if an error acures transmitting the data
+	 * 
+	 * @param addr
+	 *            The address Referenz
+	 * @param RequestID
+	 *            the ID of the request to respond to
+	 * @param returnValue
+	 *            the value to transmit to the remote host
+	 * @throws IOException
+	 *             if an error acures transmitting the data
 	 */
-	public void response(SocketAddress addr,int RequestID,Object returnValue) throws IOException{
-		Response rs=new Response();
-		rs.requestID=RequestID;
+	public void response(SocketAddress addr, int RequestID, Object returnValue) throws IOException {
+		Response rs = new Response();
+		rs.requestID = RequestID;
 		rs.value = returnValue;
 
-		byte[]data = Decoder.response2Bytes(rs);
+		byte[] data = Decoder.response2Bytes(rs);
 		SocketListEntrie s;
 		synchronized (sockets) {
 			s = sockets.get(addr);
 		}
-		if(s==null){
+		if (s == null) {
 			Socket so = new Socket();
 			so.connect(addr);
 			s = new SocketListEntrie(so);
 			sockets.put(addr, s);
 		}
 		synchronized (s) {
+			System.out.println("sending response : " + RequestID);
 			s.os.write(data);
 			s.os.flush();
 		}
 	}
-	
-	public void run(){
+
+	public void run() {
 		try {
-			while(true){
-				try{
+			while (true) {
+				try {
 					Socket s = ss.accept();
-					System.out.println("connection from :"+s.getRemoteSocketAddress());
+					System.out.println("connection from :" + s.getRemoteSocketAddress());
 					SocketListEntrie os = sockets.get(s.getRemoteSocketAddress());
-					if(os==null || os.s.isClosed()){
+					if (os == null || os.s.isClosed()) {
 						sockets.put(s.getRemoteSocketAddress(), new SocketListEntrie(s));
 						System.out.println("new Route to Target");
 					}
-				}catch(SocketTimeoutException e){}
-				for(Iterator<Map.Entry<SocketAddress,SocketListEntrie>> it = sockets.entrySet().iterator(); it.hasNext();) {
-					Map.Entry<SocketAddress,SocketListEntrie> e=it.next();
+				} catch (SocketTimeoutException e) {
+				}
+				for (Iterator<Map.Entry<SocketAddress, SocketListEntrie>> it = sockets.entrySet().iterator(); it
+						.hasNext();) {
+					Map.Entry<SocketAddress, SocketListEntrie> e = it.next();
 					SocketListEntrie sle = e.getValue();
 					int readable = sle.is.available();
-					if(0!=readable){
+					if (0 != readable) {
 						byte[] data = new byte[readable];
 						readable = sle.is.read(data);
-						if(readable>0){
+						if (readable > 0) {
 							sle.baos.write(data, 0, readable);
 						}
 						Message m;
-						while(null!=(m=Decoder.decode(sle.baos))){
-							if(m instanceof Request){
-								broaker.call(e.getKey(),((Request)m).requestID, ((Request)m).obj, ((Request)m).methode, ((Request)m).args);
-							}else if(m instanceof Response){
-								broaker.response(((Response)m).requestID, ((Response)m).value);
+						while (null != (m = Decoder.decode(sle.baos))) {
+							if (m instanceof Request) {
+								broaker.call(e.getKey(), ((Request) m).requestID, ((Request) m).obj,
+										((Request) m).methode, ((Request) m).args);
+							} else if (m instanceof Response) {
+								broaker.response(((Response) m).requestID, ((Response) m).value);
 							}
 						}
 					}
-					if(sle.s.isClosed()){
+					if (sle.s.isClosed()) {
 						it.remove();
 					}
 				}
@@ -195,7 +225,6 @@ public class Kommunikationsmodul  implements Runnable  {
 		}
 	}
 
-
 	/**
 	 * @return the Name of the local Host
 	 */
@@ -209,5 +238,5 @@ public class Kommunikationsmodul  implements Runnable  {
 	public int getPort() {
 		return ss.getLocalPort();
 	}
-	
+
 }

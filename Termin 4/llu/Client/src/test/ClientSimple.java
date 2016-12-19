@@ -9,26 +9,25 @@ import mware_lib.ObjectBroker;
 import mware_lib.SpezialObjectBroker;
 import upn_ops._upnCalcImplBase;
 
-public class ClientNS {	
+public class ClientSimple {	
 	
 	private static void usage(){
-		System.out.println("first parameter is the local interface addres, secend the remote addres of NS and third the remote port");
+		System.out.println("first parameter is the remote addres of NS and second the remote port");
 	}
 	public static void main(String []args){
-		if(args.length!=3){
+		if(args.length!=2){
 			usage();
 			return;
 		}
-		String localInterface = args[0];
-		String removeAddress  = args[1];
-		int port = Integer.parseInt(args[2]);
+		String removeAddress  = args[0];
+		int port = Integer.parseInt(args[1]);
 
 		ObjectBroker broker=null;
 		try {
-			InetAddress myAddress = InetAddress.getByName(localInterface);
 			
-			broker = SpezialObjectBroker.init(myAddress,removeAddress, port, false);
+			broker = ObjectBroker.init(removeAddress, port, false);
 			NameService ns = broker.getNameService();
+			
 			_CalculatorImplBase calc = _CalculatorImplBase.narrowCast(ns.resolve("calc"));
 			_upnCalcImplBase upn = _upnCalcImplBase.narrowCast(ns.resolve("upn"));
 			try {

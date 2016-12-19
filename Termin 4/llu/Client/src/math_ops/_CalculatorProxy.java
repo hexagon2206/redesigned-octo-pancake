@@ -1,15 +1,17 @@
 package math_ops;
 
-import mware_lib.ObjectBroker;
+import mware_lib.SpezialObjectBroker;
+
+import mware_lib.RefClass;
 
 public class _CalculatorProxy extends _CalculatorImplBase {
 
-	private String ref;
-	private ObjectBroker broker;
+	public String ref;
+	public SpezialObjectBroker broker;
 
-	public _CalculatorProxy(String ref){
-		this.ref = ref;
-		this.broker = ObjectBroker.newest;
+	public _CalculatorProxy(Object ref){
+		this.ref = ((RefClass)ref).ref;
+		this.broker = ((RefClass)ref).broker;
 	}
 
 	public double add(

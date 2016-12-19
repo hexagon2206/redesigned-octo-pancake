@@ -1,8 +1,8 @@
-package nameService;
+package mware_lib;
 
 public abstract class _NameServiceImplBase {
 
-	public static _NameServiceImplBase narrowCast(String rawObjectRef) {
+	public static _NameServiceImplBase narrowCast(Object rawObjectRef) {
 		return new _NameServiceProxy(rawObjectRef);
 	}
 

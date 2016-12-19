@@ -1,15 +1,13 @@
-package nameService;
-
-import mware_lib.ObjectBroker;
+package mware_lib;
 
 public class _NameServiceProxy extends _NameServiceImplBase {
 
 	public String ref;
-	public ObjectBroker broker;
+	public SpezialObjectBroker broker;
 
-	public _NameServiceProxy(String ref){
-		this.ref = ref;
-		this.broker = ObjectBroker.newest;
+	public _NameServiceProxy(Object ref){
+		this.ref = ((RefClass)ref).ref;
+		this.broker = ((RefClass)ref).broker;
 	}
 
 	public int rebind(

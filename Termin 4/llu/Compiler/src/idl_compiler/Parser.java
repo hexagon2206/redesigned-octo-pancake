@@ -285,7 +285,7 @@ public class Parser {
 		    writer.write("package "+ c.getModuleName() + ";\n\n");
 		    
 		    writer.write("public abstract class " + className + " {\n\n");
-		    writer.write("\tpublic static "+className+" narrowCast(String rawObjectRef) {\n"+
+		    writer.write("\tpublic static "+className+" narrowCast(Object rawObjectRef) {\n"+
 		    	"\t\treturn new "+toProxyName(c)+"(rawObjectRef);\n"+
 		    	"\t}\n\n");
 		    
@@ -308,14 +308,15 @@ public class Parser {
 			writer = new PrintWriter(outputDir+className+".java", "UTF-8");
 			writer.write("package "+ c.getModuleName() + ";\n\n");
 
-			writer.write("import mware_lib.ObjectBroker;\n\n");
+			writer.write("import mware_lib.SpezialObjectBroker;\n\n");
+			writer.write("import mware_lib.RefClass;\n\n");
 
 		    writer.write("public class " + className + " extends "+toImplBaseName(c)+" {\n\n");
 		    writer.write("\tpublic String ref;\n");
-		    writer.write("\tpublic ObjectBroker broker;\n\n");
-			writer.write("\tpublic "+className+"(String ref){\n"
-					+ "\t\tthis.ref = ref;\n"
-					+ "\t\tthis.broker = ObjectBroker.newest;\n"
+		    writer.write("\tpublic SpezialObjectBroker broker;\n\n");
+			writer.write("\tpublic "+className+"(Object ref){\n"
+					+ "\t\tthis.ref = ((RefClass)ref).ref;\n"
+					+ "\t\tthis.broker = ((RefClass)ref).broker;\n"
 					+ "\t}\n\n");  
 		    
 		    for(MethodData m:c.getMethods()){

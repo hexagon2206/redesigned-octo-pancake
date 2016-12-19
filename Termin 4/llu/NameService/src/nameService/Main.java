@@ -1,14 +1,16 @@
 package nameService;
 
 import java.io.IOException;
+import java.net.InetAddress;
 
 import mware_lib.ObjectBroker;
+import mware_lib.SpezialObjectBroker;
 
 public class Main {
 	
 	private static void usage(){
 		System.out.println("Not used Corecley:");
-		System.out.println("\tprogrammName port ServiceName");
+		System.out.println("\tParameter must be :  localAddress port");
 	}
 	public static void main(String []args){
 		if(args.length!=2){
@@ -16,18 +18,21 @@ public class Main {
 			return;
 		}
 		int port;
-		String name;
+		String localAddress;
 		
 		try{
-			port = Integer.parseInt(args[0]);
-			name = args[1];
+			port = Integer.parseInt(args[1]);
+			localAddress = args[0];
 		}catch(Exception e){
 			usage();
 			return;
 		}
+		
 		try {
-			ObjectBroker broker = ObjectBroker.init(port, false);
-			broker.registerLocal(new NameServiceImpl(), name);
+			InetAddress myAddress = InetAddress.getByName(localAddress);
+			SpezialObjectBroker broker = SpezialObjectBroker.init(myAddress,port, false);
+			broker.registerLocal(new NameServiceImpl(), "ns");
+			System.out.println("Nameservice Up and running . . .");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
