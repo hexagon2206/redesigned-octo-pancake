@@ -1,5 +1,7 @@
-package mware_lib;
+package mware_lib.interfaces;
 
+
+import mware_lib.NameService;
 
 public interface ObjectBrokerInterface {
     /**
@@ -18,7 +20,7 @@ public interface ObjectBrokerInterface {
      * Liefert den Namensdienst
      * @return das Namensdienstobjekt
      */
-     NameServiceInterface getNameservice();
+     NameService getNameservice();
 
     /**
      * Fährt das System herunter
