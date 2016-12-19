@@ -92,6 +92,7 @@ namespace timux{
     struct freeSlotList{
         int freeSlots;
         int *data;
+        bool*usedSlots;
     };
 
     /**
@@ -113,6 +114,8 @@ namespace timux{
 
             int ready=false;
             int mySlot=-1;
+            int myUpdatedSlot;
+            bool updateSlot=false;
 
             int joinPropability=5;      // 1/5 Warseinlichkeit bei zu treten zu versuchen
 
@@ -149,7 +152,7 @@ namespace timux{
 
             void frameEnd(llu::datastructs::LinkedListArray<msg*> *frameData);
 
-            freeSlotList removeColisons(llu::datastructs::LinkedListArray<msg*> *frameData);
+            freeSlotList removeColisons(llu::datastructs::LinkedListArray<msg*> *frameData,bool synchronize=true);
 
 
 

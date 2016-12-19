@@ -33,10 +33,9 @@ namespace timux{
 
     void timing::synchronize(signed long no){
         this->lock.lock();
-        this->timeOffset += no;
+        this->timeOffset += no;      /// @note Nach entsprechnder Laufzeit kommt es hier zum overflow
         this->sampleCount++;
         this->lock.unlock();
-        std::cout << "adding offset" << no << endl;
     }
 
     unsigned long timing::now(){
@@ -132,7 +131,22 @@ namespace timux{
     package *timux::build(){
         package *p=(package *)malloc(sizeof(package));
         toNBO(this->stationClass,p->klasse);
-        toNBO((uint8_t)(this->mySlot+1), p->nextSlot);
+        msgLock.lock();
+        freeSlotList fsl = removeColisons(this->msgForTimeSync,false);
+        msgLock.unlock();
+
+
+        //Slot Prüfen
+        if(fsl.usedSlots[this->mySlot]){
+           // std::cout<< "my Slot  is Taken, changing to other Slot" << std::endl;
+            this->myUpdatedSlot=fsl.data[0];   //TODO was wenn kein slot mehr frei ist sollte allerdings nie passieren können
+            this->updateSlot = true;
+            toNBO((uint8_t)(this->myUpdatedSlot+1), p->nextSlot);
+        }else{
+            toNBO((uint8_t)(this->mySlot+1), p->nextSlot);
+        }
+        free(fsl.data);
+        free(fsl.usedSlots);
 
         this->sendDataLock.lock();
         data *d = this->dataSource->getData();
@@ -172,18 +186,25 @@ namespace timux{
             }
         }
         free(sl.data);
+        free(sl.usedSlots);
         destroyFrameData(frameData);
+        if(this->updateSlot){
+
+            this->mySlot = this->myUpdatedSlot;
+            this->updateSlot=false;
+
+        }
         DEBUG(std::cout << "took : " << (this->t.now()-now) << std::endl;)
     }
 
 
 
-    freeSlotList timux::removeColisons(llu::datastructs::LinkedListArray<msg*> *frameData){
+    freeSlotList timux::removeColisons(llu::datastructs::LinkedListArray<msg*> *frameData,bool synchronize){
         freeSlotList toret;
         toret.freeSlots = 0;
         toret.data      = (int*)malloc(sizeof(int)*this->slotCount);
-        bool *used       = (bool*)malloc(sizeof(bool)*this->slotCount);
-        memset(used,false,sizeof(bool)*this->slotCount);
+        toret.usedSlots = (bool*)malloc(sizeof(bool)*this->slotCount);
+        memset(toret.usedSlots,false,sizeof(bool)*this->slotCount);
 
         frameData->lock.lock();
         listArrayEntrie<msg*> *s=&frameData->start;
@@ -196,30 +217,28 @@ namespace timux{
                 s->next->data->valide=false;
             }
             if(s->data->valide){
-                if(this->mySlot!=-1 && this->mySlot == s->data->slot){
+                if(synchronize&&this->mySlot!=-1 && this->mySlot == s->data->slot){
                     msok = true;
-                    std::cout << "mySlotBestätigt"<<std::endl;
+                //    std::cout << "mySlotBestätigt"<<std::endl;
                 }
 
-                used[s->data->nextSlot]=true;
-                if(s->data->klasse=='A'){
+                toret.usedSlots[s->data->nextSlot]=true;
+                if(synchronize&& s->data->klasse=='A'){
                     this->t.synchronize((s->data->sendeTime)-(s->data->rawRecivedTime));
                 }
             }
             s=s->next;
         }
-        if(!msok){
+        if(synchronize&&!msok){
             this->mySlot=-1;
         }
         frameData->lock.unlock();
         for(unsigned int i = 0 ;i< this->slotCount;i++){
-            if(!used[i]){
+            if(!toret.usedSlots[i]){
                 toret.data[toret.freeSlots] = i;
                 toret.freeSlots++;
             }
         }
-
-        free(used);
         return toret;
     }
 
@@ -231,7 +250,7 @@ namespace timux{
         while(this->curentFrame == curentFrame){            //Wait for the start of a new frame
             now = this->t.now();
             curentFrame = now/this->frameLength;
-            std::this_thread::sleep_for(std::chrono::microseconds(1));
+            std::this_thread::sleep_for(std::chrono::milliseconds(1));
         }
 
         this->curentFrame = curentFrame;
@@ -244,14 +263,19 @@ namespace timux{
                 this->curentFrame = curentFrame;
 
                 frameEnd(setupNextFrame());
-
+               /* if(-1==this->mySlot){
+                    std::this_thread::sleep_for(std::chrono::milliseconds(this->frameLength - 20));
+                }else{
+                    if(0!=this->mySlot)
+                    std::this_thread::sleep_for(std::chrono::milliseconds(this->mySlot*this->frameLength/this->slotCount - 20));
+                }*/
 
             }else if(-1!=this->mySlot){
                 unsigned int slot = (now%this->frameLength)/(this->frameLength/this->slotCount);
-                if(this->lastSendIn < curentFrame && (unsigned int)this->mySlot == slot){
+                if(this->lastSendIn < curentFrame && (unsigned int)this->mySlot >= slot){
                     this->lastSendIn=curentFrame;
                     package *p=build();
-                    unsigned long sendAt = this->frameLength*curentFrame + (mySlot*4+1)*(this->frameLength/this->slotCount/4);
+                    unsigned long sendAt = this->frameLength*curentFrame + (mySlot*4+2)*(this->frameLength/this->slotCount/4);
 
                     while(sendAt > (now=this->t.now())){}//Wait till middle of the slot
 
@@ -259,10 +283,12 @@ namespace timux{
                     send(p);
                     std::cout<<"sending slot :"<<mySlot<<" at: " << now <<endl;
 
-                    std::this_thread::sleep_for(std::chrono::microseconds(this->frameLength/this->slotCount*(this->slotCount-2)));
+                  //  if(this->mySlot<this->slotCount-2)
+                    //std::this_thread::sleep_for(std::chrono::milliseconds((this->slotCount - this->mySlot)*this->frameLength/this->slotCount - 40));
                 }
+            }else{
+                std::this_thread::sleep_for(std::chrono::milliseconds(5));
             }
-            std::this_thread::sleep_for(std::chrono::microseconds(1));
 
         }
 
