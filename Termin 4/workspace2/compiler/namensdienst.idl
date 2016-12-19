@@ -1,0 +1,6 @@
+module mware_lib {
+  class NameService {
+    int rebind(string host, int port,string name);
+    string getService(string name);
+  };
+};
