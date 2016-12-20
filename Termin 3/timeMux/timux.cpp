@@ -281,7 +281,7 @@ namespace timux{
 
                     toNBO((uint64_t)now,p->time);
                     send(p);
-                    std::cout<<"sending slot :"<<mySlot<<" at: " << now <<endl;
+                    //std::cout<<"sending slot :"<<mySlot<<" at: " << now <<endl;
 
                   //  if(this->mySlot<this->slotCount-2)
                     //std::this_thread::sleep_for(std::chrono::milliseconds((this->slotCount - this->mySlot)*this->frameLength/this->slotCount - 40));
@@ -302,13 +302,15 @@ namespace timux{
 
     void MsgHandler(void* timuxClass,llu::network::recivedMessage* m){
         timux * ti = (timux*)timuxClass;
+        unsigned long raw = ti->t.raw();
+        unsigned long off = ti->t.getOffset();
 
 
         msg *toret = (msg*)malloc(sizeof(msg));
 
         package *p= (package *)m->data;
-        unsigned long timestamp = ti->t.now();  //TODO:CAHNGED TO curent system Time
-        toret->rawRecivedTime = ti->t.raw();
+        unsigned long timestamp = raw+off;  //TODO:CAHNGED TO curent system Time
+        toret->rawRecivedTime = raw;
 
 
         toret->frame= timestamp / ti->frameLength;
