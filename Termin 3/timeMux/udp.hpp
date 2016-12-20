@@ -24,7 +24,7 @@ namespace llu{
         using namespace std;
         class UdpConnection : public Connection {
             public :
-                UdpConnection(char *bcGroup=0,uint16_t myPort=0,char *interface=nullptr,char ttl = 2,size_t maxRcvMsgLeng=128);
+                UdpConnection(char *bcGroup=0,uint16_t myPort=0,char *interface=nullptr,char ttl = 1,size_t maxRcvMsgLeng=128);
 
                 recivedMessage *recvMsg();
 
