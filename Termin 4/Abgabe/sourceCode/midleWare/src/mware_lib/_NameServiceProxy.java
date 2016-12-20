@@ -24,7 +24,8 @@ public class _NameServiceProxy extends _NameServiceImplBase {
 		 String name
 	) throws Exception {
 		Object o = this.broker.syncCall(this.ref,"getService",name);
-		if(o instanceof Exception)throw ((Exception)o);
+		if(o instanceof Exception)
+			throw ((Exception)o);
 		return (String)o;
 	}
 

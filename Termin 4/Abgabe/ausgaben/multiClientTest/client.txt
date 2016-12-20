@@ -9,5 +9,6 @@ Alles OK
 Alles OK
 Alles OK
 Alles OK
+Alle Threads Terminiert
 
 C:\Users\lukas_luehr\Desktop\Semester5\vs\praktikum\Termin 4\Abgabe>

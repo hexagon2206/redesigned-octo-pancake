@@ -183,11 +183,15 @@ public class Decoder {
 			baos.write(className);
 			
 			String mes = e.getMessage();
-			if(mes==null)mes="";
-			byte[] msgText = mes.getBytes();
-			bb.putInt(0,msgText.length);
-			baos.write(bb.array());
-			baos.write(msgText);
+			if(mes==null){
+				bb.putInt(0,-1);
+				baos.write(bb.array());
+			}else{
+				byte[] msgText = mes.getBytes();
+				bb.putInt(0,msgText.length);
+				baos.write(bb.array());
+				baos.write(msgText);
+			}
 		}else{
 			return null;
 		}
@@ -217,11 +221,14 @@ public class Decoder {
 			String className =  new String(strName);
 			
 			lengthClassName = in.getInt();
-			strName = new byte[lengthClassName];
-			in.get(strName);
-			String msg =  new String(strName);
-			
-			return Class.forName(className).getConstructor(String.class).newInstance(msg);			
+			if(-1==lengthClassName){
+				return Class.forName(className).getConstructor().newInstance();
+			}else{
+				strName = new byte[lengthClassName];
+				in.get(strName);
+				String msg =  new String(strName);
+				return Class.forName(className).getConstructor(String.class).newInstance(msg);	
+			}
 		}
 		return null;
 	}

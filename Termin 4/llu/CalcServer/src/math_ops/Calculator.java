@@ -1,5 +1,7 @@
 package math_ops;
 
+import javax.management.RuntimeErrorException;
+
 public class Calculator extends _CalculatorImplBase {
 
 	@Override
@@ -9,7 +11,7 @@ public class Calculator extends _CalculatorImplBase {
 
 	@Override
 	public String getStr(double a) throws Exception {
-		return Double.toString(a);
+		throw new RuntimeException(Double.toString(a));
 	}
 
 }

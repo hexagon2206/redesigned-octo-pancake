@@ -27,7 +27,6 @@ public class ClientSimpleSpamer {
 				for(int i = 0;i!=100;i++){
 					if((i+i+1)!=obj.add(i, i+1)) System.out.println("wrong response");
 				}
-	            Thread.sleep(10000);
 				System.out.println("Alles OK");
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -49,14 +48,18 @@ public class ClientSimpleSpamer {
 		try {
 			
 			broker = ObjectBroker.init(removeAddress, port, false);
-
-			for(int i = 0;i!=10;i++){
+			int X = 10;
+			Thread[] ts = new Thread[X];
+			for(int i = 0;i!=ts.length;i++){
 				testRunner t = new testRunner();
 				t.broker=broker;
-				(new Thread(t)).start();
+				ts[i] = new Thread(t);
+				ts[i].start();
 			}
-
-            Thread.sleep(60000);
+			for(Thread t:ts){
+				t.join();
+			}
+			System.out.println("Alle Threads Terminiert");
 			
 		} catch (IOException e ) {
 			// TODO Auto-generated catch block
