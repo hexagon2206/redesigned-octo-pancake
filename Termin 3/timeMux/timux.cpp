@@ -307,17 +307,17 @@ namespace timux{
         msg *toret = (msg*)malloc(sizeof(msg));
 
         package *p= (package *)m->data;
-        unsigned long timestamp = toHBO_64(p->time);
+        unsigned long timestamp = ti->t.now();  //TODO:CAHNGED TO curent system Time
+        toret->rawRecivedTime = ti->t.raw();
+
 
         toret->frame= timestamp / ti->frameLength;
         toret->slot = (int)((timestamp%ti->frameLength)/(ti->frameLength/ti->slotCount));
         toret->nextSlot = toHBO_8(p->nextSlot)-1;
         memcpy(toret->data,p->data,sizeof(toret->data));
-        toret->sendeTime = timestamp;
+        toret->sendeTime = toHBO_64(p->time);
 
         toret->klasse = toHBO_8(p->klasse);
-
-        toret->rawRecivedTime = ti->t.raw();
         ti->recived(toret);
 
         //std::cout << "Recived MSG F:" << toret->frame << "Slot : "<<  toret->slot << std::endl << toret->data << std::endl << std::endl;
