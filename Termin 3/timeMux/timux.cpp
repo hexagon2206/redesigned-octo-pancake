@@ -137,14 +137,14 @@ namespace timux{
 
 
         //Slot Prüfen
-        //if(fsl.usedSlots[this->mySlot]){
-        //    std::cout<< "my Slot  is Taken, changing to other Slot" << std::endl;
+        if(fsl.usedSlots[this->mySlot]){
+            std::cout<< "my Slot  is Taken, changing to other Slot" << std::endl;
             this->myUpdatedSlot=fsl.data[0];   //TODO was wenn kein slot mehr frei ist sollte allerdings nie passieren können
             this->updateSlot = true;
             toNBO((uint8_t)(this->myUpdatedSlot+1), p->nextSlot);
-        //}else{
-        //    toNBO((uint8_t)(this->mySlot+1), p->nextSlot);
-        //}
+        }else{
+            toNBO((uint8_t)(this->mySlot+1), p->nextSlot);
+        }
         free(fsl.data);
         free(fsl.usedSlots);
 
