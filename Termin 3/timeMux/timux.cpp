@@ -137,14 +137,14 @@ namespace timux{
 
 
         //Slot Prüfen
-       // if(fsl.usedSlots[this->mySlot]){
-           // std::cout<< "my Slot  is Taken, changing to other Slot" << std::endl;
+        //if(fsl.usedSlots[this->mySlot]){
+        //    std::cout<< "my Slot  is Taken, changing to other Slot" << std::endl;
             this->myUpdatedSlot=fsl.data[0];   //TODO was wenn kein slot mehr frei ist sollte allerdings nie passieren können
             this->updateSlot = true;
             toNBO((uint8_t)(this->myUpdatedSlot+1), p->nextSlot);
-       /* }else{
-            toNBO((uint8_t)(this->mySlot+1), p->nextSlot);
-        }*/
+        //}else{
+        //    toNBO((uint8_t)(this->mySlot+1), p->nextSlot);
+        //}
         free(fsl.data);
         free(fsl.usedSlots);
 
@@ -231,6 +231,7 @@ namespace timux{
         }
         if(synchronize&&!msok){
             this->mySlot=-1;
+            this->updateSlot=false;
         }
         frameData->lock.unlock();
         for(unsigned int i = 0 ;i< this->slotCount;i++){
@@ -274,9 +275,11 @@ namespace timux{
                 unsigned int slot = (now%this->frameLength)/(this->frameLength/this->slotCount);
                 if(this->lastSendIn < curentFrame && (unsigned int)this->mySlot >= slot){
                     this->lastSendIn=curentFrame;
-                    package *p=build();
                     unsigned long sendAt = this->frameLength*curentFrame + (mySlot*4+2)*(this->frameLength/this->slotCount/4);
+                    unsigned long buildAt = this->frameLength*curentFrame + (mySlot*4+1)*(this->frameLength/this->slotCount/4);
 
+                    while(buildAt > (now=this->t.now())){}//Wait till middle of the slot
+                    package *p=build();
                     while(sendAt > (now=this->t.now())){}//Wait till middle of the slot
 
                     toNBO((uint64_t)now,p->time);
