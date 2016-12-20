@@ -1,0 +1,13 @@
+module upn_ops {
+  class upnCalc {
+    int push(double value);
+    double pop();
+	int add();
+	int sub();
+	int mul();
+	int div();
+	int pow();
+	int dup();
+    string getStr(double a);
+  };
+};
