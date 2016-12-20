@@ -1,0 +1,21 @@
+INDEX VERSION 1.127+/home/students/abu444/TI_Labor/RN/Praktikum/Termin1/workspace2/.metadata/.plugins/org.eclipse.jdt.core
+4140885773.index
+3643195691.index
+1207790523.index
+1479552456.index
+3432707498.index
+1946237948.index
+2658676460.index
+1125884709.index
+3727848070.index
+3421228866.index
+2425920454.index
+1204010073.index
+2595775786.index
+260595793.index
+1529551626.index
+915389051.index
+700738848.index
+617764117.index
+3375177918.index
+3551731057.index

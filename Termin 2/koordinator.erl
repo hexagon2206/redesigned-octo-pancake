@@ -86,8 +86,13 @@ start(ConfigFile) ->
 	register(Koordinatorname,KOPID),
 	NSPID = global:whereis_name(Nameservicename),
 	NSPID ! {self(),{rebind,Koordinatorname,node()}},
-	tool:l(lf(),'Startup',"[OK]"),
-	tool:l(lf(),'Startup',"[DONE]").
+	receive 
+		ok -> 
+			tool:l(lf(),'Startup',"[OK]"),
+			tool:l(lf(),'Startup',"[DONE]");
+		_ -> 			
+			tool:l(lf(),'Startup',"[NOK]"),
+	end.
 
 
 

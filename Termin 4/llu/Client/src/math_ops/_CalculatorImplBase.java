@@ -2,7 +2,7 @@ package math_ops;
 
 public abstract class _CalculatorImplBase {
 
-	public static _CalculatorImplBase narrowCast(String rawObjectRef) {
+	public static _CalculatorImplBase narrowCast(Object rawObjectRef) {
 		return new _CalculatorProxy(rawObjectRef);
 	}
 

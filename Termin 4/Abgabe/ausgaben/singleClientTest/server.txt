@@ -1,0 +1,2 @@
+C:\Users\lukas_luehr\Desktop\Semester5\vs\praktikum\Termin 4\Abgabe>java -jar ServerSimple.jar 127.0.0.1 1237
+Calc Server up and Running . . .
