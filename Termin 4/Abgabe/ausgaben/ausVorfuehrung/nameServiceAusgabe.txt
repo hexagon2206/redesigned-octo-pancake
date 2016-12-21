@@ -1,0 +1,3 @@
+Nameservice Up and running at 141.22.27.103:1234
+zumsel -> 141.22.27.103:33453:zumsel
+

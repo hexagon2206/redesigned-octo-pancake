@@ -1,0 +1,4 @@
+s=690.0
+d=433.0
+Press ENTER to exit...
+Runtime exception ( saw -1 ...)
