@@ -4,11 +4,13 @@ import idl_compiler.IDLCompiler.MethodData;
 import idl_compiler.IDLCompiler.SupportedDataTypes;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /**
@@ -212,7 +214,7 @@ public class Parser {
 				
 				// output of what we parsed from IDL file (just for testing)
 				printModule(module);
-				toJava(module, ".\\out\\");
+				toJava(module, Paths.get(".").toAbsolutePath().normalize().toString()+File.separator+"out"+File.separator);
 				
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
