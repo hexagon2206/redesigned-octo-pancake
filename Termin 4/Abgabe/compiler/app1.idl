@@ -1,0 +1,6 @@
+module math_ops {
+  class Calculator {
+      double add(double p0, double p1);
+      double sub(double p0, double p1);
+  };
+}; 
