@@ -35,6 +35,10 @@ namespace timux{
         this->lock.lock();
         this->timeOffset += no;      /// @note Nach entsprechnder Laufzeit kommt es hier zum overflow
         this->sampleCount++;
+        if(this->sampleCount > 10){
+            this->sampleCount /=2;
+            this->timeOffset  /=2;
+        }
         this->lock.unlock();
     }
 
